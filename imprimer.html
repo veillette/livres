@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imprimer un livre</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style id="format-papier"></style>
+</head>
+<body>
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">📚</span> Bibliothèque</a>
+    <p class="entete__titre" id="titre"></p>
+    <div class="entete__actions">
+      <a class="bouton bouton--secondaire" id="lire" href="lire.html">📖 Lire</a>
+    </div>
+  </header>
+
+  <main class="impression">
+    <form class="reglages" id="reglages">
+      <h2>Imprimer le livre</h2>
+
+      <fieldset>
+        <legend>Papier</legend>
+        <div class="choix">
+          <label><input type="radio" name="papier" value="lettre" checked><span>Lettre (8½ × 11)</span></label>
+          <label><input type="radio" name="papier" value="a4"><span>A4</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mise en page</legend>
+        <div class="choix">
+          <label><input type="radio" name="mode" value="livret" checked><span>Livret à plier</span></label>
+          <label><input type="radio" name="mode" value="pages"><span>Une page par feuille</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="choix-faces">
+        <legend>Faces à imprimer</legend>
+        <div class="choix">
+          <label><input type="radio" name="faces" value="toutes" checked><span>Recto verso</span></label>
+          <label><input type="radio" name="faces" value="recto"><span>Rectos</span></label>
+          <label><input type="radio" name="faces" value="verso"><span>Versos</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Marge blanche</legend>
+        <div class="choix">
+          <label><input type="radio" name="marge" value="0"><span>Aucune</span></label>
+          <label><input type="radio" name="marge" value="5" checked><span>5 mm</span></label>
+          <label><input type="radio" name="marge" value="10"><span>10 mm</span></label>
+        </div>
+      </fieldset>
+
+      <div class="aide" id="aide"></div>
+
+      <button class="bouton" type="button" id="imprimer">🖨️ Imprimer</button>
+    </form>
+
+    <section class="apercu" aria-label="Aperçu des feuilles">
+      <p class="apercu__resume" id="resume">Chargement du livre…</p>
+      <div class="apercu" id="feuilles"></div>
+    </section>
+  </main>
+
+  <script src="livres/catalogue.js"></script>
+  <script src="js/livres.js"></script>
+  <script src="js/imposition.js"></script>
+  <script src="js/impression.js"></script>
+</body>
+</html>

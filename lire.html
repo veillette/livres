@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lire un livre</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="lecteur">
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">📚</span> Bibliothèque</a>
+    <p class="entete__titre" id="titre"></p>
+    <div class="entete__actions">
+      <button class="bouton bouton--secondaire" id="voix" type="button" hidden>🔊 Écouter</button>
+      <a class="bouton" id="imprimer" href="imprimer.html">🖨️ Imprimer</a>
+    </div>
+  </header>
+
+  <main class="scene" id="scene" aria-live="polite">
+    <p class="message">Chargement du livre…</p>
+  </main>
+
+  <nav class="navigation" aria-label="Pages">
+    <button class="bouton bouton--rond" id="precedent" type="button" aria-label="Page précédente">◀</button>
+    <span class="navigation__position" id="position"></span>
+    <button class="bouton bouton--rond" id="suivant" type="button" aria-label="Page suivante">▶</button>
+  </nav>
+
+  <script src="livres/catalogue.js"></script>
+  <script src="js/livres.js"></script>
+  <script src="js/lecteur.js"></script>
+</body>
+</html>

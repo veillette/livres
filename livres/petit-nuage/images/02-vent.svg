@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <g id="forme">
+      <circle cx="-85" cy="15" r="55"/>
+      <circle cx="-25" cy="-25" r="75"/>
+      <circle cx="55" cy="-15" r="65"/>
+      <circle cx="105" cy="25" r="48"/>
+      <rect x="-140" y="5" width="293" height="80" rx="40"/>
+    </g>
+    <g id="visage">
+      <ellipse cx="-30" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
+      <ellipse cx="35" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
+      <circle cx="-27" cy="10" r="3.5" fill="#fff"/>
+      <circle cx="38" cy="10" r="3.5" fill="#fff"/>
+      <ellipse cx="-62" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <ellipse cx="68" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <ellipse cx="3" cy="46" rx="9" ry="11" fill="#2b2b3a"/>
+    </g>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cc7f5"/>
+      <stop offset="1" stop-color="#e0f4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#ciel)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.9">
+    <path d="M 40 250 Q 180 200 260 250 Q 320 290 280 330 Q 240 360 220 320"/>
+    <path d="M 60 380 Q 170 350 250 380"/>
+    <path d="M 20 470 Q 150 430 240 470 Q 300 500 270 540 Q 240 565 225 535"/>
+  </g>
+  <path d="M 0 640 Q 200 560 420 630 T 800 600 L 800 800 L 0 800 Z" fill="#9bdc74"/>
+  <path d="M 0 700 Q 260 630 520 700 T 800 690 L 800 800 L 0 800 Z" fill="#76c95a"/>
+  <g>
+    <path d="M 560 720 Q 572.0 640 600 570" stroke="#8b5a2b" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <circle cx="610" cy="530" r="60" fill="#4caf50"/>
+    <circle cx="655" cy="560" r="45" fill="#5cc05f"/>
+    <circle cx="570" cy="560" r="42" fill="#43a047"/>
+  </g>
+  <g>
+    <path d="M 700 740 Q 710.5 660 735 590" stroke="#8b5a2b" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <circle cx="745" cy="550" r="60" fill="#4caf50"/>
+    <circle cx="790" cy="580" r="45" fill="#5cc05f"/>
+    <circle cx="705" cy="580" r="42" fill="#43a047"/>
+  </g>
+  <ellipse cx="470" cy="250" rx="14" ry="7" fill="#5cc05f" transform="rotate(20 470 250)"/>
+  <ellipse cx="560" cy="190" rx="14" ry="7" fill="#8bc34a" transform="rotate(-30 560 190)"/>
+  <ellipse cx="690" cy="300" rx="14" ry="7" fill="#4caf50" transform="rotate(45 690 300)"/>
+  <ellipse cx="620" cy="520" rx="14" ry="7" fill="#8bc34a" transform="rotate(10 620 520)"/>
+  <g transform="translate(420 330) scale(1.1)">
+    <use href="#forme" fill="#cfe2f5" y="9"/>
+    <use href="#forme" fill="#ffffff"/>
+    <use href="#visage"/>
+  </g>
+</svg>

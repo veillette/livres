@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
+  <defs>
+    <g id="forme">
+      <circle cx="-85" cy="15" r="55"/>
+      <circle cx="-25" cy="-25" r="75"/>
+      <circle cx="55" cy="-15" r="65"/>
+      <circle cx="105" cy="25" r="48"/>
+      <rect x="-140" y="5" width="293" height="80" rx="40"/>
+    </g>
+    <g id="visage">
+      <ellipse cx="-30" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
+      <ellipse cx="35" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
+      <circle cx="-27" cy="10" r="3.5" fill="#fff"/>
+      <circle cx="38" cy="10" r="3.5" fill="#fff"/>
+      <ellipse cx="-62" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <ellipse cx="68" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <path d="M -12 40 Q 3 58 18 40" stroke="#2b2b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <g transform="translate(200 140) scale(1.0)">
+    <use href="#forme" fill="#cfe2f5" y="9"/>
+    <use href="#forme" fill="#ffffff"/>
+    <use href="#visage"/>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <g id="forme">
+      <circle cx="-85" cy="15" r="55"/>
+      <circle cx="-25" cy="-25" r="75"/>
+      <circle cx="55" cy="-15" r="65"/>
+      <circle cx="105" cy="25" r="48"/>
+      <rect x="-140" y="5" width="293" height="80" rx="40"/>
+    </g>
+    <g id="visage">
+      <path d="M -42 15 Q -30 25 -18 15" stroke="#2b2b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 23 15 Q 35 25 47 15" stroke="#2b2b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-62" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <ellipse cx="68" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
+      <path d="M -6 42 Q 3 50 12 42" stroke="#2b2b3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141b4d"/>
+      <stop offset="1" stop-color="#3b3f8f"/>
+    </linearGradient>
+    <mask id="croissant">
+      <rect width="800" height="800" fill="#fff"/>
+      <circle cx="665" cy="150" r="70" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="800" height="800" fill="url(#ciel)"/>
+  <circle cx="483" cy="593" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="482" cy="540" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="214" cy="209" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="507" cy="210" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="477" cy="330" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="112" cy="571" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="669" cy="62" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="425" cy="483" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="776" cy="181" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="35" cy="561" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="80" cy="56" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="267" cy="50" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="354" cy="471" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="220" cy="551" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="675" cy="321" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="24" cy="107" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="690" cy="304" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="584" cy="105" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="280" cy="342" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="545" cy="315" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="91" cy="596" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="430" cy="130" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="415" cy="88" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="721" cy="20" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="234" cy="73" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="404" cy="426" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="94" cy="599" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="223" cy="296" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="109" cy="338" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="35" cy="439" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="157" cy="272" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="123" cy="31" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="496" cy="518" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="718" cy="592" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="478" cy="541" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="769" cy="154" r="2.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="679" cy="412" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="424" cy="450" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="20" cy="296" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="331" cy="40" r="2" fill="#ffffff" opacity="0.8"/>
+  <polygon points="90.0,96.0 93.7,104.9 103.3,105.7 96.0,111.9 98.2,121.3 90.0,116.3 81.8,121.3 84.0,111.9 76.7,105.7 86.3,104.9" fill="#ffe89a"/>
+  <polygon points="250.0,60.0 252.6,66.4 259.5,66.9 254.3,71.4 255.9,78.1 250.0,74.5 244.1,78.1 245.7,71.4 240.5,66.9 247.4,66.4" fill="#ffe89a"/>
+  <polygon points="380.0,138.0 383.2,145.6 391.4,146.3 385.1,151.7 387.1,159.7 380.0,155.4 372.9,159.7 374.9,151.7 368.6,146.3 376.8,145.6" fill="#ffe89a"/>
+  <polygon points="160.0,291.0 162.4,296.7 168.6,297.2 163.9,301.3 165.3,307.3 160.0,304.1 154.7,307.3 156.1,301.3 151.4,297.2 157.6,296.7" fill="#ffe89a"/>
+  <polygon points="720.0,319.0 722.9,326.0 730.5,326.6 724.7,331.5 726.5,338.9 720.0,334.9 713.5,338.9 715.3,331.5 709.5,326.6 717.1,326.0" fill="#ffe89a"/>
+  <polygon points="540.0,81.0 542.4,86.7 548.6,87.2 543.9,91.3 545.3,97.3 540.0,94.0 534.7,97.3 536.1,91.3 531.4,87.2 537.6,86.7" fill="#ffe89a"/>
+  <polygon points="80.0,460.0 82.6,466.4 89.5,466.9 84.3,471.4 85.9,478.1 80.0,474.5 74.1,478.1 75.7,471.4 70.5,466.9 77.4,466.4" fill="#ffe89a"/>
+  <polygon points="700.0,512.0 702.1,517.1 707.6,517.5 703.4,521.1 704.7,526.5 700.0,523.6 695.3,526.5 696.6,521.1 692.4,517.5 697.9,517.1" fill="#ffe89a"/>
+  <polygon points="330.0,273.0 331.9,277.5 336.7,277.8 333.0,281.0 334.1,285.7 330.0,283.1 325.9,285.7 327.0,281.0 323.3,277.8 328.1,277.5" fill="#ffe89a"/>
+  <circle cx="630" cy="180" r="80" fill="#ffe89a" mask="url(#croissant)"/>
+  <path d="M 0 690 Q 220 640 430 690 T 800 670 L 800 800 L 0 800 Z" fill="#2a3a6b"/>
+  <path d="M 0 740 Q 300 700 560 745 T 800 740 L 800 800 L 0 800 Z" fill="#1f2c55"/>
+  <g transform="translate(390 450) scale(1.25)">
+    <use href="#forme" fill="#b7b3e0" y="9"/>
+    <use href="#forme" fill="#ece9ff"/>
+    <use href="#visage"/>
+  </g>
+  <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" opacity="0.9">
+    <text x="560" y="360" font-size="44">z</text>
+    <text x="600" y="320" font-size="34">z</text>
+    <text x="632" y="288" font-size="26">z</text>
+  </g>
+</svg>
