@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#74c0fc"/>
+      <stop offset="1" stop-color="#e7f5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#ciel)"/>
+  <path d="M -20 560 Q 400 500 820 540 L 820 600 Q 400 570 -20 620 Z" fill="#7a4e2d"/>
+  <circle cx="320" cy="188" r="50" fill="#b2f2bb"/><circle cx="463" cy="171" r="37" fill="#b2f2bb"/><circle cx="414" cy="242" r="45" fill="#8ce99a"/><circle cx="389" cy="258" r="37" fill="#b2f2bb"/><circle cx="245" cy="294" r="35" fill="#a9e34b"/><circle cx="297" cy="389" r="34" fill="#a9e34b"/><circle cx="250" cy="330" r="30" fill="#8ce99a"/><circle cx="266" cy="246" r="35" fill="#8ce99a"/><circle cx="533" cy="396" r="47" fill="#8ce99a"/><circle cx="606" cy="391" r="36" fill="#a9e34b"/><circle cx="547" cy="342" r="35" fill="#8ce99a"/><circle cx="557" cy="340" r="49" fill="#b2f2bb"/><circle cx="272" cy="158" r="32" fill="#c0eb75"/><circle cx="311" cy="209" r="40" fill="#8ce99a"/><circle cx="260" cy="197" r="31" fill="#c0eb75"/><circle cx="332" cy="190" r="41" fill="#a9e34b"/><circle cx="558" cy="187" r="41" fill="#a9e34b"/><circle cx="479" cy="180" r="31" fill="#8ce99a"/><circle cx="412" cy="126" r="33" fill="#8ce99a"/><circle cx="565" cy="148" r="41" fill="#c0eb75"/>
+  <g transform="translate(-450 -55) scale(2.2)">  <g><circle cx="356" cy="232" r="15" fill="#ffd43b"/><circle cx="351" cy="228" r="3" fill="#2b2b3a"/><circle cx="361" cy="228" r="3" fill="#2b2b3a"/><polygon points="350,236 362,236 356,246" fill="#f76707"/><circle cx="380" cy="232" r="15" fill="#ffd43b"/><circle cx="375" cy="228" r="3" fill="#2b2b3a"/><circle cx="385" cy="228" r="3" fill="#2b2b3a"/><polygon points="374,236 386,236 380,246" fill="#f76707"/><circle cx="404" cy="232" r="15" fill="#ffd43b"/><circle cx="399" cy="228" r="3" fill="#2b2b3a"/><circle cx="409" cy="228" r="3" fill="#2b2b3a"/><polygon points="398,236 410,236 404,246" fill="#f76707"/>
+    <path d="M 330 238 Q 380 290 430 238 Z" fill="#8d6e4c"/>
+    <path d="M 334 242 q 20 8 40 -2 M 350 256 q 25 6 50 -6 M 384 244 q 20 4 40 -4" stroke="#6b5238" stroke-width="3" fill="none"/>
+    <ellipse cx="450" cy="210" rx="30" ry="22" fill="#4dabf7"/><circle cx="428" cy="190" r="16" fill="#339af0"/><ellipse cx="450" cy="214" rx="16" ry="12" fill="#ffe066"/><circle cx="423" cy="187" r="3" fill="#2b2b3a"/><polygon points="412,188 398,192 412,196" fill="#f59f00"/><path d="M 476 204 l 22 -10 l -4 16 Z" fill="#1c7ed6"/>
+  </g></g>
+  <g font-family="Arial, sans-serif" font-weight="bold" fill="#1c7ed6" font-size="36">
+    <text x="130" y="170">piou !</text><text x="560" y="140">piou !</text>
+  </g>
+</svg>

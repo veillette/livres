@@ -2,8 +2,6 @@ Bibliotheque.ajouter({
   id: "petit-nuage",
   titre: "Le voyage de Petit Nuage",
   sousTitre: "Une histoire sur le cycle de l'eau",
-  auteur: "Martin Veillette",
-  illustrateur: "Martin Veillette",
   age: "3 à 6 ans",
   couleur: "#3a7bd5",
   resume:

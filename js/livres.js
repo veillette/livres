@@ -30,6 +30,12 @@
     return el;
   }
 
+  /* Typographie française : espace insécable fine devant ! ? ; : » et après «,
+     pour que la ponctuation ne se retrouve jamais seule en début de ligne. */
+  function typographie(texte) {
+    return texte.replace(/[  ]([!?;:»])/g, " $1").replace(/«[  ]/g, "« ");
+  }
+
   /* Un texte peut contenir plusieurs paragraphes séparés par une ligne vide. */
   function blocTexte(texte, classe = "page__texte") {
     const bloc = element("div", classe);
@@ -37,7 +43,7 @@
       .split(/\n\s*\n/)
       .map((p) => p.trim())
       .filter(Boolean)
-      .forEach((p) => bloc.appendChild(element("p", null, p)));
+      .forEach((p) => bloc.appendChild(element("p", null, typographie(p))));
     return bloc;
   }
 
@@ -103,7 +109,9 @@
         case "couverture": {
           if (page.image) el.appendChild(image(page.image));
           const bloc = element("div", "page__titre-bloc");
-          bloc.appendChild(element("h1", "page__titre", page.titre || livre.titre));
+          const titre = page.titre || livre.titre;
+          const long = titre.length > 22 ? " page__titre--long" : "";
+          bloc.appendChild(element("h1", `page__titre${long}`, titre));
           if (livre.sousTitre) bloc.appendChild(element("p", "page__sous-titre", livre.sousTitre));
           el.appendChild(bloc);
           if (livre.auteur) el.appendChild(element("p", "page__auteur", livre.auteur));

@@ -4,4 +4,6 @@
  */
 window.CATALOGUE = [
   "petit-nuage",
+  "hibou-lune",
+  "grand-chene",
 ];

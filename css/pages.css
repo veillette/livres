@@ -158,6 +158,10 @@
   font-size: 12cqw;
 }
 
+.page--couverture .page__titre--long {
+  font-size: 9.5cqw;
+}
+
 .page--couverture .page__auteur {
   position: absolute;
   bottom: 5cqh;
