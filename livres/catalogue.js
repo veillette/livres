@@ -6,4 +6,7 @@ window.CATALOGUE = [
   "petit-nuage",
   "hibou-lune",
   "grand-chene",
+  "max-ombre",
+  "flotte-coule",
+  "petite-graine",
 ];
