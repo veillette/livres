@@ -20,6 +20,26 @@ Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
   GitHub Pages à chaque poussée sur `main`. Il faut l'activer une fois dans
   *Settings → Pages → Build and deployment → Source : GitHub Actions*.
 
+## Application installable (PWA)
+
+Une fois le site en ligne (https), on peut l'**installer** comme une application
+sur tablette, téléphone ou ordinateur : bouton « 📲 Installer l'application » dans
+la bibliothèque (Chrome, Edge, Android), ou *Partager → Sur l'écran d'accueil*
+sur iPhone / iPad.
+
+Au premier chargement, le service worker (`sw.js`) enregistre l'interface
+**et tous les livres du catalogue** avec leurs images. Tout fonctionne ensuite
+**hors ligne**, impression comprise, ce qui est pratique en voiture ou en vacances.
+
+- Les pages et les textes sont d'abord demandés au réseau : les modifications
+  apparaissent dès qu'on est connecté.
+- Les images sont servies depuis le cache.
+- **Après l'ajout d'un livre**, augmenter `VERSION` en haut de `sw.js`
+  (`"v1"` → `"v2"`) pour que le nouveau livre soit aussi disponible hors ligne.
+
+Le service worker ne fonctionne qu'à travers un serveur (`http://localhost`
+ou le site en ligne), pas en ouvrant `index.html` directement depuis le disque.
+
 ## Imprimer un livre
 
 Deux mises en page sont proposées sur la page d'impression :
@@ -71,6 +91,7 @@ trouver le bon sens).
    ```
 
 4. Ajouter `"mon-livre"` dans `livres/catalogue.js`.
+5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
 
 ### Types de pages
 
@@ -114,5 +135,8 @@ js/bibliotheque.js  page d'accueil
 js/lecteur.js       lecteur
 js/imposition.js    ordre des pages pour le livret
 js/impression.js    page d'impression
+js/pwa.js           enregistrement du service worker, bouton « Installer »
+sw.js               service worker (cache hors ligne)
+manifest.webmanifest, icones/   description de l'application et icônes
 livres/             un dossier par livre + catalogue.js
 ```

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#ff7a59"/>
+  <g transform="translate(256 300)">
+    <path d="M -170 -70 Q -90 -110 0 -70 L 0 110 Q -90 70 -170 110 Z" fill="#fff8ec"/>
+    <path d="M 170 -70 Q 90 -110 0 -70 L 0 110 Q 90 70 170 110 Z" fill="#ffffff"/>
+    <path d="M 0 -70 L 0 110" stroke="#e85d3c" stroke-width="8"/>
+    <path d="M -140 -30 Q -85 -55 -30 -30 M -140 10 Q -85 -15 -30 10 M -140 50 Q -85 25 -30 50" stroke="#f0c9a8" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 30 -30 Q 85 -55 140 -30 M 30 10 Q 85 -15 140 10 M 30 50 Q 85 25 140 50" stroke="#f0c9a8" stroke-width="10" fill="none" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(256 150)">
+    <circle cx="-50" cy="10" r="38" fill="#fff"/><circle cx="0" cy="-15" r="52" fill="#fff"/><circle cx="50" cy="5" r="42" fill="#fff"/>
+    <rect x="-88" y="5" width="180" height="45" rx="22" fill="#fff"/>
+    <circle cx="-18" cy="10" r="7" fill="#2b2b3a"/><circle cx="22" cy="10" r="7" fill="#2b2b3a"/>
+    <ellipse cx="-40" cy="28" rx="10" ry="6" fill="#ffb3c7"/><ellipse cx="44" cy="28" rx="10" ry="6" fill="#ffb3c7"/>
+    <path d="M -8 28 Q 2 40 12 28" stroke="#2b2b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
