@@ -733,7 +733,7 @@ def _motif(forme_clip, motif, couleur_motif):
 def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regard=(0, 0),
           couleur=None, habit=None, motif=None, couleur_motif="#ffffff", acc=(), objet=None,
           derriere=None, rot=0, larmes=False, joues=True, couleur_acc=None, tache=False,
-          sy=None, pieds_haut=False):
+          sy=None, pieds_haut=False, visage=None):
     """Un personnage animal, dessiné de face.
 
     espece : clé de ESPECES ; expr : clé de EXPRESSIONS ; bras : clé de POSES.
@@ -745,7 +745,7 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     """
     K = ESPECES[espece]
     c = couleur or K["c"]
-    c2 = K["c2"]
+    c2 = visage or K["c2"]
     pieds = K["pieds"] if not couleur else _assombrir(c, 0.85)
     if espece in ("mouton", "panda", "fourmi"):
         pieds = K["pieds"]

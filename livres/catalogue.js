@@ -24,4 +24,9 @@ window.CATALOGUE = [
   "souris-parapluie",
   "renard-pot",
   "cochon-noir",
+  "herisson-colere",
+  "chouette-nouvelle",
+  "mots-magiques",
+  "chapeau-vent",
+  "moutons-dodo",
 ];
