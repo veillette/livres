@@ -19,6 +19,11 @@ Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
 - **En ligne** : le fichier `.github/workflows/pages.yml` publie le site sur
   GitHub Pages à chaque poussée sur `main`. Il faut l'activer une fois dans
   *Settings → Pages → Build and deployment → Source : GitHub Actions*.
+  `main` doit aussi être la branche par défaut (*Settings → General → Default
+  branch*) et être autorisée dans *Settings → Environments → github-pages →
+  Deployment branches and tags* ; sinon la publication échoue avec
+  « Branch "main" is not allowed to deploy to github-pages due to environment
+  protection rules ».
 
 ## Application installable (PWA)
 
