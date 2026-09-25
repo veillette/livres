@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<defs><linearGradient id="d3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d3)"/>
+<path d="M 0 620 Q 240.0 602 400.0 620 T 800 620 L 800 800 L 0 800 Z" fill="#8ce99a"/>
+<path d="M 0 720 Q 320.0 702 560.0 720 T 1000 720 L 800 800 L 0 800 Z" fill="#69db7c"/>
+<polygon points="40,520 150,380 260,520" fill="#ff6b6b"/>
+<polygon points="40,520 67,520 150,380" fill="#fff" opacity="0"/>
+<polygon points="95,520 122,520 150,380" fill="#fff" opacity="0.5"/>
+<polygon points="150,520 177,520 150,380" fill="#fff" opacity="0"/>
+<polygon points="205,520 232,520 150,380" fill="#fff" opacity="0.5"/>
+<rect x="50" y="520" width="200" height="110" fill="#fff4e6"/>
+<rect x="120" y="560" width="60" height="70" rx="6" fill="#343a40"/>
+<polygon points="144,380 144,340 180,350 144,360" fill="#ffd43b"/>
+<polygon points="540,520 650,380 760,520" fill="#4dabf7"/>
+<polygon points="540,520 567,520 650,380" fill="#fff" opacity="0"/>
+<polygon points="595,520 622,520 650,380" fill="#fff" opacity="0.5"/>
+<polygon points="650,520 677,520 650,380" fill="#fff" opacity="0"/>
+<polygon points="705,520 732,520 650,380" fill="#fff" opacity="0.5"/>
+<rect x="550" y="520" width="200" height="110" fill="#fff4e6"/>
+<rect x="620" y="560" width="60" height="70" rx="6" fill="#343a40"/>
+<polygon points="644,380 644,340 680,350 644,360" fill="#ffd43b"/>
+<g><path d="M 0 150 Q 400.0 220 800 150" fill="none" stroke="#495057" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="33.3" cy="161.6" r="9" fill="#ff6b6b"/><circle cx="100" cy="171.3" r="9" fill="#ffd43b"/><circle cx="166.7" cy="179.1" r="9" fill="#69db7c"/><circle cx="233.3" cy="184.9" r="9" fill="#4dabf7"/><circle cx="300" cy="188.8" r="9" fill="#ff6b6b"/><circle cx="366.7" cy="190.8" r="9" fill="#ffd43b"/><circle cx="433.3" cy="190.8" r="9" fill="#69db7c"/><circle cx="500" cy="188.8" r="9" fill="#4dabf7"/><circle cx="566.7" cy="184.9" r="9" fill="#ff6b6b"/><circle cx="633.3" cy="179.1" r="9" fill="#ffd43b"/><circle cx="700" cy="171.3" r="9" fill="#69db7c"/><circle cx="766.7" cy="161.6" r="9" fill="#4dabf7"/></g>
+<g transform="translate(520 330)"><path d="M 0 0 Q 40 -80.0 0 -160" fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polygon points="-6,-154 6,-154 0,-164" fill="#d44545"/><ellipse cx="0" cy="-218" rx="48" ry="58" fill="#fa5252"/><ellipse cx="-18" cy="-240" rx="10" ry="18" fill="#fff" transform="rotate(-20 -18 -240)" opacity="0.5"/></g>
+<path d="M 80 300 q 80 -30 160 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<path d="M 100 350 q 80 -30 160 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<path d="M 120 400 q 80 -30 160 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<g transform="translate(330 760) scale(1.5 1.5)"><path d="M 30 -48 Q 58 -60 62 -94" fill="none" stroke="#f1f3f5" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-21" cy="-9" rx="19" ry="11" fill="#ccced0"/><ellipse cx="21" cy="-9" rx="19" ry="11" fill="#ccced0"/><ellipse cx="0" cy="-62" rx="42" ry="52" fill="#ffd43b"/><path d="M -32 -96 Q -59 -124.5 -70 -165" fill="none" stroke="#ffd43b" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 32 -96 Q 59 -124.5 70 -165" fill="none" stroke="#ffd43b" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-70" cy="-165" r="11.5" fill="#f1f3f5"/><circle cx="70" cy="-165" r="11.5" fill="#f1f3f5"/><g><circle cx="0" cy="-150" r="55" fill="#f1f3f5"/><ellipse cx="0" cy="-125" rx="23" ry="18" fill="#fff4e6"/><ellipse cx="-19" cy="-155" rx="15" ry="16" fill="#a0693a" opacity="0.7"/><ellipse cx="-36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="-16" cy="-155" rx="8.5" ry="11.1" fill="#2b2b3a"/><circle cx="-14" cy="-158" r="2.9" fill="#fff"/><ellipse cx="22" cy="-155" rx="8.5" ry="11.1" fill="#2b2b3a"/><circle cx="24" cy="-158" r="2.9" fill="#fff"/><path d="M -29 -174 Q -19.5 -183 -10 -174" fill="none" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 29 -174 Q 19.5 -183 10 -174" fill="none" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="0" cy="-136" rx="11" ry="8" fill="#2b2b3a"/><circle cx="-3" cy="-139" r="2.5" fill="#fff"/><ellipse cx="0" cy="-116" rx="5.5" ry="7.5" fill="#2b2b3a"/><ellipse cx="-55" cy="-146" rx="15" ry="32" fill="#a0693a" transform="rotate(-14 -55 -146)"/><ellipse cx="55" cy="-146" rx="15" ry="32" fill="#a0693a" transform="rotate(14 55 -146)"/></g></g>
+<text x="610" y="520" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="60" text-anchor="middle" fill="#e03131" stroke="#fff" stroke-width="8.6" stroke-linejoin="round" paint-order="stroke">Reviens !</text>
+</svg>

@@ -1240,3 +1240,6 @@ def trou_doux(x, y, r, force="#000"):
     grad = el("radialGradient", el("stop", offset="0", stop_color=force) + el("stop", offset="0.55", stop_color=force)
               + el("stop", offset="1", stop_color="#fff"), id=i)
     return grad + cercle(x, y, r, f"url(#{i})")
+
+
+assombrir = _assombrir

@@ -29,4 +29,9 @@ window.CATALOGUE = [
   "mots-magiques",
   "chapeau-vent",
   "moutons-dodo",
+  "fourmi-miette",
+  "chat-tache",
+  "escargot-promenade",
+  "ballon-envole",
+  "chat-poisson",
 ];
