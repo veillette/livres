@@ -14,4 +14,9 @@ window.CATALOGUE = [
   "piquette-chute",
   "sacha-planetes",
   "gaston-glacon",
+  "nour-vent",
+  "ours-nuit",
+  "souris-elephant",
+  "pingo-glisse",
+  "filou-miroir",
 ];

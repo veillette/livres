@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-pomme.svg",
       description: "Une pomme tombe du pommier à côté de Piquette la hérissonne.",
-      texte: "Pouf ! Une pomme tombe juste à côté de Piquette la hérissonne.\n\n« Pourquoi les pommes tombent-elles toujours vers le bas ? »",
+      texte: "Pouf ! Une pomme tombe à côté de Piquette la hérissonne.\n\n« Pourquoi tombe-t-elle vers le bas ? »",
     },
     {
       image: "images/02-balle.svg",

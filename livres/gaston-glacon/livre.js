@@ -92,7 +92,7 @@ Bibliotheque.ajouter({
     {
       image: "images/16-retour.svg",
       description: "Gaston est revenu dans le bac à glaçons avec ses frères.",
-      texte: "Et un jour, Gaston revient dans le congélateur.\n\n« Bonjour, les frères ! » L'aventure peut recommencer…",
+      texte: "Un jour, Gaston retourne au congélateur. « Bonjour, les frères ! » Et l'aventure peut recommencer…",
     },
 
     { type: "texte", texte: "Fin" },

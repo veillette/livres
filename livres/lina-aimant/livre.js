@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-cadeau.svg",
       description: "Grand-père tend à Lina un cadeau : un aimant rouge en forme de fer à cheval.",
-      texte: "Pour son anniversaire, grand-père offre à Lina un drôle de cadeau rouge et gris.\n\n« C'est un aimant, dit-il. Il a un pouvoir secret ! »",
+      texte: "Grand-père offre à Lina un drôle de cadeau.\n\n« C'est un aimant, dit-il. Il a un pouvoir secret ! »",
     },
     {
       image: "images/02-trombones.svg",
@@ -57,7 +57,7 @@ Bibliotheque.ajouter({
     {
       image: "images/09-peche.svg",
       description: "Lina pêche des poissons en papier avec une canne terminée par un aimant ; son frère Tom applaudit.",
-      texte: "Avec son frère Tom, Lina invente un jeu de pêche : des poissons en papier, un trombone sur chacun, un aimant au bout du fil. Ça mord !",
+      texte: "Lina et son frère Tom inventent une pêche : un trombone sur chaque poisson en papier, un aimant au bout du fil.",
     },
     {
       image: "images/10-nord-sud.svg",
@@ -67,7 +67,7 @@ Bibliotheque.ajouter({
     {
       image: "images/11-nord-nord.svg",
       description: "Deux aimants dont les bouts N se font face se repoussent.",
-      texte: "Mais Nord contre Nord, ils se repoussent ! Lina a beau pousser, les aimants s'échappent, comme s'il y avait un coussin invisible entre eux.",
+      texte: "Mais Nord contre Nord, ils se repoussent ! On dirait qu'un coussin invisible les sépare.",
     },
     {
       image: "images/12-voiture.svg",

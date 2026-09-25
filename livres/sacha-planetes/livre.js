@@ -37,7 +37,7 @@ Bibliotheque.ajouter({
     {
       image: "images/05-soleil.svg",
       description: "Le Soleil immense, orange et brûlant ; la fusée passe au loin.",
-      texte: "Voici le Soleil ! C'est une étoile, une énorme boule de feu qui brille et chauffe. Trop chaud, on ne s'approche pas ! Toutes les planètes tournent autour de lui.",
+      texte: "Voici le Soleil ! C'est une étoile : une énorme boule de feu. Toutes les planètes tournent autour de lui.",
     },
     {
       image: "images/06-mercure.svg",
@@ -92,7 +92,7 @@ Bibliotheque.ajouter({
     {
       image: "images/16-retour.svg",
       description: "Sacha dort dans son lit ; une petite fusée jouet est posée près de la fenêtre étoilée.",
-      texte: "Il est temps de rentrer. De toutes les planètes, une seule a de l'eau, de l'air et des fleurs : la Terre, notre maison.\n\nBonne nuit, Sacha !",
+      texte: "Retour à la maison. Une seule planète a de l'air, de l'eau et des fleurs : la Terre !\n\nBonne nuit, Sacha !",
     },
 
     { type: "texte", texte: "Fin" },

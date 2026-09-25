@@ -92,7 +92,7 @@ Bibliotheque.ajouter({
     {
       image: "images/16-concert.svg",
       description: "Sur une scène, Pompon, Souris et Hérisson donnent un concert.",
-      texte: "Le soir, Pompon et ses amis donnent un grand concert : tambour, bouteilles, élastiques et chansons.\n\nBoum, ting, laaa !",
+      texte: "Le soir, Pompon et ses amis donnent un grand concert.\n\nBoum, ting, laaa !",
     },
 
     { type: "texte", texte: "Fin" },
