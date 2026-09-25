@@ -38,12 +38,12 @@ Bibliotheque.ajouter({
     {
       image: "images/05-oh-la-la.svg",
       description: "Des moutons partout : ils sautent, courent et chantent ; Lili se tient la tête.",
-      texte: "Des moutons qui chantent, qui courent, qui font des galipettes…\n\n« Oh là là ! dit Lili. Ce n'est pas du tout comme ça qu'on compte les moutons ! »",
+      texte: "Des moutons qui chantent, qui courent, qui font des galipettes…\n\n« Oh là là ! dit Lili. Ce n'est pas comme ça ! »",
     },
     {
       image: "images/06-respirer.svg",
       description: "Les yeux fermés, Lili ouvre les bras lentement ; les moutons l'imitent.",
-      texte: "Alors Lili a une idée. « Et si on se calmait tous ensemble ? On respire… tout doucement… on ferme les yeux… »\n\nEt les moutons font comme elle.",
+      texte: "Lili a une idée : « Et si on se calmait ? On respire tout doucement… on ferme les yeux… »\n\nLes moutons font comme elle.",
     },
     {
       image: "images/07-baillements.svg",

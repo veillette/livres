@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-la-miette.svg",
       description: "Au milieu des brins d'herbe, Fourmi découvre une miette de gâteau géante.",
-      texte: "Dans l'herbe, Fourmi trouve une miette de gâteau. Une miette énorme ! Dix fois plus grosse qu'elle.\n\n« Waouh ! Quel festin pour la fourmilière ! »",
+      texte: "Dans l'herbe, Fourmi trouve une miette de gâteau. Une miette énorme, dix fois plus grosse qu'elle !\n\n« Waouh ! »",
     },
     {
       image: "images/02-pousser.svg",
@@ -42,7 +42,7 @@ Bibliotheque.ajouter({
     {
       image: "images/06-a-l-aide.svg",
       description: "Au pied d'une pente raide, Fourmi appelle ses amies à l'aide.",
-      texte: "Mais voilà une côte bien trop raide pour une seule fourmi.\n\nAlors Fourmi fait une chose très courageuse : elle demande de l'aide. « À l'aide, les amies ! »",
+      texte: "Mais la côte est bien trop raide pour une seule fourmi.\n\nAlors Fourmi ose demander de l'aide : « À l'aide, les amies ! »",
     },
     {
       image: "images/07-oh-hisse.svg",

@@ -48,12 +48,12 @@ Bibliotheque.ajouter({
     {
       image: "images/07-les-oeufs.svg",
       description: "Monsieur Ours, essoufflé, regarde le nid perché dans l'arbre.",
-      texte: "Monsieur Ours arrive, tout essoufflé. Il voit son chapeau, là-haut, et les trois œufs bien au chaud dedans…\n\nIl sourit. « Garde-le, Maman Oiseau. Il est à toi. »",
+      texte: "Monsieur Ours arrive, tout essoufflé. Il voit les trois œufs, bien au chaud dans son chapeau…\n\n« Garde-le, Maman Oiseau. »",
     },
     {
       image: "images/08-printemps.svg",
       description: "Au printemps, trois poussins chantent dans le chapeau ; Monsieur Ours leur fait coucou.",
-      texte: "Au printemps, trois poussins chantent dans le chapeau rouge.\n\nMonsieur Ours n'a plus de chapeau… mais il a trois nouveaux amis !",
+      texte: "Au printemps, trois poussins chantent dans le chapeau.\n\nMonsieur Ours n'a plus de chapeau… mais il a trois amis !",
     },
 
     { type: "texte", texte: "Fin" },

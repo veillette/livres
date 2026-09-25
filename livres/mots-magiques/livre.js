@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-donne.svg",
       description: "Biscuit tend la main vers la tarte aux cerises de Mamie en criant « Donne ! ».",
-      texte: "Mamie a fait une tarte aux cerises.\n\n« Donne ! » dit Biscuit en tendant la patte.\n\nMamie ne bouge pas. « Il manque le mot magique… »",
+      texte: "« Donne ! » dit Biscuit en voyant la tarte aux cerises de Mamie.\n\nMamie ne bouge pas. « Il manque le mot magique… »",
     },
     {
       image: "images/02-s-il-te-plait.svg",
@@ -27,7 +27,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-la-chasse.svg",
       description: "Biscuit sort de la maison, une loupe à la main.",
-      texte: "« Il y a d'autres mots magiques ? »\n\n« Oh oui ! Ouvre bien les yeux… et les oreilles ! »\n\nBiscuit part à la chasse aux mots magiques.",
+      texte: "« Il y a d'autres mots magiques ? » demande Biscuit.\n\n« Oh oui ! Pars à leur recherche ! »",
     },
     {
       image: "images/04-bonjour.svg",

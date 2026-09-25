@@ -57,7 +57,7 @@ Bibliotheque.ajouter({
     {
       image: "images/09-peche.svg",
       description: "Lina pêche des poissons en papier avec une canne terminée par un aimant ; son frère Tom applaudit.",
-      texte: "Lina et son frère Tom inventent une pêche : un trombone sur chaque poisson en papier, un aimant au bout du fil.",
+      texte: "Lina et son frère Tom inventent une pêche : un trombone sur chaque poisson en papier, un aimant au bout du fil. Chacun son tour !",
     },
     {
       image: "images/10-nord-sud.svg",

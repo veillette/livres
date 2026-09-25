@@ -6,7 +6,8 @@ Bibliotheque.ajouter({
   couleur: "#5f3dc4",
   resume:
     "Nuit après nuit, la Lune de Petit Hibou devient de plus en plus mince… " +
-    "puis elle disparaît ! Qui a bien pu la croquer ?",
+    "puis elle disparaît ! Qui a bien pu la croquer ? Une histoire pour apprendre " +
+    "à attendre, même quand on a un peu peur.",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Un petit hibou sur une branche devant une grosse lune ronde." },
@@ -47,7 +48,7 @@ Bibliotheque.ajouter({
     {
       image: "images/07-croissant-revient.svg",
       description: "Un croissant, une demi-lune, puis une lune presque pleine.",
-      texte: "Le lendemain, un fin croissant réapparut. Nuit après nuit, la Lune grandit, grandit…",
+      texte: "Petit Hibou attendit, sans fermer l'œil. Et le lendemain, un fin croissant réapparut ! Nuit après nuit, la Lune grandit, grandit…",
     },
     {
       image: "images/08-retour.svg",

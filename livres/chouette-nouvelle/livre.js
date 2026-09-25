@@ -38,7 +38,7 @@ Bibliotheque.ajouter({
     {
       image: "images/05-souris.svg",
       description: "Souris s'approche de la branche et invite Coline à jouer.",
-      texte: "Alors Souris s'approche. « Tu veux jouer à cache-cache avec nous ? »\n\n« Oh oui ! Mais… je ne connais pas ce jeu. »\n\n« On va te montrer ! »",
+      texte: "Alors Souris s'approche : « Tu veux jouer à cache-cache avec nous ? »\n\n« Oh oui ! » dit Coline.",
     },
     {
       image: "images/06-cache-cache.svg",

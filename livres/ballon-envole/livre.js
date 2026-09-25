@@ -27,7 +27,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-triste.svg",
       description: "Nino pleure dans les bras de sa maman ; le ballon n'est plus qu'un petit point dans le ciel.",
-      texte: "Nino pleure. Il voulait tellement le garder !\n\n« Tu as du chagrin, c'est normal », dit Maman en le serrant contre elle. Et ils restent là, un long moment.",
+      texte: "Nino pleure. Il voulait tant le garder !\n\n« Tu as du chagrin, c'est normal », dit Maman en le serrant fort.",
     },
     {
       image: "images/04-ou-est-il.svg",

@@ -38,7 +38,7 @@ Bibliotheque.ajouter({
     {
       image: "images/05-cabane.svg",
       description: "La boîte est une cabane avec une pancarte « Interdit aux grands ! » ; Papa rit.",
-      texte: "L'après-midi, la boîte devient une cabane secrète, avec une porte et une pancarte.\n\n« Interdit aux grands ! » Papa rit : il est bien trop gros pour entrer.",
+      texte: "L'après-midi, la boîte devient une cabane secrète.\n\n« Interdit aux grands ! » Papa rit : il est bien trop gros pour entrer.",
     },
     {
       image: "images/06-robot.svg",
@@ -53,7 +53,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-pour-deux.svg",
       description: "Papa et Titou dans une très grande boîte décorée de hublots : « TITOU-1 ».",
-      texte: "Papa sourit et sort une boîte encore plus grande : celle du nouveau frigo !\n\n« Et celle-là, qu'est-ce que c'est ? »\n\n« Un vaisseau spatial pour deux ! »",
+      texte: "Papa sourit et sort une boîte encore plus grande !\n\n« Et celle-là ? »\n\n« Un vaisseau spatial pour deux ! »",
     },
 
     { type: "texte", texte: "Fin" },

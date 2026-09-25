@@ -27,7 +27,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-sous-la-couette.svg",
       description: "Pistache se cache sous sa couette et tend la main vers sa lampe de poche.",
-      texte: "Pistache se cache sous la couette. Son cœur fait boum, boum.\n\nPuis il se souvient : sur la table de nuit, il y a sa lampe de poche !",
+      texte: "Pistache se cache sous la couette. Boum, boum, fait son cœur.\n\nMais… sur la table de nuit, il y a sa lampe de poche !",
     },
     {
       image: "images/04-robe-de-chambre.svg",
@@ -47,7 +47,7 @@ Bibliotheque.ajouter({
     {
       image: "images/07-ombres.svg",
       description: "Pistache fait une ombre de lapin sur le mur avec sa lampe.",
-      texte: "Pistache éclate de rire. « Le noir, c'est juste ma chambre… sans la lumière ! »\n\nEt il fait des ombres sur le mur : un lapin, un oiseau, un loup qui rigole.",
+      texte: "Pistache éclate de rire : « Le noir, c'est juste ma chambre sans lumière ! »\n\nEt il fait un lapin sur le mur.",
     },
     {
       image: "images/08-dodo.svg",

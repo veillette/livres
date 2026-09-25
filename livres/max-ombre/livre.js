@@ -5,8 +5,9 @@ Bibliotheque.ajouter({
   age: "3 à 6 ans",
   couleur: "#e67700",
   resume:
-    "Une drôle de tache sombre suit Max le chiot partout où il va. " +
-    "Elle grandit, rapetisse, change de côté… et disparaît même parfois !",
+    "Une drôle de tache sombre suit Max le chiot partout où il va. D'abord, il en " +
+    "a un peu peur… Puis il ose s'approcher. Elle grandit, rapetisse, change de " +
+    "côté… et devient sa meilleure amie !",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Max le chiot et sa longue ombre sur l'herbe." },
@@ -16,17 +17,17 @@ Bibliotheque.ajouter({
     {
       image: "images/01-decouverte.svg",
       description: "Max regarde, étonné, la tache sombre à ses pattes.",
-      texte: "Ce matin, Max le chiot découvre une drôle de chose à ses pattes : une tache sombre qui le suit partout !",
+      texte: "Ce matin, Max le chiot voit à ses pattes une tache sombre qui le suit partout !\n\nMax a un peu peur. Il recule… elle aussi !",
     },
     {
       image: "images/02-saut.svg",
       description: "Max saute ; son ombre reste sur l'herbe, juste en dessous.",
-      texte: "Max court : la tache court aussi. Max saute : la tache l'attend sur l'herbe.\n\nQui es-tu donc ?",
+      texte: "Max court : la tache court aussi. Max saute : elle l'attend sur l'herbe.\n\nMax prend son courage : « Qui es-tu ? »",
     },
     {
       image: "images/03-mistigri.svg",
       description: "Mistigri le chat, sur la clôture, regarde Max au soleil.",
-      texte: "« C'est ton ombre, dit Mistigri le chat. Ton corps arrête la lumière du soleil. Derrière toi, il fait un peu noir. »",
+      texte: "« C'est ton ombre, dit Mistigri le chat. Ton corps arrête la lumière du soleil. Derrière toi, il fait un peu noir. Pas de quoi avoir peur ! »",
     },
     {
       image: "images/04-matin.svg",
@@ -46,7 +47,7 @@ Bibliotheque.ajouter({
     {
       image: "images/07-nuage.svg",
       description: "Un gros nuage cache le soleil ; Max cherche son ombre.",
-      texte: "Mais quand un gros nuage cache le soleil… plus d'ombre ! Max la cherche partout.",
+      texte: "Mais quand un gros nuage cache le soleil… plus d'ombre ! Max la cherche partout. Tiens, elle lui manque, sa nouvelle amie !",
     },
     {
       image: "images/08-lampe.svg",

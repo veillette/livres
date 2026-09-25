@@ -48,7 +48,7 @@ Bibliotheque.ajouter({
     {
       image: "images/07-suis-moi.svg",
       description: "Le « POUÊT ! » de Pinson traverse le brouillard ; Petit Merle vole vers lui.",
-      texte: "Alors Pinson prend son courage à deux ailes : « POUÊT ! POUÊT ! »\n\nSon drôle de chant traverse le brouillard. Petit Merle le suit… et retrouve sa maison !",
+      texte: "Alors Pinson prend son courage : « POUÊT ! POUÊT ! »\n\nSon chant traverse le brouillard. Petit Merle le suit et rentre à la maison !",
     },
     {
       image: "images/08-en-choeur.svg",

@@ -43,7 +43,7 @@ Bibliotheque.ajouter({
     {
       image: "images/06-scarabee.svg",
       description: "Un scarabée est tombé sur le dos ; Léon va l'aider.",
-      texte: "Oh ! Un petit scarabée est tombé sur le dos. Il agite ses pattes dans le vide.\n\nLéon le pousse tout doucement… Hop ! Le voilà remis sur ses pattes.",
+      texte: "Oh ! Un petit scarabée est tombé sur le dos.\n\nLéon le pousse tout doucement… Hop ! Le voilà sur ses pattes.",
     },
     {
       image: "images/07-la-fete-est-finie.svg",

@@ -7,7 +7,7 @@ Bibliotheque.ajouter({
   resume:
     "Comment une toute petite souris peut-elle jouer à la bascule avec un gros " +
     "éléphant ? Grâce à une bonne idée de Hibou, les amis découvrent le secret des " +
-    "leviers.",
+    "leviers… et que, petits ou gros, chacun peut trouver sa place.",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Souris et Éléphant jouent ensemble sur une bascule dans le parc." },
@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-qui-veut-jouer.svg",
       description: "Au parc, Souris attend à côté d'une bascule ; Éléphant arrive.",
-      texte: "Au parc, Souris regarde la bascule. « Qui veut jouer avec moi ? » Personne ne répond… sauf Éléphant !",
+      texte: "Au parc, Souris regarde la bascule. « Qui veut jouer avec moi ? »\n\nPersonne ne répond… sauf Éléphant ! Pourquoi pas ?",
     },
     {
       image: "images/02-trop-lourd.svg",
@@ -27,7 +27,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-les-amis.svg",
       description: "Souris, Lapin, Hérisson et Renard sont tous d'un côté ; la bascule ne bouge pas.",
-      texte: "Souris appelle ses amis. Lapin, Hérisson et Renard grimpent avec elle. Un, deux, trois… La bascule ne bouge toujours pas !",
+      texte: "Souris ne se décourage pas : elle appelle ses amis. Lapin, Hérisson et Renard grimpent avec elle. Un, deux, trois… La bascule ne bouge toujours pas !",
     },
     {
       image: "images/04-une-idee.svg",
@@ -87,7 +87,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-tous-ensemble.svg",
       description: "Tous les amis sont sur une longue bascule parfaitement droite.",
-      texte: "Maintenant, tout le monde a compris. Chacun choisit sa place, et la bascule reste en équilibre avec tous les amis dessus !",
+      texte: "Maintenant, tout le monde a compris. Petits ou gros, chacun trouve sa place, et la bascule reste en équilibre avec tous les amis dessus !",
     },
     {
       image: "images/16-hop.svg",

@@ -22,7 +22,7 @@ Bibliotheque.ajouter({
     {
       image: "images/02-melanger.svg",
       description: "Petit Ours tourne la cuillère dans le grand saladier en tirant la langue.",
-      texte: "Tourne, tourne la cuillère !\n\n« On peut le manger maintenant ? » demande Petit Ours.\n\n« Pas encore, dit Papi. Il doit cuire. »",
+      texte: "Tourne, tourne la cuillère !\n\n« On le mange ? » demande Petit Ours.\n\n« Pas encore : il doit cuire. »",
     },
     {
       image: "images/03-four.svg",

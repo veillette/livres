@@ -52,7 +52,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-repare.svg",
       description: "Le pot recollé, avec des fissures dorées, trône sur la table entre Renardeau et Maman.",
-      texte: "Ensemble, ils recollent le pot, morceau par morceau. Il est un peu bizarre, avec ses lignes dorées…\n\nMais c'est leur pot préféré, maintenant !",
+      texte: "Ensemble, ils recollent le pot, morceau par morceau.\n\nAvec ses lignes dorées, c'est maintenant leur pot préféré !",
     },
 
     { type: "texte", texte: "Fin" },

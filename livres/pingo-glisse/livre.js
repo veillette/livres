@@ -7,7 +7,8 @@ Bibliotheque.ajouter({
   resume:
     "Sur la glace, Pingo le pingouin file comme une flèche. Sur le sable, il ne " +
     "bouge plus ! Pourquoi certaines choses glissent-elles et d'autres pas ? Pingo " +
-    "découvre le frottement.",
+    "découvre le frottement… et à la patinoire, il apprend qu'on tombe, qu'on se " +
+    "relève, et qu'on finit par y arriver !",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Pingo le pingouin glisse à toute vitesse sur le ventre, sur la banquise." },
@@ -82,7 +83,7 @@ Bibliotheque.ajouter({
     {
       image: "images/14-patinoire.svg",
       description: "Pingo fait une pirouette sur des patins à glace.",
-      texte: "À la patinoire, les lames fines des patins glissent sur la glace. Pingo fait des pirouettes. Quelle grâce !",
+      texte: "À la patinoire, les lames fines des patins glissent sur la glace. Pingo tombe, se relève, retombe… et à force d'essayer, il fait des pirouettes. Quelle grâce !",
     },
     {
       image: "images/15-savon.svg",

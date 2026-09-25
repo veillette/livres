@@ -37,7 +37,7 @@ Bibliotheque.ajouter({
     {
       image: "images/05-trop-serres.svg",
       description: "Souris, perchée sur la tête d'Ours, tient le parapluie ; Lapin et Hérisson dépassent sous la pluie.",
-      texte: "Souris grimpe sur la tête d'Ours pour tenir le parapluie bien haut… Mais Lapin et Hérisson dépassent de partout !\n\nTout le monde est trempé… et tout le monde rit.",
+      texte: "Souris grimpe sur la tête d'Ours… mais les autres dépassent de partout !\n\nTout le monde est trempé, et tout le monde rit.",
     },
     {
       image: "images/06-grande-feuille.svg",

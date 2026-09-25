@@ -37,12 +37,12 @@ Bibliotheque.ajouter({
     {
       image: "images/05-grand-mere-tortue.svg",
       description: "Grand-Mère Tortue s'approche doucement de Pic, qui boude.",
-      texte: "Grand-Mère Tortue s'approche, tout doucement, comme toujours.\n\n« Tu as le droit d'être en colère, Pic. Mais fais comme moi : respire. »",
+      texte: "Grand-Mère Tortue s'approche tout doucement.\n\n« Tu as le droit d'être en colère, Pic. Mais respire, comme moi. »",
     },
     {
       image: "images/06-respirer.svg",
       description: "Les yeux fermés, Pic fait semblant de sentir une fleur, puis de souffler une bougie.",
-      texte: "« Je sens la fleur… » Pic inspire par le nez.\n\n« …je souffle la bougie. » Il souffle tout doucement.\n\nUne fois, deux fois, trois fois. Ses piquants redescendent.",
+      texte: "« Je sens la fleur… je souffle la bougie. »\n\nUne fois, deux fois, trois fois. Tout doucement, les piquants de Pic redescendent.",
     },
     {
       image: "images/07-pardon.svg",
