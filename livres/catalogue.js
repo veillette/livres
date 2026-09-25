@@ -9,4 +9,9 @@ window.CATALOGUE = [
   "max-ombre",
   "flotte-coule",
   "petite-graine",
+  "lina-aimant",
+  "pompon-sons",
+  "piquette-chute",
+  "sacha-planetes",
+  "gaston-glacon",
 ];
