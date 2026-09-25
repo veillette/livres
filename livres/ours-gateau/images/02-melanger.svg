@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="600" fill="#fff4e6"/>
+<rect x="0" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="60" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="120" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="180" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="240" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="300" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="360" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="420" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="480" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="540" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="600" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="660" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="720" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="780" y="0" width="24" height="600" fill="#ffd8a8" opacity="0.3"/>
+<rect x="0" y="600" width="800" height="200" fill="#e8c39e"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
+<g><rect x="530" y="150" width="220" height="14" rx="4" fill="#c68642"/><g><g transform="translate(580 150)"><rect x="-18" y="-34" width="36" height="34" rx="6" fill="#4dabf7"/><path d="M 18 -26 q 16 0 16 12 q 0 10 -16 10" fill="none" stroke="#4dabf7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(640 150)"><rect x="-18" y="-34" width="36" height="34" rx="6" fill="#ffd43b"/><path d="M 18 -26 q 16 0 16 12 q 0 10 -16 10" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(700 150)"><rect x="-18" y="-34" width="36" height="34" rx="6" fill="#ff8787"/><path d="M 18 -26 q 16 0 16 12 q 0 10 -16 10" fill="none" stroke="#ff8787" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>
+<circle cx="400" cy="380" r="300" fill="#ffe8cc"/>
+<g transform="translate(400 780) scale(2.2 2.2)"><ellipse cx="-21" cy="-9" rx="19" ry="11" fill="#8f5f3a"/><ellipse cx="21" cy="-9" rx="19" ry="11" fill="#8f5f3a"/><ellipse cx="0" cy="-62" rx="42" ry="52" fill="#b07a4f"/><ellipse cx="0" cy="-54" rx="27" ry="35" fill="#ecd0ae"/><path d="M -26 -96 L 26 -96 L 30 -30 Q 0 -18 -30 -30 Z" fill="#fff" stroke="#e9ecef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="-14" y="-64" width="28" height="18" rx="4" fill="#ffe3e3"/><line x1="-36" y1="-92" x2="36" y2="-92" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M -32 -96 Q -21 -79 -26 -74" fill="none" stroke="#b07a4f" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 32 -96 Q 21 -79 26 -74" fill="none" stroke="#b07a4f" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(0 -30) scale(0.8 0.8)"><ellipse cx="0" cy="-60" rx="70" ry="14" fill="#e0c3fc"/><g><line x1="10" y1="-60" x2="50" y2="-130" stroke="#c68642" stroke-width="8" stroke-linecap="round"/><ellipse cx="8" cy="-58" rx="12" ry="7" fill="#c68642"/></g><path d="M -72 -62 Q -70 0 0 0 Q 70 0 72 -62 Z" fill="#74c0fc"/><path d="M -50 -40 Q -30 -20 -10 -18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></g><circle cx="-26" cy="-74" r="11.5" fill="#b07a4f"/><circle cx="26" cy="-74" r="11.5" fill="#b07a4f"/><g><circle cx="-40" cy="-194" r="19" fill="#b07a4f"/><circle cx="-40" cy="-194" r="10" fill="#ecd0ae"/><circle cx="40" cy="-194" r="19" fill="#b07a4f"/><circle cx="40" cy="-194" r="10" fill="#ecd0ae"/><circle cx="0" cy="-150" r="55" fill="#b07a4f"/><ellipse cx="0" cy="-126" rx="25" ry="19" fill="#ecd0ae"/><ellipse cx="-36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="-19" cy="-152" rx="6.5" ry="8.5" fill="#2b2b3a"/><circle cx="-17" cy="-155" r="2.2" fill="#fff"/><ellipse cx="19" cy="-152" rx="6.5" ry="8.5" fill="#2b2b3a"/><circle cx="21" cy="-155" r="2.2" fill="#fff"/><line x1="-29" y1="-172" x2="-10" y2="-172" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round"/><line x1="29" y1="-172" x2="10" y2="-172" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="0" cy="-134" rx="10" ry="7" fill="#2b2b3a"/><line x1="-9" y1="-117" x2="7" y2="-117" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round"/><ellipse cx="9" cy="-113" rx="5" ry="6" fill="#ff8787" stroke="#2b2b3a" stroke-width="1.5"/><g><circle cx="-26" cy="-222" r="27.5" fill="#dee2e6"/><circle cx="26" cy="-222" r="27.5" fill="#dee2e6"/><circle cx="0" cy="-236" r="31.5" fill="#dee2e6"/><circle cx="-26" cy="-222" r="26" fill="#fff"/><circle cx="26" cy="-222" r="26" fill="#fff"/><circle cx="0" cy="-236" r="30" fill="#fff"/><rect x="-40" y="-212" width="80" height="26" rx="6" fill="#fff" stroke="#e9ecef" stroke-width="2"/></g></g></g>
+<circle cx="250" cy="540" r="8" fill="#fff" opacity="0.9"/>
+<circle cx="560" cy="520" r="8" fill="#fff" opacity="0.9"/>
+<circle cx="300" cy="470" r="8" fill="#fff" opacity="0.9"/>
+<circle cx="520" cy="600" r="8" fill="#fff" opacity="0.9"/>
+<g><polygon points="600,181 520,250 640,181" fill="#ffffff" stroke="#dee2e6" stroke-width="3"/><rect x="480" y="105" width="280" height="90" rx="40" fill="#ffffff" stroke="#dee2e6" stroke-width="3"/><polygon points="602,179 520,250 638,179" fill="#ffffff"/><text x="620" y="163.3" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="38" text-anchor="middle" fill="#2b2b3a">On le mange ?</text></g>
+</svg>

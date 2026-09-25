@@ -6,7 +6,8 @@ Bibliotheque.ajouter({
   couleur: "#0c8599",
   resume:
     "Une feuille, un caillou, une pomme, une clé… Coin-Coin le caneton " +
-    "fait des expériences au bord de l'étang. Tu devines ce qui va flotter ?",
+    "fait des expériences au bord de l'étang. Tu devines ce qui va flotter ? Et si " +
+    "on se trompe ? Pas grave : c'est comme ça qu'on apprend !",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Un caneton sur l'étang ; une feuille et une pomme flottent, un caillou et une clé sont au fond." },
@@ -31,12 +32,12 @@ Bibliotheque.ajouter({
     {
       image: "images/04-pomme.svg",
       description: "Une grosse pomme rouge flotte sur l'eau.",
-      texte: "Une grosse pomme ? Coin-Coin est sûr qu'elle va couler… Surprise : elle flotte !",
+      texte: "Une grosse pomme ? Coin-Coin est sûr qu'elle va couler… Elle flotte !\n\n« Je me suis trompé ! » Pas grave : on apprend.",
     },
     {
       image: "images/05-cle.svg",
       description: "Une petite clé dorée est tombée au fond.",
-      texte: "Une toute petite clé ? Elle est si petite… et pourtant, elle coule !",
+      texte: "Une toute petite clé ? « Elle va flotter, c'est sûr ! »\n\nEt pourtant, elle coule ! Coin-Coin ne se décourage pas.",
     },
     {
       image: "images/06-grenouille.svg",

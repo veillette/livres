@@ -6,7 +6,8 @@ Bibliotheque.ajouter({
   couleur: "#d9480f",
   resume:
     "Au printemps, en été, en automne et en hiver, Grand Chêne change de couleur. " +
-    "Noisette l'écureuil, lui, ne le quitte jamais !",
+    "Quand ses feuilles tombent, Noisette l'écureuil s'inquiète… Mais Grand Chêne " +
+    "le rassure : chaque saison apporte son cadeau.",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Un grand chêne, moitié vert, moitié orange, et un écureuil." },
@@ -37,12 +38,12 @@ Bibliotheque.ajouter({
       image: "images/05-automne.svg",
       disposition: "image-bas",
       description: "En automne, les feuilles orange et rouges tombent.",
-      texte: "En automne, les feuilles deviennent jaunes, orange et rouges… puis elles tombent en tourbillonnant.",
+      texte: "En automne, les feuilles deviennent jaunes, orange et rouges… puis elles tombent.\n\n« Oh non ! s'inquiète Noisette. Grand Chêne perd ses feuilles ! »",
     },
     {
       image: "images/06-tas-de-feuilles.svg",
       description: "Noisette saute dans un tas de feuilles.",
-      texte: "Hop ! Noisette saute dans le tas de feuilles. Quelle bonne cachette !",
+      texte: "« N'aie pas peur, dit Grand Chêne. Chaque saison apporte son cadeau. »\n\nHop ! Noisette saute dans le tas de feuilles !",
     },
     {
       image: "images/07-hiver.svg",
@@ -54,7 +55,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-bourgeon.svg",
       description: "Le soleil fait ouvrir un bourgeon ; Noisette le regarde.",
-      texte: "Puis un matin, le soleil réchauffe les branches. Un bourgeon s'ouvre : le printemps est revenu !",
+      texte: "Un matin, le soleil réchauffe les branches. Un bourgeon s'ouvre : c'est le printemps !\n\nAprès l'hiver, tout recommence.",
     },
 
     { type: "texte", texte: "Fin" },

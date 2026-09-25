@@ -1,12 +1,13 @@
 Bibliotheque.ajouter({
   id: "petite-graine",
   titre: "La petite graine",
-  sousTitre: "Comment pousse une fleur",
+  sousTitre: "Une histoire de patience",
   age: "2 à 5 ans",
   couleur: "#2b8a3e",
   resume:
-    "Sous la terre dort une petite graine. Avec un peu de pluie et beaucoup " +
-    "de soleil, elle va devenir… une fleur géante !",
+    "Sous la terre dort une petite graine. Elle voudrait devenir une fleur tout " +
+    "de suite ! Mais une fleur, ça ne pousse pas en un jour… Avec un peu de pluie, " +
+    "beaucoup de soleil et encore plus de patience, elle va devenir une fleur géante !",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Un tournesol qui sort de terre, avec sa graine et ses racines." },
@@ -16,7 +17,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-sous-terre.svg",
       description: "Une graine endormie sous la terre, à côté d'un ver de terre.",
-      texte: "Tout au fond de la terre dormait une petite graine. Chut… elle attendait.",
+      texte: "Au fond de la terre dormait une petite graine. « Quand est-ce que je deviens une fleur ? »\n\n« Patience ! » dit le ver de terre.",
     },
     {
       image: "images/02-pluie.svg",
@@ -26,7 +27,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-racine.svg",
       description: "Des racines poussent sous la graine.",
-      texte: "Elle fit pousser des racines vers le bas, pour boire et pour bien se tenir.",
+      texte: "La petite graine ne se pressa pas. D'abord, elle fit pousser des racines vers le bas, pour boire et pour bien se tenir.",
     },
     {
       image: "images/04-tige.svg",
@@ -36,12 +37,12 @@ Bibliotheque.ajouter({
     {
       image: "images/05-feuilles.svg",
       description: "Une grande tige avec beaucoup de feuilles.",
-      texte: "Jour après jour, elle grandit. Deux feuilles, quatre feuilles, six feuilles !",
+      texte: "Jour après jour, tout doucement, elle grandit. Deux feuilles, quatre feuilles, six feuilles !\n\nPas besoin de se dépêcher.",
     },
     {
       image: "images/06-fleur.svg",
       description: "Un grand tournesol souriant.",
-      texte: "Un matin, un bouton s'ouvrit : c'était un tournesol, plus grand que toi !",
+      texte: "Un matin, après tant d'attente, un bouton s'ouvrit : c'était un tournesol, plus grand que toi !\n\nÇa valait la peine d'attendre.",
     },
     {
       image: "images/07-abeille.svg",
@@ -51,7 +52,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-vent.svg",
       description: "Les graines du tournesol tombent sur la terre.",
-      texte: "À la fin de l'été, ses graines tombèrent sur la terre… pour y dormir à leur tour jusqu'au printemps.",
+      texte: "À la fin de l'été, ses graines tombèrent sur la terre… pour y dormir à leur tour jusqu'au printemps.\n\nPatience, petites graines !",
     },
 
     { type: "texte", texte: "Fin" },

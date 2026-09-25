@@ -145,3 +145,22 @@ sw.js               service worker (cache hors ligne)
 manifest.webmanifest, icones/   description de l'application et icônes
 livres/             un dossier par livre + catalogue.js
 ```
+
+## Dessiner les illustrations
+
+Les illustrations des livres récents sont générées en SVG par un petit outil
+Python, sans aucune dépendance, dans `outils/illustrer/` :
+
+- `base.py` : décors (ciel, collines, intérieurs, nuit…), personnages animaux
+  vus de face avec leurs expressions (`sourire`, `rire`, `triste`, `fache`,
+  `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`…) ;
+- `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
+- `histoires/<id>.py` : les pages d'un livre, une fonction par image.
+
+```sh
+python3 outils/illustrer/generer.py               # tous les livres
+python3 outils/illustrer/generer.py ours-gateau   # un seul livre
+```
+
+Les images sont écrites dans `livres/<id>/images/`. Il reste à écrire le texte
+dans `livres/<id>/livre.js`.

@@ -7,7 +7,7 @@ Bibliotheque.ajouter({
   resume:
     "Pourquoi la pomme tombe-t-elle de l'arbre ? Pourquoi la plume descend-elle si " +
     "doucement ? Et pourquoi la Lune ne nous tombe-t-elle pas sur la tête ? Piquette " +
-    "la hérissonne mène l'enquête.",
+    "la hérissonne mène l'enquête… et quand sa tour s'écroule, elle recommence !",
 
   pages: [
     { type: "couverture", image: "images/couverture.svg", description: "Piquette la hérissonne, étonnée, sous un pommier dont les pommes tombent." },
@@ -77,12 +77,12 @@ Bibliotheque.ajouter({
     {
       image: "images/13-patatras.svg",
       description: "Une tour de cubes mal posés s'écroule.",
-      texte: "Piquette construit une très haute tour. Un cube de travers… et patatras ! La gravité fait tout tomber.",
+      texte: "Piquette construit une très haute tour. Un cube de travers… patatras ! La gravité fait tout tomber.\n\n« On recommence ! »",
     },
     {
       image: "images/14-equilibre.svg",
       description: "Une belle tour de cubes, les plus gros en bas, bien centrée.",
-      texte: "Pour qu'une tour tienne, il faut mettre les gros cubes en bas, bien au milieu. Cette fois, elle tient debout !",
+      texte: "Pour qu'une tour tienne, il faut les gros cubes en bas, bien au milieu. Cette fois, elle tient debout !\n\nTomber, ça aide à apprendre.",
     },
     {
       image: "images/15-lune-tourne.svg",
