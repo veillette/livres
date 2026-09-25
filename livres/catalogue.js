@@ -19,4 +19,9 @@ window.CATALOGUE = [
   "souris-elephant",
   "pingo-glisse",
   "filou-miroir",
+  "ours-gateau",
+  "lou-velo",
+  "souris-parapluie",
+  "renard-pot",
+  "cochon-noir",
 ];
