@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Oups, une tache !",
   sousTitre: "Une histoire sur les erreurs",
   age: "3 à 6 ans",
-  couleur: "#1c7ed6",
+  couleur: "#1864ab",
   resume:
     "Zou le chaton peint un beau soleil pour l'anniversaire de Mamie… SPLATCH ! " +
     "Le pot de peinture bleue se renverse. « C'est raté ! » Mais Papa, lui, voit un " +

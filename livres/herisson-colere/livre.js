@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Pic est en colère",
   sousTitre: "Une histoire pour apprivoiser sa colère",
   age: "3 à 6 ans",
-  couleur: "#c92a2a",
+  couleur: "#fa5252",
   resume:
     "Pic le hérisson a construit une tour magnifique… BADABOUM ! Lapinou l'a fait " +
     "tomber. Pic devient tout rouge, ses piquants se dressent : GRRRR ! Heureusement, " +

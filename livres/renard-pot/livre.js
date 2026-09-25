@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Oups ! dit Renardeau",
   sousTitre: "Une histoire pour dire la vérité",
   age: "3 à 6 ans",
-  couleur: "#5f3dc4",
+  couleur: "#6741d9",
   resume:
     "Boing, boing… CRAC ! Le ballon de Renardeau a cassé le pot de fleurs de Maman. " +
     "Vite, cacher les morceaux ! Mais un secret comme celui-là, ça pèse lourd dans " +

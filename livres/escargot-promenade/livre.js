@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Léon prend son temps",
   sousTitre: "La promenade d'un escargot",
   age: "2 à 5 ans",
-  couleur: "#2b8a3e",
+  couleur: "#37b24d",
   resume:
     "Tout le monde court à la grande fête de l'été. Vite, vite ! Tout le monde… " +
     "sauf Léon l'escargot, qui avance tout doucement. En chemin, il sent les fleurs, " +

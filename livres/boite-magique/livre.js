@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Ce n'est pas une boîte !",
   sousTitre: "Titou et son imagination",
   age: "2 à 5 ans",
-  couleur: "#9c36b5",
+  couleur: "#be4bdb",
   resume:
     "Papa a reçu un colis. Dedans, il y a une bouilloire… mais Titou le petit panda, " +
     "lui, ne regarde que la boîte ! Une voiture de course, un bateau de pirates, une " +

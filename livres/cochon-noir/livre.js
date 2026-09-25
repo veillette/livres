@@ -3,7 +3,7 @@ Bibliotheque.ajouter({
   titre: "Qui a peur du noir ?",
   sousTitre: "Pistache et sa lampe de poche",
   age: "3 à 6 ans",
-  couleur: "#364fc7",
+  couleur: "#343a8f",
   resume:
     "Quand Papa éteint la lumière, un grand monstre apparaît près de la porte ! " +
     "Pistache le petit cochon a très peur… mais il a une lampe de poche. Clic ! " +
