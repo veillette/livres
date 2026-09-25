@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#74c0fc"/>
+      <stop offset="1" stop-color="#e7f5ff"/>
+    </linearGradient>
+    <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8b5e3c"/>
+      <stop offset="1" stop-color="#5c3d24"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#ciel)"/>
+  <rect y="460" width="800" height="340" fill="url(#sol)"/>
+  <path d="M 0 460 Q 400 440 800 460 L 800 476 Q 400 456 0 476 Z" fill="#69db7c"/>
+  <ellipse cx="90" cy="560" rx="14" ry="10" fill="#8d6e4c"/><ellipse cx="700" cy="540" rx="18" ry="13" fill="#8d6e4c"/><ellipse cx="620" cy="720" rx="12" ry="8" fill="#8d6e4c"/><ellipse cx="150" cy="700" rx="20" ry="14" fill="#8d6e4c"/><ellipse cx="300" cy="760" rx="10" ry="7" fill="#8d6e4c"/>
+  <g><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(0 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(30 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(60 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(90 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(120 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(150 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(180 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(210 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(240 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(270 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(300 660 110)"/><rect x="654" y="24" width="12" height="26" rx="6" fill="#ffc93c" transform="rotate(330 660 110)"/><circle cx="660" cy="110" r="50" fill="#ffd93d"/><circle cx="644" cy="104" r="5" fill="#8a5a00"/><circle cx="676" cy="104" r="5" fill="#8a5a00"/><path d="M 644 122 Q 660 136 676 122" stroke="#8a5a00" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+  <path d="M 400 480 q -23 58 -78 117" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q -8 98 -26 195" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q 8 91 26 182" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q 23 65 78 130" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q 0 130 0 260" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q -35 104 -117 208" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M 400 480 q 35 110 117 221" stroke="#f1dcb5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 400 480 Q 388 290.0 400 100" stroke="#40c057" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M 400 385 q 40 -40 90 -10 q -40 30 -90 10 Z" fill="#51cf66"/><path d="M 400 385 l 70 -12" stroke="#2f9e44" stroke-width="2"/><path d="M 400 336 q -40 -40 -90 -10 q 40 30 90 10 Z" fill="#51cf66"/><path d="M 400 336 l -70 -12" stroke="#2f9e44" stroke-width="2"/><path d="M 400 286 q 40 -40 90 -10 q -40 30 -90 10 Z" fill="#51cf66"/><path d="M 400 286 l 70 -12" stroke="#2f9e44" stroke-width="2"/><path d="M 400 237 q -40 -40 -90 -10 q 40 30 90 10 Z" fill="#51cf66"/><path d="M 400 237 l -70 -12" stroke="#2f9e44" stroke-width="2"/><path d="M 400 187 q 40 -40 90 -10 q -40 30 -90 10 Z" fill="#51cf66"/><path d="M 400 187 l 70 -12" stroke="#2f9e44" stroke-width="2"/><path d="M 400 138 q -40 -40 -90 -10 q 40 30 90 10 Z" fill="#51cf66"/><path d="M 400 138 l -70 -12" stroke="#2f9e44" stroke-width="2"/>
+  <ellipse cx="400" cy="90" rx="26" ry="36" fill="#69db7c"/>
+</svg>

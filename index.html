@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Livres pour enfants</title>
+  <meta name="description" content="Des livres illustrés pour enfants à lire à l'écran ou à imprimer.">
+  <link rel="icon" href="icones/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#ff7a59">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Livres">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@500;600&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="entete">
+    <a class="entete__logo" href="index.html"><span aria-hidden="true">📚</span> Livres pour enfants</a>
+    <div class="entete__actions">
+      <button class="bouton bouton--secondaire" id="installer" type="button" hidden>📲 Installer l'application</button>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <section class="intro">
+      <h1>Ma bibliothèque</h1>
+      <p>Choisis un livre pour le lire à l'écran, ou imprime-le sur des feuilles pour en faire un vrai petit livre.</p>
+    </section>
+
+    <section id="etageres" class="etageres" aria-live="polite">
+      <p class="message">Chargement des livres…</p>
+    </section>
+  </main>
+
+  <script src="livres/catalogue.js"></script>
+  <script src="js/livres.js"></script>
+  <script src="js/bibliotheque.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

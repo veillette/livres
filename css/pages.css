@@ -1,0 +1,273 @@
+/*
+ * Apparence des pages d'un livre.
+ *
+ * Une page prend la taille que lui donne son parent (écran ou feuille).
+ * Tout est exprimé en unités de conteneur : 1cqw = 1 % de la largeur de la
+ * page, 1cqh = 1 % de sa hauteur. Le rendu est donc identique à l'écran et
+ * à l'impression, quel que soit le format du papier.
+ */
+
+.page {
+  --couleur: #3a7bd5;
+  --fond: #fffdf7;
+  --encre: #2b2b3a;
+
+  position: relative;
+  container-type: size;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: "Andika", "Comic Sans MS", "Trebuchet MS", system-ui, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page p {
+  margin: 0;
+}
+
+.page__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page__texte {
+  font-size: 5.2cqw;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.page__texte p + p {
+  margin-top: 0.55em;
+}
+
+.page__numero {
+  position: absolute;
+  bottom: 2.2cqh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 3.2cqw;
+  opacity: 0.55;
+}
+
+.page__titre {
+  margin: 0;
+  font-family: "Fredoka", "Andika", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 11cqw;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.page__sous-titre {
+  margin-top: 1.5cqw;
+  font-size: 4.8cqw;
+}
+
+/* --- Illustration : image + texte ------------------------------------- */
+
+.page--illustration {
+  display: flex;
+  flex-direction: column;
+}
+
+.page--illustration .page__cadre {
+  flex: 0 0 63%;
+  overflow: hidden;
+}
+
+.page--illustration .page__texte {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3cqw 9cqw 8cqh;
+  text-align: center;
+}
+
+.page--image-bas {
+  flex-direction: column-reverse;
+}
+
+.page--image-bas .page__texte {
+  padding: 8cqh 9cqw 3cqw;
+}
+
+/* Image sur toute la page, texte dans une bulle. */
+.page--pleine-page .page__cadre {
+  position: absolute;
+  inset: 0;
+}
+
+.page--pleine-page .page__texte {
+  position: absolute;
+  left: 6cqw;
+  right: 6cqw;
+  bottom: 7cqh;
+  flex: none;
+  display: block;
+  padding: 4cqw 5cqw;
+  border-radius: 5cqw;
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 0.6cqw 2cqw rgb(0 0 0 / 0.15);
+}
+
+.page--pleine-page.page--texte-haut .page__texte {
+  bottom: auto;
+  top: 6cqh;
+}
+
+.page--pleine-page .page__numero {
+  bottom: 1.5cqh;
+  color: #fff;
+  opacity: 0.85;
+  text-shadow: 0 0 1cqw rgb(0 0 0 / 0.6);
+}
+
+/* --- Couverture -------------------------------------------------------- */
+
+.page--couverture .page__cadre {
+  position: absolute;
+  inset: 0;
+}
+
+.page--couverture .page__titre-bloc {
+  position: absolute;
+  top: 6cqh;
+  left: 7cqw;
+  right: 7cqw;
+  padding: 5cqw 5cqw 5.5cqw;
+  border-radius: 6cqw;
+  background: var(--couleur);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 1cqw 3cqw rgb(0 0 0 / 0.2);
+}
+
+.page--couverture .page__titre {
+  font-size: 12cqw;
+}
+
+.page--couverture .page__titre--long {
+  font-size: 9.5cqw;
+}
+
+.page--couverture .page__auteur {
+  position: absolute;
+  bottom: 5cqh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.6cqw 5cqw;
+  border-radius: 99cqw;
+  background: rgb(255 255 255 / 0.92);
+  font-size: 4.6cqw;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- Pages centrées (titre, texte, quatrième) ---------------------------
+   Les unités cqw/cqh ne s'appliquent qu'aux descendants de la page : le
+   contenu est donc placé dans un enfant, jamais en padding sur .page. */
+
+.page__contenu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* --- Page de titre ----------------------------------------------------- */
+
+.page--titre .page__contenu {
+  padding: 10cqh 10cqw;
+}
+
+.page--titre .page__titre {
+  color: var(--couleur);
+}
+
+.page__vignette {
+  width: 70%;
+  height: 32cqh;
+  margin: 5cqh 0;
+}
+
+.page__vignette .page__image {
+  object-fit: contain;
+}
+
+.page__credits {
+  font-size: 4.2cqw;
+  line-height: 1.5;
+}
+
+.page__dedicace {
+  margin-top: 6cqh;
+  font-size: 4cqw;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* --- Page de texte seul ------------------------------------------------ */
+
+.page--texte .page__contenu {
+  padding: 10cqh 10cqw;
+}
+
+.page--texte .page__texte {
+  font-family: "Fredoka", "Andika", system-ui, sans-serif;
+  font-size: 8cqw;
+  color: var(--couleur);
+}
+
+/* --- Quatrième de couverture ------------------------------------------ */
+
+.page--quatrieme {
+  background: var(--couleur);
+  color: #fff;
+}
+
+.page--quatrieme .page__contenu {
+  padding: 10cqh 11cqw 14cqh;
+}
+
+.page--quatrieme .page__vignette {
+  width: 55%;
+  height: 24cqh;
+  margin: 0 0 6cqh;
+}
+
+.page--quatrieme .page__texte {
+  font-size: 5cqw;
+}
+
+.page__pied {
+  position: absolute;
+  bottom: 6cqh;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page__age {
+  padding: 1.4cqw 4.5cqw;
+  border-radius: 99cqw;
+  background: #fff;
+  color: var(--couleur);
+  font-size: 4cqw;
+  font-weight: 700;
+}
