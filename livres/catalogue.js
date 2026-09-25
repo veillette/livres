@@ -34,4 +34,9 @@ window.CATALOGUE = [
   "escargot-promenade",
   "ballon-envole",
   "chat-poisson",
+  "pinson-chant",
+  "boite-magique",
+  "ou-est-doudou",
+  "fache-pas-fache",
+  "elephant-chut",
 ];

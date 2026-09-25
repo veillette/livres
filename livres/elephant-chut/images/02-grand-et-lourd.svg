@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="600" fill="#fff0f6"/>
+<rect x="0" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="60" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="120" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="180" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="240" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="300" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="360" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="420" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="480" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="540" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="600" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="660" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="720" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="780" y="0" width="24" height="600" fill="#ffdeeb" opacity="0.3"/>
+<rect x="0" y="600" width="800" height="200" fill="#d9a066"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
+<g><rect x="562" y="92" width="176" height="166" rx="6" fill="#ffffff"/><rect x="570" y="100" width="160" height="150" fill="#a5d8ff"/><rect x="646" y="100" width="8" height="150" fill="#ffffff"/><rect x="570" y="171" width="160" height="8" fill="#ffffff"/><path d="M 550 86 L 600 86 Q 580 175.0 600 270 L 550 270 Z" fill="#b197fc"/><path d="M 750 86 L 700 86 Q 720 175.0 700 270 L 750 270 Z" fill="#b197fc"/><rect x="540" y="78" width="220" height="12" rx="6" fill="#adb5bd"/></g>
+<g><ellipse cx="400" cy="740" rx="300" ry="50" fill="#b197fc"/><ellipse cx="400" cy="740" rx="286" ry="42" fill="#e5dbff"/></g>
+<g><line x1="400" y1="0" x2="400" y2="90" stroke="#868e96" stroke-width="4" stroke-linecap="round"/><polygon points="360,90 440,90 460,130 340,130" fill="#ffd8a8"/></g>
+<g transform="translate(400 780) scale(2.6 2.6)"><path d="M 30 -30 Q 50 -30 52 -10" fill="none" stroke="#868e96" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-21" cy="-9" rx="19" ry="11" fill="#868e96"/><ellipse cx="21" cy="-9" rx="19" ry="11" fill="#868e96"/><ellipse cx="0" cy="-62" rx="42" ry="52" fill="#ffa94d"/><path d="M -32 -96 Q -59 -124.5 -70 -165" fill="none" stroke="#ffa94d" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 32 -96 Q 59 -124.5 70 -165" fill="none" stroke="#ffa94d" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-70" cy="-165" r="11.5" fill="#adb5bd"/><circle cx="70" cy="-165" r="11.5" fill="#adb5bd"/><g><ellipse cx="-66" cy="-148" rx="42" ry="54" fill="#adb5bd" transform="rotate(10 -66 -148)"/><ellipse cx="-70" cy="-146" rx="28" ry="40" fill="#ffc9c9" transform="rotate(10 -70 -146)"/><ellipse cx="66" cy="-148" rx="42" ry="54" fill="#adb5bd" transform="rotate(-10 66 -148)"/><ellipse cx="70" cy="-146" rx="28" ry="40" fill="#ffc9c9" transform="rotate(-10 70 -146)"/><circle cx="0" cy="-150" r="55" fill="#adb5bd"/><ellipse cx="-36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="36" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.7"/><path d="M -27 -149 Q -19 -161 -11 -149" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M 11 -149 Q 19 -161 27 -149" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M -32.4 -116 Q -22 -92 -11.6 -116 Z" fill="#c92a2a" stroke="#2b2b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-22" cy="-105" rx="4.8" ry="3.5" fill="#ff8787"/><path d="M 0 -142 Q 2 -110 12 -92 Q 22 -76 40 -82" fill="none" stroke="#8a9097" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M 0 -142 Q 2 -110 12 -92 Q 22 -76 40 -82" fill="none" stroke="#adb5bd" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/><path d="M -6 -122 q 9 3 16 -2" fill="none" stroke="#8a9097" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M -1 -110 q 9 3 16 -2" fill="none" stroke="#8a9097" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M 4 -98 q 9 3 16 -2" fill="none" stroke="#8a9097" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+<text x="160" y="300" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="50" text-anchor="middle" fill="#9c36b5" stroke="#fff" stroke-width="7.1" stroke-linejoin="round" paint-order="stroke">Grand,</text>
+<text x="640" y="330" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="50" text-anchor="middle" fill="#9c36b5" stroke="#fff" stroke-width="7.1" stroke-linejoin="round" paint-order="stroke">lourd,</text>
+<text x="400" y="740" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="50" text-anchor="middle" fill="#9c36b5" stroke="#fff" stroke-width="7.1" stroke-linejoin="round" paint-order="stroke">… et bruyant !</text>
+</svg>
