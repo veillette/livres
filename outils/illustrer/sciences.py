@@ -526,3 +526,183 @@ def ombre_mur(S, dessin, x, y, echelle=1.6, alpha=0.4, flou=3):
     """Ombre projetée sur un mur : le même dessin, agrandi et assombri ; (x, y) = pieds de l'ombre."""
     fid = _filtre_ombre(S, alpha, flou=flou)
     return g(dessin, filter=f"url(#{fid})", transform=f"translate({n(x)} {n(y)}) scale({n(echelle)})")
+
+
+def lignes_dipole(cx, cy, demi, angle=0, nb=14, r0=None, pas=4, limite=(0, 0, 800, 800), max_pas=1500):
+    """Lignes de champ d'un aimant droit, calculées comme celles de deux pôles
+    ponctuels : +1 (nord) en (cx + demi, cy) et -1 (sud) en (cx - demi, cy),
+    le tout tourné de `angle` degrés. Chaque ligne est tracée depuis le pôle
+    nord jusqu'au plan médian, puis complétée par symétrie jusqu'au pôle sud.
+    Renvoie des listes de points orientées du nord vers le sud."""
+    r0 = r0 or demi * 0.25
+    x0, y0, x1, y1 = limite
+    marge = max(x1 - x0, y1 - y0)
+    a = math.radians(angle)
+    ca, sa = math.cos(a), math.sin(a)
+    lignes = []
+    for k in range(nb):
+        # calcul dans le repère de l'aimant : nord en (demi, 0), sud en (-demi, 0)
+        t = 2 * math.pi * (k + 0.5) / nb
+        x, y = demi + r0 * math.cos(t), r0 * math.sin(t)
+        pts = [(x, y)]
+        for _ in range(max_pas):
+            ex = ey = 0.0
+            for px, q in ((demi, 1), (-demi, -1)):
+                dx, dy = x - px, y
+                d3 = (dx * dx + dy * dy) ** 1.5 or 1e-9
+                ex += q * dx / d3
+                ey += q * dy / d3
+            e = math.hypot(ex, ey) or 1e-9
+            nx, ny = x + pas * ex / e, y + pas * ey / e
+            if nx <= 0:
+                f = x / (x - nx)
+                pts.append((0.0, y + (ny - y) * f))
+                break
+            x, y = nx, ny
+            pts.append((x, y))
+            if math.hypot(x, y) > marge:
+                break
+        complet = pts + [(-px, py) for px, py in reversed(pts)] if pts[-1][0] <= 1e-6 else pts
+        lignes.append([(cx + px * ca - py * sa, cy + px * sa + py * ca) for px, py in complet])
+        if pts[-1][0] > 1e-6:
+            miroir = [(-px, py) for px, py in reversed(pts)]
+            lignes.append([(cx + px * ca - py * sa, cy + px * sa + py * ca) for px, py in miroir])
+    return lignes
+
+
+def trace(pts, couleur=ENCRE, sw=3, **a):
+    d = "M " + " L ".join(f"{n(x)} {n(y)}" for x, y in pts)
+    return chemin(d, stroke=couleur, sw=sw, **a)
+
+
+def direction_champ(ligne, i):
+    """Angle (degrés, 0 = vers la droite) de la ligne de champ au point i, dans le sens N → S."""
+    i = max(1, min(len(ligne) - 1, i))
+    (xa, ya), (xb, yb) = ligne[i - 1], ligne[i]
+    return math.degrees(math.atan2(yb - ya, xb - xa))
+
+
+# ---------------------------------------------------------------------------
+# Son
+# ---------------------------------------------------------------------------
+
+def ondes(x, y, r0=40, nb=3, ecart=34, direction=0, ouverture=70, couleur="#fa5252", sw=5, opacity=0.85, cercles=False):
+    """Ondes sonores : arcs concentriques centrés en (x, y), dirigés vers `direction`
+    (degrés, 0 = droite). cercles=True dessine des cercles complets."""
+    m = []
+    for k in range(nb):
+        r = r0 + k * ecart
+        op = opacity * (1 - k / (nb + 1))
+        if cercles:
+            m.append(cercle(x, y, r, "none", stroke=couleur, stroke_width=sw, opacity=op))
+            continue
+        a0, a1 = math.radians(direction - ouverture / 2), math.radians(direction + ouverture / 2)
+        d = f"M {n(x + r * math.cos(a0))} {n(y + r * math.sin(a0))} A {n(r)} {n(r)} 0 0 1 {n(x + r * math.cos(a1))} {n(y + r * math.sin(a1))}"
+        m.append(chemin(d, stroke=couleur, sw=sw, opacity=op))
+    return g(m)
+
+
+def sinus(x, y, longueur, amplitude, periode, couleur=ENCRE, sw=5, **a):
+    """Courbe sinusoïdale de (x, y) vers la droite ; montre une onde (grave = grande période)."""
+    pts = [(x + t, y - amplitude * math.sin(2 * math.pi * t / periode)) for t in range(0, int(longueur) + 1, 3)]
+    return trace(pts, couleur, sw, **a)
+
+
+def cheval(x, y, s=1.0, couleur="#8d5524", flip=False):
+    """Petit cheval au galop, de profil (tête à droite) ; (x, y) = au sol."""
+    m = [ellipse(0, -70, 60, 26, couleur),
+         chemin("M 40 -80 Q 60 -120 80 -128 L 96 -118 Q 90 -100 70 -90 Z", couleur),
+         ellipse(92, -118, 18, 11, couleur, rot=30),
+         chemin("M 50 -100 Q 58 -128 76 -134", stroke=assombrir(couleur, 0.6), sw=8),
+         chemin("M -58 -78 Q -90 -70 -94 -40", stroke=assombrir(couleur, 0.6), sw=9),
+         cercle(90, -124, 3, ENCRE)]
+    for x0, x1 in [(-40, -70), (-30, -10), (30, 60), (40, 20)]:
+        m.append(trait(x0, -56, x1, -4, couleur, 9))
+    return place(m, x, y, s, flip=flip)
+
+
+def astronaute(x=0, y=0, s=1.0, peau="doree", cheveux="brun", coiffure="courts", expr="content", bras="bas",
+               flip=False, regard=(0, 0), objet=None, drapeau=None):
+    """Astronaute en combinaison blanche, casque transparent ; (x, y) = sous les pieds."""
+    sac = rect(-58, -128, 116, 96, "#ced4da", rx=14)
+    corps = personne(0, 0, 1.0, peau=peau, cheveux=cheveux, coiffure=coiffure, habit="#f8f9fa", jambes="#e9ecef",
+                     robe=False, expr=expr, bras=bras, regard=regard, chaussures="#868e96", derriere=sac, objet=objet,
+                     ceinture="#adb5bd")
+    m = [corps,
+         rect(-20, -96, 40, 26, "#4dabf7", rx=4), cercle(-8, -83, 4, "#fa5252"), cercle(8, -83, 4, "#51cf66"),
+         cercle(0, -150, 72, "#d0ebff", opacity=0.3), cercle(0, -150, 72, "none", stroke="#adb5bd", stroke_width=6),
+         chemin("M -40 -196 Q -10 -214 22 -206", stroke="#fff", sw=8, opacity=0.7),
+         rect(-44, -84, 88, 12, "#adb5bd", rx=6)]
+    return place(m, x, y, s, flip=flip)
+
+
+# ---------------------------------------------------------------------------
+# Espace
+# ---------------------------------------------------------------------------
+
+def fusee(x, y, s=1.0, rot=0, flamme=True, passager=None, couleur="#e03131"):
+    """Fusée rouge et blanche ; (x, y) = centre du corps. `passager` = dessin (visage) dans le hublot."""
+    m = []
+    if flamme:
+        m += [chemin("M -34 110 Q 0 260 34 110 Z", "#ff922b"), chemin("M -20 110 Q 0 200 20 110 Z", "#ffe066")]
+    m += [chemin("M -60 60 L -110 130 L -50 120 Z", couleur), chemin("M 60 60 L 110 130 L 50 120 Z", couleur),
+          chemin("M 0 -170 Q 70 -90 60 60 L 50 120 L -50 120 L -60 60 Q -70 -90 0 -170 Z", "#f8f9fa"),
+          chemin("M 0 -170 Q 40 -130 50 -90 L -50 -90 Q -40 -130 0 -170 Z", couleur),
+          rect(-44, 100, 88, 20, "#adb5bd", rx=6), trait(0, 60, 0, 130, couleur, 12),
+          cercle(0, -20, 40, "#adb5bd"), cercle(0, -20, 32, "#a5d8ff")]
+    if passager:
+        cid = uid("h")
+        m.append(el("clipPath", cercle(0, -20, 32, "#000"), id=cid))
+        m.append(g(passager, clip_path=f"url(#{cid})"))
+    m.append(chemin("M -18 -40 Q -8 -48 4 -46", stroke="#fff", sw=5, opacity=0.8))
+    return place(m, x, y, s, rot=rot)
+
+
+def planete(S, x, y, r, couleurs, bandes=None, lumiere=180, ombre_op=0.5, anneaux=None, tache=None, calottes=False, crateres=0, graine=1):
+    """Planète éclairée par le Soleil venant de `lumiere` (degrés, 180 = de la gauche).
+
+    couleurs : (fond, détail) ; bandes : liste de (y relatif -1..1, épaisseur relative, couleur) ;
+    anneaux : (inclinaison en degrés, couleur) ; tache : (x, y, rx, ry, couleur) relatifs au rayon."""
+    fond_, detail = couleurs
+    cid = uid("p")
+    m = []
+    avant = []
+    if anneaux:
+        inc, ca = anneaux[:2]
+        fins = len(anneaux) > 2 and anneaux[2]
+        if fins:
+            arr = [ellipse(0, 0, r * 1.7, r * 0.34, "none", stroke=ca, stroke_width=r * 0.04, opacity=0.8),
+                   ellipse(0, 0, r * 1.85, r * 0.37, "none", stroke=ca, stroke_width=r * 0.025, opacity=0.6)]
+        else:
+            arr = [ellipse(0, 0, r * 2.1, r * 0.5, "none", stroke=ca, stroke_width=r * 0.34, opacity=0.9),
+                   ellipse(0, 0, r * 1.78, r * 0.42, "none", stroke="#0b1433", stroke_width=r * 0.05, opacity=0.6)]
+        # moitié arrière des anneaux derrière la planète, moitié avant devant
+        cid_a = uid("q")
+        S.defs.append(el("clipPath", rect(-r * 3, -r * 3, r * 6, r * 3, "#000"), id=cid_a))
+        cid_b = uid("q")
+        S.defs.append(el("clipPath", rect(-r * 3, 0, r * 6, r * 3, "#000"), id=cid_b))
+        m.append(place(g(arr, clip_path=f"url(#{cid_a})"), 0, 0, rot=inc))
+        avant.append(place(g(arr, clip_path=f"url(#{cid_b})"), 0, 0, rot=inc))
+    m.append(el("clipPath", cercle(0, 0, r, "#000"), id=cid))
+    corps = [cercle(0, 0, r, fond_)]
+    if bandes:
+        for by, ep, c in bandes:
+            corps.append(ellipse(0, by * r, r * 1.1, ep * r, c))
+    if tache:
+        tx, ty, trx, tryy, tc = tache
+        corps.append(ellipse(tx * r, ty * r, trx * r, tryy * r, tc))
+    if calottes:
+        corps += [ellipse(0, -r * 0.95, r * 0.45, r * 0.16, "#fff"), ellipse(0, r * 0.97, r * 0.35, r * 0.12, "#f8f9fa")]
+    rr = random.Random(graine)
+    for _ in range(crateres):
+        cx, cy, cr = rr.uniform(-0.7, 0.7) * r, rr.uniform(-0.7, 0.7) * r, rr.uniform(0.06, 0.16) * r
+        corps.append(cercle(cx, cy, cr, detail, opacity=0.7))
+    if ombre_op:
+        gid = uid("o")
+        S.defs.append(el("linearGradient", el("stop", offset="0", stop_color="#000", stop_opacity="0") + el("stop", offset="0.45", stop_color="#000", stop_opacity=n(ombre_op * 0.6))
+                         + el("stop", offset="1", stop_color="#000", stop_opacity=n(ombre_op * 1.3)), id=gid, x1=0, y1=0, x2=1, y2=0))
+        corps.append(g(rect(-r * 0.25, -r - 2, r * 1.25 + 2, 2 * r + 4, f"url(#{gid})"), transform=f"rotate({n(lumiere + 180)})"))
+    corps.append(cercle(-r * 0.35, -r * 0.35, r * 0.5, "#fff", opacity=0.08))
+    m.append(g(corps, clip_path=f"url(#{cid})"))
+    m += avant
+    return place(m, x, y)
