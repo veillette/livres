@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="600" fill="#fff3bf"/>
+<rect x="0" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="60" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="120" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="180" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="240" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="300" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="360" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="420" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="480" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="540" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="600" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="660" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="720" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="780" y="0" width="24" height="600" fill="#ffe066" opacity="0.3"/>
+<rect x="0" y="600" width="800" height="200" fill="#c9a27e"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
+<rect x="80" y="90" width="120" height="200" rx="10" fill="#c92a2a"/>
+<rect x="600" y="90" width="120" height="200" rx="10" fill="#c92a2a"/>
+<g transform="translate(140 180) scale(0.6 0.6)"><polygon points="-44,0 -50,-56 -24,-30 0,-66 24,-30 50,-56 44,0" fill="#ffd43b" stroke="#f59f00" stroke-width="4"/><rect x="-46" y="-14" width="92" height="16" rx="6" fill="#f59f00"/><circle cx="0" cy="-30" r="7" fill="#fa5252"/><circle cx="-28" cy="-8" r="5" fill="#4dabf7"/><circle cx="28" cy="-8" r="5" fill="#4dabf7"/><circle cx="0" cy="-8" r="5" fill="#51cf66"/></g>
+<g transform="translate(660 180) scale(0.6 0.6)"><polygon points="-44,0 -50,-56 -24,-30 0,-66 24,-30 50,-56 44,0" fill="#ffd43b" stroke="#f59f00" stroke-width="4"/><rect x="-46" y="-14" width="92" height="16" rx="6" fill="#f59f00"/><circle cx="0" cy="-30" r="7" fill="#fa5252"/><circle cx="-28" cy="-8" r="5" fill="#4dabf7"/><circle cx="28" cy="-8" r="5" fill="#4dabf7"/><circle cx="0" cy="-8" r="5" fill="#51cf66"/></g>
+<g transform="translate(400 770) scale(1.7 1.7)"><path d="M 40 -186 Q 96 -190 86 -120 Q 80 -90 96 -70 Q 60 -80 62 -120 Q 64 -160 40 -170 Z" fill="#2b2b3a"/><ellipse cx="-16" cy="-6" rx="14" ry="8" fill="#ac4804"/><ellipse cx="16" cy="-6" rx="14" ry="8" fill="#ac4804"/><path d="M -26 -106 Q 0 -112 26 -106 L 32 -74 Q 60 -34 66 -12 Q 0 2 -66 -12 Q -60 -34 -32 -74 Z" fill="#f76707"/><rect x="-32" y="-80" width="64" height="10" rx="5" fill="#d15705"/><path d="M -28 -98 Q -48 -63 -52 -40" fill="none" stroke="#f76707" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M 28 -98 Q 56 -116 68 -146" fill="none" stroke="#f76707" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(70 -150) rotate(-30) scale(0.8 0.8)"><rect x="-7" y="30" width="14" height="70" rx="6" fill="#a0522d"/><circle cx="0" cy="0" r="36" fill="#d0ebff" opacity="0.6"/><circle cx="0" cy="0" r="36" fill="none" stroke="#495057" stroke-width="8"/><path d="M -16 -14 Q -8 -24 4 -24" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="-52" cy="-40" r="10.5" fill="#fbd9bd"/><circle cx="68" cy="-146" r="10.5" fill="#fbd9bd"/><rect x="-9" y="-116" width="18" height="16" fill="#fbd9bd"/><circle cx="-49" cy="-148" r="11" fill="#fbd9bd"/><circle cx="49" cy="-148" r="11" fill="#fbd9bd"/><circle cx="0" cy="-150" r="50" fill="#fbd9bd"/><ellipse cx="-30" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.6"/><ellipse cx="30" cy="-128" rx="9" ry="5.5" fill="#ff8fab" opacity="0.6"/><ellipse cx="-18" cy="-150" rx="6.5" ry="8.5" fill="#2b2b3a"/><circle cx="-16" cy="-153" r="2.2" fill="#fff"/><ellipse cx="18" cy="-150" rx="6.5" ry="8.5" fill="#2b2b3a"/><circle cx="20" cy="-153" r="2.2" fill="#fff"/><line x1="-28" y1="-170" x2="-9" y2="-170" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round"/><line x1="28" y1="-170" x2="9" y2="-170" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round"/><path d="M -4 -134 Q 0 -130 4 -134" fill="none" stroke="#bca28d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="-8.1" y1="-118" x2="6.3" y2="-118" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round"/><ellipse cx="9" cy="-114" rx="5" ry="6" fill="#ff8787" stroke="#2b2b3a" stroke-width="1.5"/><path d="M -54 -144 Q -60 -210 0 -210 Q 60 -210 54 -144 Q 50 -168 30 -178 Q 22 -164 4 -178 Q -12 -164 -24 -178 Q -46 -170 -54 -144 Z" fill="#2b2b3a"/><g><path d="M -40 -190 Q 0 -206 40 -190" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polygon points="-12,-198 0,-222 12,-198" fill="#ffd43b" stroke="#f59f00" stroke-width="2"/><circle cx="0" cy="-206" r="5" fill="#e64980"/></g></g>
+<g><polygon points="380,156 380,300 420,156" fill="#ffffff" stroke="#dee2e6" stroke-width="3"/><rect x="160" y="70" width="480" height="100" rx="40" fill="#ffffff" stroke="#dee2e6" stroke-width="3"/><polygon points="382,154 380,300 418,154" fill="#ffffff"/><text x="400" y="132.6" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="36" text-anchor="middle" fill="#2b2b3a">Je vais trouver le voleur !</text></g>
+</svg>
