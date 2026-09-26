@@ -1,25 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
-  <defs>
-    <g id="forme">
-      <circle cx="-85" cy="15" r="55"/>
-      <circle cx="-25" cy="-25" r="75"/>
-      <circle cx="55" cy="-15" r="65"/>
-      <circle cx="105" cy="25" r="48"/>
-      <rect x="-140" y="5" width="293" height="80" rx="40"/>
-    </g>
-    <g id="visage">
-      <ellipse cx="-30" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
-      <ellipse cx="35" cy="15" rx="9" ry="12" fill="#2b2b3a"/>
-      <circle cx="-27" cy="10" r="3.5" fill="#fff"/>
-      <circle cx="38" cy="10" r="3.5" fill="#fff"/>
-      <ellipse cx="-62" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
-      <ellipse cx="68" cy="40" rx="14" ry="8" fill="#ffb3c7"/>
-      <path d="M -12 40 Q 3 58 18 40" stroke="#2b2b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
-    </g>
-  </defs>
-  <g transform="translate(200 140) scale(1.0)">
-    <use href="#forme" fill="#cfe2f5" y="9"/>
-    <use href="#forme" fill="#ffffff"/>
-    <use href="#visage"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
+
+<ellipse cx="200" cy="140" rx="185" ry="120" fill="#d0ebff"/>
+<g transform="translate(195 150) scale(1.2 1.2)"><g><g><g transform="translate(0 8)"><circle cx="-55" cy="10" r="38" fill="#dbe4ff"/><circle cx="-15" cy="-18" r="50" fill="#dbe4ff"/><circle cx="40" cy="-8" r="42" fill="#dbe4ff"/><circle cx="78" cy="18" r="30" fill="#dbe4ff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#dbe4ff"/></g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g><ellipse cx="-36" cy="22" rx="11" ry="6.5" fill="#ff8fab" opacity="0.8"/><ellipse cx="52" cy="22" rx="11" ry="6.5" fill="#ff8fab" opacity="0.8"/><path d="M -25.2 7 Q -16 -6.3 -6.8 7" fill="none" stroke="#2b2b3a" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M 22.8 7 Q 32 -6.3 41.2 7" fill="none" stroke="#2b2b3a" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M -4 24 Q 8 36 20 24" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></g>
 </svg>
