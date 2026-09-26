@@ -16,6 +16,8 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
 
+import base  # noqa: E402
+
 
 def modules():
     for nom in sorted(os.listdir(os.path.join(ICI, "histoires"))):
@@ -24,6 +26,9 @@ def modules():
 
 
 def generer(module):
+    # numérotation des identifiants SVG propre à chaque livre : le résultat ne
+    # dépend pas des autres livres générés en même temps
+    base._compteur[0] = 0
     dossier = os.path.join(RACINE, "livres", module.ID, "images")
     for nom, fabrique in module.IMAGES:
         fabrique().enregistrer(os.path.join(dossier, nom))

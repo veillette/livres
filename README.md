@@ -148,13 +148,19 @@ livres/             un dossier par livre + catalogue.js
 
 ## Dessiner les illustrations
 
-Les illustrations des livres récents sont générées en SVG par un petit outil
-Python, sans aucune dépendance, dans `outils/illustrer/` :
+Les illustrations de tous les livres sauf les plus anciens sont générées en SVG
+par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
 
 - `base.py` : décors (ciel, collines, intérieurs, nuit…), personnages animaux
   vus de face avec leurs expressions (`sourire`, `rire`, `triste`, `fache`,
   `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`…) ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
+- `fantastique.py` : personnages humains et créatures des contes ;
+- `sciences.py` : personnages et schémas des livres de sciences (caneton,
+  pingouin, nuage, graine, glaçon, enfants, astronaute), avec des outils qui
+  respectent la physique : phases de la Lune, ombres portées selon la position
+  du Soleil, arc-en-ciel à l'opposé du Soleil, lignes de champ d'un aimant,
+  planètes éclairées du côté du Soleil, ondes sonores ;
 - `histoires/<id>.py` : les pages d'un livre, une fonction par image.
 
 ```sh
