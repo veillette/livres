@@ -26,8 +26,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/03-droite-gauche.svg",
-      description: "Filou lève une patte ; dans le miroir, son reflet lève la patte de l'autre côté.",
-      texte: "Filou lève la patte droite. Son reflet, lui, lève la patte… gauche ! Dans un miroir, la droite et la gauche sont échangées.",
+      description: "Filou, vu de dos, lève la patte droite ; dans le miroir, son reflet lève la patte du même côté, qui est sa patte gauche.",
+      texte: "Filou lève la patte droite. Son reflet lève la patte du même côté… mais pour lui, qui regarde Filou, c'est sa patte gauche ! Le miroir n'échange pas la droite et la gauche : il retourne l'avant et l'arrière.",
     },
     {
       image: "images/04-ecriture.svg",

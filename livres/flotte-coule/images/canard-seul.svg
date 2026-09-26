@@ -1,10 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
-  <g transform="translate(190 220) scale(1.5)">
-    <path d="M -70 -20 Q -60 20 0 22 Q 60 22 72 -10 Q 60 -45 0 -45 Q -50 -45 -70 -30 L -92 -52 Z" fill="#ffd43b"/>
-    <path d="M -30 -30 Q 0 -45 30 -25 Q 5 -5 -30 -30 Z" fill="#fab005"/>
-    <circle cx="40" cy="-80" r="36" fill="#ffd43b"/>
-    <path d="M 70 -80 Q 100 -78 104 -68 Q 94 -62 70 -66 Z" fill="#f76707"/>
-    <circle cx="52" cy="-86" r="7" fill="#2b2b3a"/><circle cx="54" cy="-88" r="2.5" fill="#fff"/>
-    <ellipse cx="36" cy="-66" rx="9" ry="5" fill="#ffa8a8"/>
-  </g>
+
+<ellipse cx="200" cy="210" rx="170" ry="36" fill="#a5d8ff"/>
+<g transform="translate(200 214) scale(1.4 1.4)"><clipPath id="e3"><rect x="-200" y="-300" width="400" height="306" fill="#000"/></clipPath><g clip-path="url(#e3)"><polygon points="-50,-34 -92,-66 -66,-8" fill="#ffd43b"/><ellipse cx="-4" cy="-18" rx="66" ry="42" fill="#ffd43b"/><ellipse cx="-12" cy="-22" rx="36" ry="20" fill="#e0ba33" transform="rotate(-8 -12 -22)"/><path d="M -40 -16 q 14 8 30 4 q 12 -2 22 -10" fill="none" stroke="#bf9f2c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="42" cy="-82" r="36" fill="#ffd43b"/><path d="M 34 -116 q 2 -16 12 -14 q -6 4 0 10 q 4 -12 14 -8" fill="none" stroke="#ffd43b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M 64 -80 Q 100 -86 104 -74 Q 88 -62 64 -66 Z" fill="#ff922b"/><line x1="68" y1="-73" x2="96" y2="-73" stroke="#cc7422" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="54" cy="-70" rx="8" ry="5" fill="#ff8fab" opacity="0.7"/><path d="M 42 -87 Q 50 -99 58 -87" fill="none" stroke="#2b2b3a" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></g><ellipse cx="-6" cy="4" rx="84" ry="9" fill="#fff" opacity="0.6"/><ellipse cx="-6" cy="4" rx="64" ry="5" fill="#d0ebff" opacity="0.8"/></g>
 </svg>

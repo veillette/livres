@@ -1,3 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<rect x="0" y="0" width="800" height="800" fill="#f3f0ff"/><rect x="80" y="640" width="640" height="30" rx="4" fill="#adb5bd"/><rect x="80" y="636" width="640" height="10" fill="#e7f5ff"/><path d="M 120 140 L 400 640 L 680 140" fill="none" stroke="#fab005" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><line x1="260" y1="390" x2="292.3" y2="446.5" stroke="#e8590c" stroke-width="8" stroke-linecap="round"/><polygon points="300,460 277.9,446.4 299.5,434" fill="#e8590c"/><line x1="520" y1="460" x2="552.3" y2="403.5" stroke="#e8590c" stroke-width="8" stroke-linecap="round"/><polygon points="560,390 559.5,416 537.9,403.6" fill="#e8590c"/><text x="400" y="715" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#495057">miroir</text><circle cx="120" cy="140" r="30" fill="#ffd43b"/><circle cx="560" cy="180" r="30" fill="#f03e3e"/><path d="M 530 180 Q 560 162.0 590 180" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 440 360 Q 500 240 560 200" fill="none" stroke="#ced4da" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 10"/>
+
+<rect x="0" y="0" width="800" height="800" fill="#f3f0ff"/>
+<rect x="80" y="600" width="640" height="24" fill="#adb5bd"/>
+<rect x="80" y="624" width="640" height="12" fill="#868e96"/>
+<text x="400" y="690" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#495057">miroir</text>
+<line x1="400" y1="600" x2="400" y2="160" stroke="#868e96" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10"/>
+<g><line x1="140" y1="200" x2="387.3" y2="580.6" stroke="#fab005" stroke-width="8" stroke-linecap="round"/><polygon points="396,594 378.9,583.6 393.5,574.2" fill="#fab005" stroke="#fab005" stroke-width="3" stroke-linejoin="round"/></g>
+<g><line x1="404" y1="594" x2="651.3" y2="213.4" stroke="#fab005" stroke-width="8" stroke-linecap="round"/><polygon points="660,200 657.5,219.8 642.9,210.4" fill="#fab005" stroke="#fab005" stroke-width="3" stroke-linejoin="round"/></g>
+<path d="M 400 490 A 110 110 0 0 0 340.05128143450446 507.7712022069299" fill="none" stroke="#e64980" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 400 490 A 110 110 0 0 1 459.94871856549554 507.7712022069299" fill="none" stroke="#e64980" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

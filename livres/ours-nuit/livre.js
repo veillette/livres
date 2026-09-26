@@ -56,8 +56,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/09-midi.svg",
-      description: "À midi, le soleil est tout en haut ; l'ombre de Petit Ours est toute petite.",
-      texte: "À midi, le soleil est tout en haut du ciel. L'ombre de Petit Ours est toute petite, cachée sous ses pattes.",
+      description: "À midi, le soleil est au plus haut, vers le sud ; l'ombre de Petit Ours est toute petite.",
+      texte: "À midi, le soleil est au plus haut dans le ciel. L'ombre de Petit Ours est toute petite, presque cachée sous ses pattes.",
     },
     {
       image: "images/10-couchant.svg",
