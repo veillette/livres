@@ -36,8 +36,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/05-midi.svg",
-      description: "À midi, le soleil est haut et l'ombre est toute petite sous Max.",
-      texte: "À midi, le soleil est tout en haut du ciel. L'ombre devient toute petite, cachée sous les pattes de Max.",
+      description: "À midi, le soleil est au plus haut et l'ombre de Max est toute petite.",
+      texte: "À midi, le soleil est au plus haut dans le ciel. L'ombre devient toute petite, presque cachée sous les pattes de Max.",
     },
     {
       image: "images/06-soir.svg",

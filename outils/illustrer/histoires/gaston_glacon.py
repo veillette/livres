@@ -187,7 +187,6 @@ def p07():
     # la vapeur d'eau est invisible : on la montre en pointillés très pâles
     for x in (300, 380, 460):
         S.add(vapeur(x, 640, 300, 1.0, 0.9, "#ffffff"))
-    S.add(g([cercle(300 + k * 40, 300 - k * 30, 4, "#fff", opacity=0.6) for k in range(5)]))
     return S
 
 

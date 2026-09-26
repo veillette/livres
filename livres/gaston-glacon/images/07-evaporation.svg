@@ -7,5 +7,4 @@
 <g transform="translate(300 640)"><path d="M 0 0 q -12 -50.0 0 -100.0 q 12 -50.0 0 -100.0 q -12 -50.0 0 -100.0" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" stroke-dasharray="2 10"/></g>
 <g transform="translate(380 640)"><path d="M 0 0 q -12 -50.0 0 -100.0 q 12 -50.0 0 -100.0 q -12 -50.0 0 -100.0" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" stroke-dasharray="2 10"/></g>
 <g transform="translate(460 640)"><path d="M 0 0 q -12 -50.0 0 -100.0 q 12 -50.0 0 -100.0 q -12 -50.0 0 -100.0" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" stroke-dasharray="2 10"/></g>
-<g><circle cx="300" cy="300" r="4" fill="#fff" opacity="0.6"/><circle cx="340" cy="270" r="4" fill="#fff" opacity="0.6"/><circle cx="380" cy="240" r="4" fill="#fff" opacity="0.6"/><circle cx="420" cy="210" r="4" fill="#fff" opacity="0.6"/><circle cx="460" cy="180" r="4" fill="#fff" opacity="0.6"/></g>
 </svg>

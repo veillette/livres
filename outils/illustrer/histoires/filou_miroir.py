@@ -81,13 +81,25 @@ def p02():
     return S
 
 
+def filou_de_dos(x, y, s=1.0, **k):
+    """Filou vu de dos : on cache le visage, le ventre blanc et l'intérieur des oreilles."""
+    c = "#f76707"
+    m = [perso("renard", 0, 0, 1.0, expr="neutre", **k), ellipse(0, -54, 28, 36, c), cercle(0, -150, 57, c)]
+    for sgn in (-1, 1):
+        m.append(poly([(sgn * 52, -170), (sgn * 48, -228), (sgn * 12, -200)], c))
+        m.append(poly([(sgn * 50.5, -212), (sgn * 48, -228), (sgn * 36, -219)], "#5c3d2e"))
+    m.append(chemin("M -30 -118 Q 0 -104 30 -118", stroke="#d9480f", sw=4, opacity=0.5))
+    return place(m, x, y, s)
+
+
 def p03():
     S = Scene()
     foret(S, 3)
-    # Filou lève sa patte droite (à gauche sur l'image) ; son reflet lève la patte du même côté du miroir
-    S.add(filou(230, 780, 1.5, expr="concentre", bras="salut", flip=True))
-    S.add(miroir_pied(560, 780, 1.55, reflet=filou(560, 720, 0.95, expr="concentre", bras="salut")))
-    S.add(texte(130, 280, "droite", 40, "#1c7ed6", contour="#fff"), texte(640, 280, "gauche ?", 40, "#e64980", contour="#fff"))
+    # Filou, vu de dos, lève sa patte droite ; face à lui, son reflet lève la patte
+    # du même côté du miroir — qui est, pour le reflet, sa patte gauche.
+    S.add(miroir_pied(530, 700, 1.6, reflet=filou(530, 630, 0.95, expr="rire", bras="salut", regard=(0, 0))))
+    S.add(filou_de_dos(250, 800, 1.5, bras="salut"))
+    S.add(texte(560, 130, "même côté !", 44, "#1c7ed6", contour="#fff"))
     return S
 
 

@@ -46,8 +46,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/07-evaporation.svg",
-      description: "Au soleil, de minuscules gouttes s'envolent de la flaque.",
-      texte: "Au soleil, la flaque sèche doucement. Gaston s'envole en gouttes si petites qu'on ne les voit plus : il devient de la vapeur.",
+      description: "Au soleil, la flaque sèche : l'eau part dans l'air en vapeur invisible.",
+      texte: "Au soleil, la flaque sèche doucement. Gaston s'envole, mais on ne le voit plus : il est devenu de la vapeur d'eau, un gaz invisible.",
     },
     {
       image: "images/08-bouilloire.svg",
@@ -61,8 +61,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/10-nuage.svg",
-      description: "Les petites gouttes montent et se regroupent en un gros nuage souriant.",
-      texte: "Gaston monte, monte dans le ciel. Là-haut, il fait froid : il se regroupe avec des milliards d'autres gouttes. Ensemble, elles forment un nuage.",
+      description: "Là-haut, la vapeur redevient de petites gouttes qui forment un gros nuage.",
+      texte: "Gaston monte, monte dans le ciel. Là-haut, il fait froid : la vapeur redevient de minuscules gouttes. Des milliards de gouttes ensemble, et voilà un nuage !",
     },
     {
       image: "images/11-pluie.svg",

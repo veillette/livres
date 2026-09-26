@@ -36,8 +36,8 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/05-nuage-gris.svg",
-      description: "Des gouttes montent de la mer vers le nuage devenu gris.",
-      texte: "Le soleil chauffait la mer. De minuscules gouttes montaient vers Petit Nuage, qui devint gris… et très lourd !",
+      description: "La vapeur d'eau, invisible, monte de la mer vers le nuage devenu gris.",
+      texte: "Le soleil chauffait la mer. De la vapeur d'eau, invisible, montait jusqu'à Petit Nuage et s'y changeait en minuscules gouttes. Petit Nuage devint gris… et très lourd !",
     },
     {
       image: "images/06-pluie.svg",
