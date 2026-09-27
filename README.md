@@ -161,6 +161,11 @@ par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
   respectent la physique : phases de la Lune, ombres portées selon la position
   du Soleil, arc-en-ciel à l'opposé du Soleil, lignes de champ d'un aimant,
   planètes éclairées du côté du Soleil, ondes sonores ;
+- `fables.py` : personnages et accessoires des fables de La Fontaine (corbeau,
+  coq et poule, colombe, cigogne, moucheron, araignée, chêne et roseau qui
+  parlent, fromage, raisins, puits, filet, grelot, pot au lait…). Les animaux
+  « debout » des fables (`loup`, `lion`, `lievre`, `rat`, `ane`, `chevre`,
+  `boeuf`, `cigale`) sont des espèces de `perso()` dans `base.py` ;
 - `histoires/<id>.py` : les pages d'un livre, une fonction par image.
 
 ```sh

@@ -12,7 +12,7 @@
  *
  * Changer VERSION force le renouvellement complet du cache.
  */
-const VERSION = "v7";
+const VERSION = "v8";
 const CACHE = `livres-${VERSION}`;
 
 const INTERFACE = [
