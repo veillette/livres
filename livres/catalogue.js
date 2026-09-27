@@ -55,4 +55,8 @@ window.CATALOGUE = [
   "lion-rat",
   "grenouille-boeuf",
   "rat-ville-champs",
+  "loup-chien",
+  "renard-cigogne",
+  "colombe-fourmi",
+  "chene-roseau",
 ];

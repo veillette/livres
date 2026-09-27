@@ -11,7 +11,7 @@ from base import *
 from base import EXPRESSIONS, _assombrir
 from objets import *
 from fantastique import *
-from sciences import canard, vent_visage, rafales, vent, fleche, ombre_sous, enfant, cheval, ondes
+from sciences import canard, vent_visage, rafales, vent, fleche, ombre_sous, enfant, cheval, ondes, rayons_soleil
 
 
 # ---------------------------------------------------------------------------
@@ -126,7 +126,12 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     m.append(chemin("M -40 -200 L -110 -170 L -40 -160 Z", "#343a40"))
     m.append(ellipse(0, -190, 62, 40, "#ffffff", stroke="#dee2e6", stroke_width=3))
     m.append(chemin("M -52 -200 Q -20 -150 40 -176 Q 10 -168 -10 -186 Z", "#343a40"))
-    if cou == "baisse":
+    if cou == "table":
+        # cou penché vers une table : le bout du bec arrive vers (138, -156)
+        m.append(chemin("M 36 -210 Q 70 -250 100 -262", stroke="#ffffff", sw=24))
+        hx, hy = 104, -268
+        bec = f"M {hx + 14} {hy + 8} L {hx + 34} {hy + 112} L {hx + 2} {hy + 18} Z"
+    elif cou == "baisse":
         m.append(chemin("M 40 -206 Q 80 -230 96 -170 Q 104 -130 110 -100", stroke="#ffffff", sw=24))
         hx, hy = 112, -92
         bec = f"M {hx + 14} {hy + 10} L {hx + 30} {hy + 110} L {hx + 4} {hy + 16} Z"
@@ -196,7 +201,7 @@ def visage(x, y, s=1.0, expr="sourire", regard=(0, 0), joues=True):
 
 def chene(x, y, s=1.0, expr="fier", regard=(0, 0), penche=0, tombe=False, feuillage="#40c057", feuillage2="#2f9e44"):
     """Grand chêne avec un visage dans le tronc ; (x, y) = pied du tronc."""
-    m = [chemin("M -60 0 Q -40 -30 -44 -200 L 44 -200 Q 40 -30 60 0 Z", "#8d5524"),
+    m = [chemin("M -70 0 Q -50 -30 -54 -200 L 54 -200 Q 50 -30 70 0 Z", "#8d5524"),
          chemin("M -60 0 Q -80 10 -100 4 M 60 0 Q 80 10 104 2", stroke="#8d5524", sw=16),
          chemin("M -30 -40 Q -26 -100 -32 -160 M 24 -30 Q 30 -90 22 -150", stroke="#6d4424", sw=4)]
     feuilles = [cercle(0, -300, 130, feuillage2), cercle(-120, -250, 90, feuillage), cercle(120, -250, 90, feuillage),
@@ -204,21 +209,30 @@ def chene(x, y, s=1.0, expr="fier", regard=(0, 0), penche=0, tombe=False, feuill
     m += feuilles
     for gx, gy in [(-100, -230), (90, -300), (-20, -380), (40, -220), (-130, -300)]:
         m.append(g([ellipse(gx, gy, 9, 12, "#c68642"), chemin(f"M {gx - 10} {gy - 8} Q {gx} {gy - 18} {gx + 10} {gy - 8} Z", "#7c4a1e")]))
-    m.append(visage(0, -130, 1.3, expr, regard, joues=False))
+    m.append(visage(0, -120, 1.7, expr, regard, joues=False))
     t = []
     if tombe:
         return place(m, x, y, s, rot=-80)
     return place(m, x, y, s, rot=penche)
 
 
-def roseau(x, y, s=1.0, expr="sourire", penche=0, regard=(0, 0), h=320):
-    """Roseau souple avec une tête de massette et un visage ; (x, y) = au pied."""
-    b = penche
-    m = [chemin(f"M 0 0 Q {b * 0.3} {-h * 0.5} {b} {-h}", stroke="#5c940d", sw=10),
-         chemin(f"M -6 0 Q {-30 + b * 0.2} {-h * 0.4} {-40 + b * 0.5} {-h * 0.7}", stroke="#74b816", sw=7),
-         chemin(f"M 6 0 Q {30 + b * 0.2} {-h * 0.35} {44 + b * 0.5} {-h * 0.6}", stroke="#74b816", sw=7)]
-    m.append(place([rect(-30, -120, 60, 130, "#8d5524", rx=30), trait(0, -120, 0, -150, "#5c940d", 5),
-                    visage(0, -70, 0.62, expr, regard, joues=True)], b, -h + 100, 1.0, rot=b * 0.25))
+def roseau(x, y, s=1.0, expr="sourire", penche=0, regard=(0, 0), h=260, visage_=True):
+    """Roseau souple avec une tête de massette ; (x, y) = au pied.
+
+    penche : inclinaison en degrés (0 = tout droit, 90 = couché vers la droite,
+    négatif = vers la gauche). La tête suit toujours le bout de la tige."""
+    a = math.radians(penche)
+    L = h * (1 - 0.25 * min(abs(penche), 120) / 90)
+    ex, ey = L * math.sin(a), -L * math.cos(a)
+    cx, cy = 0, -L * 0.55
+    rot = math.degrees(math.atan2(ex - cx, -(ey - cy)))
+    m = [chemin(f"M -6 0 Q -34 {-h * 0.3} -44 {-h * 0.55}", stroke="#74b816", sw=7),
+         chemin(f"M 6 0 Q 34 {-h * 0.25} 46 {-h * 0.5}", stroke="#74b816", sw=7),
+         chemin(f"M 0 0 Q {cx} {n(cy)} {n(ex)} {n(ey)}", stroke="#5c940d", sw=10)]
+    tete = [rect(-30, -130, 60, 130, "#8d5524", rx=30), trait(0, -130, 0, -160, "#5c940d", 5)]
+    if visage_:
+        tete.append(visage(0, -74, 0.62, expr, regard, joues=True))
+    m.append(place(tete, ex, ey, 1.0, rot=rot))
     return place(m, x, y, s)
 
 
