@@ -544,6 +544,15 @@ ESPECES = {
     "castor": dict(c="#8f5b34", c2="#d9b48f", pieds="#5c3a1e", ventre=True),
     "panda": dict(c="#ffffff", c2="#ffffff", pieds="#343a40", ventre=False),
     "ecureuil": dict(c="#d9692b", c2="#fff0dc", pieds="#b4531c", ventre=True, interieur="#ffd8a8"),
+    # animaux des fables
+    "loup": dict(c="#868e96", c2="#f1f3f5", pieds="#495057", ventre=True),
+    "lion": dict(c="#fcc419", c2="#fff3bf", pieds="#e8a200", ventre=True, criniere="#e8590c"),
+    "lievre": dict(c="#c49a6c", c2="#f6e7d3", pieds="#9c7650", ventre=True, interieur="#ffc9c9"),
+    "rat": dict(c="#a39382", c2="#e9e1d8", pieds="#ffa8a8", ventre=True, interieur="#ffc9c9"),
+    "ane": dict(c="#9aa1a8", c2="#e9ecef", pieds="#495057", ventre=True, interieur="#ffe3e3"),
+    "chevre": dict(c="#e9d8c4", c2="#fff9f0", pieds="#6d5a47", ventre=True, interieur="#ffc9c9", cornes="#a68a64"),
+    "boeuf": dict(c="#a0693a", c2="#f3dcc3", pieds="#6d4424", ventre=True, cornes="#fff4e6", mufle="#ffc9d6"),
+    "cigale": dict(c="#82c91e", c2="#d8f5a2", pieds="#5c940d", ventre=True),
 }
 
 # Position des mains (gauche, droite) pour chaque pose, et coudes éventuels.
@@ -770,8 +779,19 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     elif espece == "renard":
         m.append(ellipse(62, -58, 26, 58, c, rot=40))
         m.append(ellipse(95, -95, 14, 20, "#fff4e6", rot=40))
-    elif espece == "souris":
+    elif espece in ("souris", "rat"):
         m.append(chemin("M 22 -20 Q 80 -8 76 -64 Q 72 -96 98 -104", stroke="#ffa8a8", sw=6))
+    elif espece == "loup":
+        m.append(ellipse(62, -58, 26, 58, c, rot=40))
+        m.append(ellipse(95, -95, 14, 20, "#dee2e6", rot=40))
+    elif espece in ("lion", "ane", "boeuf"):
+        touffe = K.get("criniere") or _assombrir(c, 0.6)
+        m.append(chemin("M 28 -40 Q 84 -34 84 -86", stroke=c, sw=9))
+        m.append(ellipse(84, -96, 11, 16, touffe))
+    elif espece == "cigale":
+        for sgn in (-1, 1):
+            m.append(ellipse(sgn * 46, -70, 26, 74, "#e7f5ff", rot=sgn * -22, opacity=0.8, stroke="#91a7ff", stroke_width=3))
+            m.append(chemin(f"M {sgn * 34} -130 Q {sgn * 50} -80 {sgn * 66} -10", stroke="#91a7ff", sw=2))
     elif espece == "cochon":
         m.append(chemin("M 34 -44 q 16 -2 14 -14 q -2 -10 -10 -6 q -6 6 4 12 q 10 4 18 -4", stroke=K["groin"], sw=5))
     elif espece == "chien":
@@ -818,6 +838,9 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
             m.append(_motif(corps, motif, couleur_motif))
         elif K.get("ventre"):
             m.append(ellipse(0, -54, 27, 35, c2))
+            if espece == "cigale":
+                for yy in (-72, -56, -40):
+                    m.append(chemin(f"M -20 {yy} Q 0 {yy + 6} 20 {yy}", stroke=_assombrir(c2, 0.8), sw=3))
         if espece == "panda" and not habit:
             m.append(ellipse(0, -62, 42, 52, "#fff"))
             m.append(chemin("M -40 -80 Q 0 -60 40 -80 L 36 -104 Q 0 -118 -36 -104 Z", "#343a40"))
@@ -890,17 +913,54 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         for sgn in (-1, 1):
             m.append(ellipse(sgn * 23, -228, 15, 48, c, rot=sgn * 8))
             m.append(ellipse(sgn * 23, -226, 7, 36, K["interieur"], rot=sgn * 8))
+    elif espece == "lievre":
+        for sgn in (-1, 1):
+            m.append(ellipse(sgn * 26, -242, 15, 62, c, rot=sgn * 12))
+            m.append(ellipse(sgn * 26, -240, 7, 48, K["interieur"], rot=sgn * 12))
+            m.append(ellipse(sgn * 38, -294, 9, 12, "#4a2c17", rot=sgn * 12))
+    elif espece == "rat":
+        for sgn in (-1, 1):
+            m.append(cercle(sgn * 46, -190, 25, c))
+            m.append(cercle(sgn * 46, -190, 15, K["interieur"]))
+    elif espece == "lion":
+        for k in range(16):
+            a = math.radians(k * 22.5)
+            m.append(cercle(math.cos(a) * 66, hy - 8 + math.sin(a) * 50, 24, K["criniere"]))
+        m.append(ellipse(0, hy - 8, 76, 64, K["criniere"]))
+        for sgn in (-1, 1):
+            m.append(cercle(sgn * 40, -196, 16, c))
+            m.append(cercle(sgn * 40, -196, 8, c2))
+    elif espece == "ane":
+        for sgn in (-1, 1):
+            m.append(ellipse(sgn * 36, -222, 15, 50, c, rot=sgn * 24))
+            m.append(ellipse(sgn * 36, -220, 7, 38, K["interieur"], rot=sgn * 24))
+            m.append(ellipse(sgn * 54, -262, 8, 11, "#495057", rot=sgn * 24))
+    elif espece == "chevre":
+        for sgn in (-1, 1):
+            m.append(chemin(f"M {sgn * 18} -190 Q {sgn * 26} -246 {sgn * 64} -238", stroke=K["cornes"], sw=13))
+            m.append(ellipse(sgn * 62, -156, 26, 11, c, rot=sgn * 18))
+            m.append(ellipse(sgn * 62, -156, 15, 6, K["interieur"], rot=sgn * 18))
+    elif espece == "boeuf":
+        for sgn in (-1, 1):
+            m.append(chemin(f"M {sgn * 34} -188 Q {sgn * 88} -192 {sgn * 86} -240", stroke=K["cornes"], sw=15))
+            m.append(ellipse(sgn * 66, -162, 24, 12, c, rot=sgn * 20))
+            m.append(ellipse(sgn * 66, -162, 14, 6, "#ffc9c9", rot=sgn * 20))
+    elif espece == "cigale":
+        for sgn in (-1, 1):
+            m.append(chemin(f"M {sgn * 14} -198 Q {sgn * 20} -226 {sgn * 34} -232", stroke=_assombrir(c, 0.6), sw=4))
+        sclere = True
+        ex = 30
     elif espece == "souris":
         for sgn in (-1, 1):
             m.append(cercle(sgn * 48, -192, 31, c))
             m.append(cercle(sgn * 48, -192, 20, K["interieur"]))
-    elif espece in ("chat", "renard", "ecureuil"):
-        inter = K.get("interieur", "#fff4e6") if espece != "renard" else "#fff4e6"
+    elif espece in ("chat", "renard", "ecureuil", "loup"):
+        inter = K.get("interieur", "#fff4e6") if espece not in ("renard", "loup") else ("#fff4e6" if espece == "renard" else "#dee2e6")
         for sgn in (-1, 1):
             m.append(poly([(sgn * 52, -170), (sgn * 48, -228), (sgn * 12, -200)], c))
             m.append(poly([(sgn * 44, -178), (sgn * 43, -216), (sgn * 20, -198)], inter))
-            if espece == "renard":
-                m.append(poly([(sgn * 50.5, -212), (sgn * 48, -228), (sgn * 36, -219)], "#5c3d2e"))
+            if espece in ("renard", "loup"):
+                m.append(poly([(sgn * 50.5, -212), (sgn * 48, -228), (sgn * 36, -219)], "#5c3d2e" if espece == "renard" else "#495057"))
             if espece == "ecureuil":
                 m.append(poly([(sgn * 42, -224), (sgn * 50, -246), (sgn * 54, -222)], _assombrir(c, 0.8)))
     elif espece == "elephant":
@@ -945,8 +1005,20 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
             m.append(cercle(sgn * 42, -180, 9, c2))
 
     # museaux et nez (avant les yeux pour que les yeux restent visibles)
-    if espece == "renard":
-        m.append(chemin("M -54 -140 Q -30 -142 0 -120 Q 30 -142 54 -140 Q 44 -98 0 -96 Q -44 -98 -54 -140 Z", "#fff4e6"))
+    if espece in ("renard", "loup"):
+        m.append(chemin("M -54 -140 Q -30 -142 0 -120 Q 30 -142 54 -140 Q 44 -98 0 -96 Q -44 -98 -54 -140 Z", "#fff4e6" if espece == "renard" else c2))
+    if espece == "lion":
+        m.append(ellipse(0, -126, 27, 20, c2))
+    if espece == "ane":
+        m.append(chemin("M -30 -200 Q -12 -222 0 -204 Q 12 -222 30 -200 Q 0 -190 -30 -200 Z", "#495057"))
+        m.append(ellipse(0, -118, 34, 27, c2))
+    if espece == "chevre":
+        m.append(poly([(-14, -104), (14, -104), (0, -62)], "#d6c2a8"))
+        m.append(ellipse(0, -124, 24, 18, c2))
+    if espece == "boeuf":
+        for k, dx in enumerate((-18, 0, 18)):
+            m.append(cercle(dx, -202 + (k % 2) * -4, 13, _assombrir(c, 0.75)))
+        m.append(ellipse(0, -114, 40, 27, K["mufle"]))
     if espece in ("ours", "castor"):
         m.append(ellipse(0, -126, 25, 19, c2))
     if espece == "chien":
@@ -985,10 +1057,24 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     elif espece == "panda":
         m.append(ellipse(0, -131, 8, 5.5, ENCRE))
         my = -120
-    elif espece == "renard":
+    elif espece in ("renard", "loup"):
         m.append(ellipse(0, -128, 8, 6, ENCRE))
         my = -118
-    elif espece in ("lapin", "souris"):
+    elif espece == "lion":
+        m.append(poly([(-10, -138), (10, -138), (0, -127)], "#7c4a1e"))
+        my = -121
+    elif espece == "ane":
+        m.append(ellipse(-13, -122, 4.5, 6, _assombrir(c2, 0.55)) + ellipse(13, -122, 4.5, 6, _assombrir(c2, 0.55)))
+        my = -110
+    elif espece == "chevre":
+        m.append(ellipse(0, -132, 7, 5, "#8a6d4f"))
+        my = -122
+    elif espece == "boeuf":
+        m.append(ellipse(-15, -118, 5, 7, "#c2255c") + ellipse(15, -118, 5, 7, "#c2255c"))
+        my = -106
+    elif espece == "cigale":
+        my = -124
+    elif espece in ("lapin", "souris", "lievre", "rat"):
         m.append(ellipse(0, -132, 6, 4.5, ROSE))
         my = -122
     elif espece == "chat":
@@ -1024,7 +1110,7 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         m.append(bouche(0, my, bs, L))
 
     # moustaches
-    if espece in ("chat", "souris", "lapin"):
+    if espece in ("chat", "souris", "lapin", "lievre", "rat", "lion"):
         for sgn in (-1, 1):
             m.append(trait(sgn * 14, -130, sgn * 46, -136, "#868e96", 2))
             m.append(trait(sgn * 14, -126, sgn * 46, -122, "#868e96", 2))

@@ -49,4 +49,10 @@ window.CATALOGUE = [
   "etoile-tombee",
   "couronne-pie",
   "princesse-petit-pois",
+  "corbeau-renard",
+  "cigale-fourmi",
+  "lievre-tortue",
+  "lion-rat",
+  "grenouille-boeuf",
+  "rat-ville-champs",
 ];
