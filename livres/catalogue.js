@@ -59,4 +59,8 @@ window.CATALOGUE = [
   "renard-cigogne",
   "colombe-fourmi",
   "chene-roseau",
+  "laitiere-pot",
+  "coq-renard",
+  "renard-bouc",
+  "conseil-rats",
 ];
