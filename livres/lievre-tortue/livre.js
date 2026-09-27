@@ -23,7 +23,7 @@ Bibliotheque.ajouter({
     {
       image: "images/02-tortue.svg",
       description: "La tortue avance tranquillement au milieu des fleurs.",
-      texte: "Dans le même pré vit Tortue. Elle avance tout doucement, une patte après l'autre.\n\nElle a tout le temps de regarder les fleurs et les papillons.",
+      texte: "Dans le même pré vit Tortue. Elle avance tout doucement.\n\nElle a le temps de regarder les fleurs et les papillons.",
     },
     {
       image: "images/03-si-lente.svg",
@@ -33,12 +33,12 @@ Bibliotheque.ajouter({
     {
       image: "images/04-le-pari.svg",
       description: "La tortue, l'air malin, propose une course jusqu'au gros chêne qu'on voit au loin.",
-      texte: "Tortue ne se fâche pas. Elle répond calmement :\n\n« Faisons la course, veux-tu ? Je parie que j'arriverai la première… au gros chêne, là-bas ! »",
+      texte: "Tortue ne se fâche pas.\n\n« Faisons la course ! Je parie que j'arriverai la première au gros chêne, là-bas. »",
     },
     {
       image: "images/05-ha-ha-ha.svg",
       description: "Le lièvre se tient le ventre de rire ; l'écureuil, le hérisson, la grenouille et la souris accourent.",
-      texte: "« Toi ? Me battre, moi ? » Lièvre rit si fort qu'il doit se tenir le ventre.\n\nL'écureuil, le hérisson, la grenouille et la souris accourent : une course, ça ne se rate pas !",
+      texte: "« Toi ? Me battre, moi ? » Lièvre se tient le ventre de rire.\n\nTous les animaux accourent : une course, ça ne se rate pas !",
     },
     {
       image: "images/06-partez.svg",
@@ -58,7 +58,7 @@ Bibliotheque.ajouter({
     {
       image: "images/09-un-pas.svg",
       description: "La tortue avance, concentrée, sur le chemin.",
-      texte: "Pendant ce temps, Tortue avance. Elle ne se presse pas, mais elle ne s'arrête pas non plus.\n\nUn pas… puis un autre. Puis encore un autre.",
+      texte: "Pendant ce temps, Tortue avance. Elle ne se presse pas, mais elle ne s'arrête pas.\n\nUn pas… puis un autre.",
     },
     {
       image: "images/10-la-sieste.svg",
@@ -88,7 +88,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-bravo.svg",
       description: "Le lièvre, un peu gêné, tend la patte à la tortue pour la féliciter.",
-      texte: "Lièvre arrive, tout essoufflé. Il a un peu honte, mais il tend la patte :\n\n« Bravo, Tortue. Tu m'as bien eu. »\n« Rien ne sert de courir, sourit Tortue. Il faut partir à temps ! »",
+      texte: "Lièvre arrive, essoufflé. « Bravo, Tortue ! »\n\n« Rien ne sert de courir, sourit Tortue. Il faut partir à temps ! »",
     },
 
     { type: "texte", texte: "« Rien ne sert de courir ; il faut partir à point. »\n\nJean de La Fontaine" },

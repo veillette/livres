@@ -63,4 +63,10 @@ window.CATALOGUE = [
   "coq-renard",
   "renard-bouc",
   "conseil-rats",
+  "tortue-canards",
+  "laboureur-tresor",
+  "poule-oeufs-or",
+  "lion-moucheron",
+  "meunier-ane",
+  "renard-raisins",
 ];

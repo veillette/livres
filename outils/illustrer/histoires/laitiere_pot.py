@@ -47,8 +47,8 @@ def reve(S, contenu, depuis=(360, 380)):
 def couverture():
     S = Scene()
     campagne(S)
-    S.add(perrette(400, 760, 1.55, expr="content", regard=(1, -1)))
-    S.add(pensee(640, 250, 110, depuis=(470, 420), contenu=g([perso("boeuf", 610, 310, 0.45, expr="content"), perso("cochon", 690, 310, 0.3, expr="rire")])))
+    S.add(perrette(330, 790, 1.3, expr="content", regard=(1, -1)))
+    S.add(pensee(540, 470, 100, depuis=(420, 560), contenu=g([perso("boeuf", 515, 520, 0.4, expr="content"), perso("cochon", 585, 520, 0.28, expr="rire")])))
     return S
 
 

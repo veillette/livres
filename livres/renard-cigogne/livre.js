@@ -24,7 +24,7 @@ Bibliotheque.ajouter({
     {
       image: "images/02-avec-plaisir.svg",
       description: "La cigogne, ravie, accepte l'invitation devant sa maison.",
-      texte: "« Avec plaisir ! » répond la cigogne.\n\nElle est toute contente. Il faut dire qu'elle a toujours un appétit d'oiseau… d'un très grand oiseau !",
+      texte: "« Avec plaisir ! » répond la cigogne.\n\nElle est toute contente. Elle a un appétit d'oiseau… d'un très grand oiseau !",
     },
     {
       image: "images/03-ca-sent-bon.svg",
@@ -59,12 +59,12 @@ Bibliotheque.ajouter({
     {
       image: "images/09-a-mon-tour.svg",
       description: "La cigogne invite à son tour le renard, qui accepte avec joie.",
-      texte: "Quelques jours plus tard, elle va trouver le renard.\n\n« Compère, venez donc dîner chez moi ce soir ! »\n« Avec grand plaisir ! » répond le renard, qui n'est jamais contre un bon repas.",
+      texte: "Quelques jours plus tard, la cigogne va trouver le renard.\n\n« Compère, venez dîner chez moi ce soir ! »\n« Avec plaisir ! »",
     },
     {
       image: "images/10-miam.svg",
       description: "Le renard, affamé, arrive devant la maison de la cigogne.",
-      texte: "À l'heure dite, le renard arrive, le ventre creux.\n\nMmmh ! Ça sent la viande, bien cuite et coupée en tout petits morceaux. Il en a l'eau à la bouche !",
+      texte: "À l'heure dite, le renard arrive, le ventre creux.\n\nMmmh ! Ça sent la bonne viande. Il en a l'eau à la bouche !",
     },
     {
       image: "images/11-les-vases.svg",
@@ -84,12 +84,12 @@ Bibliotheque.ajouter({
     {
       image: "images/14-la-queue-basse.svg",
       description: "Le renard rentre chez lui la tête basse, sous un petit nuage.",
-      texte: "Le renard rentre chez lui le ventre vide, honteux comme un renard qu'une poule aurait attrapé.\n\nLa queue basse, les oreilles pendantes, il a enfin compris.",
+      texte: "Le renard rentre chez lui le ventre vide, tout honteux.\n\nLa queue basse, les oreilles pendantes, il a enfin compris.",
     },
     {
       image: "images/15-pardon.svg",
       description: "Le renard offre un bol de soupe à la cigogne ; chacun a le sien.",
-      texte: "Le lendemain, le renard frappe chez la cigogne, avec deux jolis bols.\n\n« Pardon, commère. Ma farce n'était pas drôle. » Et ce soir-là, chacun mange à sa faim.",
+      texte: "Le lendemain, le renard revient avec deux jolis bols.\n\n« Pardon, commère. Ma farce n'était pas drôle. » Et chacun mange à sa faim.",
     },
 
     { type: "texte", texte: "« Trompeurs, c'est pour vous que j'écris : attendez-vous à la pareille. »\n\nJean de La Fontaine" },

@@ -44,12 +44,12 @@ Bibliotheque.ajouter({
     {
       image: "images/06-le-cochon.svg",
       description: "Perrette rêve d'un cochon tout rose.",
-      texte: "« Les poussins deviendront des poules. Je les vendrai au marché…\n\net j'achèterai un cochon ! Il deviendra tout gros, tout rond. »",
+      texte: "« Les poussins deviendront des poules. Je les vendrai…\n\net j'achèterai un cochon, tout gros, tout rond ! »",
     },
     {
       image: "images/07-la-vache.svg",
       description: "Perrette rêve d'une vache et de son petit veau.",
-      texte: "« Je vendrai le cochon pour beaucoup d'argent. Et j'achèterai une vache et son veau !\n\nJe le verrai sauter dans le pré, mon petit veau. »",
+      texte: "« Je vendrai le cochon, et j'achèterai une vache et son veau !\n\nJe le verrai sauter dans le pré, mon petit veau. »",
     },
     {
       image: "images/08-hop.svg",
@@ -79,7 +79,7 @@ Bibliotheque.ajouter({
     {
       image: "images/13-le-chat.svg",
       description: "Un petit chat lape le lait renversé ; Perrette le regarde et sourit un peu.",
-      texte: "Un petit chat roux arrive en trottinant. Il lape le lait renversé.\n\n« Miaou ! » Au moins, quelqu'un est content ! Perrette ne peut pas s'empêcher de sourire.",
+      texte: "Un petit chat roux arrive et lape le lait renversé. « Miaou ! »\n\nAu moins, quelqu'un est content ! Perrette sourit.",
     },
     {
       image: "images/14-la-prochaine-fois.svg",
@@ -89,7 +89,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-le-lendemain.svg",
       description: "Le lendemain, Perrette repart avec un nouveau pot, qu'elle tient à deux mains.",
-      texte: "Le lendemain, Perrette repart au marché avec un nouveau pot de lait.\n\nElle rêve toujours un petit peu… mais elle marche bien droit, et tient son pot à deux mains !",
+      texte: "Le lendemain, Perrette repart avec un nouveau pot de lait.\n\nElle rêve un petit peu… mais elle tient son pot à deux mains !",
     },
 
     { type: "texte", texte: "« Quel esprit ne bat la campagne ? Qui ne fait châteaux en Espagne ? »\n\nJean de La Fontaine" },

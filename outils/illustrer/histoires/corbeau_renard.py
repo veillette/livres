@@ -31,9 +31,9 @@ def scene_arbre(S, **k):
 
 def couverture():
     S = Scene()
-    scene_arbre(S, x=640, branche_y=300, branche_x=330)
-    S.add(corbeau(470, 330, 1.35, expr="fier", fromage_bec=True))
-    S.add(perso("renard", 300, 760, 1.5, expr="malin", bras="ouverts", regard=(1, -1)))
+    scene_arbre(S, x=630, branche_y=480, branche_x=330)
+    S.add(corbeau(480, 486, 1.2, expr="fier", fromage_bec=True))
+    S.add(perso("renard", 280, 790, 1.25, expr="malin", bras="ouverts", regard=(1, -1)))
     return S
 
 

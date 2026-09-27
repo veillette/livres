@@ -55,11 +55,11 @@ def branche_ruisseau(S, y=260):
 
 def couverture():
     S = Scene()
-    ruisseau(S, 500)
-    branche_ruisseau(S, 250)
-    S.add(colombe(420, 262, 1.3, expr="sourire", regard=(0, 1)))
-    S.add(brin_herbe(430, 660, 1.4, rot=-4))
-    S.add(fourmi(430, 670, 0.9, expr="rire", bras="haut"))
+    ruisseau(S, 560)
+    branche_ruisseau(S, 420)
+    S.add(colombe(430, 432, 1.1, expr="sourire", regard=(0, 1)))
+    S.add(brin_herbe(430, 730, 1.3, rot=-4))
+    S.add(fourmi(430, 738, 0.75, expr="rire", bras="haut"))
     return S
 
 

@@ -19,12 +19,12 @@ Bibliotheque.ajouter({
     {
       image: "images/01-le-rat-des-champs.svg",
       description: "Le rat des champs, en chapeau de paille, devant le pommier où il habite.",
-      texte: "À la campagne, sous les racines d'un vieux pommier, vit Rat des champs.\n\nSa maison est petite, mais il y est bien. Et le soir, on y entend chanter les grillons.",
+      texte: "À la campagne, sous un vieux pommier, vit Rat des champs.\n\nSa maison est petite, mais il y est bien.",
     },
     {
       image: "images/02-le-cousin.svg",
       description: "Le rat de ville, en haut-de-forme et écharpe rose, rend visite à son cousin.",
-      texte: "Un jour, son cousin vient lui rendre visite. C'est Rat de ville !\n\nIl porte un chapeau haut-de-forme et une écharpe de soie. Qu'il est élégant !",
+      texte: "Un jour, son cousin Rat de ville vient le voir.\n\nIl porte un chapeau haut-de-forme et une écharpe de soie. Qu'il est élégant !",
     },
     {
       image: "images/03-le-repas.svg",
@@ -69,7 +69,7 @@ Bibliotheque.ajouter({
     {
       image: "images/11-caches.svg",
       description: "Les deux rats tremblent dans un trou du mur pendant que le chat attend dehors.",
-      texte: "Blottis au fond d'un trou du mur, ils tremblent comme des feuilles.\n\nLe chat renifle, tourne en rond, attend… puis il finit par s'en aller.",
+      texte: "Blottis dans un trou du mur, ils tremblent comme des feuilles.\n\nLe chat renifle, attend… puis il s'en va.",
     },
     {
       image: "images/12-boum.svg",
@@ -84,12 +84,12 @@ Bibliotheque.ajouter({
     {
       image: "images/14-en-paix.svg",
       description: "Dans la rue, le rat de ville, triste, regarde partir son cousin.",
-      texte: "« Déjà ? Mais le repas n'est pas fini ! »\n\n« Ton festin est magnifique, répond Rat des champs. Mais chez moi, je mange en paix : personne ne vient m'interrompre. Adieu donc ! »",
+      texte: "« Déjà ? Mais le repas n'est pas fini ! »\n\n« Ton festin est magnifique. Mais chez moi, je mange en paix. Adieu ! »",
     },
     {
       image: "images/15-sous-les-etoiles.svg",
       description: "La nuit, devant son pommier, le rat des champs croque une graine, tranquille.",
-      texte: "De retour sous son pommier, Rat des champs croque une graine, sous les étoiles.\n\nPas de poulet rôti ni de gâteau à la crème… mais pas de chat non plus. Et rien n'a jamais été aussi bon !",
+      texte: "De retour chez lui, Rat des champs croque une graine sous les étoiles.\n\nPas de gâteau… mais pas de chat non plus. Quel délice !",
     },
 
     { type: "texte", texte: "Un petit repas tranquille vaut mieux qu'un grand festin plein de peur." },

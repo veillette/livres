@@ -18,12 +18,12 @@ Bibliotheque.ajouter({
     {
       image: "images/01-la-sieste.svg",
       description: "Le lion dort, assis à l'ombre d'un acacia dans la savane.",
-      texte: "Dans la savane, à l'ombre d'un grand arbre, le lion fait la sieste.\n\nC'est le roi des animaux. Quand il dort, tout le monde marche sur la pointe des pieds.",
+      texte: "Dans la savane, à l'ombre d'un arbre, le lion fait la sieste.\n\nC'est le roi des animaux. Quand il dort, tout le monde se tait.",
     },
     {
       image: "images/02-sur-le-nez.svg",
       description: "Un petit rat court sur le museau du lion endormi.",
-      texte: "Mais voici un petit rat, tout étourdi, qui sort de son trou. Il court, il court sans regarder devant lui…\n\net hop ! le voilà sur le nez du lion !",
+      texte: "Un petit rat étourdi sort de son trou. Il court sans regarder devant lui…\n\net hop ! le voilà sur le nez du lion !",
     },
     {
       image: "images/03-grrr.svg",
@@ -83,7 +83,7 @@ Bibliotheque.ajouter({
     {
       image: "images/14-libre.svg",
       description: "Le lion sort par le grand trou du filet ; le rat saute de joie.",
-      texte: "Corde après corde, le trou s'agrandit… et le lion sort du filet. Libre !\n\nLà où la force du lion n'a rien pu faire, la patience du petit rat a réussi.",
+      texte: "Corde après corde, le trou s'agrandit… et le lion sort du filet. Libre !\n\nLa patience du rat a réussi là où la force a échoué.",
     },
     {
       image: "images/15-amis.svg",

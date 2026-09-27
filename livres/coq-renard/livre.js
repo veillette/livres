@@ -28,7 +28,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-la-paix.svg",
       description: "Le renard ouvre les bras en souriant ; de petits cœurs flottent autour de lui.",
-      texte: "« Il n'y a plus de dispute entre nous ! C'est la paix !\n\nLes renards et les poules, les loups et les moutons : tous les animaux sont amis, maintenant ! »",
+      texte: "« C'est la paix ! Les renards et les poules, les loups et les moutons :\n\ntous les animaux sont amis ! »",
     },
     {
       image: "images/04-descends.svg",
@@ -53,7 +53,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-attendons-les.svg",
       description: "Le coq propose d'attendre les chiens ; le renard grimace.",
-      texte: "« Ils viennent sûrement nous annoncer la même bonne nouvelle.\n\nAttendons-les : nous nous embrasserons tous ensemble ! »",
+      texte: "« Ils viennent sûrement annoncer la paix, eux aussi.\n\nAttendons-les : nous nous embrasserons tous ! »",
     },
     {
       image: "images/09-des-chiens.svg",
@@ -73,7 +73,7 @@ Bibliotheque.ajouter({
     {
       image: "images/12-ha-ha-ha.svg",
       description: "Le coq, resté seul sur sa branche, éclate de rire.",
-      texte: "Le coq éclate de rire sur sa branche.\n\nDes chiens ? Il n'y en avait pas l'ombre d'un ! Le renard voulait le tromper… c'est lui qui a été trompé.",
+      texte: "Le coq éclate de rire. Des chiens ? Il n'y en avait pas un seul !\n\nLe renard voulait le tromper… c'est lui qui a été trompé.",
     },
     {
       image: "images/13-cocorico.svg",
@@ -83,12 +83,12 @@ Bibliotheque.ajouter({
     {
       image: "images/14-les-poules.svg",
       description: "Les poules sortent du poulailler et entourent le coq, qui leur raconte l'histoire.",
-      texte: "Les poules sortent du poulailler en courant. « Qu'est-ce qui se passe ? »\n\nLe coq leur raconte tout. Et toute la basse-cour rit aux éclats.",
+      texte: "Les poules accourent. « Qu'est-ce qui se passe ? »\n\nLe coq leur raconte tout. Et toute la basse-cour rit aux éclats.",
     },
     {
       image: "images/15-toujours-presse.svg",
       description: "Le soir, le renard boude au pied de l'arbre ; le coq le taquine du haut de sa branche.",
-      texte: "Depuis ce jour, quand le renard passe près de la ferme, le coq lui crie du haut de son arbre :\n\n« Alors, renard, toujours aussi pressé ? »",
+      texte: "Depuis, quand le renard passe, le coq lui crie du haut de son arbre :\n\n« Alors, renard, toujours pressé ? »",
     },
 
     { type: "texte", texte: "« C'est double plaisir de tromper le trompeur. »\n\nJean de La Fontaine" },

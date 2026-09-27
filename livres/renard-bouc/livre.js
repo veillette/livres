@@ -68,7 +68,7 @@ Bibliotheque.ajouter({
     {
       image: "images/11-reflechir.svg",
       description: "Le renard, penché au bord du puits, fait la leçon au bouc.",
-      texte: "Le renard se penche au bord du puits.\n\n« Mon pauvre ami ! Si tu avais autant de cervelle que de barbe, tu aurais réfléchi avant de sauter ! »",
+      texte: "Le renard se penche sur le puits.\n\n« Si tu avais autant de cervelle que de barbe, tu aurais réfléchi avant de sauter ! »",
     },
     {
       image: "images/12-debrouille-toi.svg",
@@ -83,12 +83,12 @@ Bibliotheque.ajouter({
     {
       image: "images/14-l-echelle.svg",
       description: "Le fermier a descendu une échelle ; le bouc remonte en souriant.",
-      texte: "Heureusement, le fermier entend ses cris. Il descend une longue échelle au fond du puits.\n\nBarreau après barreau, le bouc remonte à la lumière.",
+      texte: "Heureusement, le fermier l'entend. Il descend une échelle dans le puits.\n\nBarreau après barreau, le bouc remonte.",
     },
     {
       image: "images/15-et-apres.svg",
       description: "Devant une mare, le bouc réfléchit avant de sauter.",
-      texte: "Le bouc est sauvé. Et depuis ce jour, avant de sauter quelque part, il se pose toujours une question :\n\n« Et après ? Comment je ressortirai ? »",
+      texte: "Le bouc est sauvé. Depuis, avant de sauter, il se demande toujours :\n\n« Et après ? Comment je ressortirai ? »",
     },
 
     { type: "texte", texte: "« En toute chose il faut considérer la fin. »\n\nJean de La Fontaine" },

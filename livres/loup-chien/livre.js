@@ -18,7 +18,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-le-loup.svg",
       description: "La nuit, dans la forêt, un loup maigre se tient le ventre.",
-      texte: "Au fond des bois vit un loup. Il est libre comme l'air… mais il est si maigre qu'on lui voit les côtes.\n\nCela fait des jours qu'il n'a rien mangé. Son ventre gargouille : grrr…",
+      texte: "Au fond des bois vit un loup, libre comme l'air… et tout maigre.\n\nSon ventre vide gargouille : grrr…",
     },
     {
       image: "images/02-le-chien.svg",
@@ -43,7 +43,7 @@ Bibliotheque.ajouter({
     {
       image: "images/06-la-gamelle.svg",
       description: "Le loup rêve d'une gamelle remplie d'os.",
-      texte: "« En échange, on vous donne des os de poulet, des restes de pigeon, et beaucoup de caresses. »\n\nLe loup a l'eau à la bouche. Une gamelle pleine, tous les jours !",
+      texte: "« En échange, on vous donne des os et des caresses. »\n\nLe loup a l'eau à la bouche. Une gamelle pleine, tous les jours !",
     },
     {
       image: "images/07-en-route.svg",
@@ -73,7 +73,7 @@ Bibliotheque.ajouter({
     {
       image: "images/12-le-reve.svg",
       description: "Le loup pense à ses courses dans la forêt, sous la lune.",
-      texte: "Le loup ferme les yeux. Il pense aux grands bois, aux collines, à la lune.\n\nIl pense à toutes ces nuits où il court, aussi loin qu'il veut, sans que personne ne le retienne.",
+      texte: "Le loup ferme les yeux. Il pense aux grands bois, à la lune.\n\nIl pense aux nuits où il court aussi loin qu'il veut.",
     },
     {
       image: "images/13-ma-liberte.svg",

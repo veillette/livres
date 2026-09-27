@@ -18,7 +18,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-le-chene.svg",
       description: "Un grand chêne à l'air fier se dresse au bord d'un étang.",
-      texte: "Au bord d'un étang pousse un chêne immense.\n\nSes racines s'enfoncent loin sous la terre, et sa tête touche presque les nuages. Il est très fier de lui.",
+      texte: "Au bord d'un étang pousse un chêne immense.\n\nSa tête touche presque les nuages. Il est très fier de lui.",
     },
     {
       image: "images/02-le-roseau.svg",
@@ -28,7 +28,7 @@ Bibliotheque.ajouter({
     {
       image: "images/03-mon-pauvre-ami.svg",
       description: "Un minuscule roitelet se pose sur le roseau, qui se courbe ; le chêne le plaint.",
-      texte: "Un jour, un roitelet, le plus petit des oiseaux, se pose sur le roseau. Aussitôt, le roseau se courbe.\n\n« Mon pauvre ami ! dit le chêne. Même un si petit oiseau est trop lourd pour toi ! »",
+      texte: "Un tout petit oiseau se pose sur le roseau, qui se courbe.\n\n« Mon pauvre ami ! dit le chêne. Il est trop lourd pour toi ! »",
     },
     {
       image: "images/04-le-moindre-vent.svg",
@@ -38,12 +38,12 @@ Bibliotheque.ajouter({
     {
       image: "images/05-le-plus-fort.svg",
       description: "Le chêne, très fier, se dresse face au soleil.",
-      texte: "« Moi, au contraire, je suis le plus fort ! J'arrête les rayons du soleil. Je brave les tempêtes.\n\nPour moi, le vent le plus terrible n'est qu'une petite brise. »",
+      texte: "« Moi, je suis le plus fort ! J'arrête le soleil et je brave les tempêtes.\n\nPour moi, le pire des vents n'est qu'une brise. »",
     },
     {
       image: "images/06-a-mon-ombre.svg",
       description: "Le chêne, l'air désolé, parle au roseau qui l'écoute, étonné.",
-      texte: "« Si tu avais poussé à mon ombre, je t'aurais protégé.\n\nMais tu vis au bord de l'eau, là où soufflent tous les vents. La nature a été bien injuste avec toi ! »",
+      texte: "« Si tu poussais à mon ombre, je te protégerais.\n\nMais tu vis là où soufflent tous les vents. Quelle malchance ! »",
     },
     {
       image: "images/07-je-plie.svg",
@@ -88,7 +88,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-le-matin.svg",
       description: "Au matin, le roseau est debout au soleil, un oiseau posé sur lui ; près du vieux chêne, un gland a germé.",
-      texte: "Le matin, le soleil revient. Le roseau se redresse doucement : il n'a rien du tout ! Le roitelet revient se poser sur lui.\n\nEt près du vieux chêne, un gland a germé. Le roseau veillera sur lui.",
+      texte: "Au matin, le roseau se redresse : il n'a rien du tout !\n\nEt près du vieux chêne, un gland a germé. Le roseau veillera sur lui.",
     },
 
     { type: "texte", texte: "« Je plie, et ne romps pas. »\n\nJean de La Fontaine" },

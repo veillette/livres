@@ -61,8 +61,8 @@ def couverture():
     S = Scene()
     savane(S)
     S.add(acacia(620, 640, 1.2))
-    S.add(lion(360, 760, 2.0, expr="content", bras="porte", objet=None))
-    S.add(rat(360, 470, 0.7, expr="rire", bras="haut"))
+    S.add(lion(390, 800, 1.55, expr="content", bras="porte", objet=None))
+    S.add(rat(390, 800 - 205 * 1.55 + 4, 0.58, expr="rire", bras="haut"))
     return S
 
 

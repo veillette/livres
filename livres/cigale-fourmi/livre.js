@@ -23,7 +23,7 @@ Bibliotheque.ajouter({
     {
       image: "images/02-la-fourmi.svg",
       description: "La fourmi, en tablier, porte une grosse graine sur sa tête jusqu'à sa maison.",
-      texte: "Pendant ce temps, la fourmi travaille. Elle porte des graines jusqu'à sa maison : une, deux, trois…\n\nSon garde-manger se remplit, jour après jour.",
+      texte: "Pendant ce temps, la fourmi travaille. Elle porte des graines chez elle : une, deux, trois…\n\nSon garde-manger se remplit.",
     },
     {
       image: "images/03-pas-le-temps.svg",
@@ -73,7 +73,7 @@ Bibliotheque.ajouter({
     {
       image: "images/12-la-fourmi-ecoute.svg",
       description: "Chez elle, près du feu, la fourmi écoute la musique qui passe sous la porte.",
-      texte: "Derrière la porte, la fourmi écoute. Que cette musique est belle !\n\nElle pense à l'hiver, si long et si silencieux… et à sa voisine qui a froid.",
+      texte: "Derrière la porte, la fourmi écoute. Que cette musique est belle !\n\nElle pense à l'hiver si long… et à sa voisine qui a froid.",
     },
     {
       image: "images/13-entre.svg",
@@ -88,7 +88,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-le-printemps.svg",
       description: "Au printemps, la cigale et la fourmi portent chacune une graine en chantant.",
-      texte: "Au printemps, la cigale tient sa promesse : elle aide la fourmi à ramasser les graines.\n\nEt elle chante en travaillant. Le travail est bien plus léger en chanson !",
+      texte: "Au printemps, la cigale aide la fourmi à ramasser les graines.\n\nEt elle chante ! Le travail est plus léger en chanson.",
     },
 
     { type: "texte", texte: "Il faut penser à demain…\n\net savoir partager aujourd'hui." },

@@ -19,7 +19,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-rodilard.svg",
       description: "Un gros chat gris à l'air malin, les mains sur les hanches.",
-      texte: "Dans une vieille maison vit un chat gris nommé Rodilard.\n\nIl est si rapide et si rusé qu'il attrape toutes les souris qui ont le malheur de sortir de leur trou.",
+      texte: "Dans une vieille maison vit un chat gris nommé Rodilard.\n\nIl est si rusé qu'il attrape toutes les souris qui sortent de leur trou.",
     },
     {
       image: "images/02-on-a-peur.svg",
@@ -34,7 +34,7 @@ Bibliotheque.ajouter({
     {
       image: "images/04-reunion.svg",
       description: "Six souris sont réunies dans le grenier, la nuit.",
-      texte: "Vite ! Les souris en profitent pour tenir un grand conseil, dans un coin du grenier.\n\nToutes sont là : les grandes, les petites, les jeunes et les vieilles.",
+      texte: "Vite ! Les souris tiennent un grand conseil au grenier.\n\nToutes sont là : les grandes, les petites, les jeunes et les vieilles.",
     },
     {
       image: "images/05-la-doyenne.svg",
@@ -44,12 +44,12 @@ Bibliotheque.ajouter({
     {
       image: "images/06-pas-de-velours.svg",
       description: "La doyenne réfléchit ; elle imagine le chat qui s'approche sans bruit.",
-      texte: "« Le problème, c'est qu'on n'entend jamais Rodilard arriver.\n\nIl marche à pas de velours : chut… chut… et quand on le voit, c'est trop tard ! »",
+      texte: "« On n'entend jamais Rodilard arriver.\n\nIl marche à pas de velours : chut… chut… et quand on le voit, c'est trop tard ! »",
     },
     {
       image: "images/07-un-grelot.svg",
       description: "La doyenne brandit un grelot ; elle imagine le chat avec le grelot au cou.",
-      texte: "« Alors voici mon idée : attachons un grelot au cou du chat !\n\nQuand il approchera, drelin, drelin ! nous l'entendrons, et nous aurons le temps de nous cacher. »",
+      texte: "« Voici mon idée : attachons un grelot au cou du chat !\n\nQuand il viendra, drelin, drelin ! nous aurons le temps de nous cacher. »",
     },
     {
       image: "images/08-hourra.svg",
@@ -84,12 +84,12 @@ Bibliotheque.ajouter({
     {
       image: "images/14-sauve-qui-peut.svg",
       description: "Le chat revient ; les souris s'enfuient ; le grelot tombe par terre.",
-      texte: "Soudain, des pas dans l'escalier… Rodilard est de retour !\n\nSauve qui peut ! La doyenne s'enfuit, et le grelot roule par terre.",
+      texte: "Soudain, des pas… Rodilard est de retour !\n\nSauve qui peut ! La doyenne s'enfuit, et le grelot roule par terre.",
     },
     {
       image: "images/15-drelin.svg",
       description: "Le chat joue avec le grelot ; les souris rient dans leur trou.",
-      texte: "Le lendemain, Rodilard trouve le grelot. « Oh ! Un jouet ! » Il joue avec toute la journée : drelin, drelin !\n\nDans leur trou, les souris rient : ce n'est pas elles qui l'ont attaché… mais cette fois, elles l'entendent arriver !",
+      texte: "Le lendemain, Rodilard joue avec le grelot : drelin, drelin !\n\nLes souris rient : cette fois, elles l'entendent arriver !",
     },
 
     { type: "texte", texte: "Avoir une idée, c'est facile.\n\nLa réaliser, c'est une autre histoire !" },

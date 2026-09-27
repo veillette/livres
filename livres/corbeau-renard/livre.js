@@ -38,7 +38,7 @@ Bibliotheque.ajouter({
     {
       image: "images/05-trop-haut.svg",
       description: "Le renard, la bouche ouverte, rêve du fromage que tient le corbeau tout en haut de l'arbre.",
-      texte: "Renard lève la tête et voit le fromage, tout là-haut. Il en a l'eau à la bouche !\n\nMais comment l'attraper ? L'arbre est bien trop haut pour un renard.",
+      texte: "Renard lève la tête et voit le fromage. Il en a l'eau à la bouche !\n\nMais l'arbre est bien trop haut pour un renard.",
     },
     {
       image: "images/06-hop.svg",
@@ -78,7 +78,7 @@ Bibliotheque.ajouter({
     {
       image: "images/13-la-lecon.svg",
       description: "Le renard s'en va avec le fromage en souriant d'un air malin.",
-      texte: "« Merci, mon bon Monsieur ! dit Renard. Apprenez que celui qui vous couvre de compliments veut souvent quelque chose en échange.\n\nCette leçon vaut bien un fromage, non ? »",
+      texte: "« Merci, Monsieur ! Celui qui vous fait des compliments veut souvent quelque chose.\n\nCette leçon vaut bien un fromage ! »",
     },
     {
       image: "images/14-honteux.svg",

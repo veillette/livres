@@ -73,7 +73,7 @@ Bibliotheque.ajouter({
     {
       image: "images/12-pffuit.svg",
       description: "La grenouille se dégonfle en filant dans le ciel en zigzag.",
-      texte: "PFFFFUIIIT ! Tout l'air s'échappe d'un coup !\n\nLa grenouille file dans le ciel comme un ballon qu'on a lâché, en zigzag, par-ci, par-là…",
+      texte: "PFFFFUIIIT ! Tout l'air s'échappe d'un coup !\n\nLa grenouille file dans le ciel comme un ballon qu'on a lâché…",
     },
     {
       image: "images/13-plouf.svg",
@@ -83,7 +83,7 @@ Bibliotheque.ajouter({
     {
       image: "images/14-le-boeuf-rit.svg",
       description: "Le bœuf ouvre les bras en riant gentiment ; la grenouille, timide, l'écoute.",
-      texte: "Le bœuf rit gentiment. « Pourquoi vouloir être gros comme moi ?\n\nMoi, je ne sais pas sauter. Je ne sais pas nager sous l'eau. Et je ne sais pas attraper les mouches avec ma langue ! »",
+      texte: "Le bœuf rit gentiment. « Pourquoi être gros comme moi ?\n\nMoi, je ne sais même pas sauter ! »",
     },
     {
       image: "images/15-hop.svg",

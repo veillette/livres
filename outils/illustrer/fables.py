@@ -160,11 +160,12 @@ def moucheron(x, y, s=1.0, expr="malin", flip=False, rot=0, regard=(1, 0), tromp
          trait(-18, 12, -24, 26, ENCRE, 2), trait(-6, 14, -6, 28, ENCRE, 2), trait(4, 12, 10, 26, ENCRE, 2),
          cercle(14, 0, 14, "#343a40"),
          trait(18, -12, 22, -26, ENCRE, 2), trait(24, -10, 32, -22, ENCRE, 2)]
-    m.append(cercle(18, -3, 6.5, "#fff") + cercle(18 + regard[0] * 2, -3 + regard[1] * 2, 3.5, ENCRE))
+    m.append(cercle(18, -4, 8.5, "#fff") + cercle(19 + regard[0] * 2.5, -4 + regard[1] * 2.5, 4.5, ENCRE))
     if ys in ("heureux", "fermes"):
-        m[-1] = oeil(18, -3, ys, (0, 0), taille=0.55)
+        m[-1] = cercle(18, -4, 8.5, "#fff") + oeil(18, -4, ys, (0, 0), taille=0.6)
     if ss:
-        m.append(place(sourcils(0, 0, ss), 18, 6, 0.5))
+        m.append(place(sourcils(0, 0, ss).replace(ENCRE, "#f1f3f5"), 18, 8, 0.55))
+    m.append(ellipse(22, 8, 4, 2.5, ROSE, opacity=0.9))
     if trompette:
         m.append(poly([(26, 6), (44, 0), (44, 14)], "#fab005"))
     else:

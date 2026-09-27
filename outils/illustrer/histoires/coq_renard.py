@@ -39,9 +39,9 @@ def poulailler(x, y, s=1.0):
 
 def couverture():
     S = Scene()
-    scene_arbre(S, x=600, branche_y=300, branche_x=330)
-    S.add(coq(450, 306, 1.5, expr="malin", regard=(-1, 1)))
-    S.add(renard(270, 760, 1.5, expr="malin", bras="ouverts", regard=(1, -1)))
+    scene_arbre(S, x=610, branche_y=450, branche_x=340)
+    S.add(coq(470, 456, 1.2, expr="malin", regard=(-1, 1)))
+    S.add(renard(270, 790, 1.3, expr="malin", bras="ouverts", regard=(1, -1)))
     return S
 
 

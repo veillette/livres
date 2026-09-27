@@ -19,7 +19,7 @@ Bibliotheque.ajouter({
     {
       image: "images/01-j-ai-soif.svg",
       description: "Au bord du ruisseau, sous un soleil brûlant, une fourmi a très soif.",
-      texte: "C'est l'été, et il fait très chaud. Une petite fourmi a terriblement soif.\n\nElle marche jusqu'au bord du ruisseau pour boire un peu d'eau fraîche.",
+      texte: "C'est l'été, et il fait très chaud. Une petite fourmi a soif.\n\nElle va jusqu'au ruisseau pour boire un peu d'eau.",
     },
     {
       image: "images/02-plouf.svg",
@@ -59,7 +59,7 @@ Bibliotheque.ajouter({
     {
       image: "images/09-le-chasseur.svg",
       description: "Un chasseur barbu, un grand filet à la main, rêve de mettre la colombe dans sa cage.",
-      texte: "Quelques jours plus tard, un chasseur arrive sur la pointe des pieds, avec un grand filet et une cage dorée.\n\n« Quelle belle colombe ! Elle ira dans ma cage ! »",
+      texte: "Quelques jours plus tard arrive un chasseur, avec un grand filet.\n\n« Quelle belle colombe ! Elle ira dans ma cage ! »",
     },
     {
       image: "images/10-les-graines.svg",
@@ -84,7 +84,7 @@ Bibliotheque.ajouter({
     {
       image: "images/14-envolee.svg",
       description: "Le chasseur saute en criant et lâche son filet ; la colombe s'envole.",
-      texte: "Le chasseur crie et saute en l'air. Son filet tombe dans l'herbe.\n\nLa colombe entend le cri… et s'envole à tire-d'aile. Sauvée, elle aussi !",
+      texte: "Le chasseur crie et lâche son filet.\n\nLa colombe entend le cri… et s'envole à tire-d'aile. Sauvée, elle aussi !",
     },
     {
       image: "images/15-amies.svg",

@@ -32,8 +32,8 @@ def dans_le_puits(S):
 def couverture():
     S = Scene()
     dans_le_puits(S)
-    S.add(bouc(380, 760, 1.6, expr="bouche_bee", bras="haut", regard=(0, -1)))
-    S.add(renard(380, 760 - 250 * 1.6, 0.95, expr="malin", bras="haut", regard=(0, -1)))
+    S.add(bouc(400, 790, 1.25, expr="bouche_bee", bras="haut", regard=(0, -1)))
+    S.add(renard(400, 790 - 250 * 1.25, 0.75, expr="malin", bras="haut", regard=(0, -1)))
     return S
 
 
