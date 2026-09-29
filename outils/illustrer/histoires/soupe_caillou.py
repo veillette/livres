@@ -159,7 +159,7 @@ def p10():
 def p11():
     S = Scene()
     place_village(S)
-    S.add(voyageur(400, 790, 1.2, expr="chante", bras="ouverts"))
+    S.add(voyageur(400, 720, 1.2, expr="chante", bras="ouverts"))
     S.add(table(400, 790, 620, 120, nappe="#ffc9c9"))
     for k in range(5):
         S.add(bol(180 + k * 110, 650, 0.6, couleur=["#4dabf7", "#fa5252", "#51cf66", "#fcc419", "#cc5de8"][k], contenu="#ffd43b"))

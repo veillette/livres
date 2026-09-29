@@ -166,6 +166,10 @@ par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
   parlent, fromage, raisins, puits, filet, grelot, pot au lait…). Les animaux
   « debout » des fables (`loup`, `lion`, `lievre`, `rat`, `ane`, `chevre`,
   `boeuf`, `cigale`) sont des espèces de `perso()` dans `base.py` ;
+- `contes.py` : personnages et accessoires des contes traditionnels (Chaperon
+  rouge, géant, troll, lutins, Chat botté, bonhomme de pain d'épice, cygne,
+  maisons des trois petits cochons, tige de haricot, maison en pain d'épice,
+  carrosse, pantoufle de verre, navet géant, légumes…) ;
 - `histoires/<id>.py` : les pages d'un livre, une fonction par image.
 
 ```sh
