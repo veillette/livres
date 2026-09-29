@@ -21,7 +21,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deploiement.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Vérifier les livres et les images
         run: python3 outils/verifier-images.py
@@ -41,9 +41,9 @@ jobs:
             --exclude .git --exclude .github --exclude _site \
             --exclude __pycache__ --exclude outils/illustrer --exclude 'outils/*.py'
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
       - id: deploiement
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
