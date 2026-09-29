@@ -699,8 +699,8 @@ def planete(S, x, y, r, couleurs, bandes=None, lumiere=180, ombre_op=0.5, anneau
         corps.append(cercle(cx, cy, cr, detail, opacity=0.7))
     if ombre_op:
         gid = uid("o")
-        S.defs.append(el("linearGradient", el("stop", offset="0", stop_color="#000", stop_opacity="0") + el("stop", offset="0.45", stop_color="#000", stop_opacity=n(ombre_op * 0.6))
-                         + el("stop", offset="1", stop_color="#000", stop_opacity=n(ombre_op * 1.3)), id=gid, x1=0, y1=0, x2=1, y2=0))
+        S.defs.append(el("linearGradient", el("stop", offset="0", stop_color="#000", stop_opacity="0") + el("stop", offset="0.45", stop_color="#000", stop_opacity=n(ombre_op * 0.6, 3))
+                         + el("stop", offset="1", stop_color="#000", stop_opacity=n(ombre_op * 1.3, 3)), id=gid, x1=0, y1=0, x2=1, y2=0))
         corps.append(g(rect(-r * 0.25, -r - 2, r * 1.25 + 2, 2 * r + 4, f"url(#{gid})"), transform=f"rotate({n(lumiere + 180)})"))
     corps.append(cercle(-r * 0.35, -r * 0.35, r * 0.5, "#fff", opacity=0.08))
     m.append(g(corps, clip_path=f"url(#{cid})"))

@@ -167,7 +167,7 @@ def p12():
     S.add(rect(240, 120, 320, 480, "#adb5bd"), rect(270, 150, 260, 450, "#343a40"))
     S.add(chaudron(400, 590, 1.0, contenu="#74c0fc"))
     S.add(loup(400, 480, 0.8, expr="oups", bras="haut", rot=180))
-    S.add(texte(400, 90, "PLOUF !", 80, "#1c7ed6", contour="#fff"))
+    S.add(texte(400, 125, "PLOUF !", 80, "#1c7ed6", contour="#fff"))
     for i, x in enumerate((110, 680)):
         S.add(cochon(i * 2, x, 770, 1.1, expr="surpris", bras="joues"))
     return S

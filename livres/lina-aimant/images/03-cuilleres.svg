@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
 
 <rect x="0" y="0" width="800" height="600" fill="#f3f0ff"/>
-<rect x="0" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="60" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="120" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="180" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="240" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="300" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="360" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="420" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="480" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="540" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="600" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="660" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="720" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
-<rect x="780" y="0" width="24" height="600" fill="#e5dbff" opacity="0.3"/>
+<rect x="0" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="60" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="120" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="180" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="240" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="300" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="360" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="420" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="480" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="540" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="600" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="660" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="720" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
+<rect x="780" y="0" width="24" height="600" fill="#e5dbff" opacity="0.35"/>
 <rect x="0" y="600" width="800" height="200" fill="#e8c39e"/>
-<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
 <g><rect x="64" y="610" width="16" height="150" fill="#c68642"/><rect x="320" y="610" width="16" height="150" fill="#c68642"/><rect x="50" y="592" width="300" height="22" rx="6" fill="#c68642"/></g>
 <g transform="translate(200 600) rotate(-80) scale(1.4 1.4)"><ellipse cx="0" cy="-80" rx="22" ry="30" fill="#d9a066"/><rect x="-5" y="-52" width="10" height="90" rx="4" fill="#d9a066"/><ellipse cx="-6" cy="-86" rx="6" ry="12" fill="#fff" opacity="0.4"/></g>

@@ -29,6 +29,6 @@
 <text x="470" y="300" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="36" text-anchor="middle" fill="#2f9e44" stroke="#fff" stroke-width="5.1" stroke-linejoin="round" paint-order="stroke">flotte</text>
 <g><line x1="470" y1="560" x2="470" y2="644" stroke="#c92a2a" stroke-width="7" stroke-linecap="round"/><polygon points="470,660 461.3,642 478.7,642" fill="#c92a2a" stroke="#c92a2a" stroke-width="3" stroke-linejoin="round"/></g>
 <text x="470" y="540" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="36" text-anchor="middle" fill="#c92a2a" stroke="#fff" stroke-width="5.1" stroke-linejoin="round" paint-order="stroke">coule</text>
-<rect x="0" y="430" width="800" height="340" fill="#1971c2" opacity="0.2"/>
+<rect x="0" y="430" width="800" height="340" fill="#1971c2" opacity="0.22"/>
 <path d="M 0 430 q 25 -8 50 0 M 100 430 q 25 -8 50 0 M 200 430 q 25 -8 50 0 M 300 430 q 25 -8 50 0 M 400 430 q 25 -8 50 0 M 500 430 q 25 -8 50 0 M 600 430 q 25 -8 50 0 M 700 430 q 25 -8 50 0" fill="none" stroke="#e7f5ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
 </svg>

@@ -170,7 +170,7 @@ def p08():
     S.add(fleche(610, 480, 610, 420, "#2f9e44", 7))
     S.add(souris(215, 610, 0.8, expr="concentre", bras="haut", regard=(1, 0)))
     S.add(fleche(170, 470, 170, 560, "#c92a2a", 7))
-    S.add(texte(470, 790, "pivot", 36, PIVOT))
+    S.add(texte(470, 765, "pivot", 36, PIVOT))
     return S
 
 

@@ -107,7 +107,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(ane_profil(170, 250, 1.1, expr="content"))
+    S.add(ane_profil(170, 250, 0.95, expr="content"))
     return S
 
 

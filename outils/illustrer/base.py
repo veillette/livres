@@ -29,13 +29,11 @@ def uid(prefixe="i"):
     return f"{prefixe}{_compteur[0]}"
 
 
-def n(v):
+def n(v, precision=1):
     """Nombre compact : 12.0 → 12, 3.14159 → 3.1."""
     if isinstance(v, str):
         return v
-    s = f"{v:.1f}"
-    if s.endswith(".0"):
-        s = s[:-2]
+    s = f"{v:.{precision}f}".rstrip("0").rstrip(".") if precision else f"{v:.0f}"
     if s == "-0":
         s = "0"
     return s
@@ -47,7 +45,9 @@ def _attrs(a):
         if v is None or v is False:
             continue
         k = k.rstrip("_").replace("_", "-")
-        out.append(f'{k}="{n(v)}"')
+        # Garder les rapports précis : une opacité de 0,04 reste visible.
+        precision = 3 if k in ("opacity", "fill-opacity", "stroke-opacity", "stop-opacity", "offset") else 1
+        out.append(f'{k}="{n(v, precision)}"')
     return (" " + " ".join(out)) if out else ""
 
 
@@ -101,7 +101,7 @@ def place(contenu, x=0, y=0, s=1.0, flip=False, rot=0, sy=None):
     sx = -s if flip else s
     sy = s if sy is None else sy
     if sx != 1 or sy != 1:
-        t.append(f"scale({n(round(sx, 3)) if abs(sx) < 1 else n(sx)} {n(round(sy, 3)) if abs(sy) < 1 else n(sy)})")
+        t.append(f"scale({n(sx, 3)} {n(sy, 3)})")
     return g(contenu, " ".join(t) or None)
 
 
@@ -131,7 +131,7 @@ class Scene:
     def degrade(self, couleurs, vertical=True, radial=False, **a):
         i = uid("d")
         stops = "".join(
-            el("stop", offset=n(k / (len(couleurs) - 1)), stop_color=c) for k, c in enumerate(couleurs)
+            el("stop", offset=n(k / (len(couleurs) - 1), 3), stop_color=c) for k, c in enumerate(couleurs)
         )
         if radial:
             self.defs.append(el("radialGradient", stops, id=i, **a))

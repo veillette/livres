@@ -2,21 +2,21 @@
 
 <rect x="0" y="0" width="800" height="600" fill="#fff9db"/>
 <rect x="0" y="600" width="800" height="200" fill="#c99a6e"/>
-<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
 <rect x="80" y="600" width="640" height="40" fill="#868e96"/>
 <rect x="80" y="640" width="640" height="160" fill="#adb5bd"/>
 <circle cx="300" cy="600" r="60" fill="#ff922b" opacity="0.5"/>
 <g transform="translate(300 600) scale(1.2 1.2)"><path d="M -120 0 L -110 -170 Q 0 -230 110 -170 L 120 0 Z" fill="#fa5252"/><path d="M 110 -120 L 190 -190 L 200 -176 L 120 -90 Z" fill="#e03131"/><path d="M -70 -200 Q 0 -300 70 -200" fill="none" stroke="#343a40" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><rect x="-126" y="-12" width="252" height="16" rx="6" fill="#343a40"/><ellipse cx="-60" cy="-120" rx="18" ry="40" fill="#fff" opacity="0.3"/></g>
-<circle cx="595.2" cy="336.8" r="30" fill="#ffffff" opacity="0.9"/>
-<circle cx="635.2" cy="296.8" r="48" fill="#ffffff" opacity="0.9"/>
-<circle cx="685.2" cy="246.8" r="62" fill="#ffffff" opacity="0.9"/>
-<circle cx="625.2" cy="226.8" r="50" fill="#ffffff" opacity="0.9"/>
-<circle cx="735.2" cy="186.8" r="60" fill="#ffffff" opacity="0.9"/>
-<circle cx="665.2" cy="166.8" r="46" fill="#ffffff" opacity="0.9"/>
+<circle cx="595.2" cy="336.8" r="30" fill="#ffffff" opacity="0.95"/>
+<circle cx="635.2" cy="296.8" r="48" fill="#ffffff" opacity="0.95"/>
+<circle cx="685.2" cy="246.8" r="62" fill="#ffffff" opacity="0.95"/>
+<circle cx="625.2" cy="226.8" r="50" fill="#ffffff" opacity="0.95"/>
+<circle cx="735.2" cy="186.8" r="60" fill="#ffffff" opacity="0.95"/>
+<circle cx="665.2" cy="166.8" r="46" fill="#ffffff" opacity="0.95"/>
 <text x="250" y="160" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="70" text-anchor="middle" fill="#f03e3e" stroke="#fff" stroke-width="10" stroke-linejoin="round" paint-order="stroke">Pfffiou !</text>
 </svg>

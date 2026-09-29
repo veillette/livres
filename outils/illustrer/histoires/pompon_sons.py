@@ -225,7 +225,7 @@ def p12():
         S.add(cheval(x, 600, 0.45, ["#8d5524", "#495057", "#c68642"][k], flip=True))
     S.add(g([chemin(f"M {540 - k * 90} {640 + k * 25} q 10 -12 20 0 q 10 12 20 0", stroke="#a0693a", sw=4) for k in range(4)]))
     S.add(place(pompon(0, 0, 1.3, expr="concentre", bras="bas"), 250, 700, rot=-80))
-    S.add(texte(620, 480, "tagada, tagada…", 44, "#a0693a", contour="#fff"))
+    S.add(texte(595, 480, "tagada, tagada…", 42, "#a0693a", contour="#fff"))
     return S
 
 

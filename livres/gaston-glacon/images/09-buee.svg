@@ -2,17 +2,17 @@
 
 <rect x="0" y="0" width="800" height="620" fill="#e7f5ff"/>
 <rect x="0" y="620" width="800" height="180" fill="#c99a6e"/>
-<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="606" width="800" height="16" fill="#d9a066"/>
 <rect x="170" y="80" width="460" height="480" rx="10" fill="#fff"/>
 <rect x="190" y="100" width="420" height="440" fill="#a5d8ff"/>
 <g transform="translate(300 540) scale(0.8 0.8)"><rect x="-12" y="-40" width="24" height="40" rx="4" fill="#7c4a1e"/><polygon points="-90,-40 0,-150 90,-40" fill="#2f9e44"/><polygon points="-31.5,-112 0,-150 31.5,-112" fill="#fff"/><polygon points="-72,-110 0,-220 72,-110" fill="#37b24d"/><polygon points="-25.2,-182 0,-220 25.2,-182" fill="#fff"/><polygon points="-52,-170 0,-280 52,-170" fill="#2f9e44"/><polygon points="-18.2,-242 0,-280 18.2,-242" fill="#fff"/></g>
 <g transform="translate(520 540) scale(0.6 0.6)"><rect x="-12" y="-40" width="24" height="40" rx="4" fill="#7c4a1e"/><polygon points="-90,-40 0,-150 90,-40" fill="#2f9e44"/><polygon points="-31.5,-112 0,-150 31.5,-112" fill="#fff"/><polygon points="-72,-110 0,-220 72,-110" fill="#37b24d"/><polygon points="-25.2,-182 0,-220 25.2,-182" fill="#fff"/><polygon points="-52,-170 0,-280 52,-170" fill="#2f9e44"/><polygon points="-18.2,-242 0,-280 18.2,-242" fill="#fff"/></g>
-<rect x="190" y="100" width="420" height="440" fill="#f1f3f5" opacity="0.8"/>
+<rect x="190" y="100" width="420" height="440" fill="#f1f3f5" opacity="0.75"/>
 <circle cx="385.2" cy="266.8" r="2.4" fill="#fff" opacity="0.9"/>
 <circle cx="546.6" cy="112.7" r="3.5" fill="#fff" opacity="0.9"/>
 <circle cx="559.3" cy="143.9" r="3.7" fill="#fff" opacity="0.9"/>

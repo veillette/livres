@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
 
 <rect x="0" y="0" width="800" height="580" fill="#fff9db"/>
-<rect x="0" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="60" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="120" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="180" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="240" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="300" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="360" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="420" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="480" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="540" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="600" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="660" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="720" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
-<rect x="780" y="0" width="24" height="580" fill="#ffec99" opacity="0.3"/>
+<rect x="0" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="60" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="120" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="180" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="240" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="300" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="360" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="420" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="480" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="540" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="600" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="660" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="720" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
+<rect x="780" y="0" width="24" height="580" fill="#ffec99" opacity="0.35"/>
 <rect x="0" y="580" width="800" height="220" fill="#d9a066"/>
-<line x1="0" y1="630" x2="800" y2="630" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="680" x2="800" y2="680" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="730" x2="800" y2="730" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="780" x2="800" y2="780" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="830" x2="800" y2="830" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="630" x2="800" y2="630" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="680" x2="800" y2="680" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="730" x2="800" y2="730" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="780" x2="800" y2="780" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="830" x2="800" y2="830" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="566" width="800" height="16" fill="#d9a066"/>
 <g><rect x="72" y="112" width="166" height="156" rx="6" fill="#ffffff"/><rect x="80" y="120" width="150" height="140" fill="#b2f2bb"/><rect x="151" y="120" width="8" height="140" fill="#ffffff"/><rect x="80" y="186" width="150" height="8" fill="#ffffff"/><path d="M 60 106 L 110 106 Q 90 190.0 110 280 L 60 280 Z" fill="#fa5252"/><path d="M 250 106 L 200 106 Q 220 190.0 200 280 L 250 280 Z" fill="#fa5252"/><rect x="50" y="98" width="210" height="12" rx="6" fill="#adb5bd"/></g>
 <g><rect x="234" y="680" width="16" height="110" fill="#c68642"/><rect x="550" y="680" width="16" height="110" fill="#c68642"/><rect x="220" y="662" width="360" height="22" rx="6" fill="#c68642"/><path d="M 210.0 660 L 590.0 660 L 596.0 710 L 204.0 710 Z" fill="#fff"/></g>

@@ -77,7 +77,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(moulinet(170, 110, 0.95, rot=20))
+    S.add(moulinet(170, 85, 0.65, rot=20))
     S.add(rafales(250, 90, 0.5, "#74c0fc"))
     return S
 

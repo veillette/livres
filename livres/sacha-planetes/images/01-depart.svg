@@ -2,11 +2,11 @@
 
 <rect x="0" y="0" width="800" height="620" fill="#5c7cfa"/>
 <rect x="0" y="620" width="800" height="180" fill="#364fc7"/>
-<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="606" width="800" height="16" fill="#d9a066"/>
 <g><rect x="72" y="82" width="196" height="186" rx="6" fill="#ffffff"/><rect x="80" y="90" width="180" height="170" fill="#1c2a52"/><circle cx="206" cy="141" r="16" fill="#fff3bf"/><circle cx="116" cy="132.5" r="2.5" fill="#fff"/><circle cx="152" cy="192" r="2" fill="#fff"/><circle cx="233" cy="217.5" r="2.5" fill="#fff"/><rect x="166" y="90" width="8" height="170" fill="#ffffff"/><rect x="80" y="171" width="180" height="8" fill="#ffffff"/></g>
 <text x="130" y="470" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="90" text-anchor="middle" fill="#ffe066">3</text>

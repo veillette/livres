@@ -31,7 +31,7 @@
 <polygon points="794.4,56.3 794.8,61.6 799.7,63.7 794.8,65.7 794.3,71 790.9,66.9 785.7,68.1 788.5,63.6 785.8,59 791,60.3" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.4" stroke-linejoin="round"/>
 <circle cx="594" cy="47.5" r="1.6" fill="#fff3bf"/>
 <circle cx="358.9" cy="321.7" r="3.3" fill="#fff3bf"/>
-<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.1"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
+<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.15"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
 <path d="M -151.7 620 Q 188.1 459.8 527.8 620 Z" fill="#748ffc"/>
 <path d="M 25.5 620 Q 350.2 385 674.9 620 Z" fill="#748ffc"/>
 <path d="M 432.6 620 Q 687 399.3 941.5 620 Z" fill="#748ffc"/>

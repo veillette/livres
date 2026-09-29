@@ -81,7 +81,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(fusee(200, 120, 0.62, 35, passager=visage_sacha()))
+    S.add(fusee(200, 125, 0.57, 35, passager=visage_sacha()))
     S.add(etoile5(70, 60, 12, "#fcc419"), etoile5(340, 210, 10, "#fcc419"))
     return S
 

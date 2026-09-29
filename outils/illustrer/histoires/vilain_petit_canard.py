@@ -69,7 +69,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(vilain(180, 230, 1.2, expr="timide", nage=False))
+    S.add(vilain(180, 205, 1.2, expr="timide", nage=False))
     return S
 
 
@@ -187,8 +187,12 @@ def p12():
     S = Scene()
     etang_(S, printemps=True)
     S.add(cygne(400, 600, 1.2, expr="bouche_bee", regard=(1, 1)))
-    S.add(place(cygne(0, 0, 1.2, expr="bouche_bee"), 400, 620, sy=-1).replace("scale(1 1)", ""), )
-    S.add(rect(0, 620, 800, 200, "#4dabf7", opacity=0.45))
+    reflet = uid("reflet")
+    S.defs.append(el("clipPath", rect(0, 610, 800, 190, "#000"), id=reflet))
+    S.add(g(place(cygne(0, 0, 1.2, expr="bouche_bee", nage=False), 400, 610, sy=-0.65),
+            clip_path=f"url(#{reflet})", opacity=0.38))
+    for x, y, w in ((295, 646, 165), (380, 700, 150), (455, 752, 90)):
+        S.add(trait(x, y, x + w, y, "#a5d8ff", 5, opacity=0.65))
     S.add(texte(400, 160, "Un cygne !", 80, "#1864ab", contour="#fff"))
     return S
 

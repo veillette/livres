@@ -2,11 +2,11 @@
 
 <rect x="0" y="0" width="800" height="600" fill="#fff9db"/>
 <rect x="0" y="600" width="800" height="200" fill="#e8c39e"/>
-<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="650" x2="800" y2="650" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="700" x2="800" y2="700" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="750" x2="800" y2="750" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="800" x2="800" y2="800" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="850" x2="800" y2="850" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="586" width="800" height="16" fill="#d9a066"/>
 <g transform="translate(400 780) scale(1.8 1.8)"><rect x="-110" y="-140" width="220" height="140" rx="8" fill="#e03131"/><path d="M -110 -128 L -110.0 -128 L -82.5 -12 L -55.0 -128 L -27.5 -12 L 0.0 -128 L 27.5 -12 L 55.0 -128 L 82.5 -12 L 110.0 -128" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="-116" y="-150" width="232" height="20" rx="8" fill="#fcc419"/><rect x="-116" y="-14" width="232" height="20" rx="8" fill="#fcc419"/><ellipse cx="0" cy="-150" rx="116" ry="26" fill="#fff4e6" stroke="#fcc419" stroke-width="6"/><ellipse cx="0" cy="-150" rx="80" ry="16" fill="none" stroke="#fab005" stroke-width="3" opacity="0.8"/><ellipse cx="0" cy="-150" rx="54" ry="11" fill="none" stroke="#fab005" stroke-width="3" opacity="0.8"/><ellipse cx="0" cy="-150" rx="28" ry="6" fill="none" stroke="#fab005" stroke-width="3" opacity="0.8"/></g>
 <ellipse cx="310.9" cy="378.4" rx="11" ry="6" fill="#fff9db" transform="rotate(66.6 310.9 378.4)" stroke="#adb5bd" stroke-width="2"/>

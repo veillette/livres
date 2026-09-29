@@ -2,7 +2,7 @@
 <defs><linearGradient id="d11" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d0ebff"/><stop offset="1" stop-color="#fff0f6"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="url(#d11)"/>
 <g transform="translate(140 120) scale(0.7 0.7)"><g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>
-<g transform="translate(660 90) scale(0.6 0.6)"><g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>
+<g transform="translate(660 90) scale(0.55 0.55)"><g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>
 <path d="M -151.7 600 Q 188.1 439.8 527.8 600 Z" fill="#b2f2bb"/>
 <path d="M 25.5 600 Q 350.2 365 674.9 600 Z" fill="#b2f2bb"/>
 <path d="M 432.6 600 Q 687 379.3 941.5 600 Z" fill="#b2f2bb"/>

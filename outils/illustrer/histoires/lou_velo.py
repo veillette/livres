@@ -31,7 +31,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(perso("lapin", 200, 265, 0.9, expr="content", bras="salut", **LOU))
+    S.add(perso("lapin", 200, 260, 0.82, expr="content", bras="salut", **LOU))
     return S
 
 

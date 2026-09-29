@@ -145,7 +145,7 @@ def p08():
     mare(S)
     S.add(grenouille_ronde(400, 470, 220, "souffle", rouge=0.12))
     soeurs(S, xs=((100, 700), (700, 710)), expr="oups", bras="joues")
-    S.add(texte(400, 790, "Pfffff !", 50, "#2b8a3e", contour="#fff"))
+    S.add(texte(400, 760, "Pfffff !", 50, "#2b8a3e", contour="#fff"))
     return S
 
 

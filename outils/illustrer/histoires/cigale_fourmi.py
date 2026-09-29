@@ -95,7 +95,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(violon(200, 150, 2.2, rot=-30), archet(250, 140, 1.8, rot=40))
+    S.add(violon(200, 180, 1.5, rot=-30), archet(250, 140, 1.8, rot=40))
     return S
 
 

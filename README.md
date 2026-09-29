@@ -124,9 +124,10 @@ livre pour masquer les numéros de page.
 ### Conseils pour les images
 
 - Formats : SVG (net à toutes les tailles), PNG ou JPG.
-- Les images sont recadrées pour remplir leur zone : garder l'essentiel au
-  centre. Une image carrée convient bien pour `image-haut` / `image-bas` ; pour
-  `pleine-page` et la couverture, prévoir un format portrait (environ 3 × 4).
+- Les images sont affichées en entier, sans couper les personnages. Une image
+  carrée convient pour `image-haut` / `image-bas`. Sur une couverture, elle est
+  alignée en bas ; sur une `pleine-page`, en haut pour laisser de la place au texte.
+  Un format portrait convient aussi à ces deux types de pages.
 - Pour l'impression, viser au moins 1500 px de haut pour une image pleine page.
 
 ## Organisation du code
@@ -179,3 +180,20 @@ python3 outils/illustrer/generer.py ours-gateau   # un seul livre
 
 Les images sont écrites dans `livres/<id>/images/`. Il reste à écrire le texte
 dans `livres/<id>/livre.js`.
+
+### Revoir les illustrations
+
+Ouvrir [la revue des images](outils/revue-images.html) pour parcourir toutes les
+illustrations du catalogue, filtrer par livre ou par type d’image, et comparer
+les dessins originaux avec les pages mises en forme. Chaque dessin est accompagné
+du texte de la page et de sa description.
+
+La [revue détaillée](outils/REVUE-IMAGES.md) conserve les contrôles par livre et
+une [comparaison avant/après](outils/revue-images-comparaison.png).
+
+```sh
+python3 outils/verifier-images.py
+```
+
+Cette vérification inclut aussi les livres hors catalogue : images manquantes,
+SVG mal formés, dimensions invalides et références internes absentes.

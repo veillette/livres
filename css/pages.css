@@ -37,7 +37,8 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Les scènes carrées doivent garder leurs personnages jusqu'aux bords. */
+  object-fit: contain;
 }
 
 .page__texte {
@@ -82,7 +83,9 @@
 }
 
 .page--illustration .page__cadre {
-  flex: 0 0 63%;
+  /* Un texte long peut prendre de la place sans sortir de la page. */
+  flex: 0 1 63%;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -107,6 +110,10 @@
 .page--pleine-page .page__cadre {
   position: absolute;
   inset: 0;
+}
+
+.page--pleine-page .page__image {
+  object-position: center top;
 }
 
 .page--pleine-page .page__texte {
@@ -139,6 +146,10 @@
 .page--couverture .page__cadre {
   position: absolute;
   inset: 0;
+}
+
+.page--couverture .page__image {
+  object-position: center bottom;
 }
 
 .page--couverture .page__titre-bloc {

@@ -57,14 +57,13 @@ def pomme_flotte(x, s=2.4):
 def bateau(x, y_ligne, s=1.0, cailloux=0, rot=0, enfoncement=0.3):
     """Bateau en papier ; (x, y_ligne) = ligne d'eau. enfoncement = part de la coque sous l'eau."""
     h = 70
-    dy = h * (1 - enfoncement)
     m = [poly([(-120, -h), (120, -h), (80, 0), (-80, 0)], "#fff", stroke="#ced4da", stroke_width=3),
          poly([(-40, -h), (0, -h - 110), (40, -h)], "#f8f9fa", stroke="#ced4da", stroke_width=3),
          trait(0, -h - 110, 0, -h, "#dee2e6", 2),
          trait(-100, -h + 10, 100, -h + 10, "#e9ecef", 3)]
     for k in range(cailloux):
         m.append(caillou(-80 + (k % 5) * 40 + (k // 5) * 20, -h + 4 - (k // 5) * 22, 0.55, "#868e96"))
-    return place(m, x, y_ligne + h - dy, s, rot=rot)
+    return place(m, x, y_ligne + h * enfoncement * s, s, rot=rot)
 
 
 def grenouille(x, s=1.1, **k):

@@ -32,7 +32,7 @@
 <rect x="670" y="260" width="130" height="120" rx="6" fill="#ced4da"/>
 <rect x="740" y="390" width="130" height="120" rx="6" fill="#ced4da"/>
 <rect x="670" y="520" width="130" height="120" rx="6" fill="#ced4da"/>
-<g><rect x="440" y="230" width="240" height="430" fill="#e9ecef"/><rect x="450" y="240" width="220" height="420" fill="#8d5524"/><circle cx="648" cy="450" r="8" fill="#ffd43b"/><rect x="468" y="260" width="184" height="147" rx="6" fill="#000" opacity="0.1"/><rect x="468" y="450" width="184" height="168" rx="6" fill="#000" opacity="0.1"/></g>
+<g><rect x="440" y="230" width="240" height="430" fill="#e9ecef"/><rect x="450" y="240" width="220" height="420" fill="#8d5524"/><circle cx="648" cy="450" r="8" fill="#ffd43b"/><rect x="468" y="260" width="184" height="147" rx="6" fill="#000" opacity="0.08"/><rect x="468" y="450" width="184" height="168" rx="6" fill="#000" opacity="0.08"/></g>
 <rect x="0" y="640" width="800" height="160" fill="#495057"/>
 <line x1="370.4" y1="298.6" x2="364.4" y2="320.6" stroke="#d0ebff" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
 <line x1="110.8" y1="693.2" x2="104.8" y2="715.2" stroke="#d0ebff" stroke-width="4" stroke-linecap="round" opacity="0.8"/>

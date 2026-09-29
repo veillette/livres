@@ -201,7 +201,7 @@
 <circle cx="154" cy="625.6" r="2" fill="#fff9db"/>
 <circle cx="664.1" cy="3.4" r="1.9" fill="#fff9db"/>
 <circle cx="290.7" cy="108.6" r="2" fill="#fff9db"/>
-<g transform="translate(400 400) rotate(-25)"><ellipse cx="0" cy="0" rx="520" ry="90" fill="#e5dbff" opacity="0.1"/></g>
+<g transform="translate(400 400) rotate(-25)"><ellipse cx="0" cy="0" rx="520" ry="90" fill="#e5dbff" opacity="0.12"/></g>
 <g transform="translate(400 400) rotate(-25)"><ellipse cx="0" cy="0" rx="420" ry="40" fill="#fff" opacity="0.1"/></g>
 <polygon points="772.2,0.9 774.4,6.3 780.2,6.7 775.8,10.5 777.1,16.1 772.2,13.1 767.2,16.1 768.6,10.5 764.2,6.7 770,6.3" fill="#fff9db" stroke="#fff9db" stroke-width="1.5" stroke-linejoin="round"/>
 <polygon points="730.4,186.8 731.6,189.6 734.5,189.8 732.3,191.8 733,194.7 730.4,193.1 727.9,194.7 728.6,191.8 726.3,189.8 729.3,189.6" fill="#ffe3e3" stroke="#ffe3e3" stroke-width="0.8" stroke-linejoin="round"/>

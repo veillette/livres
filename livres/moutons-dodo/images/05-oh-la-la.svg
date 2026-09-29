@@ -31,7 +31,7 @@
 <circle cx="482.4" cy="134.4" r="2.5" fill="#fff3bf"/>
 <polygon points="636.2,387.5 636.8,391.6 640.8,392.9 637.1,394.8 637.1,398.9 634.1,396 630.2,397.3 632,393.6 629.6,390.2 633.7,390.9" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.1" stroke-linejoin="round"/>
 <circle cx="45.7" cy="12.6" r="1.7" fill="#fff3bf"/>
-<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.1"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
+<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.15"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
 <path d="M -154.4 620 Q 168.5 412.6 491.5 620 Z" fill="#748ffc"/>
 <path d="M 158 620 Q 371.4 393.1 584.8 620 Z" fill="#748ffc"/>
 <path d="M 348.5 620 Q 663.1 425 977.7 620 Z" fill="#748ffc"/>

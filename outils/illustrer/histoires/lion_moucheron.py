@@ -40,7 +40,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(moucheron(200, 140, 3.0, expr="rire", trompette=True))
+    S.add(moucheron(200, 185, 2.6, expr="rire", trompette=True))
     return S
 
 

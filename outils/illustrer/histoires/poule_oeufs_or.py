@@ -85,7 +85,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(oeuf_or(200, 240, 3.2))
+    S.add(oeuf_or(200, 205, 2.2))
     return S
 
 

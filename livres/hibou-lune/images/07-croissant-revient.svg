@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
 <defs><linearGradient id="d19" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141c3a"/><stop offset="1" stop-color="#6a5aa8"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="url(#d19)"/>
-<ellipse cx="760" cy="700" rx="360" ry="170" fill="#ff922b" opacity="0.3"/>
+<ellipse cx="760" cy="700" rx="360" ry="170" fill="#ff922b" opacity="0.35"/>
 <circle cx="259.1" cy="57.3" r="1.6" fill="#fff3bf"/>
 <polygon points="428.9,130.4 431,135.9 436.9,136.5 432.3,140.2 433.6,146 428.6,142.8 423.6,145.8 425,140.1 420.6,136.2 426.5,135.8" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.5" stroke-linejoin="round"/>
 <polygon points="350.3,19.2 350.1,24.8 355,27.5 349.6,29 348.5,34.5 345.4,29.9 339.8,30.5 343.3,26.1 341,21 346.2,23" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.5" stroke-linejoin="round"/>

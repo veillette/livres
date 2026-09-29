@@ -81,7 +81,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(perso("castor", 180, 265, 0.9, expr="content", bras="calin", objet=doudou(0, -20, 1.4), **CASTORIN))
+    S.add(perso("castor", 180, 235, 0.9, expr="content", bras="calin", objet=doudou(0, -20, 1.4), **CASTORIN))
     return S
 
 
@@ -100,7 +100,7 @@ def p02():
     chambre(S)
     S.add(lampe(620, 590, 1.0, allumee=False))
     S.add(chaussette(620, 420, 1.3, "#fa5252", rot=10))
-    bazar(S, 2)
+    bazar(S, 2, (60, 620, 740, 750))
     S.add(perso("castor", 330, 760, 1.5, expr="oups", bras="tete", **CASTORIN))
     S.add(texte(330, 280, "Quel bazar !", 56, "#e8590c", contour="#fff"))
     return S

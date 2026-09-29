@@ -2,15 +2,15 @@
 
 <rect x="0" y="0" width="800" height="620" fill="#ebfbee"/>
 <rect x="0" y="620" width="800" height="180" fill="#e8c39e"/>
-<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="606" width="800" height="16" fill="#d9a066"/>
 <g transform="translate(320 704) scale(1.9 1.9)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#ff6b6b" stroke="#cc5555" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
 <g transform="translate(320 564) scale(1.6 1.6)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#ffa94d" stroke="#cc873d" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
-<g transform="translate(320 446) scale(1.4 1.4)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#ffd43b" stroke="#cca92f" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
+<g transform="translate(320 446) scale(1.35 1.35)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#ffd43b" stroke="#cca92f" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
 <g transform="translate(320 348) scale(1.1 1.1)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#69db7c" stroke="#54af63" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
 <g transform="translate(320 268) scale(0.9 0.9)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#4dabf7" stroke="#3d88c5" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>
 <g transform="translate(320 204) scale(0.7 0.7)"><rect x="-32" y="-32" width="64" height="64" rx="6" fill="#cc5de8" stroke="#a34ab9" stroke-width="3"/><text x="0" y="12" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#fff"></text></g>

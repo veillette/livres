@@ -31,7 +31,7 @@
 <circle cx="438.7" cy="4.8" r="2.7" fill="#fff3bf"/>
 <circle cx="16" cy="258.6" r="1.6" fill="#fff3bf"/>
 <circle cx="501.9" cy="195.8" r="2.2" fill="#fff3bf"/>
-<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.1"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
+<g><circle cx="660" cy="120" r="75" fill="#fff3bf" opacity="0.15"/><circle cx="660" cy="120" r="50" fill="#fff3bf"/><circle cx="645" cy="107.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="677.5" cy="135" r="5.5" fill="#ffe066" opacity="0.6"/></g>
 <path d="M -184 620 Q 101.9 425.3 387.8 620 Z" fill="#748ffc"/>
 <path d="M 115.7 620 Q 412.5 458.8 709.2 620 Z" fill="#748ffc"/>
 <path d="M 283.3 620 Q 608.2 437.5 933.2 620 Z" fill="#748ffc"/>

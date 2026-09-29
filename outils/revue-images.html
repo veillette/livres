@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="../">
+  <title>Revue des illustrations</title>
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    body { margin: 0; background: #f4f1e9; color: #2b2b3a; font: 16px/1.5 system-ui, sans-serif; }
+    header { padding: 24px; background: #fffdf7; border-bottom: 1px solid #ded8cb; }
+    h1 { margin: 0; font-size: 1.6rem; }
+    header p { margin: 8px 0 16px; max-width: 75ch; }
+    form { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+    label { display: grid; gap: 4px; font-weight: 600; }
+    select { padding: 8px; max-width: min(400px, 85vw); font: inherit; }
+    #compte { display: block; margin-top: 16px; }
+    main { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 24px; padding: 24px; }
+    article { min-width: 0; background: #fffdf7; padding: 12px; border-radius: 8px; }
+    article h2 { margin: 8px 0; font-size: 1rem; }
+    .original { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #fff; }
+    .page { width: 100%; aspect-ratio: 148 / 210; }
+    details { font-size: .9rem; }
+    details p { margin: 8px 0; }
+    a { color: #215ac0; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Revue des illustrations</h1>
+    <p>Parcourir les dessins avec leur texte, puis vérifier leur présentation dans le livre.
+      Les liens permettent d’ouvrir l’image à sa taille originale ou de lire l’histoire.</p>
+    <form id="filtres">
+      <label>Livre <select id="livre"><option value="">Tous les livres</option></select></label>
+      <label>Images <select id="type">
+        <option value="">Toutes</option>
+        <option value="couverture">Couvertures</option>
+        <option value="illustration">Scènes de l’histoire</option>
+        <option value="titre">Vignettes</option>
+      </select></label>
+      <label>Présentation <select id="vue">
+        <option value="original">Illustrations originales</option>
+        <option value="page">Pages du livre</option>
+      </select></label>
+    </form>
+    <output id="compte" aria-live="polite">Chargement…</output>
+  </header>
+  <main id="images"></main>
+  <script src="livres/catalogue.js"></script>
+  <script src="js/livres.js"></script>
+  <script>
+    (async () => {
+      "use strict";
+      const livres = await Bibliotheque.chargerTout();
+      const choixLivre = document.getElementById("livre");
+      for (const livre of livres) {
+        const option = document.createElement("option");
+        option.value = livre.id;
+        option.textContent = livre.titre;
+        choixLivre.appendChild(option);
+      }
+      function afficher() {
+        const type = document.getElementById("type").value;
+        const vue = document.getElementById("vue").value;
+        const selection = livres.filter(livre => !choixLivre.value || livre.id === choixLivre.value);
+        const fragment = document.createDocumentFragment();
+        let total = 0;
+        for (const livre of selection) {
+          const dejaVues = new Set();
+          livre.pages.forEach((page, index) => {
+            if (!page.image || (type && (page.type || "illustration") !== type)) return;
+            if (dejaVues.has(page.image)) return;
+            dejaVues.add(page.image);
+            const article = document.createElement("article");
+            if (vue === "page") {
+              const rendu = Bibliotheque.creerPage(livre, page, index);
+              rendu.querySelectorAll("img").forEach(img => { img.loading = "lazy"; });
+              article.appendChild(rendu);
+            } else {
+              const img = document.createElement("img");
+              img.className = "original";
+              img.src = Bibliotheque.cheminImage(livre, page.image);
+              img.alt = page.description || livre.titre;
+              img.loading = "lazy";
+              article.appendChild(img);
+            }
+            const titre = document.createElement("h2");
+            titre.textContent = `${livre.titre} · page ${index + 1}`;
+            article.appendChild(titre);
+            const lien = document.createElement("a");
+            lien.href = Bibliotheque.cheminImage(livre, page.image);
+            lien.textContent = page.image;
+            article.appendChild(lien);
+            const details = document.createElement("details");
+            const summary = document.createElement("summary");
+            summary.textContent = "Texte et description";
+            details.appendChild(summary);
+            for (const texte of [page.description, page.texte]) {
+              if (!texte) continue;
+              const p = document.createElement("p");
+              p.textContent = texte;
+              details.appendChild(p);
+            }
+            const lire = document.createElement("a");
+            lire.href = `lire.html?livre=${encodeURIComponent(livre.id)}`;
+            lire.textContent = "Lire le livre";
+            details.appendChild(lire);
+            article.appendChild(details);
+            fragment.appendChild(article);
+            total++;
+          });
+        }
+        document.getElementById("images").replaceChildren(fragment);
+        document.getElementById("compte").textContent = `${selection.length} livre(s) · ${total} illustration(s)`;
+      }
+      document.getElementById("filtres").addEventListener("change", afficher);
+      afficher();
+    })();
+  </script>
+</body>
+</html>

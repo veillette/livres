@@ -26,7 +26,7 @@
 <circle cx="648.6" cy="22.2" r="1.7" fill="#fff3bf"/>
 <circle cx="616.8" cy="377.5" r="2.3" fill="#fff3bf"/>
 <circle cx="60" cy="38.3" r="2" fill="#fff3bf"/>
-<g><circle cx="660" cy="110" r="60" fill="#fff3bf" opacity="0.1"/><circle cx="660" cy="110" r="40" fill="#fff3bf"/><circle cx="648" cy="100" r="6.4" fill="#ffe066" opacity="0.6"/><circle cx="674" cy="122" r="4.4" fill="#ffe066" opacity="0.6"/></g>
+<g><circle cx="660" cy="110" r="60" fill="#fff3bf" opacity="0.15"/><circle cx="660" cy="110" r="40" fill="#fff3bf"/><circle cx="648" cy="100" r="6.4" fill="#ffe066" opacity="0.6"/><circle cx="674" cy="122" r="4.4" fill="#ffe066" opacity="0.6"/></g>
 <path d="M 0 600 Q 240.0 582 400.0 600 T 800 600 L 800 800 L 0 800 Z" fill="#2b8a3e"/>
 <g transform="translate(400 640) scale(1.4 1.4)"><rect x="-100" y="-150" width="200" height="150" fill="#868e96"/><polygon points="-125,-145 0,-250 125,-145" fill="#343a40"/><rect x="-25" y="-85" width="50" height="85" rx="6" fill="#5c3a1e"/><circle cx="14" cy="-42" r="4" fill="#ffd43b"/><rect x="-80" y="-120" width="40" height="40" fill="#ffe066" stroke="#fff" stroke-width="5"/><rect x="40" y="-120" width="40" height="40" fill="#ffe066" stroke="#fff" stroke-width="5"/><rect x="55" y="-235" width="26" height="55" fill="#c92a2a"/></g>
 <rect x="372" y="555" width="56" height="85" fill="#ffe066"/>

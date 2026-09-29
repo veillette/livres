@@ -2,11 +2,11 @@
 
 <rect x="0" y="0" width="800" height="620" fill="#3b2a7a"/>
 <rect x="0" y="620" width="800" height="180" fill="#2b1f5c"/>
-<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
-<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.1"/>
+<line x1="0" y1="670" x2="800" y2="670" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="720" x2="800" y2="720" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="770" x2="800" y2="770" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="820" x2="800" y2="820" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
+<line x1="0" y1="870" x2="800" y2="870" stroke="#000" stroke-width="2" stroke-linecap="round" opacity="0.06"/>
 <rect x="0" y="606" width="800" height="16" fill="#d9a066"/>
 <g><rect x="522" y="72" width="196" height="186" rx="6" fill="#ffffff"/><rect x="530" y="80" width="180" height="170" fill="#141c3a"/><circle cx="656" cy="131" r="16" fill="#fff3bf"/><circle cx="566" cy="122.5" r="2.5" fill="#fff"/><circle cx="602" cy="182" r="2" fill="#fff"/><circle cx="683" cy="207.5" r="2.5" fill="#fff"/><rect x="616" y="80" width="8" height="170" fill="#ffffff"/><rect x="530" y="161" width="180" height="8" fill="#ffffff"/></g>
 <g><rect x="96" y="550" width="28" height="230" rx="10" fill="#c68642"/><rect x="536" y="610" width="28" height="170" rx="10" fill="#c68642"/><rect x="110" y="670" width="440" height="60" rx="10" fill="#fff"/><rect x="130" y="630" width="110" height="50" rx="22" fill="#fff" stroke="#e9ecef" stroke-width="3"/><rect x="220" y="655" width="330" height="85" rx="18" fill="#9775fa"/><rect x="110" y="730" width="440" height="30" rx="6" fill="#c68642"/></g>
@@ -21,7 +21,7 @@
 <g><text x="270" y="520" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e5dbff">z</text><text x="294" y="494" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#e5dbff">z</text><text x="324" y="460" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#e5dbff">Z</text></g>
 <g><circle cx="302.5" cy="455" r="7" fill="#fff9db" stroke="#dee2e6" stroke-width="2"/><circle cx="335" cy="390" r="11" fill="#fff9db" stroke="#dee2e6" stroke-width="2"/><circle cx="367.5" cy="325" r="16" fill="#fff9db" stroke="#dee2e6" stroke-width="2"/><circle cx="520" cy="260" r="52.5" fill="#fff9db"/><circle cx="491.9" cy="319.8" r="52.5" fill="#fff9db"/><circle cx="420.8" cy="351.6" r="52.5" fill="#fff9db"/><circle cx="340" cy="340.5" r="52.5" fill="#fff9db"/><circle cx="287.2" cy="291.8" r="52.5" fill="#fff9db"/><circle cx="287.2" cy="228.2" r="52.5" fill="#fff9db"/><circle cx="340" cy="179.5" r="52.5" fill="#fff9db"/><circle cx="420.8" cy="168.4" r="52.5" fill="#fff9db"/><circle cx="491.9" cy="200.2" r="52.5" fill="#fff9db"/><ellipse cx="400" cy="260" rx="142.5" ry="112.5" fill="#fff9db"/></g>
 <circle cx="300" cy="260" r="26" fill="#ffd43b"/>
-<g transform="translate(430 260)"><circle cx="0" cy="0" r="70" fill="#1c7ed6"/><clipPath id="b41"><circle cx="0" cy="0" r="70" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b41)"><rect x="0" y="-72" width="72" height="144" fill="#141c3a" opacity="0.6"/></g></g>
+<g transform="translate(430 260)"><circle cx="0" cy="0" r="70" fill="#1c7ed6"/><clipPath id="b41"><circle cx="0" cy="0" r="70" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b41)"><rect x="0" y="-72" width="72" height="144" fill="#141c3a" opacity="0.55"/></g></g>
 <circle cx="410" cy="240" r="22" fill="#51cf66"/>
 <circle cx="455" cy="285" r="18" fill="#51cf66" opacity="0.5"/>
 </svg>

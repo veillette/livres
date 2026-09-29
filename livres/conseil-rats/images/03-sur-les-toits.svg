@@ -41,7 +41,7 @@
 <circle cx="434" cy="43.5" r="2.4" fill="#fff3bf"/>
 <circle cx="784.4" cy="393.5" r="3.4" fill="#fff3bf"/>
 <circle cx="54.5" cy="357.2" r="1.8" fill="#fff3bf"/>
-<g><circle cx="620" cy="140" r="75" fill="#fff3bf" opacity="0.1"/><circle cx="620" cy="140" r="50" fill="#fff3bf"/><circle cx="605" cy="127.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="637.5" cy="155" r="5.5" fill="#ffe066" opacity="0.6"/></g>
+<g><circle cx="620" cy="140" r="75" fill="#fff3bf" opacity="0.15"/><circle cx="620" cy="140" r="50" fill="#fff3bf"/><circle cx="605" cy="127.5" r="8" fill="#ffe066" opacity="0.6"/><circle cx="637.5" cy="155" r="5.5" fill="#ffe066" opacity="0.6"/></g>
 <polygon points="0,560 400,360 800,560 800,800 0,800" fill="#862e2e"/>
 <path d="M 0 600 L 400 400 L 800 600" fill="none" stroke="#6b2323" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 0 630 L 400 430 L 800 630" fill="none" stroke="#6b2323" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

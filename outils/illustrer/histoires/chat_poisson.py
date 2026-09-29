@@ -37,7 +37,7 @@ def couverture():
 def vignette():
     S = Scene(400, 270)
     S.add(perso("chat", 130, 265, 0.85, expr="content", **MOKA))
-    S.add(bocal_bulle(290, 265, 0.8))
+    S.add(bocal_bulle(290, 245, 0.8))
     return S
 
 

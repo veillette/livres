@@ -62,7 +62,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(navet(200, 250, 0.55, visible=1.0))
+    S.add(navet(200, 215, 0.45, visible=1.0))
     return S
 
 

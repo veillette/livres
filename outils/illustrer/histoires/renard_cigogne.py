@@ -61,7 +61,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(vase_long(130, 250, 0.7, contenu=False), assiette_plate(290, 230, 1.1))
+    S.add(vase_long(110, 250, 0.7, contenu=False), assiette_plate(275, 230, 0.95))
     return S
 
 

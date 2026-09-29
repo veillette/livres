@@ -172,7 +172,7 @@ def p10():
     S = Scene()
     cuisine_geant(S)
     S.add(geant_(420, 820, 2.5, expr="dort", bras="croises"))
-    S.add(zzz(620, 180, 1.8))
+    S.add(zzz(590, 225, 1.6))
     S.add(texte(250, 110, "RRRR…", 60, "#5f3dc4", contour="#fff"))
     return S
 

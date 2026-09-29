@@ -41,7 +41,7 @@ def couverture():
 
 def vignette():
     S = Scene(400, 270)
-    S.add(roseau(190, 262, 0.8, expr="content", penche=12))
+    S.add(roseau(190, 258, 0.6, expr="content", penche=12))
     return S
 
 
