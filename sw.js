@@ -3,16 +3,22 @@
  *
  * À l'installation, on met en cache l'interface puis TOUS les livres du
  * catalogue : on lit `livres/catalogue.js`, puis chaque `livre.js` pour y
- * trouver les images. Ajouter un livre ne demande donc rien de plus ici.
+ * trouver les images.
+ *
+ * L'installation n'a lieu que quand ce fichier change : après l'ajout d'un
+ * livre ou la modification d'images, augmenter VERSION pour que tout soit
+ * de nouveau téléchargé et disponible hors ligne. Les fichiers inchangés
+ * sont revalidés auprès du serveur (réponse 304), pas re-téléchargés.
  *
  * Stratégies :
  *  - pages, scripts, styles : réseau d'abord (pour voir les nouveautés),
  *    cache si hors ligne ;
- *  - images et polices : cache d'abord, mis à jour en arrière-plan.
- *
- * Changer VERSION force le renouvellement complet du cache.
+ *  - images et polices : cache seulement, sans requête réseau quand elles y
+ *    sont déjà (elles ne changent qu'avec VERSION) ;
+ *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
+ *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v10";
+const VERSION = "v11";
 const CACHE = `livres-${VERSION}`;
 
 const INTERFACE = [
@@ -35,7 +41,16 @@ const INTERFACE = [
   "icones/icone-512.png",
   "icones/icone-masquable-512.png",
   "icones/apple-touch-icon.png",
+  "polices/andika-400.woff2",
+  "polices/andika-700.woff2",
+  "polices/fredoka.woff2",
 ];
+
+const EN_LOCAL = ["localhost", "127.0.0.1", "[::1]"].includes(self.location.hostname);
+
+/* Requête qui revalide le cache HTTP du navigateur (If-None-Match) : un
+   fichier inchangé coûte une réponse 304 au lieu d'un nouveau téléchargement. */
+const revalider = (url) => new Request(url, { cache: "no-cache" });
 
 async function fichiersDesLivres() {
   const reponse = await fetch("livres/catalogue.js", { cache: "no-cache" });
@@ -63,10 +78,10 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      await cache.addAll(INTERFACE);
+      await cache.addAll(INTERFACE.map(revalider));
       const livres = await fichiersDesLivres().catch(() => []);
       // Un fichier manquant ne doit pas faire échouer toute l'installation.
-      await Promise.all(livres.map((url) => cache.add(url).catch(() => null)));
+      await Promise.all(livres.map((url) => cache.add(revalider(url)).catch(() => null)));
       await self.skipWaiting();
     })()
   );
@@ -82,14 +97,22 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-async function reseauDAbord(requete, options) {
+/* Pour les pages, la clé de cache ignore les paramètres : lire.html?livre=a
+   et lire.html?livre=b partagent une seule entrée « lire.html ». */
+function cleDeCache(requete) {
+  if (requete.mode !== "navigate") return requete;
+  const url = new URL(requete.url);
+  return url.origin + url.pathname;
+}
+
+async function reseauDAbord(requete) {
   const cache = await caches.open(CACHE);
   try {
     const reponse = await fetch(requete);
-    if (reponse.ok) cache.put(requete, reponse.clone());
+    if (reponse.ok) await cache.put(cleDeCache(requete), reponse.clone());
     return reponse;
   } catch (err) {
-    const enCache = await cache.match(requete, options);
+    const enCache = await cache.match(cleDeCache(requete), { ignoreSearch: requete.mode === "navigate" });
     if (enCache) return enCache;
     if (requete.mode === "navigate") {
       const accueil = await cache.match("index.html");
@@ -102,31 +125,19 @@ async function reseauDAbord(requete, options) {
 async function cacheDAbord(requete) {
   const cache = await caches.open(CACHE);
   const enCache = await cache.match(requete);
-  const miseAJour = fetch(requete)
-    .then((reponse) => {
-      if (reponse.ok || reponse.type === "opaque") cache.put(requete, reponse.clone());
-      return reponse;
-    })
-    .catch(() => null);
-  return enCache || (await miseAJour) || Response.error();
+  if (enCache) return enCache;
+  const reponse = await fetch(requete);
+  if (reponse.ok) await cache.put(requete, reponse.clone());
+  return reponse;
 }
 
 self.addEventListener("fetch", (event) => {
   const requete = event.request;
   if (requete.method !== "GET") return;
   const url = new URL(requete.url);
-
-  // Polices Google : cache d'abord.
-  if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
-    event.respondWith(cacheDAbord(requete));
-    return;
-  }
   if (url.origin !== self.location.origin) return;
 
-  if (requete.mode === "navigate") {
-    // lire.html?livre=… : on sert lire.html depuis le cache, quel que soit le paramètre.
-    event.respondWith(reseauDAbord(requete, { ignoreSearch: true }));
-  } else if (/\.(svg|png|jpe?g|webp|gif)$/i.test(url.pathname)) {
+  if (!EN_LOCAL && /\.(svg|png|jpe?g|webp|gif|woff2)$/i.test(url.pathname)) {
     event.respondWith(cacheDAbord(requete));
   } else {
     event.respondWith(reseauDAbord(requete));

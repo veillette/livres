@@ -49,8 +49,8 @@
 
   const Bibliotheque = {
     ajouter(livre) {
-      if (!livre || !livre.id || !Array.isArray(livre.pages)) {
-        console.error("Livre invalide :", livre);
+      if (!livre || !livre.id || !livre.titre || !Array.isArray(livre.pages) || livre.pages.length === 0) {
+        console.error("Livre invalide (id, titre et au moins une page sont requis) :", livre);
         return;
       }
       livres.set(livre.id, livre);
@@ -79,8 +79,10 @@
       return resultats.filter(Boolean);
     },
 
+    /* Chemin relatif au dossier du livre. Pas de chemin absolu (« /… ») : il
+       casserait quand le site est publié dans un sous-dossier (GitHub Pages). */
     cheminImage(livre, image) {
-      if (/^(https?:|data:|\/)/.test(image)) return image;
+      if (/^(https?:|data:)/.test(image)) return image;
       return `livres/${livre.id}/${image}`;
     },
 

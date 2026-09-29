@@ -38,9 +38,13 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
 
 - Les pages et les textes sont d'abord demandés au réseau : les modifications
   apparaissent dès qu'on est connecté.
-- Les images sont servies depuis le cache.
-- **Après l'ajout d'un livre**, augmenter `VERSION` en haut de `sw.js`
-  (`"v1"` → `"v2"`) pour que le nouveau livre soit aussi disponible hors ligne.
+- Les images et les polices sont servies depuis le cache, sans requête réseau.
+- **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
+  en haut de `sw.js` (`"v1"` → `"v2"`) pour que le nouveau livre et les
+  nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
+  sont seulement revalidés, pas re-téléchargés.
+- Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
+  s'affichent tout de suite.
 
 Le service worker ne fonctionne qu'à travers un serveur (`http://localhost`
 ou le site en ligne), pas en ouvrant `index.html` directement depuis le disque.
@@ -97,6 +101,8 @@ trouver le bon sens).
 
 4. Ajouter `"mon-livre"` dans `livres/catalogue.js`.
 5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
+6. Lancer `python3 outils/verifier-images.py` (la publication échoue si cette
+   vérification trouve une erreur).
 
 ### Types de pages
 
@@ -144,6 +150,7 @@ js/impression.js    page d'impression
 js/pwa.js           enregistrement du service worker, bouton « Installer »
 sw.js               service worker (cache hors ligne)
 manifest.webmanifest, icones/   description de l'application et icônes
+polices/            polices Andika et Fredoka (licence OFL), hébergées avec le site
 livres/             un dossier par livre + catalogue.js
 ```
 
@@ -195,5 +202,11 @@ une [comparaison avant/après](outils/revue-images-comparaison.png).
 python3 outils/verifier-images.py
 ```
 
-Cette vérification inclut aussi les livres hors catalogue : images manquantes,
-SVG mal formés, dimensions invalides et références internes absentes.
+Cette vérification inclut aussi les livres hors catalogue : champs requis
+(`id`, `titre`, au moins une page), types et dispositions de page inconnus,
+images manquantes ou en chemin absolu, SVG mal formés, dimensions invalides et
+références internes absentes.
+
+Avant chaque publication, GitHub Actions lance cette vérification, puis
+`generer.py` : si les images produites diffèrent de celles du dépôt, la
+publication s'arrête. Seul le site est publié, sans `outils/illustrer/`.

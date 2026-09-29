@@ -22,9 +22,28 @@ jobs:
       url: ${{ steps.deploiement.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Vérifier les livres et les images
+        run: python3 outils/verifier-images.py
+
+      - name: Vérifier que les images sont à jour avec le générateur
+        run: |
+          python3 outils/illustrer/generer.py > /dev/null
+          if [ -n "$(git status --porcelain -- livres)" ]; then
+            echo "Des images diffèrent de outils/illustrer : relancer generer.py et valider le résultat."
+            git status --short -- livres
+            exit 1
+          fi
+
+      - name: Préparer le site (sans les outils de dessin)
+        run: |
+          rsync -a ./ _site/ \
+            --exclude .git --exclude .github --exclude _site \
+            --exclude __pycache__ --exclude outils/illustrer --exclude 'outils/*.py'
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deploiement
         uses: actions/deploy-pages@v4

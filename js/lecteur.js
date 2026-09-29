@@ -104,6 +104,8 @@
 
   document.addEventListener("keydown", (e) => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
+    // Espace sur un bouton ou un lien : laisser le navigateur l'activer.
+    if (e.key === " " && e.target.closest("button, a, input, select, textarea")) return;
     if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
       e.preventDefault();
       aller(1);
@@ -120,14 +122,26 @@
   });
 
   // Glisser du doigt sur tablette / téléphone.
-  let debutX = null;
-  scene.addEventListener("touchstart", (e) => (debutX = e.touches[0].clientX), { passive: true });
+  // Un geste à deux doigts (zoom) ou surtout vertical ne tourne pas la page.
+  let debut = null;
+  scene.addEventListener(
+    "touchstart",
+    (e) => {
+      debut = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+    },
+    { passive: true }
+  );
   scene.addEventListener("touchend", (e) => {
-    if (debutX == null) return;
-    const dx = e.changedTouches[0].clientX - debutX;
-    if (Math.abs(dx) > 50) aller(dx < 0 ? 1 : -1);
-    debutX = null;
+    if (debut == null || e.touches.length > 0) {
+      debut = null;
+      return;
+    }
+    const dx = e.changedTouches[0].clientX - debut.x;
+    const dy = e.changedTouches[0].clientY - debut.y;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > 2 * Math.abs(dy)) aller(dx < 0 ? 1 : -1);
+    debut = null;
   });
+  scene.addEventListener("touchcancel", () => (debut = null));
 
   window.addEventListener("resize", () => {
     const nouveau = modeDouble();

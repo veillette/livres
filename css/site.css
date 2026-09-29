@@ -429,6 +429,16 @@ a {
   min-width: 0;
 }
 
+/* Prend toute la largeur : impression.js la mesure pour réduire les feuilles. */
+.apercu__feuilles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  gap: 28px;
+  min-width: 0;
+}
+
 .apercu__resume {
   margin: 0;
   color: var(--doux);
@@ -515,6 +525,7 @@ a {
 
   .impression,
   .apercu,
+  .apercu__feuilles,
   .feuille-bloc {
     display: block;
     margin: 0;

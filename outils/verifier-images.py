@@ -1,4 +1,4 @@
-"""Vérifie les images de tous les livres, y compris les livres hors catalogue.
+"""Vérifie les livres (champs requis) et leurs images, y compris hors catalogue.
 
     python3 outils/verifier-images.py
 
@@ -30,6 +30,39 @@ process.stdout.write(JSON.stringify({catalogue: context.window.CATALOGUE, books}
 """
 
 
+TYPES = {"couverture", "titre", "illustration", "texte", "quatrieme", "vide"}
+DISPOSITIONS = {"image-haut", "image-bas", "pleine-page"}
+POSITIONS_TEXTE = {"haut", "bas"}
+
+
+def erreurs_structure(livre):
+    """Champs requis par js/livres.js pour afficher le livre sans planter."""
+    erreurs = []
+    if not re.fullmatch(r"[a-z0-9-]+", str(livre.get("id") or "")):
+        erreurs.append("identifiant absent ou invalide (minuscules, chiffres et tirets).")
+    if not isinstance(livre.get("titre"), str) or not livre["titre"].strip():
+        erreurs.append("titre absent.")
+    pages = livre.get("pages")
+    if not isinstance(pages, list) or not pages:
+        erreurs.append("aucune page.")
+        return erreurs
+    for numero, page in enumerate(pages):
+        if not isinstance(page, dict):
+            erreurs.append(f"page {numero} : n'est pas un objet.")
+            continue
+        type_ = page.get("type", "illustration")
+        if type_ not in TYPES:
+            erreurs.append(f"page {numero} : type inconnu « {type_} ».")
+        if "disposition" in page and page["disposition"] not in DISPOSITIONS:
+            erreurs.append(f"page {numero} : disposition inconnue « {page['disposition']} ».")
+        if "positionTexte" in page and page["positionTexte"] not in POSITIONS_TEXTE:
+            erreurs.append(f"page {numero} : positionTexte inconnue « {page['positionTexte']} ».")
+        image = page.get("image")
+        if image is not None and (not isinstance(image, str) or image.startswith("/")):
+            erreurs.append(f"page {numero} : image invalide ({image!r}) ; utiliser un chemin relatif au livre.")
+    return erreurs
+
+
 def verifier():
     resultat = subprocess.run(
         ["node", "-e", INVENTAIRE, str(RACINE)],
@@ -52,7 +85,8 @@ def verifier():
         dossier = RACINE / "livres" / livre["folder"]
         if livre["id"] != livre["folder"]:
             erreurs.append(f"{livre['folder']} : identifiant différent du dossier.")
-        for page in livre["pages"]:
+        erreurs.extend(f"{livre['folder']} : {e}" for e in erreurs_structure(livre))
+        for page in livre.get("pages") or []:
             source = page.get("image")
             if not source:
                 continue
@@ -91,7 +125,7 @@ def verifier():
 
     for erreur in erreurs:
         print(erreur, file=sys.stderr)
-    pages = sum(len(livre["pages"]) for livre in livres)
+    pages = sum(len(livre.get("pages") or []) for livre in livres)
     print(f"{len(livres)} livres, {pages} pages, {len(images)} images référencées, {len(svgs)} SVG vérifiés.")
     hors_catalogue = sorted(set(ids) - set(catalogue))
     if hors_catalogue:

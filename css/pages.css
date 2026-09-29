@@ -7,6 +7,33 @@
  * à l'impression, quel que soit le format du papier.
  */
 
+/* Polices hébergées avec le site (licence OFL, voir polices/) : aucune requête
+   vers un service externe, et disponibles hors ligne dès l'installation. */
+@font-face {
+  font-family: "Andika";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../polices/andika-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Andika";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../polices/andika-700.woff2") format("woff2");
+}
+
+/* Fredoka est une police variable : un seul fichier pour les graisses 500 et 600. */
+@font-face {
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../polices/fredoka.woff2") format("woff2");
+}
+
 .page {
   --couleur: #3a7bd5;
   --fond: #fffdf7;
