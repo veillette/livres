@@ -553,6 +553,8 @@ ESPECES = {
     "chevre": dict(c="#e9d8c4", c2="#fff9f0", pieds="#6d5a47", ventre=True, interieur="#ffc9c9", cornes="#a68a64"),
     "boeuf": dict(c="#a0693a", c2="#f3dcc3", pieds="#6d4424", ventre=True, cornes="#fff4e6", mufle="#ffc9d6"),
     "cigale": dict(c="#82c91e", c2="#d8f5a2", pieds="#5c940d", ventre=True),
+    "cerf": dict(c="#b5753c", c2="#f6e2c8", pieds="#6d4424", ventre=True, interieur="#ffd8a8", bois="#8d5524"),
+    "singe": dict(c="#8d5b34", c2="#f3d9b1", pieds="#6d4424", ventre=True, interieur="#e8b98a"),
 }
 
 # Position des mains (gauche, droite) pour chaque pose, et coudes éventuels.
@@ -792,6 +794,10 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         for sgn in (-1, 1):
             m.append(ellipse(sgn * 46, -70, 26, 74, "#e7f5ff", rot=sgn * -22, opacity=0.8, stroke="#91a7ff", stroke_width=3))
             m.append(chemin(f"M {sgn * 34} -130 Q {sgn * 50} -80 {sgn * 66} -10", stroke="#91a7ff", sw=2))
+    elif espece == "singe":
+        m.append(chemin("M 30 -30 Q 96 -20 92 -90 Q 88 -132 56 -124 Q 36 -116 52 -98", stroke=c, sw=10))
+    elif espece == "cerf":
+        m.append(ellipse(30, -36, 12, 16, "#fff", rot=-30))
     elif espece == "cochon":
         m.append(chemin("M 34 -44 q 16 -2 14 -14 q -2 -10 -10 -6 q -6 6 4 12 q 10 4 18 -4", stroke=K["groin"], sw=5))
     elif espece == "chien":
@@ -940,6 +946,19 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
             m.append(chemin(f"M {sgn * 18} -190 Q {sgn * 26} -246 {sgn * 64} -238", stroke=K["cornes"], sw=13))
             m.append(ellipse(sgn * 62, -156, 26, 11, c, rot=sgn * 18))
             m.append(ellipse(sgn * 62, -156, 15, 6, K["interieur"], rot=sgn * 18))
+    elif espece == "cerf":
+        for sgn in (-1, 1):
+            b = K["bois"]
+            m.append(chemin(f"M {sgn * 22} -194 Q {sgn * 34} -250 {sgn * 74} -300", stroke=b, sw=11))
+            m.append(chemin(f"M {sgn * 30} -236 Q {sgn * 10} -262 {sgn * 14} -292", stroke=b, sw=9))
+            m.append(chemin(f"M {sgn * 50} -270 Q {sgn * 40} -300 {sgn * 46} -324", stroke=b, sw=8))
+            m.append(chemin(f"M {sgn * 34} -222 Q {sgn * 66} -230 {sgn * 92} -252", stroke=b, sw=8))
+            m.append(ellipse(sgn * 62, -170, 28, 12, c, rot=sgn * 26))
+            m.append(ellipse(sgn * 62, -170, 17, 6, K["interieur"], rot=sgn * 26))
+    elif espece == "singe":
+        for sgn in (-1, 1):
+            m.append(cercle(sgn * 58, -150, 22, c))
+            m.append(cercle(sgn * 58, -150, 12, K["interieur"]))
     elif espece == "boeuf":
         for sgn in (-1, 1):
             m.append(chemin(f"M {sgn * 34} -188 Q {sgn * 88} -192 {sgn * 86} -240", stroke=K["cornes"], sw=15))
@@ -1015,6 +1034,10 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     if espece == "chevre":
         m.append(poly([(-14, -104), (14, -104), (0, -62)], "#d6c2a8"))
         m.append(ellipse(0, -124, 24, 18, c2))
+    if espece == "cerf":
+        m.append(ellipse(0, -122, 26, 20, c2))
+    if espece == "singe":
+        m.append(chemin("M 0 -176 Q -14 -198 -30 -190 Q -50 -180 -44 -150 Q -40 -136 -30 -134 Q -40 -104 0 -100 Q 40 -104 30 -134 Q 40 -136 44 -150 Q 50 -180 30 -190 Q 14 -198 0 -176 Z", c2))
     if espece == "boeuf":
         for k, dx in enumerate((-18, 0, 18)):
             m.append(cercle(dx, -202 + (k % 2) * -4, 13, _assombrir(c, 0.75)))
@@ -1072,6 +1095,12 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     elif espece == "boeuf":
         m.append(ellipse(-15, -118, 5, 7, "#c2255c") + ellipse(15, -118, 5, 7, "#c2255c"))
         my = -106
+    elif espece == "cerf":
+        m.append(ellipse(0, -130, 9, 6.5, ENCRE))
+        my = -118
+    elif espece == "singe":
+        m.append(ellipse(-5, -128, 2.5, 3.5, _assombrir(c, 0.7)) + ellipse(5, -128, 2.5, 3.5, _assombrir(c, 0.7)))
+        my = -118
     elif espece == "cigale":
         my = -124
     elif espece in ("lapin", "souris", "lievre", "rat"):
