@@ -170,10 +170,12 @@ par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
   du Soleil, arc-en-ciel à l'opposé du Soleil, lignes de champ d'un aimant,
   planètes éclairées du côté du Soleil, ondes sonores ;
 - `fables.py` : personnages et accessoires des fables de La Fontaine (corbeau,
-  coq et poule, colombe, cigogne, moucheron, araignée, chêne et roseau qui
-  parlent, fromage, raisins, puits, filet, grelot, pot au lait…). Les animaux
-  « debout » des fables (`loup`, `lion`, `lievre`, `rat`, `ane`, `chevre`,
-  `boeuf`, `cigale`) sont des espèces de `perso()` dans `base.py` ;
+  coq et poule, colombe, cigogne et héron, moucheron, araignée, chêne et roseau
+  qui parlent, pots de terre et de fer qui parlent, âne, cheval et cerf de
+  profil, fromage, raisins, puits, filet, grelot, pot au lait, os, marrons,
+  cheminée, pont-tronc…). Les animaux « debout » des fables (`loup`, `lion`,
+  `lievre`, `rat`, `ane`, `chevre`, `boeuf`, `cigale`, `cerf`, `singe`) sont
+  des espèces de `perso()` dans `base.py` ;
 - `contes.py` : personnages et accessoires des contes traditionnels (Chaperon
   rouge, géant, troll, lutins, Chat botté, bonhomme de pain d'épice, cygne,
   maisons des trois petits cochons, tige de haricot, maison en pain d'épice,

@@ -17,43 +17,6 @@ def fils(x, y, s=1.0, **k):
     return enfant(x, y, s, **{**FILS, **k})
 
 
-def ane_profil(x, y, s=1.0, expr="sourire", flip=False, regard=(1, 0), ploie=False, rot=0):
-    """Âne gris de profil, tête à droite ; (x, y) = au sol, sous le ventre.
-
-    Le dos est vers y = -110 : un cavalier « assis » a ses pieds vers y = -70."""
-    ys, bs, ss = EXPRESSIONS[expr]
-    fonce = assombrir(GRIS, 0.8)
-    m = []
-    dy = 16 if ploie else 0
-    # queue
-    m.append(chemin(f"M -80 {-90 + dy} Q -110 {-70 + dy} -104 {-30 + dy}", stroke=GRIS, sw=8))
-    m.append(ellipse(-104, -24 + dy, 9, 14, "#495057"))
-    # pattes
-    for k, px in enumerate((-58, -34, 40, 64)):
-        c = fonce if k in (1, 2) else GRIS
-        ecart = (18 if px < 0 else -18) if ploie else 0
-        m.append(rect(px - 10 + ecart * 0.5, -70 + dy, 20, 70 - dy, c, rx=8))
-        m.append(rect(px - 11 + ecart * 0.5, -12, 22, 12, "#495057", rx=4))
-    # corps
-    m.append(ellipse(0, -84 + dy, 88, 40, GRIS))
-    m.append(ellipse(4, -70 + dy, 60, 20, eclaircir(GRIS, 0.5)))
-    # cou et tête
-    hx, hy = 104, -154 + dy * 1.5
-    m.append(poly([(50, -110 + dy), (80, -160 + dy), (116, -140 + dy), (86, -80 + dy)], GRIS))
-    m.append(chemin(f"M 56 {-112 + dy} Q 70 {-150 + dy} 88 {-170 + dy}", stroke="#495057", sw=8))
-    for sgn, ang in ((-1, -30), (1, 10)):
-        m.append(place([ellipse(0, -30, 11, 32, GRIS), ellipse(0, -30, 5, 22, "#ffe3e3")], hx - 10 + sgn * 10, hy - 26, 1.0, rot=ang))
-    m.append(ellipse(hx, hy, 44, 30, GRIS, rot=24))
-    m.append(ellipse(hx + 30, hy + 16, 24, 20, "#e9ecef", rot=24))
-    m.append(ellipse(hx + 38, hy + 14, 3.5, 5, "#495057"))
-    m.append(oeil(hx - 4, hy - 8, ys, regard, taille=0.9))
-    if ss:
-        m.append(place(sourcils(0, 0, ss), hx - 4, hy - 6, 0.8))
-    m.append(ellipse(hx + 8, hy + 12, 7, 4, ROSE, opacity=0.8))
-    m.append(place(bouche(0, 0, bs, 0.6), hx + 24, hy + 26))
-    return place(m, x, y, s, flip=flip, rot=rot)
-
-
 def cavalier(fn, x_ane, y_ane, s_ane, s_perso, dx=0, **k):
     """Personnage assis sur l'âne : on le dessine avant l'âne, dont le corps cache ses jambes."""
     y = y_ane - 78 * s_ane + 30 * s_perso
