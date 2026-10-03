@@ -132,7 +132,7 @@ def p11():
     clairiere(S)
     S.add(cigogne(150, 740, 0.95, expr="surpris", regard=(1, 0)))
     S.add(loup(560, 760, 1.45, expr="rire", bras="hanches", regard=(-1, 0)))
-    S.add(bulle(500, 160, 580, 150, "Ta tête est sortie de ma\ngueule toute entière :\nc'est bien assez !", 32, pointe=(560, 410)))
+    S.add(bulle(500, 160, 580, 150, "Ta tête est sortie de ma\ngueule tout entière :\nc'est bien assez !", 32, pointe=(560, 410)))
     return S
 
 

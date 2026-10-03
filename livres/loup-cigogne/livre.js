@@ -68,7 +68,7 @@ Bibliotheque.ajouter({
     {
       image: "images/11-c-est-bien-assez.svg",
       description: "Le loup éclate de rire ; la cigogne est stupéfaite.",
-      texte: "Le loup éclate de rire : « Ton salaire ? Tu as mis ta tête dans ma gueule, et elle en est sortie toute entière.\n\nC'est bien assez ! »",
+      texte: "Le loup éclate de rire : « Ton salaire ? Ta tête est sortie de ma gueule tout entière.\n\nC'est bien assez ! »",
     },
     {
       image: "images/12-hmpf.svg",
@@ -78,7 +78,7 @@ Bibliotheque.ajouter({
     {
       image: "images/13-plus-personne.svg",
       description: "Le lapin, l'écureuil et l'ours croisent les bras et ignorent le loup.",
-      texte: "La cigogne raconte l'histoire à tout le monde.\n\nDepuis, quand le loup passe, le lapin, l'écureuil et l'ours croisent les bras et lui tournent le dos.",
+      texte: "La cigogne raconte l'histoire à tout le monde.\n\nDepuis, quand le loup passe, le lapin, l'écureuil et l'ours lui tournent le dos.",
     },
     {
       image: "images/14-tout-seul.svg",
@@ -88,7 +88,7 @@ Bibliotheque.ajouter({
     {
       image: "images/15-pardon.svg",
       description: "Le loup apporte à la cigogne un panier de poissons.",
-      texte: "Le lendemain, le loup va trouver la cigogne avec un panier de poissons.\n\n« Pardon… et merci ! Sans toi, je serais encore en train de tousser. »",
+      texte: "Le lendemain, le loup apporte à la cigogne un panier de poissons.\n\n« Pardon… et merci ! Sans toi, je tousserais encore. »",
     },
     {
       image: "images/16-amis.svg",

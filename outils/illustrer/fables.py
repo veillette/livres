@@ -777,9 +777,10 @@ def cheval_profil(x, y, s=1.0, couleur="#a0522d", criniere="#4a2c17", expr="fier
 def bat(x=0, y=-110, s=1.0, nb=2, couleur="#e9d8c4"):
     """Sacs attachés sur le dos d'un âne ou d'un cheval ; (x, y) = milieu du dos."""
     m = [rect(-60, -10, 120, 20, "#c92a2a", rx=6)]
+    ecart = min(56, 120 / max(1, nb - 1))
     for k in range(nb):
-        dx = (k - (nb - 1) / 2) * 56
-        m.append(sac(dx, -6 - (k % 2) * 10, 0.75, couleur))
+        dx = (k - (nb - 1) / 2) * ecart
+        m.append(sac(dx, -6 - (k % 2) * (10 if nb <= 3 else 26), 0.75, couleur))
     return place(m, x, y, s)
 
 
