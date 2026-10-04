@@ -53,7 +53,7 @@ Bibliotheque.ajouter({
     {
       image: "images/08-le-metal.svg",
       description: "Un trombone comble le trou de la boucle et l'ampoule brille ; une clé, une cuillère et un autre trombone attendent leur tour.",
-      texte: "Zoé met un trombone dans le trou de la boucle : ça s'allume ! Une clé aussi, une cuillère aussi.\n\nLe métal laisse passer le courant.",
+      texte: "Papi ouvre la boucle. Zoé glisse un trombone dans le trou : ça s'allume ! Une clé aussi, une cuillère aussi.\n\nLe métal laisse passer le courant.",
     },
     {
       image: "images/09-le-plastique.svg",

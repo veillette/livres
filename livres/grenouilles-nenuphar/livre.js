@@ -17,8 +17,8 @@ Bibliotheque.ajouter({
 
     {
       image: "images/01-une.svg",
-      description: "Une grenouille toute seule sur un grand nénuphar, au milieu de la mare ; le soleil brille encore haut.",
-      texte: "Une grenouille sur un nénuphar\n\nchantonne : « Il se fait tard ! »\n\nCroa, croa !",
+      description: "Une grenouille toute seule sur un grand nénuphar, au milieu de la mare, regarde l'eau ; le soleil brille encore haut.",
+      texte: "Une grenouille sur un nénuphar\n\nregarde passer un têtard.\n\nCroa, croa !",
     },
     {
       image: "images/02-deux.svg",

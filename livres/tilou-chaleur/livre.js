@@ -33,7 +33,7 @@ Bibliotheque.ajouter({
     {
       image: "images/04-fer-et-bois.svg",
       description: "Dehors, Tilou touche une rampe en fer et sursaute : « Glacé ! » Plus loin, assis près d'un banc en bois, il trouve le bois moins froid.",
-      texte: "La rampe en fer paraît glacée, le banc en bois beaucoup moins. Pourtant, ils sont aussi froids !\n\nLe métal emporte vite la chaleur des pattes.",
+      texte: "La rampe en fer paraît glacée, le banc en bois bien moins. Pourtant, ils sont tout aussi froids !\n\nLe métal emporte vite la chaleur.",
     },
     {
       image: "images/05-experience.svg",
