@@ -33,6 +33,16 @@ dans la page d'impression (le cadre illustré garde ses 63 % sur toutes les
 pages), `verifier-images.py` sans erreur et régénération complète identique.
 Le cache hors ligne passe à `v12`.
 
+## Ajout du 4 octobre 2026
+
+Douze nouveaux livres (110 livres au catalogue) : trois livres de sciences
+(électricité, chaleur, pendule), trois petites histoires, deux comptines, deux
+fables de La Fontaine et deux contes. Planches de toutes leurs illustrations
+revues dans Chromium, textes mesurés dans la page d'impression en Lettre et en
+A4 (le cadre illustré garde ses 63 % en Lettre et au moins 61,7 % en A4),
+`verifier-images.py` sans erreur et régénération complète identique. Le cache
+hors ligne passe à `v13`.
+
 ## Parcours livre par livre
 
 Chaque livre bénéficie des corrections communes de cadrage et de précision SVG. Les interventions propres à un livre sont indiquées dans la dernière colonne.
@@ -41,6 +51,8 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | --- | ---: | --- |
 | [L'Âne et le Petit Chien](../livres/ane-petit-chien/livre.js) | 16 | Chien dans les bras, âne chargé, salon renversé et étable. |
 | [Le ballon de Nino](../livres/ballon-envole/livre.js) | 10 | Ballon, fête, séparation et voyage dans les paysages. |
+| [Le premier jour de Bambou](../livres/bambou-ecole/livre.js) | 10 | Cœur dans la main en médaillon, classe, tour de cubes et dortoir. |
+| [Basile se balance](../livres/basile-balancoire/livre.js) | 18 | Portique vu de côté, positions successives en transparence, pendules court et long, horloge à balancier. |
 | [Ce n'est pas une boîte !](../livres/boite-magique/livre.js) | 10 | Transformations de la boîte et continuité des deux pandas. |
 | [Le bonhomme de pain d'épice](../livres/bonhomme-pain-epice/livre.js) | 16 | Biscuit, personnages de la poursuite et traversée de la rivière. |
 | [Boucle d'or et les trois ours](../livres/boucle-or/livre.js) | 16 | Trois tailles d’ours, bols, chaises et lits. |
@@ -64,6 +76,7 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | [Le cordonnier et les lutins](../livres/cordonnier-lutins/livre.js) | 15 | Chaussures, table de travail, lutins et cadeaux. |
 | [Qui a pris la couronne ?](../livres/couronne-pie/livre.js) | 14 | Couronne, indices, personnages interrogés et nid de la pie. |
 | [Les Deux Chèvres](../livres/deux-chevres/livre.js) | 17 | Tronc au-dessus du torrent, chute sous le tronc et merle. |
+| [Les Deux Pigeons](../livres/deux-pigeons/livre.js) | 16 | Pigeonnier, pigeon en vol avec aile froissée, filet, épervier et aigle. |
 | [Chut ! Bébé dort](../livres/elephant-chut/livre.js) | 10 | Berceau, éléphants, gestes et scènes de nuit. |
 | [L'énorme navet](../livres/enorme-navet/livre.js) | 14 | Chaîne des personnages et navet ; pointe du navet conservée dans la vignette. |
 | [Léon prend son temps](../livres/escargot-promenade/livre.js) | 10 | Escargot, insectes, toile et scènes de la fête. |
@@ -78,14 +91,17 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | [Zoé et le géant timide](../livres/geant-timide/livre.js) | 14 | Rapport de taille entre géant, enfants et village. |
 | [Les saisons de Grand Chêne](../livres/grand-chene/livre.js) | 10 | Arbre et écureuil au fil des quatre saisons. |
 | [La Grenouille et le Bœuf](../livres/grenouille-boeuf/livre.js) | 17 | Gonflement de la grenouille ; « Pfffff ! » remonté dans le cadre. |
+| [Dix grenouilles sur un nénuphar](../livres/grenouilles-nenuphar/livre.js) | 14 | Dix places sur le nénuphar, une particularité par grenouille, soleil qui descend de page en page. |
 | [Les habits neufs de l'empereur](../livres/habits-empereur/livre.js) | 15 | Métier à tisser vide, défilé et expressions de la foule. |
 | [Hansel et Gretel](../livres/hansel-gretel/livre.js) | 17 | Miettes, maison, cage, four et retour des enfants. |
 | [Pic est en colère](../livres/herisson-colere/livre.js) | 10 | Cubes, expressions, respiration et reconstruction de la tour. |
 | [Le Héron](../livres/heron/livre.js) | 15 | Rivière du matin à la nuit, poissons, escargot ; bulles éloignées du bec. |
 | [Petit Hibou et la Lune](../livres/hibou-lune/livre.js) | 10 | Hiboux, silhouettes de la Lune et petit schéma explicatif. |
 | [Jack et le haricot magique](../livres/jack-haricot/livre.js) | 17 | Haricot, château et géant ; « Z » repositionnés pour éviter le haut du cadre. |
+| [La Moufle](../livres/la-moufle/livre.js) | 14 | Moufle qui gonfle de page en page, têtes des habitants dessinées derrière le bord. |
 | [Le Trésor du laboureur](../livres/laboureur-tresor/livre.js) | 17 | Bêches, champ, pousses, récolte et marché. |
 | [La Laitière et le Pot au lait](../livres/laitiere-pot/livre.js) | 17 | Pot porté sur la tête, bulles de pensée et fragments après la chute. |
+| [Les Fées](../livres/les-fees/livre.js) | 15 | Fleurs, perles et diamants qui tombent de chaque côté, crapauds et couleuvre rigolos. |
 | [Lili la licorne](../livres/licorne-couleurs/livre.js) | 14 | Couleurs de la crinière, arc-en-ciel et reflet dans l’eau. |
 | [Le Lièvre et les Grenouilles](../livres/lievre-grenouilles/livre.js) | 16 | Gîte, mare à droite du lièvre, grenouilles et scènes de nuit assombries. |
 | [Le Lièvre et la Tortue](../livres/lievre-tortue/livre.js) | 17 | Course, sieste, chemin et groupe à l’arrivée. |
@@ -100,9 +116,11 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | [Le loup et les sept chevreaux](../livres/loup-sept-chevreaux/livre.js) | 16 | Sept chevreaux, cachettes, sac et retour de la mère. |
 | [Max et son ombre](../livres/max-ombre/livre.js) | 10 | Ombres au sol, rayons lumineux et ombre sur le mur. |
 | [Le Meunier, son Fils et l'Âne](../livres/meunier-ane/livre.js) | 17 | Positions des personnages et âne ; oreilles conservées dans la vignette. |
+| [C'est mon tour !](../livres/mon-tour/livre.js) | 10 | Toboggan, file d'attente et bulle « Vas-y, passe ! ». |
 | [Les mots magiques](../livres/mots-magiques/livre.js) | 10 | Bulles, personnages et mots mis en scène. |
 | [Un mouton, deux moutons…](../livres/moutons-dodo/livre.js) | 10 | Moutons numérotés, clôture et scènes de sommeil. |
 | [Les musiciens de Brême](../livres/musiciens-breme/livre.js) | 16 | Quatre animaux, pyramide et maison des brigands. |
+| [Noisette déménage](../livres/noisette-demenage/livre.js) | 10 | Noisette et Grand Chêne repris du « Grand chêne », creux d'arbre, boîte à trésors et dessin des deux arbres. |
 | [Nour et le vent](../livres/nour-vent/livre.js) | 18 | Bulles, moulinet, voilier et montgolfière ; manche du moulinet conservé dans la vignette. |
 | [Où est Doudou ?](../livres/ou-est-doudou/livre.js) | 10 | Jouets, rangement et doudou ; vignette remontée et cube « A » éloigné du bord. |
 | [Le gâteau de Petit Ours](../livres/ours-gateau/livre.js) | 10 | Cuisine, four, gâteau ; visages des invités remontés dans la fenêtre. |
@@ -120,6 +138,7 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | [Le prince grenouille](../livres/prince-grenouille/livre.js) | 14 | Couronne, étang, saut et scènes de nuit. |
 | [La princesse au petit pois](../livres/princesse-petit-pois/livre.js) | 14 | Lit, petit pois, matelas, échelle et expressions. |
 | [Raiponce](../livres/raiponce/livre.js) | 16 | Tour, tresse, échelle et personnages au pied de la tour. |
+| [Le Rat et l'Huître](../livres/rat-huitre/livre.js) | 15 | Huître ouverte et fermée, petite huître cernée sur le bout du nez, marée montante. |
 | [Le Rat de ville et le Rat des champs](../livres/rat-ville-champs/livre.js) | 17 | Repas, souris, chat et lieux de vie. |
 | [Le Renard et le Bouc](../livres/renard-bouc/livre.js) | 17 | Puits, sortie du renard, bouc et échelle. |
 | [Le Renard et la Cigogne](../livres/renard-cigogne/livre.js) | 17 | Assiettes et vases ; assiette de la vignette recentrée et réduite. |
@@ -127,16 +146,19 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 | [Le Renard et les Raisins](../livres/renard-raisins/livre.js) | 17 | Grappes, sauts, bâton et écureuil. |
 | [Rose et le petit dragon](../livres/rose-dragon/livre.js) | 14 | Dragons, princesses, chevaliers et tailles respectives. |
 | [Sacha chez les planètes](../livres/sacha-planetes/livre.js) | 18 | Fusée, astronaute et planètes ; fusée de la vignette ajustée au cadre. |
+| [La semaine de Petit Hérisson](../livres/semaine-herisson/livre.js) | 10 | Un décor par jour et calendrier L M M J V S D avec le jour entouré. |
 | [Le Singe et le Chat](../livres/singe-chat/livre.js) | 16 | Cheminée, marrons, pince à feu et servante. |
 | [Marina et la perle perdue](../livres/sirene-perle/livre.js) | 14 | Sirènes, perle, animaux marins et scène de la grotte. |
 | [La soupe de la sorcière](../livres/sorciere-soupe/livre.js) | 14 | Marmite, légumes et rassemblement des personnages. |
 | [La soupe au caillou](../livres/soupe-caillou/livre.js) | 15 | Marmite, caillou, ingrédients et repas partagé. |
 | [Souris et Éléphant](../livres/souris-elephant/livre.js) | 18 | Bascule et leviers ; légende « pivot » remontée. |
 | [Le parapluie de Souris](../livres/souris-parapluie/livre.js) | 10 | Parapluie, feuille, pluie et groupe des animaux. |
+| [Tilou a froid aux pattes](../livres/tilou-chaleur/livre.js) | 18 | Cuillères métal et bois, glaçon et mitaine, hutte de castor en coupe, thermomètres et bouillotte. |
 | [La Tortue et les deux Canards](../livres/tortue-canards/livre.js) | 17 | Bâton, vol, tortue et chute dans la meule. |
 | [Les trois boucs et le troll](../livres/trois-boucs/livre.js) | 14 | Trois tailles de boucs, pont et troll. |
 | [Les trois petits cochons](../livres/trois-petits-cochons/livre.js) | 16 | Maisons et souffle du loup ; « PLOUF ! » abaissé dans le cadre. |
 | [Le vilain petit canard](../livres/vilain-petit-canard/livre.js) | 16 | Caneton et cygnes ; pattes de la vignette conservées, reflet atténué et limité à l’eau. |
+| [Zoé et la petite ampoule](../livres/zoe-ampoule/livre.js) | 18 | Pile, ampoule et boucle fléchée dans le sens du courant ; interrupteur, série de deux ampoules, cabane et ombres. |
 
 ## Reprendre une revue
 
