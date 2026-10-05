@@ -1,6 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
+Catalogue actuel, après les ajouts d'octobre : **122 livres, 2 026 pages et
+1 744 illustrations SVG** (cache hors ligne `v14`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -52,7 +54,8 @@ Grimm. Planches de toutes leurs illustrations revues dans Chromium, textes
 mesurés dans la page d'impression en Lettre et en A4 (le cadre illustré garde
 au moins 59,7 % en Lettre et 62,6 % en A4, comme les livres existants ; aucun
 débordement), `verifier-images.py` sans erreur et régénération complète
-identique. Le cache hors ligne passe à `v14`.
+identique (122 livres, 2 026 pages, 1 744 SVG). Le cache hors ligne passe à
+`v14`.
 
 ## Parcours livre par livre
 
@@ -185,4 +188,4 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 
 ## Reprendre une revue
 
-Ouvrir [la revue interactive](revue-images.html), choisir un livre, puis passer des illustrations originales aux pages du livre. Chaque image propose son texte, sa description et un lien vers le SVG original. Le validateur inclut aussi les livres présents dans le workspace qui ne figurent pas encore au catalogue.
+Ouvrir [la revue interactive](revue-images.html), choisir un livre, puis passer des illustrations originales aux pages du livre. Chaque image propose son texte, sa description et un lien vers le SVG original. Le validateur (`python3 outils/verifier-images.py`) inclut aussi les livres présents dans `livres/` qui ne figurent pas encore au catalogue.

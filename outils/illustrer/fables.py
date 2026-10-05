@@ -3,9 +3,9 @@ Personnages et accessoires des fables de La Fontaine : corbeau, colombe, coq et
 poule, cigogne, moucheron, chêne et roseau qui parlent, fromage, raisins,
 puits, filet, grelot, pot au lait…
 
-Les animaux « debout » (loup, lion, lièvre, rat, âne, chèvre, bœuf, cigale)
-sont des espèces de `perso()` dans `base.py`. Mêmes conventions : page de
-800 × 800, pieds en (0, 0).
+Les animaux « debout » (loup, lion, lièvre, rat, âne, chèvre, bœuf, cigale, cerf,
+singe) sont des espèces de `perso()` dans `base.py`. Mêmes conventions :
+page de 800 × 800, pieds en (0, 0).
 """
 from base import *
 from base import EXPRESSIONS, _assombrir
