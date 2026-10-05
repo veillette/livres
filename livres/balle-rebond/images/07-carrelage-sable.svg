@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<defs><linearGradient id="d2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#f3f0ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d2)"/>
+<g transform="translate(150 110) scale(0.6 0.6)"><g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>
+<g transform="translate(640 80) scale(0.5 0.5)"><g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>
+<path d="M -184 480 Q 101.9 285.3 387.8 480 Z" fill="#b2f2bb"/>
+<path d="M 115.7 480 Q 412.5 318.8 709.2 480 Z" fill="#b2f2bb"/>
+<path d="M 283.3 480 Q 608.2 297.5 933.2 480 Z" fill="#b2f2bb"/>
+<path d="M 0 520 Q 240.0 502 400.0 520 T 800 520 L 800 800 L 0 800 Z" fill="#8ce99a"/>
+<rect x="0" y="640" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="0" y="700" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="0" y="760" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="80" y="640" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="80" y="700" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="80" y="760" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="160" y="640" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="160" y="700" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="160" y="760" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="240" y="640" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="240" y="700" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="240" y="760" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="320" y="640" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="320" y="700" width="80" height="60" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+<rect x="320" y="760" width="80" height="60" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+<rect x="400" y="600" width="400" height="200" fill="#ffe8a3"/>
+<path d="M 400 600 Q 600 584 800 600 L 800 620 L 400 620 Z" fill="#ffe08a"/>
+<line x1="400" y1="520" x2="400" y2="800" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+<path d="M 200 200 L 200 640 L 200 260" fill="none" stroke="#2b2b3a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 12" opacity="0.6"/>
+<g><ellipse cx="200" cy="230" rx="30" ry="30" fill="#fa5252"/><ellipse cx="189.5" cy="218" rx="7.5" ry="5.4" fill="#fff" opacity="0.6"/><path d="M 170 230 Q 200 245 230 230" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></g>
+<path d="M 600 200 L 600 610" fill="none" stroke="#2b2b3a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 12" opacity="0.6"/>
+<ellipse cx="600" cy="616" rx="30" ry="10" fill="#e0c060"/>
+<g><ellipse cx="600" cy="586" rx="30" ry="30" fill="#fa5252"/><ellipse cx="589.5" cy="574" rx="7.5" ry="5.4" fill="#fff" opacity="0.6"/><path d="M 570 586 Q 600 601 630 586" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></g>
+<text x="200" y="700" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="54" text-anchor="middle" fill="#fa5252" stroke="#fff" stroke-width="7.7" stroke-linejoin="round" paint-order="stroke">Boing !</text>
+<text x="600" y="700" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="54" text-anchor="middle" fill="#e8590c" stroke="#fff" stroke-width="7.7" stroke-linejoin="round" paint-order="stroke">Pof.</text>
+</svg>
