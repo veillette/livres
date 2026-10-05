@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "elephant-chut",
+  rayon: "histoires",
   titre: "Chut ! Bébé dort",
   sousTitre: "Babou, le grand frère tout doux",
   age: "2 à 5 ans",

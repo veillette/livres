@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "cerf-eau",
+  rayon: "fables",
   titre: "Le Cerf se voyant dans l'eau",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lion-moucheron",
+  rayon: "fables",
   titre: "Le Lion et le Moucheron",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

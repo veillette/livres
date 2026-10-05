@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "balle-rebond",
+  rayon: "sciences",
   titre: "Boing ! fait la balle",
   sousTitre: "Rebonds et ressorts",
   age: "4 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "filou-miroir",
+  rayon: "sciences",
   titre: "Filou et le miroir",
   sousTitre: "Reflets et jeux de lumière",
   age: "4 à 7 ans",

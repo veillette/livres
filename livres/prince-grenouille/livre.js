@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "prince-grenouille",
+  rayon: "feerie",
   titre: "Le prince grenouille",
   sousTitre: "qui ne voulait pas de bisou",
   age: "4 à 7 ans",

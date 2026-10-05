@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chouette-nouvelle",
+  rayon: "histoires",
   titre: "Coline, la nouvelle",
   sousTitre: "Une histoire sur la différence",
   age: "3 à 7 ans",

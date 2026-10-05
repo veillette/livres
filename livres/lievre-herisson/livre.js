@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lievre-herisson",
+  rayon: "contes",
   titre: "Le Lièvre et le Hérisson",
   sousTitre: "D'après le conte des frères Grimm",
   age: "3 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "heron",
+  rayon: "fables",
   titre: "Le Héron",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

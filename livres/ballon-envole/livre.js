@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "ballon-envole",
+  rayon: "histoires",
   titre: "Le ballon de Nino",
   sousTitre: "Une histoire pour les petits chagrins",
   age: "2 à 5 ans",

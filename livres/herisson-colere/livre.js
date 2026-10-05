@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "herisson-colere",
+  rayon: "histoires",
   titre: "Pic est en colère",
   sousTitre: "Une histoire pour apprivoiser sa colère",
   age: "3 à 6 ans",

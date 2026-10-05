@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "geant-timide",
+  rayon: "feerie",
   titre: "Zoé et le géant timide",
   sousTitre: "Oser aller vers les autres",
   age: "3 à 6 ans",

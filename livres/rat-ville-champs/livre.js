@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "rat-ville-champs",
+  rayon: "fables",
   titre: "Le Rat de ville et le Rat des champs",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

@@ -26,6 +26,8 @@
   document.title = livre.titre;
   document.getElementById("titre").textContent = livre.titre;
   document.getElementById("imprimer").href = `imprimer.html?livre=${encodeURIComponent(livre.id)}`;
+  // Le lien « Bibliothèque » ramène au rayon du livre.
+  if (livre.rayon) document.querySelector(".entete__logo").href = `index.html#${encodeURIComponent(livre.rayon)}`;
 
   const total = livre.pages.length;
   const dernierePageSeule = livre.pages[total - 1].type === "quatrieme";

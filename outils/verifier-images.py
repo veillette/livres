@@ -1,4 +1,4 @@
-"""Vérifie les livres (champs requis) et leurs images, y compris hors catalogue.
+"""Vérifie les livres (champs requis, rayon) et leurs images, y compris hors catalogue.
 
     python3 outils/verifier-images.py
 
@@ -26,7 +26,7 @@ for (const folder of fs.readdirSync(path.join(root, 'livres')).sort()) {
     Bibliotheque: {ajouter(book) {books.push({...book, folder});}}
   }, {filename, timeout: 1000});
 }
-process.stdout.write(JSON.stringify({catalogue: context.window.CATALOGUE, books}));
+process.stdout.write(JSON.stringify({catalogue: context.window.CATALOGUE, rayons: context.window.RAYONS || [], books}));
 """
 
 
@@ -79,6 +79,16 @@ def verifier():
         erreurs.append("Identifiant de livre répété.")
     for identifiant in set(catalogue) - set(ids):
         erreurs.append(f"{identifiant} : livre du catalogue introuvable.")
+    rayons = [rayon.get("id") for rayon in inventaire["rayons"]]
+    if len(rayons) != len(set(rayons)):
+        erreurs.append("Rayon répété dans livres/catalogue.js.")
+    for livre in livres:
+        rayon = livre.get("rayon")
+        if rayon is None:
+            if livre["id"] in catalogue:
+                erreurs.append(f"{livre['folder']} : aucun rayon (choisir parmi {', '.join(rayons)}).")
+        elif rayon not in rayons:
+            erreurs.append(f"{livre['folder']} : rayon inconnu « {rayon} » (choisir parmi {', '.join(rayons)}).")
 
     images = set()
     for livre in livres:

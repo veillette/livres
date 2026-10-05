@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "bambou-ecole",
+  rayon: "histoires",
   titre: "Le premier jour de Bambou",
   sousTitre: "Pour les matins où l'on a un nœud au ventre",
   age: "3 à 6 ans",

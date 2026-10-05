@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "trois-boucs",
+  rayon: "contes",
   titre: "Les trois boucs et le troll",
   sousTitre: "D'après le conte norvégien",
   age: "3 à 6 ans",

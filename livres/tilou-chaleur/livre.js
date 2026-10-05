@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "tilou-chaleur",
+  rayon: "sciences",
   titre: "Tilou a froid aux pattes",
   sousTitre: "Qu'est-ce qui garde au chaud ?",
   age: "4 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "gaston-glacon",
+  rayon: "sciences",
   titre: "Gaston le glaçon",
   sousTitre: "Glace, eau et vapeur",
   age: "4 à 7 ans",

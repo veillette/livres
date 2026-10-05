@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "piquette-chute",
+  rayon: "sciences",
   titre: "Pourquoi tout tombe ?",
   sousTitre: "Piquette découvre la gravité",
   age: "4 à 7 ans",

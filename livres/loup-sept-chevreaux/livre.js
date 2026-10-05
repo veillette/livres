@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "loup-sept-chevreaux",
+  rayon: "contes",
   titre: "Le loup et les sept chevreaux",
   sousTitre: "D'après le conte des frères Grimm",
   age: "3 à 7 ans",

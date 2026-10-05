@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "boucle-or",
+  rayon: "contes",
   titre: "Boucle d'or et les trois ours",
   sousTitre: "D'après le conte traditionnel",
   age: "3 à 6 ans",

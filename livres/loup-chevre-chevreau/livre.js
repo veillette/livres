@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "loup-chevre-chevreau",
+  rayon: "fables",
   titre: "Le Loup, la Chèvre et le Chevreau",
   sousTitre: "D'après une fable de La Fontaine",
   age: "3 à 7 ans",

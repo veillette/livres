@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "cordonnier-lutins",
+  rayon: "contes",
   titre: "Le cordonnier et les lutins",
   sousTitre: "D'après le conte des frères Grimm",
   age: "3 à 7 ans",

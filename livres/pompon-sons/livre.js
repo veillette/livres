@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "pompon-sons",
+  rayon: "sciences",
   titre: "Boum ! fait le tambour",
   sousTitre: "Pompon découvre les sons",
   age: "4 à 7 ans",

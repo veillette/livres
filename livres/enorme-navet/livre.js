@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "enorme-navet",
+  rayon: "contes",
   titre: "L'énorme navet",
   sousTitre: "D'après le conte russe",
   age: "2 à 5 ans",

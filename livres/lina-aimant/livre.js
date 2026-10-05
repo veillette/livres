@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lina-aimant",
+  rayon: "sciences",
   titre: "Lina et l'aimant",
   sousTitre: "Une histoire sur le magnétisme",
   age: "4 à 7 ans",

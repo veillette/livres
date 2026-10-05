@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "ours-gateau",
+  rayon: "histoires",
   titre: "Le gâteau de Petit Ours",
   sousTitre: "Une histoire de patience",
   age: "2 à 5 ans",

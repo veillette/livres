@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "hansel-gretel",
+  rayon: "contes",
   titre: "Hansel et Gretel",
   sousTitre: "D'après le conte des frères Grimm",
   age: "4 à 7 ans",

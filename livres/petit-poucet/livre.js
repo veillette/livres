@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "petit-poucet",
+  rayon: "contes",
   titre: "Le Petit Poucet",
   sousTitre: "D'après le conte de Charles Perrault",
   age: "4 à 8 ans",

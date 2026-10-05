@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chat-botte",
+  rayon: "contes",
   titre: "Le Chat botté",
   sousTitre: "D'après le conte de Charles Perrault",
   age: "4 à 8 ans",

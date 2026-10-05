@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lunettes-plume",
+  rayon: "histoires",
   titre: "Les lunettes de Plume",
   sousTitre: "Une histoire pour voir la vie en net",
   age: "2 à 5 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chat-tache",
+  rayon: "histoires",
   titre: "Oups, une tache !",
   sousTitre: "Une histoire sur les erreurs",
   age: "3 à 6 ans",

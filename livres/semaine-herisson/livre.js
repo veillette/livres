@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "semaine-herisson",
+  rayon: "comptines",
   titre: "La semaine de Petit Hérisson",
   sousTitre: "Une comptine pour les jours de la semaine",
   age: "2 à 5 ans",

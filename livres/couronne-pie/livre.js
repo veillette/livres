@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "couronne-pie",
+  rayon: "feerie",
   titre: "Qui a pris la couronne ?",
   sousTitre: "Une enquête au château",
   age: "4 à 7 ans",

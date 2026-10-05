@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "fee-petille",
+  rayon: "feerie",
   titre: "Pétille, la petite fée",
   sousTitre: "La magie, ça s'apprend",
   age: "3 à 6 ans",

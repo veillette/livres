@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lou-velo",
+  rayon: "histoires",
   titre: "Pas encore !",
   sousTitre: "Lou apprend à faire du vélo",
   age: "3 à 6 ans",

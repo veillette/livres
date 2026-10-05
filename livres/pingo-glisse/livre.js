@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "pingo-glisse",
+  rayon: "sciences",
   titre: "Pingo glisse !",
   sousTitre: "Le frottement, ça freine ou ça glisse ?",
   age: "4 à 7 ans",

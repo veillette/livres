@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "mots-magiques",
+  rayon: "histoires",
   titre: "Les mots magiques",
   sousTitre: "Biscuit part à la chasse aux mots gentils",
   age: "2 à 5 ans",

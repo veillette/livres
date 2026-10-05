@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "jack-haricot",
+  rayon: "contes",
   titre: "Jack et le haricot magique",
   sousTitre: "D'après le conte traditionnel",
   age: "4 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "souris-elephant",
+  rayon: "sciences",
   titre: "Souris et Éléphant",
   sousTitre: "La bascule, le levier et l'équilibre",
   age: "4 à 7 ans",

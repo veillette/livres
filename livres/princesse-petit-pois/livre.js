@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "princesse-petit-pois",
+  rayon: "contes",
   titre: "La princesse au petit pois",
   sousTitre: "D'après le conte d'Andersen",
   age: "3 à 7 ans",

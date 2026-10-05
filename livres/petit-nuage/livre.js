@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "petit-nuage",
+  rayon: "sciences",
   titre: "Le voyage de Petit Nuage",
   sousTitre: "Une histoire sur le cycle de l'eau",
   age: "3 à 6 ans",

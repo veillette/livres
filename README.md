@@ -3,7 +3,10 @@
 Un petit site pour créer des livres illustrés pour enfants, les **lire à l'écran**
 et les **imprimer sur des feuilles** pour en faire de vrais livres.
 
-- `index.html` : la bibliothèque (toutes les couvertures).
+- `index.html` : la bibliothèque, rangée par rayons (Sciences, Petites histoires,
+  Comptines, Fées et dragons, Fables, Contes traditionnels). Les boutons du haut
+  n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
+  fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
   précédente / suivante, Début / Fin, glisser du doigt ; double page sur un
   écran large d'au moins 900 px ; lecture à voix haute « 🔊 Écouter »).
@@ -86,6 +89,7 @@ trouver le bon sens).
    ```js
    Bibliotheque.ajouter({
      id: "mon-livre",                 // identique au nom du dossier
+     rayon: "histoires",              // un des rayons de livres/catalogue.js
      titre: "Mon beau livre",
      sousTitre: "Facultatif",
      auteur: "Prénom Nom",
@@ -104,7 +108,10 @@ trouver le bon sens).
    });
    ```
 
-4. Ajouter `"mon-livre"` dans `livres/catalogue.js`.
+4. Ajouter `"mon-livre"` dans `livres/catalogue.js` (l'ordre de cette liste
+   est l'ordre d'affichage dans chaque rayon). Les rayons possibles sont listés
+   dans `RAYONS`, au bas du même fichier : on peut en ajouter un (identifiant,
+   nom, icône, description).
 5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
 6. Lancer `python3 outils/verifier-images.py` (la publication échoue si cette
    vérification trouve une erreur). Si les images viennent du générateur,
@@ -159,7 +166,7 @@ js/pwa.js           enregistrement du service worker, bouton « Installer »
 sw.js               service worker (cache hors ligne)
 manifest.webmanifest, icones/   description de l'application et icônes
 polices/            polices Andika et Fredoka (licence OFL), hébergées avec le site
-livres/             un dossier par livre + catalogue.js
+livres/             un dossier par livre + catalogue.js (liste et rayons)
 outils/illustrer/   générateur des illustrations SVG (Python, non publié)
 outils/verifier-images.py   vérification des livres et des images (non publiée)
 outils/revue-images.html    revue interactive des illustrations
@@ -223,7 +230,8 @@ python3 outils/verifier-images.py
 
 Elle demande Python 3 et Node.js (pour lire les fichiers `livre.js`).
 Elle inclut aussi les livres hors catalogue : champs requis
-(`id`, `titre`, au moins une page), types et dispositions de page inconnus,
+(`id`, `titre`, au moins une page, `rayon` connu pour les livres du
+catalogue), types et dispositions de page inconnus,
 images manquantes ou en chemin absolu, SVG mal formés, dimensions invalides et
 références internes absentes.
 

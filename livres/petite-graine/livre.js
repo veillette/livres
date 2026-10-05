@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "petite-graine",
+  rayon: "sciences",
   titre: "La petite graine",
   sousTitre: "Une histoire de patience",
   age: "2 à 5 ans",

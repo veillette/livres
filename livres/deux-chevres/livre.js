@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "deux-chevres",
+  rayon: "fables",
   titre: "Les Deux Chèvres",
   sousTitre: "D'après une fable de La Fontaine",
   age: "3 à 7 ans",

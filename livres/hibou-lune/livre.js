@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "hibou-lune",
+  rayon: "sciences",
   titre: "Petit Hibou et la Lune",
   sousTitre: "Une histoire sur les phases de la Lune",
   age: "3 à 6 ans",

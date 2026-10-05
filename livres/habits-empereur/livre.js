@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "habits-empereur",
+  rayon: "contes",
   titre: "Les habits neufs de l'empereur",
   sousTitre: "D'après le conte d'Andersen",
   age: "4 à 8 ans",

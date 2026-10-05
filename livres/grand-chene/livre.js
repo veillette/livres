@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "grand-chene",
+  rayon: "sciences",
   titre: "Les saisons de Grand Chêne",
   sousTitre: "Une année avec Noisette l'écureuil",
   age: "2 à 5 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "ou-est-doudou",
+  rayon: "histoires",
   titre: "Où est Doudou ?",
   sousTitre: "Une histoire de rangement (presque) amusante",
   age: "2 à 5 ans",

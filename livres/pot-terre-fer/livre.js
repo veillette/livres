@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "pot-terre-fer",
+  rayon: "fables",
   titre: "Le Pot de terre et le Pot de fer",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

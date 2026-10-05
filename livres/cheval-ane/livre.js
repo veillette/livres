@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "cheval-ane",
+  rayon: "fables",
   titre: "Le Cheval et l'Âne",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",
