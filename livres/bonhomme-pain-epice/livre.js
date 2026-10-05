@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "bonhomme-pain-epice",
+  rayon: "contes",
   titre: "Le bonhomme de pain d'épice",
   sousTitre: "D'après le conte traditionnel",
   age: "3 à 6 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "grenouille-boeuf",
+  rayon: "fables",
   titre: "La Grenouille et le Bœuf",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

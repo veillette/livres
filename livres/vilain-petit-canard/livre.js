@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "vilain-petit-canard",
+  rayon: "contes",
   titre: "Le vilain petit canard",
   sousTitre: "D'après le conte d'Andersen",
   age: "4 à 7 ans",

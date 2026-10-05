@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "souris-parapluie",
+  rayon: "histoires",
   titre: "Le parapluie de Souris",
   sousTitre: "Une histoire de partage",
   age: "2 à 5 ans",

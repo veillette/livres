@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "sirene-perle",
+  rayon: "feerie",
   titre: "Marina et la perle perdue",
   sousTitre: "Oser demander de l'aide",
   age: "3 à 6 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "singe-chat",
+  rayon: "fables",
   titre: "Le Singe et le Chat",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

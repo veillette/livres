@@ -64,6 +64,16 @@ window.CATALOGUE = [
   "sorciere-soupe",
   "etoile-tombee",
   "couronne-pie",
+  "capucine-chevalier",
+  "ondine-tempete",
+  "mila-fee-dents",
+  "nina-pirate",
+  "coralie-ocean",
+  "flocon-saisons",
+  "princesse-dodo",
+  "aya-pluie",
+  "ines-souhaits",
+  "ada-inventrice",
   "princesse-petit-pois",
   "corbeau-renard",
   "cigale-fourmi",
@@ -125,4 +135,18 @@ window.CATALOGUE = [
   "les-fees",
   "petite-marmite",
   "lievre-herisson",
+];
+
+/*
+ * Rayons de la bibliothèque, dans l'ordre d'affichage. Chaque livre indique
+ * son rayon dans `livre.js` (`rayon: "sciences"`) ; un livre sans rayon connu
+ * est rangé dans « Autres livres ».
+ */
+window.RAYONS = [
+  { id: "sciences", nom: "Sciences", icone: "🔬", description: "Comprendre le monde en s'amusant : lumière, sons, forces, eau, électricité…" },
+  { id: "histoires", nom: "Petites histoires", icone: "🧸", description: "Des histoires du quotidien pour grandir : patience, partage, colère, sommeil…" },
+  { id: "comptines", nom: "Comptines", icone: "🎵", description: "Pour compter, nommer et jouer avec les mots." },
+  { id: "feerie", nom: "Princesses, fées et dragons", icone: "🧚", description: "Princesses, sirènes, fées, héroïnes, licornes, dragons et sorcières d'aujourd'hui." },
+  { id: "fables", nom: "Fables", icone: "🦊", description: "Les fables de La Fontaine (et une d'Ésope), racontées aux petits." },
+  { id: "contes", nom: "Contes traditionnels", icone: "🏰", description: "Perrault, Grimm, Andersen et les contes du monde entier." },
 ];

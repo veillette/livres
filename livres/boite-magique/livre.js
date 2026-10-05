@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "boite-magique",
+  rayon: "histoires",
   titre: "Ce n'est pas une boîte !",
   sousTitre: "Titou et son imagination",
   age: "2 à 5 ans",

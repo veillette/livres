@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "dodo-mamie",
+  rayon: "histoires",
   titre: "Mon premier dodo chez Mamie",
   sousTitre: "Une histoire pour dormir loin de la maison",
   age: "2 à 5 ans",

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
+
+<ellipse cx="200" cy="236" rx="150" ry="26" fill="#8b5e3c"/>
+<ellipse cx="150" cy="230" rx="50" ry="8" fill="#a47148"/>
+<g transform="translate(150 220) rotate(35) scale(1.2 1.2)"><rect x="-7" y="-10" width="14" height="34" rx="5" fill="#8d5524"/><rect x="-28" y="-18" width="56" height="12" rx="5" fill="#5c3a1e"/><path d="M -10 -18 L -10 -150 L 0 -172 L 10 -150 L 10 -18 Z" fill="#d9a066"/><line x1="0" y1="-24" x2="0" y2="-150" stroke="#c68642" stroke-width="3" stroke-linecap="round"/></g>
+<g transform="translate(250 226) rotate(-8) scale(1.1 1.1)"><polygon points="-44,0 -50,-56 -24,-30 0,-66 24,-30 50,-56 44,0" fill="#ffd43b" stroke="#f59f00" stroke-width="4"/><rect x="-46" y="-14" width="92" height="16" rx="6" fill="#f59f00"/><circle cx="0" cy="-30" r="7" fill="#fa5252"/><circle cx="-28" cy="-8" r="5" fill="#4dabf7"/><circle cx="28" cy="-8" r="5" fill="#4dabf7"/><circle cx="0" cy="-8" r="5" fill="#51cf66"/></g>
+<circle cx="320" cy="120" r="8" fill="#8b5e3c"/>
+<circle cx="90" cy="140" r="6" fill="#a47148"/>
+<circle cx="340" cy="170" r="5" fill="#8b5e3c"/>
+</svg>

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "renard-bouc",
+  rayon: "fables",
   titre: "Le Renard et le Bouc",
   sousTitre: "D'après une fable de La Fontaine",
   age: "5 à 8 ans",

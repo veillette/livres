@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "lievre-grenouilles",
+  rayon: "fables",
   titre: "Le Lièvre et les Grenouilles",
   sousTitre: "D'après une fable de La Fontaine",
   age: "3 à 7 ans",

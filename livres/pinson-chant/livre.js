@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "pinson-chant",
+  rayon: "histoires",
   titre: "Pinson chante faux",
   sousTitre: "Une histoire pour être soi-même",
   age: "3 à 6 ans",

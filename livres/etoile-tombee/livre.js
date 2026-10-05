@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "etoile-tombee",
+  rayon: "feerie",
   titre: "L'étoile tombée du ciel",
   sousTitre: "Une histoire pour le soir",
   age: "3 à 6 ans",

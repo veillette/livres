@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "nour-vent",
+  rayon: "sciences",
   titre: "Nour et le vent",
   sousTitre: "À la découverte de l'air invisible",
   age: "4 à 7 ans",

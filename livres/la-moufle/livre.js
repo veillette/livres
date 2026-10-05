@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "la-moufle",
+  rayon: "contes",
   titre: "La Moufle",
   sousTitre: "D'après le conte ukrainien",
   age: "2 à 5 ans",

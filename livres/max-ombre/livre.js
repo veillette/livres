@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "max-ombre",
+  rayon: "sciences",
   titre: "Max et son ombre",
   sousTitre: "Une histoire sur la lumière",
   age: "3 à 6 ans",

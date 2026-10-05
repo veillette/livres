@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "mains-clap",
+  rayon: "comptines",
   titre: "Mes mains font clap !",
   sousTitre: "Une comptine pour découvrir son corps",
   age: "2 à 5 ans",

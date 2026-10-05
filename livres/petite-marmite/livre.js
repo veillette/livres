@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "petite-marmite",
+  rayon: "contes",
   titre: "La petite marmite",
   sousTitre: "D'après le conte des frères Grimm",
   age: "3 à 7 ans",

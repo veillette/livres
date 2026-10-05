@@ -172,7 +172,89 @@ a {
   color: var(--doux);
 }
 
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 40px;
+}
+
+.filtre {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 2px solid var(--bord);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--encre);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.filtre:hover {
+  background: #fff1dc;
+}
+
+.filtre:focus-visible {
+  outline: 3px solid var(--bleu);
+  outline-offset: 2px;
+}
+
+.filtre[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.filtre__nombre {
+  min-width: 1.6em;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.07);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.filtre[aria-pressed="true"] .filtre__nombre {
+  background: rgb(255 255 255 / 0.25);
+}
+
 .etageres {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.rayon__entete {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px dashed var(--bord);
+}
+
+.rayon__entete h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.rayon__entete p {
+  margin: 4px 0 0;
+  color: var(--doux);
+}
+
+.rayon__nombre {
+  color: var(--doux);
+  font-family: "Andika", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.rayon__livres {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 32px;
@@ -213,7 +295,7 @@ a {
   padding: 16px 20px 20px;
 }
 
-.carte__corps h2 {
+.carte__corps h3 {
   margin: 0;
   font-size: 1.35rem;
 }
@@ -496,6 +578,20 @@ a {
 @media (max-width: 520px) {
   .entete {
     padding: 12px 16px;
+  }
+
+  /* Rayons sur une seule ligne qu'on fait défiler du doigt. */
+  .filtres {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 0 -16px 32px;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .filtre {
+    flex: none;
   }
 
   .navigation {

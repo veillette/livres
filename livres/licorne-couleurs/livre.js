@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "licorne-couleurs",
+  rayon: "feerie",
   titre: "Lili la licorne",
   sousTitre: "et les couleurs perdues",
   age: "3 à 6 ans",

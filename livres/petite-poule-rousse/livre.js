@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "petite-poule-rousse",
+  rayon: "contes",
   titre: "La petite poule rousse",
   sousTitre: "D'après le conte traditionnel",
   age: "3 à 6 ans",

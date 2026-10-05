@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "fache-pas-fache",
+  rayon: "histoires",
   titre: "Fâchés !",
   sousTitre: "Chat et Chien se réconcilient",
   age: "3 à 6 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "loup-chien",
+  rayon: "fables",
   titre: "Le Loup et le Chien",
   sousTitre: "D'après une fable de La Fontaine",
   age: "5 à 8 ans",

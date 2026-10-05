@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "les-fees",
+  rayon: "contes",
   titre: "Les Fées",
   sousTitre: "D'après le conte de Charles Perrault",
   age: "4 à 8 ans",

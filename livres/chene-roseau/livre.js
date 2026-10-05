@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chene-roseau",
+  rayon: "fables",
   titre: "Le Chêne et le Roseau",
   sousTitre: "D'après une fable de La Fontaine",
   age: "5 à 8 ans",

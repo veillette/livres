@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "renard-raisins",
+  rayon: "fables",
   titre: "Le Renard et les Raisins",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

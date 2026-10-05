@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "sucre-disparu",
+  rayon: "sciences",
   titre: "Où est passé le sucre ?",
   sousTitre: "Dissoudre et retrouver",
   age: "4 à 7 ans",

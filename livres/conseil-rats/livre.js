@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "conseil-rats",
+  rayon: "fables",
   titre: "Qui attachera le grelot ?",
   sousTitre: "D'après « Conseil tenu par les rats » de La Fontaine",
   age: "4 à 8 ans",

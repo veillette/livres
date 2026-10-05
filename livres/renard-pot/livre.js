@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "renard-pot",
+  rayon: "histoires",
   titre: "Oups ! dit Renardeau",
   sousTitre: "Une histoire pour dire la vérité",
   age: "3 à 6 ans",

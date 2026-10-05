@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "mon-tour",
+  rayon: "histoires",
   titre: "C'est mon tour !",
   sousTitre: "Une histoire pour apprendre à attendre",
   age: "2 à 5 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "rose-dragon",
+  rayon: "feerie",
   titre: "Rose et le petit dragon",
   sousTitre: "Aller voir avant d'avoir peur",
   age: "3 à 6 ans",

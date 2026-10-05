@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chaperon-rouge",
+  rayon: "contes",
   titre: "Le Petit Chaperon rouge",
   sousTitre: "D'après le conte de Charles Perrault",
   age: "4 à 7 ans",

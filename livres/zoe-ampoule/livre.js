@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "zoe-ampoule",
+  rayon: "sciences",
   titre: "Zoé et la petite ampoule",
   sousTitre: "Le courant fait le tour",
   age: "4 à 7 ans",

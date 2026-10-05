@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "castor-cabane",
+  rayon: "sciences",
   titre: "Castor et la cabane perchée",
   sousTitre: "Roue, rampe et poulie",
   age: "4 à 7 ans",

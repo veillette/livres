@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "trois-petits-cochons",
+  rayon: "contes",
   titre: "Les trois petits cochons",
   sousTitre: "D'après le conte traditionnel",
   age: "3 à 6 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "bibi-mimi",
+  rayon: "comptines",
   titre: "Bibi et Mimi",
   sousTitre: "Une comptine des contraires",
   age: "2 à 5 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "sorciere-soupe",
+  rayon: "feerie",
   titre: "La soupe de la sorcière",
   sousTitre: "Une soupe au caillou à partager",
   age: "4 à 7 ans",

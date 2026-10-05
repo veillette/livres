@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "fourmi-miette",
+  rayon: "histoires",
   titre: "Fourmi et la grosse miette",
   sousTitre: "Une histoire pour ne pas abandonner",
   age: "3 à 6 ans",

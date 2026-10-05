@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "cendrillon",
+  rayon: "contes",
   titre: "Cendrillon",
   sousTitre: "D'après le conte de Charles Perrault",
   age: "4 à 7 ans",

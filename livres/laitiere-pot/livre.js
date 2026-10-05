@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "laitiere-pot",
+  rayon: "fables",
   titre: "La Laitière et le Pot au lait",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

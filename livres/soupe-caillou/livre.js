@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "soupe-caillou",
+  rayon: "contes",
   titre: "La soupe au caillou",
   sousTitre: "D'après le conte traditionnel",
   age: "3 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "poule-oeufs-or",
+  rayon: "fables",
   titre: "La Poule aux œufs d'or",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

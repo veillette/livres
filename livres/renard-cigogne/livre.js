@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "renard-cigogne",
+  rayon: "fables",
   titre: "Le Renard et la Cigogne",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

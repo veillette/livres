@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chapeau-vent",
+  rayon: "histoires",
   titre: "Le chapeau de Monsieur Ours",
   sousTitre: "Une histoire qui s'envole",
   age: "2 à 5 ans",

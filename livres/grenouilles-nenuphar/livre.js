@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "grenouilles-nenuphar",
+  rayon: "comptines",
   titre: "Dix grenouilles sur un nénuphar",
   sousTitre: "Une comptine pour compter jusqu'à dix",
   age: "2 à 5 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "sacha-planetes",
+  rayon: "sciences",
   titre: "Sacha chez les planètes",
   sousTitre: "Un voyage dans le système solaire",
   age: "4 à 7 ans",

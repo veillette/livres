@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "flotte-coule",
+  rayon: "sciences",
   titre: "Qui flotte, qui coule ?",
   sousTitre: "Les expériences de Coin-Coin",
   age: "3 à 6 ans",

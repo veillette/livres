@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "tibo-perdu",
+  rayon: "histoires",
   titre: "J'ai perdu !",
   sousTitre: "Une histoire pour apprendre à perdre",
   age: "2 à 5 ans",

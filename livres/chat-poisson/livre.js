@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "chat-poisson",
+  rayon: "histoires",
   titre: "Moka garde le poisson",
   sousTitre: "Une histoire de confiance",
   age: "3 à 6 ans",

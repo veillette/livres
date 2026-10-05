@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "ours-nuit",
+  rayon: "sciences",
   titre: "Petit Ours ne veut pas dormir",
   sousTitre: "Pourquoi le jour, pourquoi la nuit ?",
   age: "4 à 7 ans",

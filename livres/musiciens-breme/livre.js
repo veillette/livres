@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "musiciens-breme",
+  rayon: "contes",
   titre: "Les musiciens de Brême",
   sousTitre: "D'après le conte des frères Grimm",
   age: "3 à 7 ans",

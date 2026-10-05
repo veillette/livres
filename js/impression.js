@@ -31,6 +31,8 @@
   document.title = `Imprimer — ${livre.titre}`;
   document.getElementById("titre").textContent = livre.titre;
   document.getElementById("lire").href = `lire.html?livre=${encodeURIComponent(livre.id)}`;
+  // Le lien « Bibliothèque » ramène au rayon du livre.
+  if (livre.rayon) document.querySelector(".entete__logo").href = `index.html#${encodeURIComponent(livre.rayon)}`;
 
   // Les réglages peuvent venir de l'adresse (?papier=a4&mode=pages) ou du dernier usage.
   const memoire = (() => {

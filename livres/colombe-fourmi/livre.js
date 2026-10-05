@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "colombe-fourmi",
+  rayon: "fables",
   titre: "La Colombe et la Fourmi",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

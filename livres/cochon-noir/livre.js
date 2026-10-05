@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "cochon-noir",
+  rayon: "histoires",
   titre: "Qui a peur du noir ?",
   sousTitre: "Pistache et sa lampe de poche",
   age: "3 à 6 ans",

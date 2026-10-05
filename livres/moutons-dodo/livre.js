@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "moutons-dodo",
+  rayon: "histoires",
   titre: "Un mouton, deux moutons…",
   sousTitre: "Une histoire pour s'endormir (ou presque)",
   age: "2 à 5 ans",

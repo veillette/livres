@@ -3,9 +3,13 @@
 Un petit site pour créer des livres illustrés pour enfants, les **lire à l'écran**
 et les **imprimer sur des feuilles** pour en faire de vrais livres.
 
-- `index.html` : la bibliothèque (toutes les couvertures).
-- `lire.html?livre=<id>` : feuilleter un livre (flèches du clavier, glisser du doigt,
-  double page sur grand écran, lecture à voix haute).
+- `index.html` : la bibliothèque, rangée par rayons (Sciences, Petites histoires,
+  Comptines, Princesses, fées et dragons, Fables, Contes traditionnels). Les boutons du haut
+  n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
+  fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
+- `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
+  précédente / suivante, Début / Fin, glisser du doigt ; double page sur un
+  écran large d'au moins 900 px ; lecture à voix haute « 🔊 Écouter »).
 - `imprimer.html?livre=<id>` : aperçu des feuilles et impression.
 
 Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
@@ -40,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (`"v1"` → `"v2"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v15"` → `"v16"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -61,6 +65,8 @@ Deux mises en page sont proposées sur la page d'impression :
 Papier Lettre (8½ × 11) ou A4. Pour le livret, les pages sont réordonnées
 automatiquement (imposition) et des pages blanches sont ajoutées avant la
 quatrième de couverture si le nombre de pages n'est pas un multiple de 4.
+On peut aussi choisir les faces à imprimer (recto verso, rectos seuls ou versos
+seuls) et une marge blanche autour des pages (aucune, 5 mm par défaut ou 10 mm).
 
 Dans la fenêtre d'impression du navigateur :
 
@@ -75,12 +81,15 @@ trouver le bon sens).
 ## Ajouter un livre
 
 1. Créer un dossier `livres/mon-livre/` (lettres minuscules, chiffres et tirets).
-2. Y mettre les images dans `livres/mon-livre/images/`.
+2. Y mettre les images dans `livres/mon-livre/images/`, ou les dessiner avec
+   `outils/illustrer/histoires/mon_livre.py` (voir
+   [Dessiner les illustrations](#dessiner-les-illustrations)).
 3. Créer `livres/mon-livre/livre.js` :
 
    ```js
    Bibliotheque.ajouter({
      id: "mon-livre",                 // identique au nom du dossier
+     rayon: "histoires",              // un des rayons de livres/catalogue.js
      titre: "Mon beau livre",
      sousTitre: "Facultatif",
      auteur: "Prénom Nom",
@@ -99,10 +108,14 @@ trouver le bon sens).
    });
    ```
 
-4. Ajouter `"mon-livre"` dans `livres/catalogue.js`.
+4. Ajouter `"mon-livre"` dans `livres/catalogue.js` (l'ordre de cette liste
+   est l'ordre d'affichage dans chaque rayon). Les rayons possibles sont listés
+   dans `RAYONS`, au bas du même fichier : on peut en ajouter un (identifiant,
+   nom, icône, description).
 5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
 6. Lancer `python3 outils/verifier-images.py` (la publication échoue si cette
-   vérification trouve une erreur).
+   vérification trouve une erreur). Si les images viennent du générateur,
+   relancer aussi `generer.py` et valider les SVG produits.
 
 ### Types de pages
 
@@ -122,10 +135,12 @@ Pour les pages `illustration`, `disposition` peut valoir :
 - `pleine-page` : image sur toute la page, texte dans une bulle en bas
   (ou en haut avec `positionTexte: "haut"`).
 
-Autres options d'une page : `description` (texte alternatif de l'image),
-`couleur`, `fond` (couleur de fond de la page). Un texte peut contenir plusieurs
+Autres options d'une page : `description` (texte alternatif de l'image, aussi
+affiché dans la revue des images), `couleur`, `fond` (couleur de fond de la
+page) et, sur la couverture, `titre` pour remplacer le titre du livre. Un texte peut contenir plusieurs
 paragraphes séparés par une ligne vide (`\n\n`). Mettre `numeros: false` sur le
-livre pour masquer les numéros de page.
+livre pour masquer les numéros de page, et `langue` (par défaut `"fr-FR"`) pour
+choisir la langue de la lecture à voix haute.
 
 ### Conseils pour les images
 
@@ -151,13 +166,18 @@ js/pwa.js           enregistrement du service worker, bouton « Installer »
 sw.js               service worker (cache hors ligne)
 manifest.webmanifest, icones/   description de l'application et icônes
 polices/            polices Andika et Fredoka (licence OFL), hébergées avec le site
-livres/             un dossier par livre + catalogue.js
+livres/             un dossier par livre + catalogue.js (liste et rayons)
+outils/illustrer/   générateur des illustrations SVG (Python, non publié)
+outils/verifier-images.py   vérification des livres et des images (non publiée)
+outils/revue-images.html    revue interactive des illustrations
+outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 ```
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres sauf les plus anciens sont générées en SVG
-par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
+Les illustrations de tous les livres du catalogue (132 livres, 1 884 SVG) sont
+générées par un petit outil Python, sans aucune dépendance, dans
+`outils/illustrer/` :
 
 - `base.py` : décors (ciel, collines, intérieurs, nuit…), personnages animaux
   vus de face avec leurs expressions (`sourire`, `rire`, `triste`, `fache`,
@@ -180,7 +200,11 @@ par un petit outil Python, sans aucune dépendance, dans `outils/illustrer/` :
   rouge, géant, troll, lutins, Chat botté, bonhomme de pain d'épice, cygne,
   maisons des trois petits cochons, tige de haricot, maison en pain d'épice,
   carrosse, pantoufle de verre, navet géant, légumes…) ;
-- `histoires/<id>.py` : les pages d'un livre, une fonction par image.
+- `histoires/<id>.py` (tirets remplacés par des soulignés, par ex.
+  `histoires/ours_gateau.py`) : les pages d'un livre, une fonction par image,
+  avec ses variables `ID` et `IMAGES`. Les personnages et schémas propres à un
+  seul livre y sont aussi dessinés : circuit de Zoé, poulies de Castor,
+  balançoire de Basile, thermomètres de Tilou…
 
 ```sh
 python3 outils/illustrer/generer.py               # tous les livres
@@ -204,11 +228,14 @@ une [comparaison avant/après](outils/revue-images-comparaison.png).
 python3 outils/verifier-images.py
 ```
 
-Cette vérification inclut aussi les livres hors catalogue : champs requis
-(`id`, `titre`, au moins une page), types et dispositions de page inconnus,
+Elle demande Python 3 et Node.js (pour lire les fichiers `livre.js`).
+Elle inclut aussi les livres hors catalogue : champs requis
+(`id`, `titre`, au moins une page, `rayon` connu pour les livres du
+catalogue), types et dispositions de page inconnus,
 images manquantes ou en chemin absolu, SVG mal formés, dimensions invalides et
 références internes absentes.
 
 Avant chaque publication, GitHub Actions lance cette vérification, puis
 `generer.py` : si les images produites diffèrent de celles du dépôt, la
-publication s'arrête. Seul le site est publié, sans `outils/illustrer/`.
+publication s'arrête. Le site est publié sans `outils/illustrer/` ni les
+scripts Python ; la revue des images (`outils/revue-images.html`) reste en ligne.

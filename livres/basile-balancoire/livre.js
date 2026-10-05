@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "basile-balancoire",
+  rayon: "sciences",
   titre: "Basile se balance",
   sousTitre: "Aller, retour : le pendule",
   age: "4 à 7 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "ane-petit-chien",
+  rayon: "fables",
   titre: "L'Âne et le Petit Chien",
   sousTitre: "D'après une fable de La Fontaine",
   age: "3 à 7 ans",

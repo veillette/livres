@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "escargot-promenade",
+  rayon: "histoires",
   titre: "Léon prend son temps",
   sousTitre: "La promenade d'un escargot",
   age: "2 à 5 ans",

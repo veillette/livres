@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "garcon-loup",
+  rayon: "fables",
   titre: "Le garçon qui criait au loup",
   sousTitre: "D'après une fable d'Ésope",
   age: "4 à 8 ans",

@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "noisette-demenage",
+  rayon: "histoires",
   titre: "Noisette déménage",
   sousTitre: "Chez soi, c'est là où l'on est aimé",
   age: "3 à 6 ans",

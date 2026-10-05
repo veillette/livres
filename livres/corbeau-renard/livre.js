@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "corbeau-renard",
+  rayon: "fables",
   titre: "Le Corbeau et le Renard",
   sousTitre: "D'après une fable de La Fontaine",
   age: "4 à 8 ans",

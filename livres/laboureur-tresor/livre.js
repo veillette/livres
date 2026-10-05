@@ -1,5 +1,6 @@
 Bibliotheque.ajouter({
   id: "laboureur-tresor",
+  rayon: "fables",
   titre: "Le Trésor du laboureur",
   sousTitre: "D'après « Le Laboureur et ses Enfants » de La Fontaine",
   age: "5 à 8 ans",
