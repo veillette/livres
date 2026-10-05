@@ -4,8 +4,9 @@ Un petit site pour créer des livres illustrés pour enfants, les **lire à l'é
 et les **imprimer sur des feuilles** pour en faire de vrais livres.
 
 - `index.html` : la bibliothèque (toutes les couvertures).
-- `lire.html?livre=<id>` : feuilleter un livre (flèches du clavier, glisser du doigt,
-  double page sur grand écran, lecture à voix haute).
+- `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
+  précédente / suivante, Début / Fin, glisser du doigt ; double page sur un
+  écran large d'au moins 900 px ; lecture à voix haute « 🔊 Écouter »).
 - `imprimer.html?livre=<id>` : aperçu des feuilles et impression.
 
 Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
@@ -61,6 +62,8 @@ Deux mises en page sont proposées sur la page d'impression :
 Papier Lettre (8½ × 11) ou A4. Pour le livret, les pages sont réordonnées
 automatiquement (imposition) et des pages blanches sont ajoutées avant la
 quatrième de couverture si le nombre de pages n'est pas un multiple de 4.
+On peut aussi choisir les faces à imprimer (recto verso, rectos seuls ou versos
+seuls) et une marge blanche autour des pages (aucune, 5 mm par défaut ou 10 mm).
 
 Dans la fenêtre d'impression du navigateur :
 
@@ -129,7 +132,8 @@ Autres options d'une page : `description` (texte alternatif de l'image, aussi
 affiché dans la revue des images), `couleur`, `fond` (couleur de fond de la
 page) et, sur la couverture, `titre` pour remplacer le titre du livre. Un texte peut contenir plusieurs
 paragraphes séparés par une ligne vide (`\n\n`). Mettre `numeros: false` sur le
-livre pour masquer les numéros de page.
+livre pour masquer les numéros de page, et `langue` (par défaut `"fr-FR"`) pour
+choisir la langue de la lecture à voix haute.
 
 ### Conseils pour les images
 
