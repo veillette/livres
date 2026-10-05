@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **122 livres, 2 026 pages et
-1 744 illustrations SVG** (cache hors ligne `v14`).
+Catalogue actuel, après les ajouts d'octobre : **132 livres, 2 186 pages et
+1 884 illustrations SVG** (cache hors ligne `v15`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -56,6 +56,19 @@ au moins 59,7 % en Lettre et 62,6 % en A4, comme les livres existants ; aucun
 débordement), `verifier-images.py` sans erreur et régénération complète
 identique (122 livres, 2 026 pages, 1 744 SVG). Le cache hors ligne passe à
 `v14`.
+
+## Ajout du 5 octobre 2026
+
+Dix nouveaux livres au rayon « Princesses, fées et dragons » (132 livres au
+catalogue) : Capucine, princesse chevalier ; Ondine et la tempête ; Mila, la
+petite fée des dents ; Nina, la princesse pirate ; Coralie et l'océan tout
+propre ; Flocon, la fée de l'hiver ; La princesse qui ne voulait pas dormir ;
+Aya et le nuage de pluie ; Inès et les trois souhaits ; Ada, la princesse
+inventrice. Planches de toutes leurs illustrations revues dans Chromium,
+textes mesurés dans la page d'impression en Lettre et en A4 (aucun
+débordement), `verifier-images.py` sans erreur et régénération complète
+identique pour les livres existants (132 livres, 2 186 pages, 1 884 SVG). Le
+cache hors ligne passe à `v15`.
 
 ## Parcours livre par livre
 

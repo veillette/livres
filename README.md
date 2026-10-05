@@ -4,7 +4,7 @@ Un petit site pour créer des livres illustrés pour enfants, les **lire à l'é
 et les **imprimer sur des feuilles** pour en faire de vrais livres.
 
 - `index.html` : la bibliothèque, rangée par rayons (Sciences, Petites histoires,
-  Comptines, Fées et dragons, Fables, Contes traditionnels). Les boutons du haut
+  Comptines, Princesses, fées et dragons, Fables, Contes traditionnels). Les boutons du haut
   n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
   fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
@@ -44,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v14"` → `"v15"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v15"` → `"v16"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -175,7 +175,7 @@ outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (122 livres, 1 744 SVG) sont
+Les illustrations de tous les livres du catalogue (132 livres, 1 884 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 
