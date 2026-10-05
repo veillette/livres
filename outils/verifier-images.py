@@ -63,6 +63,37 @@ def erreurs_structure(livre):
     return erreurs
 
 
+CHAMPS_ATTENDUS = ("couleur", "age", "resume")
+CHAMPS_TEXTE = ("texte", "titre", "description")
+TYPOGRAPHIE = {
+    r"\S  +\S": "espaces répétées",
+    r"\.\.\.": "« ... » au lieu de « … »",
+    r'"': "guillemet droit au lieu de « »",
+    r" [,.]": "espace avant une virgule ou un point",
+    r"^\s|\s$|[ \t]\n": "espace en début ou en fin de texte",
+}
+
+
+def erreurs_contenu(livre):
+    """Oublis qui ne font pas planter l'affichage mais donnent une page vide ou bancale."""
+    erreurs = [f"champ « {champ} » absent." for champ in CHAMPS_ATTENDUS if not livre.get(champ)]
+    textes = [(champ, livre.get(champ)) for champ in ("titre", "sousTitre", "resume")]
+    for numero, page in enumerate(livre.get("pages") or []):
+        if not isinstance(page, dict):
+            continue
+        type_ = page.get("type", "illustration")
+        if type_ in ("illustration", "texte") and not str(page.get("texte") or "").strip():
+            erreurs.append(f"page {numero} : page « {type_} » sans texte.")
+        textes.extend((f"page {numero}, {champ}", page.get(champ)) for champ in CHAMPS_TEXTE)
+    for ou, texte in textes:
+        if not isinstance(texte, str) or not texte.strip():
+            continue
+        for motif, probleme in TYPOGRAPHIE.items():
+            if re.search(motif, texte):
+                erreurs.append(f"{ou} : {probleme}.")
+    return erreurs
+
+
 def verifier():
     resultat = subprocess.run(
         ["node", "-e", INVENTAIRE, str(RACINE)],
@@ -96,9 +127,10 @@ def verifier():
         if livre["id"] != livre["folder"]:
             erreurs.append(f"{livre['folder']} : identifiant différent du dossier.")
         erreurs.extend(f"{livre['folder']} : {e}" for e in erreurs_structure(livre))
+        erreurs.extend(f"{livre['folder']} : {e}" for e in erreurs_contenu(livre))
         for page in livre.get("pages") or []:
-            source = page.get("image")
-            if not source:
+            source = page.get("image") if isinstance(page, dict) else None
+            if not isinstance(source, str) or not source or source.startswith("/"):
                 continue
             image = (dossier / source).resolve()
             if not image.is_relative_to(dossier):
@@ -108,7 +140,12 @@ def verifier():
             else:
                 images.add(image)
 
-    # Vérifier aussi les fichiers présents qui ne sont pas référencés.
+    # Fichiers d'images qu'aucune page n'utilise : ils alourdissent le dépôt pour rien.
+    for image in sorted((RACINE / "livres").glob("*/images/*")):
+        if image.is_file() and image.resolve() not in images:
+            erreurs.append(f"{image.relative_to(RACINE)} : image utilisée par aucune page.")
+
+    # Vérifier aussi la forme des SVG présents, même non référencés.
     svgs = sorted((RACINE / "livres").glob("*/images/*.svg"))
     for image in svgs:
         nom = image.relative_to(RACINE)

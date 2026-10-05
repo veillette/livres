@@ -169,6 +169,7 @@ polices/            polices Andika et Fredoka (licence OFL), hébergées avec le
 livres/             un dossier par livre + catalogue.js (liste et rayons)
 outils/illustrer/   générateur des illustrations SVG (Python, non publié)
 outils/verifier-images.py   vérification des livres et des images (non publiée)
+outils/imposition.test.js   tests de l'ordre des pages du livret (non publiés)
 outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 ```
@@ -232,10 +233,23 @@ Elle demande Python 3 et Node.js (pour lire les fichiers `livre.js`).
 Elle inclut aussi les livres hors catalogue : champs requis
 (`id`, `titre`, au moins une page, `rayon` connu pour les livres du
 catalogue), types et dispositions de page inconnus,
-images manquantes ou en chemin absolu, SVG mal formés, dimensions invalides et
-références internes absentes.
+images manquantes ou en chemin absolu, images que plus aucune page n'utilise,
+SVG mal formés, dimensions invalides et références internes absentes.
+Elle signale aussi les oublis qui laisseraient une page vide ou bancale :
+`couleur`, `age` ou `resume` absents, page `illustration` ou `texte` sans
+texte, et quelques fautes de typographie (espaces répétées ou en trop, espace
+avant une virgule ou un point, `...` au lieu de `…`, guillemets droits `"` au
+lieu de « »). L'apostrophe droite `'` reste acceptée.
 
-Avant chaque publication, GitHub Actions lance cette vérification, puis
-`generer.py` : si les images produites diffèrent de celles du dépôt, la
-publication s'arrête. Le site est publié sans `outils/illustrer/` ni les
-scripts Python ; la revue des images (`outils/revue-images.html`) reste en ligne.
+L'ordre des pages du livret à plier (`js/imposition.js`) est testé à part,
+pour toutes les longueurs de livre de 1 à 40 pages :
+
+```sh
+node --test
+```
+
+Avant chaque publication, GitHub Actions lance cette vérification et ces
+tests, puis `generer.py` : si les images produites diffèrent de celles du
+dépôt, la publication s'arrête. Le site est publié sans `outils/illustrer/`,
+les scripts Python ni les tests ; la revue des images
+(`outils/revue-images.html`) reste en ligne.
