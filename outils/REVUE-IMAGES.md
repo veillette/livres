@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **132 livres, 2 186 pages et
-1 884 illustrations SVG** (cache hors ligne `v15`).
+Catalogue actuel, après les ajouts d'octobre : **162 livres, 2 570 pages et
+2 208 illustrations SVG** (cache hors ligne `v17`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -69,6 +69,28 @@ textes mesurés dans la page d'impression en Lettre et en A4 (aucun
 débordement), `verifier-images.py` sans erreur et régénération complète
 identique pour les livres existants (132 livres, 2 186 pages, 1 884 SVG). Le
 cache hors ligne passe à `v15`.
+
+## Ajout du 6 octobre 2026
+
+Vingt documentaires dans un nouveau rayon « Les animaux », réunis aux dix
+livres de fêtes déjà sur `main` (162 livres au catalogue) : Du têtard à la
+grenouille ; La chenille qui devient papillon ;
+Bzzz ! La ruche des abeilles ; Papa manchot et son œuf ; L'écureuil et ses
+cachettes ; La marmotte dort tout l'hiver ; La baleine qui chante ; La
+chauve-souris voit avec ses oreilles ; La chouette qui vole sans bruit ; Le
+poussin dans l'œuf ; La famille éléphant ; Les bébés tortues de mer ; Le petit
+kangourou dans la poche ; La girafe au long cou ; Le ver de terre jardinier ;
+L'araignée tisse sa toile ; Le caméléon change de couleur ; Le poulpe aux huit
+bras ; L'hirondelle part en voyage ; L'ours blanc sur la banquise. Les décors et
+petites bêtes communs sont dans le nouveau module `outils/illustrer/animaux.py`.
+Planches de toutes leurs illustrations revues dans Chromium (cadrage, nombre de
+pattes, étapes des cycles, cohérence des personnages d'une page à l'autre,
+exactitude des comportements décrits), textes mesurés dans la page
+d'impression en Lettre et en A4, livret et page par feuille : aucun
+débordement, le cadre illustré garde au moins 56,3 % de la page.
+`verifier-images.py` sans erreur et régénération complète identique pour les
+livres existants (162 livres, 2 570 pages, 2 208 SVG). Le cache hors ligne
+passe à `v17`.
 
 ## Parcours livre par livre
 

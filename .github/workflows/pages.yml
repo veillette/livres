@@ -41,7 +41,8 @@ jobs:
       - name: Préparer le site (sans les outils de dessin)
         run: |
           rsync -a ./ _site/ \
-            --exclude .git --exclude .github --exclude _site \
+            --exclude .git --exclude .github --exclude .claude --exclude _site \
+            --exclude AGENTS.md --exclude CLAUDE.md \
             --exclude __pycache__ --exclude outils/illustrer --exclude 'outils/*.py' --exclude 'outils/*.test.js'
 
       - uses: actions/configure-pages@v6

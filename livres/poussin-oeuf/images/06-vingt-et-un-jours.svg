@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+
+<rect x="0" y="0" width="800" height="800" fill="#fff4e6"/>
+<rect x="100" y="120" width="600" height="520" rx="20" fill="#ffffff" stroke="#ffc078" stroke-width="6"/>
+<rect x="100" y="120" width="600" height="80" rx="20" fill="#ff922b"/>
+<rect x="100" y="170" width="600" height="30" fill="#ff922b"/>
+<text x="400" y="180" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="48" text-anchor="middle" fill="#ffffff">21 jours</text>
+<rect x="120" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="153" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">1</text>
+<path d="M 136 270 L 168 298 M 168 270 L 136 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="203" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="236" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">2</text>
+<path d="M 219 270 L 251 298 M 251 270 L 219 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="286" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="319" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">3</text>
+<path d="M 302 270 L 334 298 M 334 270 L 302 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="369" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="402" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">4</text>
+<path d="M 385 270 L 417 298 M 417 270 L 385 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="452" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="485" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">5</text>
+<path d="M 468 270 L 500 298 M 500 270 L 468 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="535" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="568" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">6</text>
+<path d="M 551 270 L 583 298 M 583 270 L 551 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="618" y="220" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="651" y="250" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">7</text>
+<path d="M 634 270 L 666 298 M 666 270 L 634 298" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="120" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="153" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">8</text>
+<path d="M 136 390 L 168 418 M 168 390 L 136 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="203" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="236" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">9</text>
+<path d="M 219 390 L 251 418 M 251 390 L 219 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="286" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="319" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">10</text>
+<path d="M 302 390 L 334 418 M 334 390 L 302 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="369" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="402" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">11</text>
+<path d="M 385 390 L 417 418 M 417 390 L 385 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="452" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="485" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">12</text>
+<path d="M 468 390 L 500 418 M 500 390 L 468 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="535" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="568" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">13</text>
+<path d="M 551 390 L 583 418 M 583 390 L 551 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="618" y="340" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="651" y="370" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">14</text>
+<path d="M 634 390 L 666 418 M 666 390 L 634 418" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="120" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="153" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">15</text>
+<path d="M 136 510 L 168 538 M 168 510 L 136 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="203" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="236" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">16</text>
+<path d="M 219 510 L 251 538 M 251 510 L 219 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="286" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="319" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">17</text>
+<path d="M 302 510 L 334 538 M 334 510 L 302 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="369" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="402" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">18</text>
+<path d="M 385 510 L 417 538 M 417 510 L 385 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="452" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="485" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">19</text>
+<path d="M 468 510 L 500 538 M 500 510 L 468 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="535" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="568" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">20</text>
+<path d="M 551 510 L 583 538 M 583 510 L 551 538" fill="none" stroke="#adb5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="618" y="460" width="66" height="90" rx="8" fill="#fff4e6"/>
+<text x="651" y="490" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#e8590c">21</text>
+<g transform="translate(651 548) scale(0.7 0.7)"><ellipse cx="0" cy="-30" rx="44" ry="52" fill="#fff3bf" opacity="0.7"/><ellipse cx="0" cy="-30" rx="24" ry="32" fill="#fff9f0" stroke="#d8d3cc" stroke-width="2"/><ellipse cx="-8" cy="-42" rx="5" ry="9" fill="#fff" transform="rotate(-20 -8 -42)" opacity="0.7"/></g>
+<g transform="translate(650 760)"><line x1="-12" y1="-30" x2="-12" y2="-4" stroke="#f08c00" stroke-width="4" stroke-linecap="round"/><path d="M -21 0 L -12 -6 L -3 0" fill="none" stroke="#f08c00" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="-30" x2="12" y2="-4" stroke="#f08c00" stroke-width="4" stroke-linecap="round"/><path d="M 3 0 L 12 -6 L 21 0" fill="none" stroke="#f08c00" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><polygon points="38,-70 66,-86 62,-60" fill="#ccb351"/><ellipse cx="-50" cy="-88" rx="14" ry="30" fill="#d8be56" transform="rotate(-40 -50 -88)"/><ellipse cx="50" cy="-88" rx="14" ry="30" fill="#d8be56" transform="rotate(40 50 -88)"/><circle cx="0" cy="-68" r="44" fill="#ffe066"/><ellipse cx="0" cy="-52" rx="28" ry="26" fill="#fff9db"/><path d="M -6 -112 Q -2 -124 6 -118 Q 2 -126 12 -124" fill="none" stroke="#ccb351" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-26" cy="-70" rx="7" ry="4.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="26" cy="-70" rx="7" ry="4.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="-15" cy="-82" rx="5.5" ry="7.2" fill="#2b2b3a"/><circle cx="-13" cy="-85" r="1.9" fill="#fff"/><ellipse cx="15" cy="-82" rx="5.5" ry="7.2" fill="#2b2b3a"/><circle cx="17" cy="-85" r="1.9" fill="#fff"/><polygon points="-9,-70 9,-70 0,-80" fill="#ff922b"/><polygon points="-8,-66 8,-66 0,-54" fill="#f76707"/></g>
+</svg>
