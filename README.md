@@ -4,7 +4,7 @@ Un petit site pour créer des livres illustrés pour enfants, les **lire à l'é
 et les **imprimer sur des feuilles** pour en faire de vrais livres.
 
 - `index.html` : la bibliothèque, rangée par rayons (Sciences, Petites histoires,
-  Comptines, Princesses, fées et dragons, Fables, Contes traditionnels). Les boutons du haut
+  Fêtes, Comptines, Princesses, fées et dragons, Fables, Contes traditionnels). Les boutons du haut
   n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
   fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
@@ -176,7 +176,7 @@ outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (132 livres, 1 884 SVG) sont
+Les illustrations des livres du catalogue sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 
@@ -206,6 +206,9 @@ générées par un petit outil Python, sans aucune dépendance, dans
   avec ses variables `ID` et `IMAGES`. Les personnages et schémas propres à un
   seul livre y sont aussi dessinés : circuit de Zoé, poulies de Castor,
   balançoire de Basile, thermomètres de Tilou…
+- `livres_fetes.py` : textes et scènes des dix livres de fêtes ;
+  `fetes.py` dessine leurs illustrations et `creer_livres_fetes.py` recrée leurs
+  fichiers `livre.js` et modules d'illustration.
 
 ```sh
 python3 outils/illustrer/generer.py               # tous les livres
