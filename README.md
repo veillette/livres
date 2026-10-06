@@ -172,6 +172,8 @@ outils/verifier-images.py   vérification des livres et des images (non publiée
 outils/imposition.test.js   tests de l'ordre des pages du livret (non publiés)
 outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
+AGENTS.md, CLAUDE.md        consignes pour les agents de code (non publiées)
+.claude/skills/nouveau-livre/   compétence « créer un livre » + planche.js (non publiées)
 ```
 
 ## Dessiner les illustrations
