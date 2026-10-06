@@ -15,7 +15,8 @@ Pour plusieurs livres, faire les étapes 1 à 5 pour chacun, puis les étapes 6
 ## 1. Cadrer le livre
 
 - **Rayon** : un identifiant de `RAYONS` en bas de `livres/catalogue.js`
-  (`sciences`, `histoires`, `comptines`, `feerie`, `fables`, `contes`). En
+  (`sciences`, `animaux`, `histoires`, `comptines`, `feerie`, `fables`,
+  `contes`). En
   ajouter un seulement si on le demande.
 - **Identifiant** : court, minuscules, chiffres et tirets, unique dans
   `livres/` (ex. `ours-gateau`, `lina-aimant`). Le script de dessin
@@ -112,7 +113,10 @@ IMAGES = [
     `sorciere`), dragon, licorne, château, océan, fées ;
   - `contes.py`, `fables.py`, `sciences.py` : personnages et outils de leur
     rayon (`sciences.py` respecte la physique : l'utiliser plutôt que de
-    refaire ombres, phases de Lune, arcs-en-ciel, champs, ondes).
+    refaire ombres, phases de Lune, arcs-en-ciel, champs, ondes) ;
+  - `animaux.py` : décors et petites bêtes des documentaires animaliers
+    (savane, banquise, mare, coupe du sol, plage, mouche, abeille, ver…),
+    `loupe` et schéma en `cycle`.
 - Ce qui ne sert qu'à ce livre se dessine dans son propre script. Ne modifier
   un module partagé que par **ajout** (nouvelle fonction ou nouveau paramètre
   avec valeur par défaut) pour ne changer aucun SVG existant.

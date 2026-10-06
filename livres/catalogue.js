@@ -135,6 +135,26 @@ window.CATALOGUE = [
   "les-fees",
   "petite-marmite",
   "lievre-herisson",
+  "grenouille-tetard",
+  "chenille-papillon",
+  "abeille-miel",
+  "manchot-empereur",
+  "ecureuil-cachettes",
+  "marmotte-hiver",
+  "baleine-bosse",
+  "chauve-souris-nuit",
+  "chouette-effraie",
+  "poussin-oeuf",
+  "elephant-famille",
+  "tortue-mer",
+  "kangourou-poche",
+  "girafe-cou",
+  "ver-de-terre",
+  "araignee-toile",
+  "cameleon-couleurs",
+  "poulpe-malin",
+  "hirondelle-voyage",
+  "ours-blanc",
 ];
 
 /*
@@ -144,6 +164,7 @@ window.CATALOGUE = [
  */
 window.RAYONS = [
   { id: "sciences", nom: "Sciences", icone: "🔬", description: "Comprendre le monde en s'amusant : lumière, sons, forces, eau, électricité…" },
+  { id: "animaux", nom: "Les animaux", icone: "🐾", description: "Comment vivent les animaux : naître, grandir, manger, se cacher, dormir, voyager…" },
   { id: "histoires", nom: "Petites histoires", icone: "🧸", description: "Des histoires du quotidien pour grandir : patience, partage, colère, sommeil…" },
   { id: "comptines", nom: "Comptines", icone: "🎵", description: "Pour compter, nommer et jouer avec les mots." },
   { id: "feerie", nom: "Princesses, fées et dragons", icone: "🧚", description: "Princesses, sirènes, fées, héroïnes, licornes, dragons et sorcières d'aujourd'hui." },
