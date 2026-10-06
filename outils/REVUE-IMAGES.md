@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **152 livres, 2 470 pages et
-2 128 illustrations SVG** (cache hors ligne `v16`).
+Catalogue actuel, après les ajouts d'octobre : **162 livres, 2 570 pages et
+2 208 illustrations SVG** (cache hors ligne `v17`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -72,8 +72,9 @@ cache hors ligne passe à `v15`.
 
 ## Ajout du 6 octobre 2026
 
-Vingt documentaires dans un nouveau rayon « Les animaux » (152 livres au
-catalogue) : Du têtard à la grenouille ; La chenille qui devient papillon ;
+Vingt documentaires dans un nouveau rayon « Les animaux », réunis aux dix
+livres de fêtes déjà sur `main` (162 livres au catalogue) : Du têtard à la
+grenouille ; La chenille qui devient papillon ;
 Bzzz ! La ruche des abeilles ; Papa manchot et son œuf ; L'écureuil et ses
 cachettes ; La marmotte dort tout l'hiver ; La baleine qui chante ; La
 chauve-souris voit avec ses oreilles ; La chouette qui vole sans bruit ; Le
@@ -88,8 +89,8 @@ exactitude des comportements décrits), textes mesurés dans la page
 d'impression en Lettre et en A4, livret et page par feuille : aucun
 débordement, le cadre illustré garde au moins 56,3 % de la page.
 `verifier-images.py` sans erreur et régénération complète identique pour les
-livres existants (152 livres, 2 470 pages, 2 128 SVG). Le cache hors ligne
-passe à `v16`.
+livres existants (162 livres, 2 570 pages, 2 208 SVG). Le cache hors ligne
+passe à `v17`.
 
 ## Parcours livre par livre
 

@@ -182,7 +182,7 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (`"v15"` → `"v16"`), une seule fois
+- `sw.js` : augmenter `VERSION` d'un cran (`"v17"` → `"v18"`), une seule fois
   par lot de livres.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux
   (livres, pages, SVG) :
