@@ -60,8 +60,8 @@ def jardin(S, y=640, graine=1):
 
 
 def grand_arbre(x, y, s=1.0, ballon=False):
-    m = [rect(-30, -330, 60, 330, "#8d5524", rx=12),
-         cercle(0, -400, 150, "#51cf66"), cercle(-120, -330, 90, "#40c057"), cercle(120, -330, 90, "#40c057")]
+    m = [ombre_sol(6, 0, 74, 11, 0.18), tronc(-30, -330, 60, 330),
+         feuillage([(0, -400, 150, "#51cf66"), (-120, -330, 90, "#40c057"), (120, -330, 90, "#40c057")])]
     if ballon:
         m.append(ballon_jeu(70, -380, 34, "#fa5252", "#ffd43b"))
     return place(m, x, y, s)

@@ -114,11 +114,14 @@ def maison_chantier(x, y, s=1.0, etape=1):
         m.append(rect(-150, -170, 90, 80, "#343a40") if etape < 4 else rect(-150, -170, 90, 80, "#a5d8ff", stroke="#fff", stroke_width=6))
         m.append(rect(40, -170, 90, 80, "#343a40") if etape < 4 else rect(40, -170, 90, 80, "#a5d8ff", stroke="#fff", stroke_width=6))
     if etape >= 3:
-        m.append(poly([(-230, -234), (0, -380), (230, -234)], "#c68642"))
+        m.append(ombre_avancee(-200, -234, 400, 24, 0.25))
+        m.append(poly([(-230, -234), (0, -380), (230, -234)], cylindre("#c68642", 0.2, 0.75)))
+        m.append(planches(-230, -380, 460, 146, "#c68642", poly([(-230, -234), (0, -380), (230, -234)], "#000"), larg=40))
         for r in range(6 if etape >= 4 else 3):
             yy = -244 - r * 22
             demi = 220 - r * 33
-            m.append(rect(-demi, yy, 2 * demi, 20, "#c92a2a", rx=4))
+            m.append(rect(-demi, yy, 2 * demi, 20, lineaire([(0, "#e85050"), (1, "#a61e1e")]), rx=4))
+            m.append(rect(-demi, yy + 18, 2 * demi, 4, "#000", opacity=0.2, rx=2))
     if etape >= 4:
         m.append(rect(-200, -234, 400, 234, "#ffe8cc", opacity=0.0))
         m.append(rect(-30, -110, 60, 110, "#1c7ed6", rx=4))

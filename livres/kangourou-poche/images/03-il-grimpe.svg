@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-
+<defs><linearGradient id="vola10e909" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd1d1"/><stop offset="0.5" stop-color="#ffc9c9"/><stop offset="1" stop-color="#d6a8a8"/></linearGradient><linearGradient id="volcada1fd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#df6535"/><stop offset="0.5" stop-color="#d9480f"/><stop offset="1" stop-color="#b63c0c"/></linearGradient><linearGradient id="volcf6b154" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ca9c6d"/><stop offset="0.5" stop-color="#c08a52"/><stop offset="1" stop-color="#a17344"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="#f3d9b1"/>
 <line x1="188.8" y1="82.5" x2="206.8" y2="108.5" stroke="#e8b98a" stroke-width="4" stroke-linecap="round"/>
 <line x1="316.8" y1="124" x2="334.8" y2="150" stroke="#e8b98a" stroke-width="4" stroke-linecap="round"/>
@@ -82,9 +82,9 @@
 <line x1="523.8" y1="548.8" x2="541.8" y2="574.8" stroke="#e8b98a" stroke-width="4" stroke-linecap="round"/>
 <line x1="214.6" y1="738.2" x2="232.6" y2="764.2" stroke="#e8b98a" stroke-width="4" stroke-linecap="round"/>
 <rect x="0" y="0" width="800" height="220" fill="#e8b98a"/>
-<path d="M 0 220 Q 400 300 800 220 L 800 260 Q 400 340 0 260 Z" fill="#c08a52"/>
+<path d="M 0 220 Q 400 300 800 220 L 800 260 Q 400 340 0 260 Z" fill="url(#volcf6b154)"/>
 <path d="M 360 760 Q 300 600 380 470 Q 430 380 400 300" fill="none" stroke="#d9480f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="14 12"/>
-<g transform="translate(395 330) rotate(-10) scale(2.2 2.2)"><ellipse cx="0" cy="0" rx="20" ry="34" fill="#ffc9c9"/><circle cx="4" cy="-36" r="16" fill="#ffc9c9"/><ellipse cx="16" cy="-34" rx="8" ry="6" fill="#ffc9c9"/><path d="M 6 -40 q 4 3 8 0" fill="none" stroke="#c2255c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M -10 -10 Q -26 -14 -30 -4 M 12 -10 Q 26 -18 30 -10" fill="none" stroke="#ffa8a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M -6 28 Q -14 40 -20 44 M 8 28 Q 12 40 18 44" fill="none" stroke="#ffa8a8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g><line x1="400" y1="300" x2="400" y2="267.6" stroke="#d9480f" stroke-width="6" stroke-linecap="round"/><polygon points="400,250 409.6,269.8 390.4,269.8" fill="#d9480f" stroke="#d9480f" stroke-width="3" stroke-linejoin="round"/></g>
+<g transform="translate(395 330) rotate(-10) scale(2.2 2.2)"><ellipse cx="0" cy="0" rx="20" ry="34" fill="url(#vola10e909)"/><circle cx="4" cy="-36" r="16" fill="url(#vola10e909)"/><ellipse cx="16" cy="-34" rx="8" ry="6" fill="url(#vola10e909)"/><path d="M 6 -40 q 4 3 8 0" fill="none" stroke="#c2255c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M -10 -10 Q -26 -14 -30 -4 M 12 -10 Q 26 -18 30 -10" fill="none" stroke="#ffa8a8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M -6 28 Q -14 40 -20 44 M 8 28 Q 12 40 18 44" fill="none" stroke="#ffa8a8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g><line x1="400" y1="300" x2="400" y2="267.6" stroke="#d9480f" stroke-width="6" stroke-linecap="round"/><polygon points="400,250 409.6,269.8 390.4,269.8" fill="url(#volcada1fd)" stroke="#d9480f" stroke-width="3" stroke-linejoin="round"/></g>
 <text x="600" y="560" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#d9480f" stroke="#fff" stroke-width="6.3" stroke-linejoin="round" paint-order="stroke">Grimpe, grimpe…</text>
 </svg>

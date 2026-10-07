@@ -14,14 +14,9 @@ def foret(S, ciel_haut="#a5d8ff", ciel_bas="#e7f5ff"):
 
 def grand_arbre(S, x=620, branche_y=330, branche_x=300):
     """Tronc à droite et longue branche horizontale vers la gauche."""
-    S.add(rect(x - 45, 0, 90, 700, "#8d5524"))
-    S.add(chemin(f"M {x - 40} {branche_y + 26} Q {(x + branche_x) / 2} {branche_y + 10} {branche_x} {branche_y + 4} L {branche_x} {branche_y + 26} Q {(x + branche_x) / 2} {branche_y + 40} {x - 40} {branche_y + 56} Z", "#8d5524"))
-    for fx, fy, r in [(x - 20, 60, 130), (x + 110, 130, 110), (x - 170, 120, 90), (x + 60, -10, 120), (branche_x + 10, branche_y - 20, 50)]:
-        S.add(cercle(fx, fy, r, "#40c057"))
-    for fx, fy, r in [(x - 90, 170, 60), (x + 60, 230, 70)]:
-        S.add(cercle(fx, fy, r, "#51cf66"))
-    S.add(chemin(f"M {x - 30} 500 Q {x - 20} 580 {x - 30} 690", stroke="#6d4424", sw=4))
-    S.add(ellipse(x, 700, 90, 14, "#6d4424", opacity=0.4))
+    arbre_branche(S, x, branche_y, branche_x, 90,
+                  [(x - 20, 60, 130), (x + 110, 130, 110), (x - 170, 120, 90), (x + 60, -10, 120), (branche_x + 10, branche_y - 20, 50)],
+                  [(x - 90, 170, 60, "#51cf66"), (x + 60, 230, 70, "#51cf66")])
 
 
 def scene_arbre(S, **k):

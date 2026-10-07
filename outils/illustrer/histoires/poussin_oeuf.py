@@ -104,9 +104,17 @@ def basse_cour(S, y=560, interieur_=False):
             S.add(trait(px - 16, py, px + 16, py + r.uniform(-6, 6), "#e9c46a", 3))
         return
     ciel(S, "#a5d8ff", "#fff9db")
-    S.add(place([rect(-160, -220, 320, 220, "#c92a2a"), poly([(-190, -220), (190, -220), (0, -340)], "#862e2e"),
-                 rect(-50, -140, 100, 140, "#862e2e"), rect(-46, -136, 92, 136, "#f8f9fa", opacity=0.15)], 620, y))
-    S.add(rect(0, y, 800, 800 - y, "#d8c27a"))
+    toit = [(-190, -220), (190, -220), (0, -340)]
+    S.add(place([ombre_sol(14, 0, 200, 16, 0.16),
+                 rect(-160, -220, 320, 220, cylindre("#c92a2a", 0.2, 0.75)), planches(-160, -220, 320, 220, "#c92a2a", larg=20),
+                 ombre_avancee(-160, -218, 320, 24, 0.26),
+                 poly(toit, lineaire([(0, "#b03a3a"), (0.5, "#862e2e"), (1, "#5c1e1e")], 0, 0, 1, 1)),
+                 tuiles(-190, -340, 380, 120, "#862e2e", poly(toit, "#000"), pas_=18),
+                 chemin("M -190 -220 L 0 -340 L 190 -220", stroke="#f8f9fa", sw=7),
+                 rect(-58, -148, 116, 148, "#f8f9fa"),
+                 rect(-50, -140, 100, 140, radial([(0, "#5c1e1e"), (1, "#2b0d0d")], cy=0.8)),
+                 rect(-46, -136, 92, 136, "#f8f9fa", opacity=0.15)], 620, y))
+    S.add(rect(0, y, 800, 800 - y, terrain("#d8c27a")))
     S.add(barriere(170, y + 10, 1.0, largeur=360))
 
 

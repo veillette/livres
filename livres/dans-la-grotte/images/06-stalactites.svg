@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><radialGradient id="d46"><stop offset="0" stop-color="#ffe8a3"/><stop offset="1" stop-color="#2b223800"/></radialGradient></defs>
+<defs><radialGradient id="d49"><stop offset="0" stop-color="#ffe8a3"/><stop offset="1" stop-color="#2b223800"/></radialGradient><linearGradient id="vol00bcb8b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b3deff"/><stop offset="0.5" stop-color="#a5d8ff"/><stop offset="1" stop-color="#8ab5d6"/></linearGradient><linearGradient id="vol17098a2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dfcfbc"/><stop offset="0.5" stop-color="#d9c7b0"/><stop offset="1" stop-color="#b6a793"/></linearGradient><linearGradient id="vol2d72086" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d5c3ad"/><stop offset="0.5" stop-color="#cdb89e"/><stop offset="1" stop-color="#ac9a84"/></linearGradient><linearGradient id="vol9430fbc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#665a76"/><stop offset="0.5" stop-color="#4a3b5c"/><stop offset="1" stop-color="#3e314d"/></linearGradient><linearGradient id="volc7c1f95" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#78678a"/><stop offset="0.5" stop-color="#5f4b74"/><stop offset="1" stop-color="#4f3f61"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="#2b2238"/>
-<circle cx="400" cy="420" r="460" fill="url(#d46)"/>
-<path d="M 0 0 L 800 0 L 800 120 Q 750 187.6 700 132.9 Q 650 169.1 600 110.5 Q 550 140 500 126.5 Q 450 168.2 400 130.4 Q 350 162.4 300 130.8 Q 250 156.4 200 132.1 Q 150 183.8 100 116.6 Q 50 172.3 0 127.3 Z" fill="#4a3b5c"/>
-<path d="M 0 700 Q 200 670 400 700 T 800 690 L 800 800 L 0 800 Z" fill="#5f4b74"/>
-<polygon points="125,140 175,140 150,400" fill="#d9c7b0"/>
-<polygon points="280,140 320,140 300,340" fill="#d9c7b0"/>
-<polygon points="442,140 498,140 470,440" fill="#d9c7b0"/>
-<polygon points="600,140 640,140 620,320" fill="#d9c7b0"/>
-<path d="M 115.0 720 Q 132.5 600.0 150 520 Q 167.5 600.0 185.0 720 Z" fill="#cdb89e"/>
-<path d="M 270.0 720 Q 285.0 630.0 300 570 Q 315.0 630.0 330.0 720 Z" fill="#cdb89e"/>
-<path d="M 430.0 720 Q 450.0 636.0 470 580 Q 490.0 636.0 510.0 720 Z" fill="#cdb89e"/>
-<path d="M 585.0 720 Q 602.5 582.0 620 490 Q 637.5 582.0 655.0 720 Z" fill="#cdb89e"/>
-<g transform="translate(470 470) scale(1.4 1.4)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#a5d8ff"/></g>
-<g transform="translate(300 380) scale(1.1 1.1)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#a5d8ff"/></g>
+<circle cx="400" cy="420" r="460" fill="url(#d49)"/>
+<path d="M 0 0 L 800 0 L 800 120 Q 750 187.6 700 132.9 Q 650 169.1 600 110.5 Q 550 140 500 126.5 Q 450 168.2 400 130.4 Q 350 162.4 300 130.8 Q 250 156.4 200 132.1 Q 150 183.8 100 116.6 Q 50 172.3 0 127.3 Z" fill="url(#vol9430fbc)"/>
+<path d="M 0 700 Q 200 670 400 700 T 800 690 L 800 800 L 0 800 Z" fill="url(#volc7c1f95)"/>
+<polygon points="125,140 175,140 150,400" fill="url(#vol17098a2)"/>
+<polygon points="280,140 320,140 300,340" fill="url(#vol17098a2)"/>
+<polygon points="442,140 498,140 470,440" fill="url(#vol17098a2)"/>
+<polygon points="600,140 640,140 620,320" fill="url(#vol17098a2)"/>
+<path d="M 115.0 720 Q 132.5 600.0 150 520 Q 167.5 600.0 185.0 720 Z" fill="url(#vol2d72086)"/>
+<path d="M 270.0 720 Q 285.0 630.0 300 570 Q 315.0 630.0 330.0 720 Z" fill="url(#vol2d72086)"/>
+<path d="M 430.0 720 Q 450.0 636.0 470 580 Q 490.0 636.0 510.0 720 Z" fill="url(#vol2d72086)"/>
+<path d="M 585.0 720 Q 602.5 582.0 620 490 Q 637.5 582.0 655.0 720 Z" fill="url(#vol2d72086)"/>
+<g transform="translate(470 470) scale(1.4 1.4)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="url(#vol00bcb8b)"/></g>
+<g transform="translate(300 380) scale(1.1 1.1)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="url(#vol00bcb8b)"/></g>
 <text x="200" y="120" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#ffe066" stroke="#2b2238" stroke-width="4.9" stroke-linejoin="round" paint-order="stroke">stalactite</text>
 <text x="620" y="780" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#ffe066" stroke="#2b2238" stroke-width="4.9" stroke-linejoin="round" paint-order="stroke">stalagmite</text>
 <text x="470" y="560" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#a5d8ff" stroke="#2b2238" stroke-width="6.3" stroke-linejoin="round" paint-order="stroke">ploc…</text>

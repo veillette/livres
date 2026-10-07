@@ -59,8 +59,9 @@ def foret_sombre(S, graine=1, sombre=False):
 
 
 def grand_arbre(x, y, s=1.0):
-    m = [rect(-34, -480, 68, 480, "#8d5524", rx=12), chemin("M 0 -300 Q -90 -320 -170 -360", stroke="#8d5524", sw=26),
-         cercle(0, -500, 150, "#2f9e44"), cercle(-130, -420, 90, "#37b24d"), cercle(130, -420, 90, "#37b24d")]
+    m = [ombre_sol(6, 0, 80, 11, 0.18), tronc(-34, -480, 68, 480), chemin("M 0 -300 Q -90 -320 -170 -360", stroke="#8d5524", sw=26),
+         chemin("M 0 -306 Q -90 -326 -170 -366", stroke="#b5835a", sw=6, opacity=0.6),
+         feuillage([(0, -500, 150, "#2f9e44"), (-130, -420, 90, "#37b24d"), (130, -420, 90, "#37b24d")])]
     return place(m, x, y, s)
 
 

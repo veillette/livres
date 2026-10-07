@@ -35,11 +35,20 @@ def petit_coeur(x, y, s=1.0):
 def ecole(S):
     ciel(S, "#a5d8ff", "#fff9db")
     S.add(soleil(700, 90, 40))
-    S.add(rect(80, 180, 640, 420, "#ffe8cc"), poly([(60, 190), (400, 70), (740, 190)], "#e8590c"))
+    toit = [(60, 190), (400, 70), (740, 190)]
+    S.add(ombre_sol(410, 600, 360, 16, 0.16))
+    S.add(rect(80, 180, 640, 420, cylindre("#ffe8cc", 0.2, 0.86)), briques(80, 180, 640, 420, "#ffe8cc", hb=22, lb=50))
+    S.add(rect(80, 180, 16, 420, "#fff4e6"), rect(704, 180, 16, 420, "#e8cfae"))
+    S.add(rect(72, 570, 656, 30, cylindre("#ced4da", 0.3, 0.75), rx=2))
+    S.add(ombre_avancee(80, 186, 640, 30, 0.25))
+    S.add(poly(toit, lineaire([(0, "#ff8a3d"), (0.5, "#e8590c"), (1, "#a63d00")], 0, 0, 1, 1)), tuiles(60, 70, 680, 120, "#e8590c", poly(toit, "#000"), pas_=20))
+    S.add(chemin("M 60 190 L 400 70 L 740 190", stroke="#8a3200", sw=7), rect(52, 186, 696, 10, "#8a3200", rx=4))
+    S.add(rect(316, 386, 168, 214, "#f1f3f5", rx=10), rect(322, 590, 156, 10, "#adb5bd", rx=2))
     S.add(rect(300, 200, 200, 60, "#fff", rx=10), texte(400, 245, "ÉCOLE", 42, "#e8590c"))
     for x in (130, 560):
         S.add(fenetre(x, 300, 110, 100, "#d0ebff"))
-    S.add(rect(330, 400, 140, 200, "#4dabf7", rx=8), cercle(445, 500, 8, "#ffd43b"))
+    S.add(rect(330, 400, 140, 200, cylindre("#4dabf7", 0.25, 0.72), rx=8), cercle(445, 500, 8, volume("#ffd43b", 0.6, 0.7)))
+    S.add(trait(400, 400, 400, 590, "#1c7ed6", 3), rect(345, 420, 40, 60, "#d0ebff", rx=4), rect(415, 420, 40, 60, "#d0ebff", rx=4))
     sol(S, 600, "#ced4da", bosse=0)
     S.add(barriere(130, 650, 1.0, "#74c0fc", 220), barriere(670, 650, 1.0, "#74c0fc", 220))
 

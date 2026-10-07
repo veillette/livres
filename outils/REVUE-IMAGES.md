@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v20`).
+2 492 illustrations SVG** (cache hors ligne `v22`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -311,3 +311,37 @@ Chaque livre bénéficie des corrections communes de cadrage et de précision SV
 ## Reprendre une revue
 
 Ouvrir [la revue interactive](revue-images.html), choisir un livre, puis passer des illustrations originales aux pages du livre. Chaque image propose son texte, sa description et un lien vers le SVG original. Le validateur (`python3 outils/verifier-images.py`) inclut aussi les livres présents dans `livres/` qui ne figurent pas encore au catalogue.
+
+## Relief des illustrations (7 octobre 2026)
+
+Aucun livre ajouté (185 livres, 2 900 pages, 2 492 SVG) : les outils partagés
+dessinent désormais en volume, donc presque toutes les illustrations sont
+régénérées. Dégradés partagés (`lineaire`, `radial`, `volume`, `cylindre`),
+ombres douces en dégradé, reflets ; paysages sur trois plans (chaîne lointaine
+fondue dans le ciel, collines avec brume à leur pied, sol plus sombre et
+texturé devant), savane, mare, plage et banquise aussi ; maisons, immeubles
+de ville et châteaux détaillés (tuiles, bardage ou pierres, linteaux, appuis,
+ombre sous les avancées) ; montagnes avec versant à l'ombre ; intérieurs avec
+parquet en perspective et pénombre des coins. Personnages : corps et tête en
+relief, vue de trois quarts quand ils regardent de côté, corps penché pour
+courir, marcher, danser ou tirer. Planches revues dans Chromium (échantillon
+aléatoire de tous les rayons, scènes d'intérieur, de nuit et de conte).
+`verifier-images.py` sans erreur. Le cache hors ligne passe à `v21`.
+
+## Relief des dessins propres à chaque livre (7 octobre 2026)
+
+Aucun livre ajouté (185 livres, 2 900 pages, 2 492 SVG). Modelé automatique
+des aplats de tous les dessins des livres (léger dégradé, lumière en haut à
+gauche) ; restent plats les formes semi-transparentes, les masques, les
+formes de la couleur du fond (fausses découpes) et les astres éclairés des
+livres de sciences (phases de la Lune, planètes, sphères : `sans_relief()`).
+Reprise à la main des décors les plus visibles : maisons de paille, de bois
+et de briques des trois petits cochons ; maison en pain d'épice ; chaumière
+de la chèvre ; grange et poulailler ; niche ; cabane perchée de Capucine ;
+caserne des pompiers ; maison du chantier ; école de Bambou ; grands arbres
+du coq, du corbeau, du pinson, des ours et de Lunettes ; arbres sombres de
+la forêt des contes ; pont de bois et tronc sur le torrent (rochers à
+fissures). Les 185 couvertures et 120 pages tirées au hasard ont été revues
+dans Chromium : aucune fausse découpe devenue visible. Régénération
+déterministe (identique livre par livre et pour l'ensemble),
+`verifier-images.py` sans erreur. Le cache hors ligne passe à `v22`.

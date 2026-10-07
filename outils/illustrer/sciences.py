@@ -92,7 +92,7 @@ def lune_phase(x, y, r, eclairee=1.0, croissante=True, clair="#fff3bf", sombre=N
               cercle(r * .38, -r * .38, r * .09, "#e9d8a6"), cercle(-r * .2, r * .42, r * .1, "#e9d8a6"),
               cercle(r * .05, r * .02, r * .08, "#e9d8a6")]
         m.append(g(cr, clip_path=f"url(#{cid})", opacity=0.7))
-    return place(m, x, y, 1, flip=not croissante)
+    return sans_relief(place(m, x, y, 1, flip=not croissante))
 
 
 def boule_eclairee(x, y, r, couleur, ombre_couleur="#000", lumiere_depuis=180, opacity=0.55, **a):
@@ -105,7 +105,7 @@ def boule_eclairee(x, y, r, couleur, ombre_couleur="#000", lumiere_depuis=180, o
     m.append(el("clipPath", cercle(0, 0, r, "#000"), id=cid))
     m.append(g(rect(0, -r - 2, r + 2, 2 * r + 4, ombre_couleur, opacity=opacity), clip_path=f"url(#{cid})",
                transform=f"rotate({n(lumiere_depuis + 180)})"))
-    return place(m, x, y)
+    return sans_relief(place(m, x, y))
 
 
 # ---------------------------------------------------------------------------
@@ -705,4 +705,4 @@ def planete(S, x, y, r, couleurs, bandes=None, lumiere=180, ombre_op=0.5, anneau
     corps.append(cercle(-r * 0.35, -r * 0.35, r * 0.5, "#fff", opacity=0.08))
     m.append(g(corps, clip_path=f"url(#{cid})"))
     m += avant
-    return place(m, x, y)
+    return sans_relief(place(m, x, y))

@@ -88,10 +88,14 @@ def acacia(x, y, s=1.0, feuillage="#82c91e", feuillage2="#74b816", tronc="#7c4a1
 def savane(S, y=560, haut="#74c0fc", bas="#fff3bf", sol_c="#f4d58d", graine=2, arbres=True):
     """Savane africaine : ciel chaud, herbe sèche, acacias au loin."""
     S.add(rect(0, 0, S.w, S.h, S.degrade([haut, bas])))
-    S.add(chemin(f"M 0 {y - 40} Q 180 {y - 90} 360 {y - 50} T 800 {y - 60} L 800 {y + 10} L 0 {y + 10} Z", "#e9d8a6"))
+    # trois plans : collines lointaines fondues dans la brume, plaine, sol
+    S.add(chemin(f"M 0 {y - 70} Q 120 {y - 150} 260 {y - 96} Q 420 {y - 40} 560 {y - 120} Q 680 {y - 170} 800 {y - 90} L 800 {y} L 0 {y} Z",
+                 melange("#e9d8a6", bas, 0.5), opacity=0.7))
+    S.add(chemin(f"M 0 {y - 40} Q 180 {y - 90} 360 {y - 50} T 800 {y - 60} L 800 {y + 10} L 0 {y + 10} Z", terrain("#e9d8a6")))
     if arbres:
         S.add(acacia(130, y - 20, 0.45), acacia(660, y - 30, 0.55))
-    S.add(chemin(f"M 0 {y} Q 200 {y - 18} 400 {y} T 800 {y - 6} L 800 800 L 0 800 Z", sol_c))
+    S.add(chemin(f"M 0 {y} Q 200 {y - 18} 400 {y} T 800 {y - 6} L 800 800 L 0 800 Z", terrain(sol_c)))
+    S.add(chemin(f"M 0 {y} Q 200 {y - 18} 400 {y} T 800 {y - 6}", stroke=eclaircir(sol_c, 0.45), sw=4, opacity=0.6))
     r = random.Random(graine)
     for _ in range(28):
         x, yy = r.uniform(10, 790), r.uniform(y + 20, 790)
@@ -107,13 +111,15 @@ def banquise(S, y=520, haut="#a5d8ff", bas="#e7f5ff", mer=True, nuit_=False, gra
     else:
         S.add(rect(0, 0, S.w, S.h, S.degrade([haut, bas])))
     glace_loin = "#d0ebff" if not nuit_ else "#748ffc"
-    S.add(poly([(-20, y - 40), (90, y - 130), (200, y - 40)], glace_loin),
-          poly([(520, y - 40), (650, y - 150), (820, y - 40)], glace_loin))
+    S.add(pic(-20, y - 40, 90, y - 130, 200, y - 40, glace_loin, False),
+          pic(520, y - 40, 650, y - 150, 820, y - 40, glace_loin, False))
     if mer:
-        S.add(rect(0, y - 44, 800, 60, "#1c7ed6" if not nuit_ else "#1b2a5c"))
+        mer_c = "#1c7ed6" if not nuit_ else "#1b2a5c"
+        S.add(rect(0, y - 44, 800, 60, lineaire([eclaircir(mer_c, 0.3), mer_c, _assombrir(mer_c, 0.8)])))
     blanc = "#f8f9fa" if not nuit_ else "#bac8ff"
     ombre_ = "#d0ebff" if not nuit_ else "#91a7ff"
-    S.add(chemin(f"M 0 {y} Q 200 {y - 14} 400 {y} T 800 {y - 4} L 800 800 L 0 800 Z", blanc))
+    S.add(chemin(f"M 0 {y} Q 200 {y - 14} 400 {y} T 800 {y - 4} L 800 800 L 0 800 Z", lineaire([(0, blanc), (0.5, blanc), (1, ombre_)])))
+    S.add(chemin(f"M 0 {y} Q 200 {y - 14} 400 {y} T 800 {y - 4}", stroke="#ffffff", sw=5, opacity=0.8))
     r = random.Random(graine)
     for _ in range(6):
         x, yy = r.uniform(40, 760), r.uniform(y + 60, 780)
@@ -131,9 +137,11 @@ def roseau(x, y, s=1.0, h=220, couleur="#5c940d", epi="#7c4a1e", rot=0):
 def mare(S, y=500, graine=1, nenuphars=True):
     """Mare vue de la berge : ciel, herbe, eau, roseaux et nénuphars."""
     ciel(S, "#74c0fc", "#e7f5ff")
-    S.add(chemin(f"M 0 {y - 60} Q 200 {y - 120} 400 {y - 70} T 800 {y - 80} L 800 {y + 20} L 0 {y + 20} Z", "#b2f2bb"))
-    S.add(rect(0, y - 10, 800, 810 - y, "#69db7c"))
-    S.add(ellipse(400, y + 190, 470, 190, "#4dabf7"))
+    S.add(chemin(f"M 0 {y - 100} Q 150 {y - 160} 330 {y - 110} Q 520 {y - 60} 800 {y - 130} L 800 {y} L 0 {y} Z", "#a5d8c0", opacity=0.45))
+    S.add(chemin(f"M 0 {y - 60} Q 200 {y - 120} 400 {y - 70} T 800 {y - 80} L 800 {y + 20} L 0 {y + 20} Z", terrain("#b2f2bb")))
+    S.add(rect(0, y - 10, 800, 810 - y, terrain("#69db7c")))
+    S.add(ellipse(400, y + 190, 470, 190, "#2f9e44", opacity=0.35))
+    S.add(ellipse(400, y + 190, 470, 184, radial([(0, "#74c0fc"), (0.7, "#4dabf7"), (1, "#339af0")], cy=0.4)))
     S.add(ellipse(400, y + 190, 440, 165, "#74c0fc", opacity=0.35))
     for k in range(5):
         S.add(chemin(f"M {150 + k * 120} {y + 90 + (k % 2) * 80} q 20 -10 40 0", stroke="#a5d8ff", sw=5))
@@ -215,13 +223,7 @@ def montagnes_fond(S, y=420, couleurs=("#b197fc", "#9775fa"), neige=True):
     pics = [(-60, y + 40, 150, y - 230, 360, y + 40), (220, y + 40, 470, y - 300, 720, y + 40),
             (560, y + 40, 760, y - 200, 940, y + 40)]
     for k, (x0, y0, xs, ys, x1, y1) in enumerate(pics):
-        S.add(poly([(x0, y0), (xs, ys), (x1, y1)], couleurs[k % 2]))
-        if neige:
-            h = (y0 - ys) * 0.28
-            fx = (xs - x0) * 0.28
-            fx2 = (x1 - xs) * 0.28
-            S.add(poly([(xs - fx, ys + h), (xs, ys), (xs + fx2, ys + h), (xs + fx2 * 0.4, ys + h * 0.8),
-                        (xs, ys + h * 1.05), (xs - fx * 0.5, ys + h * 0.8)], "#ffffff"))
+        S.add(pic(x0, y0, xs, ys, x1, y1, couleurs[k % 2], neige))
 
 
 def plage(S, y=470, haut="#74c0fc", bas="#e7f5ff", nuit_=False, sable_c="#f4d58d", lune_=None):
@@ -232,7 +234,8 @@ def plage(S, y=470, haut="#74c0fc", bas="#e7f5ff", nuit_=False, sable_c="#f4d58d
     else:
         S.add(rect(0, 0, S.w, S.h, S.degrade([haut, bas])))
     mer = "#1864ab" if nuit_ else "#339af0"
-    S.add(rect(0, y - 110, 800, 130, mer))
+    # la mer pâlit vers l'horizon (perspective atmosphérique)
+    S.add(rect(0, y - 110, 800, 130, lineaire([eclaircir(mer, 0.35), mer, _assombrir(mer, 0.85)])))
     if lune_:
         lx = lune_
         S.add(lune(lx, y - 300, 42))
@@ -240,7 +243,7 @@ def plage(S, y=470, haut="#74c0fc", bas="#e7f5ff", nuit_=False, sable_c="#f4d58d
             S.add(rect(lx - 50 + (k % 2) * 16, y - 100 + k * 18, 100 - k * 8, 6, "#fff3bf", rx=3, opacity=0.8 - k * 0.1))
     S.add(chemin(f"M 0 {y} Q 200 {y - 34} 400 {y - 10} T 800 {y - 20} L 800 800 L 0 800 Z", "#ffffff", opacity=0.75 if not nuit_ else 0.35))
     S.add(chemin(f"M 0 {y + 14} Q 200 {y - 20} 400 {y + 4} T 800 {y - 6} L 800 800 L 0 800 Z",
-                 sable_c if not nuit_ else "#a39470"))
+                 terrain(sable_c if not nuit_ else "#a39470")))
     r = random.Random(6)
     for _ in range(26):
         S.add(cercle(r.uniform(0, 800), r.uniform(y + 40, 790), r.uniform(2, 4), "#e0b85a" if not nuit_ else "#857a5c"))
