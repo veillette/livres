@@ -83,7 +83,7 @@ def p01():
 def p02():
     S = Scene()
     salon(S)
-    S.add(soeur(0, 190, 790, 1.2, expr="rire", bras="haut"), soeur(1, 380, 790, 1.2, expr="rire", bras="haut"))
+    S.add(soeur(0, 190, 790, 1.2, expr="rire", bras="saute"), soeur(1, 380, 790, 1.2, expr="rire", bras="saute"))
     S.add(place(g([rect(-50, -34, 100, 68, "#fff", stroke="#e9ecef", stroke_width=3), poly([(-50, -34), (0, 6), (50, -34)], "#f1f3f5"), cercle(0, 6, 10, "#c92a2a")]), 290, 330))
     S.add(cendrillon(620, 790, 1.2, expr="inquiet", bras="pense"))
     S.add(bulle(560, 140, 300, 90, "Et moi ?", 40, pointe=(610, 460)))

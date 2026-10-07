@@ -164,7 +164,7 @@ def p07():
     S.add(malo(270, 780, 1.4, expr="rire", bras="ouverts"))
     for sgn in (-1, 1):
         S.add(mouvement(270 + sgn * 150, 610, 1.0, rot=sgn * 20), mouvement(270 + sgn * 150, 640, 0.8, rot=-sgn * 20))
-    S.add(adam(570, 720, 1.3, expr="rire", bras="haut"))
+    S.add(adam(570, 720, 1.3, expr="rire", bras="saute"))
     S.add(trait(520, 760, 620, 760, "#adb5bd", 4, opacity=0.6))
     S.add(papillon(150, 300, 1.4), papillon(640, 260, 1.0, "#4dabf7", "#ffd43b", rot=20))
     return S

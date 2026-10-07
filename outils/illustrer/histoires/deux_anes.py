@@ -50,8 +50,8 @@ def cadichon(S, x, y, s=1.0, mouillees=False, ploie=False, **k):
 def chemin_campagne(S, graine=11, soir=False):
     ciel(S, "#ffc078" if soir else "#a5d8ff", "#fff4e6" if soir else "#e7f5ff")
     S.add(nuage(150, 110, 0.6), nuage(640, 150, 0.5))
-    S.add(moulin(680, 520, 0.6))
     collines(S, 580, "#b2f2bb", graine=graine)
+    S.add(moulin(680, 560, 0.6))
     sol(S, 600, "#8ce99a")
     S.add(chemin("M 0 700 Q 400 650 800 690 L 800 800 L 0 800 Z", "#f3d9a4"))
 

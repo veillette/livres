@@ -78,7 +78,7 @@ def p01():
     S.add(maison(600, 600, 1.0))
     S.add(barriere(200, 680, 1.0, largeur=380))
     S.add(ane(260, 760, 1.4, expr="sourire", bras="bas"))
-    S.add(bijou(480, 760, 0.85, expr="content", bras="haut"))
+    S.add(bijou(480, 760, 0.85, expr="content", bras="saute"))
     return S
 
 

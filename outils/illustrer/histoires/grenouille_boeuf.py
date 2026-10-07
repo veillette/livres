@@ -74,7 +74,7 @@ def p01():
     S = Scene()
     mare(S)
     S.add(nenuphar(300, 700, 1.4), nenuphar(560, 720, 1.0, "#ffc9d6"))
-    S.add(grenouille(300, 690, 1.3, expr="rire", bras="haut", pieds_haut=True))
+    S.add(grenouille(300, 690, 1.3, expr="rire", bras="saute", pieds_haut=True))
     S.add(texte(560, 330, "Croâ !", 64, "#2b8a3e", contour="#fff"))
     return S
 

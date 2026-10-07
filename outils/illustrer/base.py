@@ -310,14 +310,110 @@ def fond(S, couleur):
     S.add(rect(0, 0, S.w, S.h, couleur))
 
 
-def sol(S, y, couleur="#8ce99a", bosse=18, couleur2=None, y2=None):
+def sol(S, y, couleur="#8ce99a", bosse=18, couleur2=None, y2=None, premier=True):
+    """Sol de la scène ; `premier=False` retire les touffes, cailloux ou congères
+    du premier plan."""
     w = S.w
     S.add(chemin(f"M 0 {y} Q {w * 0.3} {y - bosse} {w / 2} {y} T {w} {y} L {w} {S.h} L 0 {S.h} Z", terrain(couleur)))
     relief_sol(S, f"M 0 {y} Q {w * 0.3} {y - bosse} {w / 2} {y} T {w} {y}", couleur, y + bosse + 12, S.h - 6, graine=int(y))
+    devant, haut = couleur, y
     if couleur2:
         y2 = y2 or y + 70
         S.add(chemin(f"M 0 {y2} Q {w * 0.4} {y2 - bosse} {w * 0.7} {y2} T {w + 200} {y2} L {w} {S.h} L 0 {S.h} Z", terrain(couleur2)))
         relief_sol(S, f"M 0 {y2} Q {w * 0.4} {y2 - bosse} {w * 0.7} {y2} T {w + 200} {y2}", couleur2, y2 + bosse + 12, S.h - 6, graine=int(y2) + 1)
+        devant, haut = couleur2, y2
+    if premier:
+        premier_plan_sol(S, devant, haut + bosse, graine=int(haut) + 3)
+
+
+# --- Teintes -------------------------------------------------------------------
+
+def _tsl(c):
+    """Couleur → (teinte 0-1, saturation, luminosité), ou None."""
+    rvb = _rvb(c)
+    if rvb is None:
+        return None
+    r, v, b = (x / 255 for x in rvb)
+    hi, lo = max(r, v, b), min(r, v, b)
+    l_ = (hi + lo) / 2
+    if hi == lo:
+        return 0.0, 0.0, l_
+    d = hi - lo
+    s_ = d / (2 - hi - lo) if l_ > 0.5 else d / (hi + lo)
+    if hi == r:
+        t = ((v - b) / d) % 6
+    elif hi == v:
+        t = (b - r) / d + 2
+    else:
+        t = (r - v) / d + 4
+    return t / 6, s_, l_
+
+
+def nature_sol(c):
+    """« herbe », « sable » (sable, terre, blé), « neige » ou None (route, pierre…)."""
+    tsl = _tsl(c)
+    if tsl is None:
+        return None
+    t, s_, l_ = tsl
+    if l_ > 0.9 and s_ < 0.6:
+        return "neige"
+    if s_ < 0.18:
+        return None
+    if 0.17 <= t <= 0.47:
+        return "herbe"
+    if 0.03 <= t < 0.17:
+        return "sable"
+    return None
+
+
+# --- Premier plan ----------------------------------------------------------------
+
+def touffe(x, y, s=1.0, couleur="#40c057", graine=1):
+    """Touffe d'herbe en relief : brins du fond plus sombres, brins de devant
+    éclairés à la pointe. (x, y) = pied de la touffe."""
+    r = random.Random(graine)
+    if _rvb(couleur) is None:
+        return place(herbe(0, 0, 1, couleur), x, y, s)
+    m = []
+    for rang, (nb, teinte) in enumerate(((4, _assombrir(couleur, 0.72)), (5, couleur))):
+        remp = lineaire([(0, eclaircir(teinte, 0.35 if rang else 0.12)), (1, _assombrir(teinte, 0.7))])
+        d = []
+        for k in range(nb):
+            a = -60 + 120 * (k + r.uniform(0.2, 0.8)) / nb
+            L = r.uniform(26, 44) * (0.85 if rang == 0 else 1)
+            bx = a * 0.18
+            px, py = bx + a * 0.32 + r.uniform(-4, 4), -L
+            d.append(f"M {n(bx - 4)} 0 Q {n(bx - 3 + a * 0.12)} {n(-L * 0.55)} {n(px)} {n(py)} Q {n(bx + 2 + a * 0.1)} {n(-L * 0.5)} {n(bx + 4)} 0 Z")
+        m.append(chemin(" ".join(d), remp))
+    return place(m, x, y, s)
+
+
+def premier_plan_sol(S, couleur, y_haut, graine=1):
+    """Détails du premier plan, plus grands et plus contrastés près du bas de
+    l'image : touffes d'herbe, cailloux sur le sable ou ombres de congères."""
+    nature = nature_sol(couleur)
+    if not nature or S.h - y_haut < 70:
+        return
+    r = random.Random(graine)
+    e = S.w / 800
+    y0 = max(y_haut + 30 * e, S.h - 110 * e)
+    nb = max(3, int(6 * e + 0.5))
+    m = []
+    for k in range(nb):
+        x = (k + r.uniform(0.15, 0.85)) * S.w / nb
+        yy = r.uniform(y0, S.h - 4 * e)
+        prof = (yy - y0) / max(S.h - y0, 1)
+        if nature == "herbe":
+            m.append(touffe(x, yy + 3 * e, e * (0.7 + 0.6 * prof), _assombrir(couleur, 0.8), graine=graine + k))
+        elif nature == "sable":
+            rx = e * r.uniform(9, 16) * (0.7 + 0.5 * prof)
+            m.append(ellipse(x + rx * 0.3, yy + rx * 0.25, rx * 1.1, rx * 0.35, "#000", opacity=0.12))
+            m.append(chemin(f"M {n(x - rx)} {n(yy)} Q {n(x - rx)} {n(yy - rx * 0.8)} {n(x)} {n(yy - rx * 0.75)} Q {n(x + rx)} {n(yy - rx * 0.7)} {n(x + rx)} {n(yy)} Z",
+                            volume(melange(couleur, "#868e96", 0.55), 0.45, 0.7)))
+        else:
+            L = e * r.uniform(50, 90) * (0.7 + 0.5 * prof)
+            m.append(chemin(f"M {n(x - L)} {n(yy)} Q {n(x)} {n(yy - L * 0.22)} {n(x + L)} {n(yy)}", stroke="#a5b4fc", sw=3 * e, opacity=0.45))
+    S.add(g(m))
 
 
 def terrain(c):
@@ -344,34 +440,119 @@ def relief_sol(S, crete, c, y0, y1, graine=1):
     S.add(chemin(" ".join(m), stroke=fonce, sw=2.5, opacity=0.35))
 
 
-def collines(S, y, couleur="#b2f2bb", graine=1, n_=3, hauteur=110):
+def lointain(S, y, couleur="#b2f2bb", hauteur=110, graine=1, opacite=0.4, voile="#a5b4c8"):
+    """Arrière-plan : une chaîne de collines lointaines, bleuie et à demi fondue
+    dans le ciel (perspective atmosphérique)."""
+    r2 = random.Random(graine)
+    w = S.w
+    d = [f"M -60 {n(y)} L -60 {n(y - hauteur * 0.55)}"]
+    x0 = -60
+    while x0 < w + 60:
+        pas_ = r2.uniform(170, 260)
+        hs, hb = y - hauteur * r2.uniform(1.9, 2.6), y - hauteur * r2.uniform(0.45, 0.7)
+        d.append(f"Q {n(x0 + pas_ / 2)} {n(hs)} {n(x0 + pas_)} {n(hb)}")
+        x0 += pas_
+    d.append(f"L {n(x0)} {n(y)} Z")
+    c = melange(couleur, voile, 0.25)
+    S.add(chemin(" ".join(d), c, opacity=opacite))
+
+
+def bosquet(x, y, s=1.0, couleur="#69db7c", graine=1, nb=3, lointain=False):
+    """Petit groupe d'arbres (plan moyen) ; (x, y) = pied du groupe. lointain :
+    contrastes adoucis, comme voilés par l'air (perspective atmosphérique)."""
+    r = random.Random(graine)
+    fonce = _assombrir(couleur, 0.85 if lointain else 0.62)
+    clair, sombre = (0.12, 0.88) if lointain else (0.22, 0.72)
+    m = [ellipse(6, 0, 16 + nb * 7, 5, "#000", opacity=0.05 if lointain else 0.1)]
+    for k in range(nb):
+        dx = (k - (nb - 1) / 2) * 15 + r.uniform(-4, 4)
+        rr = r.uniform(10, 15) * (1.15 if k == nb // 2 else 1)
+        m.append(rect(dx - 2, -10, 4, 10, _assombrir(couleur, 0.75 if lointain else 0.4)))
+        m.append(ellipse(dx, -8 - rr, rr * 0.9, rr * 1.1, volume(couleur if k % 2 else fonce, clair, sombre)))
+    return place(m, x, y, s)
+
+
+def collines(S, y, couleur="#b2f2bb", graine=1, n_=3, hauteur=110, bosquets=True):
+    """Collines du plan moyen, précédées d'une chaîne lointaine (arrière-plan) ;
+    versant droit à l'ombre et, sur l'herbe, quelques bosquets lointains."""
     r = random.Random(graine)
     w = S.w
     hexa = _rvb(couleur) is not None
     if hexa and not getattr(S, "_lointain", False):
-        # arrière-plan : une chaîne lointaine, à demi fondue dans le ciel
         S._lointain = True
-        r2 = random.Random(graine + 101)
-        d = [f"M -60 {n(y)} L -60 {n(y - hauteur * 0.55)}"]
-        x0 = -60
-        while x0 < w + 60:
-            pas_ = r2.uniform(170, 260)
-            d.append(f"Q {n(x0 + pas_ / 2)} {n(y - hauteur * r2.uniform(1.9, 2.6))} {n(x0 + pas_)} {n(y - hauteur * r2.uniform(0.45, 0.7))}")
-            x0 += pas_
-        d.append(f"L {n(x0)} {n(y)} Z")
-        S.add(chemin(" ".join(d), melange(couleur, "#a5b4c8", 0.25), opacity=0.4))
+        lointain(S, y, couleur, hauteur, graine + 101)
     remplissage = lineaire([(0, eclaircir(couleur, 0.28)), (0.5, couleur), (1, _assombrir(couleur, 0.88))]) if hexa else couleur
+    if hexa:
+        # plaine du plan moyen, au pied des collines, jusqu'au sol du premier plan
+        clair = melange(couleur, "#e7f5ff", 0.3) if luminance(couleur) > 0.35 else eclaircir(couleur, 0.08)
+        S.add(rect(0, y - 2, w, 140, lineaire([(0, clair), (1, couleur)])))
+    ombre_versant = lineaire([(0.45, "#1c2a52", 0), (1, "#1c2a52", 0.16)], 0, 0, 1, 0)
+    rb = random.Random(graine + 202)
+    vert = hexa and bosquets and nature_sol(couleur) == "herbe"
     for i in range(n_):
         cx = (i + 0.5) * w / n_ + r.uniform(-60, 60)
         lw = w / n_ * r.uniform(0.8, 1.3)
         h = hauteur * r.uniform(0.7, 1.2)
-        S.add(chemin(f"M {n(cx - lw)} {y} Q {n(cx)} {n(y - h * 2)} {n(cx + lw)} {y} Z", remplissage))
+        forme = f"M {n(cx - lw)} {y} Q {n(cx)} {n(y - h * 2)} {n(cx + lw)} {y} Z"
+        S.add(chemin(forme, remplissage))
         if hexa:
+            S.add(chemin(forme, ombre_versant))
             S.add(chemin(f"M {n(cx - lw * 0.7)} {n(y - h * 0.5)} Q {n(cx - lw * 0.35)} {n(y - h * 0.95)} {n(cx)} {n(y - h)}",
                          stroke=eclaircir(couleur, 0.5), sw=4, opacity=0.5))
+        if vert and rb.random() < 0.75:
+            # un bosquet posé sur la pente, petit et voilé : il est loin
+            t = rb.uniform(0.28, 0.72)
+            bx = (1 - t) ** 2 * (cx - lw) + 2 * (1 - t) * t * cx + t * t * (cx + lw)
+            by = y - 2 * (1 - t) * t * h * 2 + 6
+            k = (w / 800) * min(h / 110, 1.2) * 0.95
+            S.add(bosquet(bx, by, k, melange(_assombrir(couleur, 0.8), "#a5b4c8", 0.22), graine=graine + i, nb=rb.choice((2, 3, 3, 4)), lointain=True))
     if hexa and luminance(couleur) > 0.35:
         # brume au pied des collines : elles reculent derrière le sol
         S.add(rect(0, y - hauteur * 0.7, w, hauteur * 0.7 + 4, lineaire([(0, "#ffffff", 0), (1, "#ffffff", 0.3)])))
+
+
+def paysage(S, horizon=590, sol_y=650, herbe_="#8ce99a", colline="#b2f2bb", haut="#74c0fc", bas="#e7f5ff",
+            graine=1, montagnes=False, soleil_=None, nuages=((150, 140, 0.8),)):
+    """Paysage complet sur trois plans : ciel brumeux à l'horizon, montagnes ou
+    collines lointaines (arrière-plan), collines et bosquets (plan moyen), sol
+    texturé avec ses touffes (premier plan). soleil_ = (x, y) éventuel."""
+    ciel(S, haut, bas)
+    if soleil_:
+        S.add(soleil(*soleil_))
+    for nx, ny, ns in nuages:
+        S.add(nuage(nx, ny, ns))
+    if montagnes:
+        S._lointain = True
+        brume = eclaircir(bas, 0.2)
+        for k, x0 in enumerate(range(-120, S.w + 120, 260)):
+            hs = horizon - 230 - (k % 2) * 60
+            S.add(g(pic(x0, horizon, x0 + 150, hs, x0 + 330, horizon, melange("#91a7ff", brume, 0.45)), opacity=0.75))
+        S.add(rect(0, horizon - 140, S.w, 144, lineaire([(0, brume, 0), (1, brume, 0.6)])))
+    collines(S, horizon, colline, graine=graine)
+    sol(S, sol_y, herbe_)
+
+
+def repoussoir(S, cote="gauche", couleur="#2b8a3e", graine=1, haut=None):
+    """Feuillage sombre au tout premier plan, dans un coin du bas : il cadre la
+    scène et creuse la profondeur. À poser en dernier."""
+    r = random.Random(graine)
+    e = S.w / 800
+    sgn, x0 = (1, 0) if cote == "gauche" else (-1, S.w)
+    haut = haut or S.h - 170 * e
+    m = []
+    for k in range(7):
+        L = r.uniform(110, 190) * e
+        a = math.radians(r.uniform(5, 62))
+        bx = x0 + sgn * r.uniform(0, 90) * e
+        by = S.h + 10
+        tx, ty = bx + sgn * L * math.sin(a), max(by - L * math.cos(a), haut)
+        c = _assombrir(couleur, r.uniform(0.6, 0.9))
+        mx, my = (bx + tx) / 2, (by + ty) / 2
+        largeur = L * 0.22
+        m.append(chemin(f"M {n(bx)} {n(by)} Q {n(mx - largeur)} {n(my - largeur * 0.4)} {n(tx)} {n(ty)} Q {n(mx + largeur)} {n(my + largeur * 0.4)} {n(bx)} {n(by)} Z",
+                        lineaire([(0, eclaircir(c, 0.25)), (1, _assombrir(c, 0.7))])))
+        m.append(chemin(f"M {n(bx)} {n(by)} Q {n(mx)} {n(my)} {n(tx)} {n(ty)}", stroke=_assombrir(c, 0.6), sw=2 * e, opacity=0.6))
+    S.add(g(m))
 
 
 def soleil(x, y, r=55, couleur="#ffd43b", rayons=True, visage=False):
@@ -552,26 +733,123 @@ def caillou(x, y, s=1.0, couleur="#adb5bd"):
                   chemin("M 12 -20 l 6 6 l -2 8", stroke=_assombrir(couleur, 0.65), sw=2, opacity=0.6)], x, y, s)
 
 
-def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre="#a5d8ff", lumiere=False):
+# Profondeur des bâtiments vus de trois quarts : le côté droit fuit vers le
+# haut à droite (lumière venue de la gauche : ce côté est dans l'ombre).
+FUITE = (30, -15)
+
+
+def volet(x, y, w, h, c, lames=True):
+    """Volet ouvert en bois peint, (x, y) = coin haut gauche : cadre, lames et
+    petite ombre portée sur le mur."""
+    m = [rect(x + 2, y + 3, w, h, "#000", opacity=0.14),
+         rect(x, y, w, h, cylindre(c, 0.25, 0.8), rx=2),
+         rect(x, y, w, h, "none", rx=2, stroke=_assombrir(c, 0.68), stroke_width=1.5)]
+    if lames:
+        m.append(chemin(" ".join(f"M {n(x + 2)} {n(yy)} h {n(w - 4)}" for yy in [y + h * (k + 1) / 7 for k in range(6)]),
+                        stroke=_assombrir(c, 0.7), sw=1.5, opacity=0.6))
+    return g(m)
+
+
+def fenetre_facade(x, y, w, h, mur, vitre="#a5d8ff", volets=None, cadre="#ffffff", lumiere=False, arc=False):
+    """Fenêtre d'une façade, (x, y) = coin haut gauche du vitrage : linteau,
+    ébrasement dans l'ombre, croisillons, reflet, appui saillant, volets."""
+    fonce = _assombrir(mur, 0.76)
+    m = []
+    if volets:
+        lv = w * 0.3
+        m += [volet(x - lv - 3, y - 2, lv, h + 4, volets), volet(x + w + 3, y - 2, lv, h + 4, volets)]
+    haut = f"M {n(x)} {n(y + w * 0.5)} A {n(w / 2)} {n(w / 2)} 0 0 1 {n(x + w)} {n(y + w * 0.5)}" if arc else None
+    if arc:
+        forme = f"{haut} V {n(y + h)} H {n(x)} Z"
+        m += [chemin(f"M {n(x - 6)} {n(y + w * 0.5)} A {n(w / 2 + 6)} {n(w / 2 + 6)} 0 0 1 {n(x + w + 6)} {n(y + w * 0.5)} V {n(y + h)} H {n(x - 6)} Z", fonce),
+              chemin(forme, vitre)]
+    else:
+        m += [rect(x - 6, y - 9, w + 12, 8, fonce, rx=2),
+              rect(x - 3, y - 3, w + 6, h + 6, fonce, rx=2),
+              rect(x, y, w, h, vitre)]
+    if lumiere:
+        m.append(rect(x, y, w, h, radial([(0, "#fff3bf", 0.7), (1, "#fff3bf", 0)])))
+    m += [poly([(x, y), (x + w, y), (x + w, y + 6), (x + 6, y + 6), (x + 6, y + h), (x, y + h)], "#000", opacity=0.2),
+          poly([(x + w * 0.2, y + h), (x + w * 0.55, y), (x + w * 0.72, y), (x + w * 0.37, y + h)], "#fff", opacity=0.22 if not lumiere else 0.12),
+          trait(x + w / 2, y + 2, x + w / 2, y + h, cadre, max(2.5, w / 14)),
+          trait(x, y + h * 0.45, x + w, y + h * 0.45, cadre, max(2.5, w / 14))]
+    if arc:
+        m.append(chemin(f"{haut} V {n(y + h)} H {n(x)} Z", stroke=cadre, sw=max(3, w / 10)))
+    else:
+        m.append(rect(x, y, w, h, "none", stroke=cadre, stroke_width=max(3, w / 10)))
+    m += [rect(x - 7, y + h, w + 14, 7, eclaircir(mur, 0.6), rx=2),
+          rect(x - 5, y + h + 7, w + 10, 5, "#000", opacity=0.13)]
+    if lumiere:
+        m.append(ellipse(x + w / 2, y + h / 2, w * 1.1, h, radial([(0, "#ffe066", 0.4), (1, "#ffe066", 0)])))
+    return g(m)
+
+
+def chainage(x, y, h, c, cote=1, hb=18):
+    """Pierres d'angle en harpe le long d'un coin de mur (cote = 1 : bord
+    gauche, -1 : bord droit)."""
+    m = []
+    for k, yy in enumerate(range(int(y), int(y + h) - 4, hb)):
+        lw = 22 if k % 2 == 0 else 14
+        xx = x if cote > 0 else x - lw
+        m.append(rect(xx, yy + 1, lw, hb - 2, cylindre(c, 0.3, 0.8), rx=1.5))
+        m.append(rect(xx, yy + hb - 3, lw, 2, "#000", opacity=0.15))
+    return g(m)
+
+
+def cote_batiment(x, y, h, mur, toit_haut=None, fuite=FUITE, textures=True):
+    """Mur latéral en perspective, accroché au bord droit (x) d'une façade dont
+    le haut est en y et le pied en y + h ; il fuit selon `fuite` et reste dans
+    l'ombre."""
+    dx, dy = fuite
+    m = [poly([(x, y), (x + dx, y + dy), (x + dx, y + h + dy), (x, y + h)],
+              lineaire([(0, _assombrir(mur, 0.74)), (1, _assombrir(mur, 0.62))], 0, 0, 1, 0))]
+    if textures:
+        pas_ = 14
+        m.append(chemin(" ".join(f"M {n(x)} {n(yy)} l {n(dx)} {n(dy)}" for yy in range(int(y + pas_), int(y + h), pas_)),
+                        stroke=_assombrir(mur, 0.5), sw=1.2, opacity=0.3))
+    m.append(trait(x, y, x, y + h, _assombrir(mur, 0.55), 1.5, opacity=0.6))
+    return g(m)
+
+
+def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre="#a5d8ff", lumiere=False,
+           cote=True, volets=None, cheminee=True):
+    """Maison vue de trois quarts ; (x, y) = milieu du pied de la façade.
+    cote : mur latéral et pan de toit en perspective ; volets : couleur des
+    volets ouverts de part et d'autre des fenêtres."""
     vitre = "#ffe066" if lumiere else fenetre
     fonce_m = _assombrir(mur, 0.78)
     fonce_t = _assombrir(toit, 0.68)
+    dx, dy = FUITE
     m = []
     if OMBRE_SOL[0]:
-        m.append(ombre_sol(14, 0, 150, 16, 0.16))
-    # cheminée en briques, derrière le toit
-    m += [rect(55, -235, 26, 75, cylindre("#c92a2a", 0.2, 0.7)),
-          chemin("M 55 -222 H 81 M 55 -209 H 81 M 55 -196 H 81 M 68 -235 V -222 M 62 -222 V -209 M 74 -209 V -196",
-                 stroke="#8f1d1d", sw=1.5, opacity=0.6),
-          rect(51, -242, 34, 9, "#a61e1e", rx=2)]
+        m.append(ombre_sol(24 if cote else 14, 0, 160 if cote else 150, 16, 0.16))
+    # cheminée en briques, qui sort du pan de toit
+    che = [rect(55, -235, 26, 75, cylindre("#c92a2a", 0.2, 0.7)),
+           rect(81, -235, 9, 75, "#7a1a1a"),
+           chemin("M 55 -222 H 81 M 55 -209 H 81 M 55 -196 H 81 M 68 -235 V -222 M 62 -222 V -209 M 74 -209 V -196",
+                  stroke="#8f1d1d", sw=1.5, opacity=0.6),
+           rect(51, -242, 42, 9, "#a61e1e", rx=2), rect(51, -242, 42, 3, "#e03131", rx=1.5)] if cheminee else []
+    if not cote:
+        m += che
+    if cote:
+        # pan de toit qui fuit, puis mur latéral dans l'ombre
+        pan = [(0, -250), (dx, -250 + dy), (125 + dx, -145 + dy), (125, -145)]
+        m.append(poly(pan, lineaire([(0, _assombrir(toit, 0.82)), (1, _assombrir(toit, 0.66))], 0, 0, 1, 1)))
+        m.append(_decoupe(chemin(" ".join(f"M {n(t * 125 - 4)} {n(-250 + t * 105)} l {n(dx + 8)} {n(dy)}" for t in [k / 7 for k in range(1, 7)]),
+                                 stroke=_assombrir(toit, 0.5), sw=2, opacity=0.5), poly(pan, "#000")))
+        m.append(chemin(f"M 0 -250 l {dx} {dy} M 125 -145 l {dx} {dy}", stroke=_assombrir(toit, 0.55), sw=4))
+        m += che
+        m.append(cote_batiment(100, -150, 150, mur))
+        m.append(poly([(100, -150), (100 + dx, -150 + dy), (100 + dx, -132 + dy), (100, -132)], "#000", opacity=0.2))
+        m.append(poly([(100, -16), (100 + dx, -16 + dy), (100 + dx, dy), (100, 0)], _assombrir("#ced4da", 0.7)))
     # murs : bardage, coins et soubassement
     m.append(rect(-100, -150, 200, 150, cylindre(mur, 0.15, 0.86)))
     m.append(chemin(" ".join(f"M -100 {yy} H 100" for yy in range(-136, -12, 14)), stroke=fonce_m, sw=1.5, opacity=0.3))
-    m += [rect(-100, -150, 9, 150, eclaircir(mur, 0.35)), rect(91, -150, 9, 150, _assombrir(mur, 0.85)),
+    m += [chainage(-100, -146, 130, eclaircir(mur, 0.4), 1), chainage(100, -146, 130, _assombrir(mur, 0.9), -1),
           rect(-104, -16, 208, 16, cylindre("#ced4da", 0.2, 0.8), rx=2),
           chemin("M -70 -16 V 0 M -30 -16 V -8 M 10 -16 V 0 M 50 -16 V -8 M -104 -8 H 104", stroke="#868e96", sw=1.5, opacity=0.7)]
     # ombre sous l'avancée du toit
-    m.append(poly([(-100, -150), (100, -150), (100, -128), (-100, -138)], "#000", opacity=0.16))
+    m.append(poly([(-100, -150), (100, -150), (100, -128), (-100, -138)], "#000", opacity=0.18))
     # toit en tuiles
     triangle = [(-125, -145), (0, -250), (125, -145)]
     m.append(poly(triangle, lineaire([(0, eclaircir(toit, 0.22)), (0.5, toit), (1, _assombrir(toit, 0.8))], 0, 0, 1, 1)))
@@ -580,30 +858,141 @@ def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre=
                       for k, yy in enumerate(range(-232, -146, 15)) for x0 in [-136 + (k % 2) * 8])
     m.append(el("clipPath", poly(triangle, "#000"), id=cid) + g(chemin(tuiles, stroke=fonce_t, sw=2, opacity=0.55), clip_path=f"url(#{cid})"))
     m += [rect(-129, -149, 258, 7, fonce_t, rx=3),
+          # gouttière et descente d'eau
+          rect(-127, -143, 254, 6, cylindre("#adb5bd", 0.4, 0.7, vertical=True), rx=3),
+          rect(106, -140, 6, 136, cylindre("#adb5bd", 0.4, 0.7), rx=3),
           chemin("M -125 -145 L 0 -250 L 125 -145", stroke=_assombrir(toit, 0.6), sw=6),
           chemin("M -112 -150 L 0 -243", stroke=eclaircir(toit, 0.4), sw=3, opacity=0.6)]
-    # porte : encadrement, panneaux, marche
+    # porte : encadrement, panneaux, marche, auvent
     m += [rect(-31, -92, 62, 92, eclaircir(mur, 0.55), rx=4),
           rect(-25, -85, 50, 85, cylindre(porte, 0.2, 0.75), rx=6),
+          rect(-25, -85, 50, 8, "#000", opacity=0.18, rx=4),
           rect(-17, -76, 34, 28, "none", rx=3, stroke=_assombrir(porte, 0.7), stroke_width=2.5),
           rect(-17, -42, 34, 30, "none", rx=3, stroke=_assombrir(porte, 0.7), stroke_width=2.5),
           trait(-15, -74, 15, -74, eclaircir(porte, 0.4), 1.5, opacity=0.7),
           cercle(14, -42, 4.5, volume("#ffd43b", 0.6, 0.7)), cercle(13, -43.5, 1.5, "#fff"),
           rect(-36, -7, 72, 9, cylindre("#adb5bd", 0.3, 0.8), rx=2),
+          rect(-36, 1, 72, 3, "#000", opacity=0.15),
           rect(-36, -100, 72, 8, fonce_m, rx=2)]
-    # fenêtres : linteau, ébrasement, reflets, appui
-    for fx in (-80, 40):
-        m += [rect(fx - 6, -129, 52, 8, fonce_m, rx=2),
-              rect(fx, -120, 40, 40, vitre),
-              poly([(fx, -120), (fx + 40, -120), (fx + 40, -114), (fx + 6, -114), (fx + 6, -80), (fx, -80)], "#000", opacity=0.18),
-              poly([(fx + 8, -80), (fx + 22, -120), (fx + 30, -120), (fx + 16, -80)], "#fff", opacity=0.3 if not lumiere else 0.2),
-              rect(fx, -120, 40, 40, "none", stroke="#fff", stroke_width=5),
-              trait(fx + 20, -120, fx + 20, -80, "#fff", 3.5), trait(fx, -100, fx + 40, -100, "#fff", 3.5),
-              rect(fx - 6, -79, 52, 7, eclaircir(mur, 0.6), rx=2),
-              rect(fx - 4, -72, 48, 4, "#000", opacity=0.12)]
+    # fenêtres : linteau, ébrasement, reflets, appui, volets
+    for fx in ((-82, 46) if volets else (-80, 40)):
+        m.append(fenetre_facade(fx, -120, 36 if volets else 40, 40, mur, vitre, volets=volets))
         if lumiere:
             m.append(ellipse(fx + 20, -100, 44, 40, radial([(0, "#ffe066", 0.45), (1, "#ffe066", 0)])))
     return place(m, x, y, s)
+
+
+def garde_corps(x, y, w, c="#343a40", h=20):
+    """Balcon en fer forgé, (x, y) = coin haut gauche : dalle, barreaux et
+    main courante, avec l'ombre de la dalle sur le mur."""
+    m = [rect(x - 4, y + h, w + 8, 6, "#adb5bd", rx=1.5), rect(x - 2, y + h + 6, w + 4, 6, "#000", opacity=0.16),
+         chemin(" ".join(f"M {n(xx)} {n(y)} v {h}" for xx in [x + 4 + k * 7 for k in range(int((w - 4) / 7) + 1)]), stroke=c, sw=1.8),
+         chemin(f"M {n(x)} {n(y + h * 0.5)} h {n(w)}", stroke=c, sw=1.2, opacity=0.6),
+         rect(x - 2, y - 3, w + 4, 4, c, rx=2)]
+    return g(m)
+
+
+def store_banne(x, y, w, c="#fa5252", c2="#ffffff", h=26):
+    """Store rayé au-dessus d'une vitrine, (x, y) = coin haut gauche ; ombre
+    portée sous le lambrequin."""
+    bandes = int(w / 14)
+    m = [rect(x, y + h + 4, w, 14, "#000", opacity=0.14)]
+    for k in range(bandes):
+        cc = c if k % 2 == 0 else c2
+        x0, x1 = x + k * w / bandes, x + (k + 1) * w / bandes
+        m.append(poly([(x0 + 6, y), (x1 + 6, y), (x1, y + h), (x0, y + h)], lineaire([(0, eclaircir(cc, 0.2)), (1, _assombrir(cc, 0.85))])))
+        m.append(chemin(f"M {n(x0)} {n(y + h)} Q {n((x0 + x1) / 2)} {n(y + h + 9)} {n(x1)} {n(y + h)} Z", _assombrir(cc, 0.92)))
+    m.append(trait(x + 6, y, x + w + 6, y, _assombrir(c, 0.6), 3))
+    return g(m)
+
+
+def immeuble(x, y, w=150, etages=3, couleur="#ffd8a8", toit="mansarde", toit_c=None, rdc="porte",
+             volets=None, balcons=True, cote=True, lumiere=False, graine=1, h_etage=70, store=None, fuite=(22, -11)):
+    """Immeuble de ville vu de trois quarts ; (x, y) = coin bas gauche de la façade.
+
+    toit : "mansarde" (ardoises et lucarnes), "pignon" (tuiles), "plat" (corniche) ;
+    rdc : "porte", "boutique" (vitrine et store) ou None ; volets : couleur ;
+    balcons : garde-corps au premier étage ; lumiere : fenêtres éclairées (soir)."""
+    r = random.Random(graine)
+    toit_c = toit_c or ("#5c6b8a" if toit == "mansarde" else "#c2410c" if toit == "pignon" else _assombrir(couleur, 0.7))
+    h = etages * h_etage + 20
+    haut = y - h
+    dx, dy = fuite
+    fonce = _assombrir(couleur, 0.78)
+    vitre = "#ffe066" if lumiere else "#a5d8ff"
+    m = []
+    if OMBRE_SOL[0]:
+        m.append(ombre_sol(x + w / 2 + dx, y, w * 0.6, 10, 0.14))
+    # toit (derrière la corniche)
+    if toit == "mansarde":
+        ht = 46
+        m.append(poly([(x - 2, haut), (x + 12, haut - ht), (x + w - 12, haut - ht), (x + w + 2, haut)], lineaire([eclaircir(toit_c, 0.2), toit_c, _assombrir(toit_c, 0.75)], 0, 0, 1, 0)))
+        if cote:
+            m.append(poly([(x + w + 2, haut), (x + w - 12, haut - ht), (x + w - 12 + dx, haut - ht + dy), (x + w + 2 + dx, haut + dy)], _assombrir(toit_c, 0.62)))
+        m.append(_decoupe(chemin(" ".join(f"M {n(x - 4)} {n(haut - k * 9)} h {n(w + 8)}" for k in range(1, 6)), stroke=_assombrir(toit_c, 0.6), sw=1.5, opacity=0.5),
+                          poly([(x - 2, haut), (x + 12, haut - ht), (x + w - 12, haut - ht), (x + w + 2, haut)], "#000")))
+        m.append(rect(x + 8, haut - ht - 4, w - 16, 6, _assombrir(toit_c, 0.7), rx=2))
+        for k in range(max(1, int(w / 70))):
+            lx = x + (k + 0.5) * w / max(1, int(w / 70)) - 13
+            m += [poly([(lx - 4, haut - 22), (lx + 13, haut - 40), (lx + 30, haut - 22)], _assombrir(toit_c, 0.85)),
+                  rect(lx, haut - 22, 26, 22, eclaircir(couleur, 0.4)),
+                  rect(lx + 5, haut - 18, 16, 16, vitre), rect(lx + 5, haut - 18, 16, 4, "#000", opacity=0.2)]
+    elif toit == "pignon":
+        ht = 58
+        tri = [(x - 8, haut), (x + w / 2, haut - ht), (x + w + 8, haut)]
+        if cote:
+            m.append(poly([(x + w / 2, haut - ht), (x + w / 2 + dx, haut - ht + dy), (x + w + 8 + dx, haut + dy), (x + w + 8, haut)], _assombrir(toit_c, 0.66)))
+        m.append(poly(tri, lineaire([(0, eclaircir(toit_c, 0.2)), (1, _assombrir(toit_c, 0.8))], 0, 0, 1, 1)))
+        m.append(tuiles(x - 10, haut - ht, w + 20, ht, toit_c, forme=poly(tri, "#000"), pas_=12))
+        m.append(chemin(f"M {n(x - 8)} {n(haut)} L {n(x + w / 2)} {n(haut - ht)} L {n(x + w + 8)} {n(haut)}", stroke=_assombrir(toit_c, 0.6), sw=4))
+        ht = ht * 0.6
+    else:
+        ht = 0
+    # cheminées
+    for k in range(r.choice((1, 2))):
+        cx = x + w * r.uniform(0.15, 0.75)
+        m += [rect(cx, haut - ht - 30, 18, 34 + ht * 0.3, cylindre("#b5835a", 0.25, 0.7)), rect(cx - 3, haut - ht - 34, 24, 6, "#8d5b34", rx=1.5)]
+    # mur latéral, façade et enduit
+    if cote:
+        m.append(cote_batiment(x + w, haut, h, couleur, fuite=fuite))
+    m.append(rect(x, haut, w, h, cylindre(couleur, 0.18, 0.86)))
+    m.append(rect(x, y - h_etage + 10, w, h_etage - 10, _assombrir(couleur, 0.92)))
+    m.append(chemin(" ".join(f"M {n(x)} {n(yy)} h {n(w)}" for yy in range(int(y - h_etage + 22), int(y), 12)), stroke=_assombrir(couleur, 0.66), sw=1.3, opacity=0.45))
+    m.append(chainage(x, haut + 22, h - h_etage - 14, eclaircir(couleur, 0.4), 1, hb=16))
+    # corniche du haut et bandeaux entre les étages, chacun avec son ombre
+    m += [rect(x - 6, haut, w + 12, 12, eclaircir(couleur, 0.35), rx=2), rect(x - 6, haut + 9, w + 12, 3, _assombrir(couleur, 0.7)),
+          ombre_avancee(x, haut + 12, w, 16, 0.22)]
+    for k in range(1, etages):
+        yy = y - k * h_etage + 10
+        m += [rect(x - 3, yy - 6, w + 6, 7, eclaircir(couleur, 0.3), rx=1.5), ombre_avancee(x, yy + 1, w, 8, 0.15)]
+    # fenêtres
+    cols = max(2, int(w / 55))
+    fw = min(34, w / cols - 26)
+    for k in range(1, etages):
+        fy = y - (k + 1) * h_etage + 24
+        for c_ in range(cols):
+            fx = x + (c_ + 0.5) * w / cols - fw / 2
+            allume = lumiere and r.random() < 0.7
+            m.append(fenetre_facade(fx, fy, fw, h_etage - 36, couleur, "#ffe066" if allume else "#a5d8ff", volets=volets,
+                                    lumiere=allume, arc=(k == etages - 1 and toit == "plat")))
+        if balcons and k == 1:
+            m.append(garde_corps(x + w / cols * 0.5 - fw / 2 - 8, y - 2 * h_etage + h_etage - 34, w - w / cols + fw + 16))
+    # rez-de-chaussée
+    if rdc == "boutique":
+        vw = w * 0.55
+        m += [rect(x + 10, y - h_etage + 22, vw, h_etage - 22, fonce),
+              rect(x + 14, y - h_etage + 26, vw - 8, h_etage - 30, vitre if lumiere else "#d0ebff"),
+              poly([(x + 14 + vw * 0.2, y - 4), (x + 14 + vw * 0.45, y - h_etage + 26), (x + 14 + vw * 0.6, y - h_etage + 26), (x + 14 + vw * 0.35, y - 4)], "#fff", opacity=0.3),
+              store_banne(x + 4, y - h_etage + 2, vw + 8, store or r.choice(("#fa5252", "#228be6", "#40c057", "#fab005")))]
+        px = x + w * 0.75
+    else:
+        px = x + w / 2
+    if rdc:
+        m += [chemin(f"M {n(px - 19)} {y} V {n(y - 40)} A 19 19 0 0 1 {n(px + 19)} {n(y - 40)} V {y} Z", fonce),
+              chemin(f"M {n(px - 14)} {y} V {n(y - 38)} A 14 14 0 0 1 {n(px + 14)} {n(y - 38)} V {y} Z", cylindre("#8d5b34", 0.25, 0.7)),
+              trait(px, y - 50, px, y, "#5c3a1e", 1.5, opacity=0.6), cercle(px + 8, y - 22, 2.5, "#ffd43b"),
+              rect(px - 22, y - 4, 44, 5, "#adb5bd", rx=1.5)]
+    return g(m)
 
 
 def feuillage(boules, opacite=None):
@@ -1090,8 +1479,17 @@ POSES = {
     "coucou": ((-52, -40), (82, -176)),
     "marche": ((-58, -56), (50, -44)),
     "chut": ((-52, -40), (4, -118)),
+    # poses dynamiques : course rapide, saut, lancer, doigt tendu, poussée, équilibre
+    "court": ((-48, -122), (58, -56)),
+    "saute": ((-90, -196), (90, -196)),
+    "lance": ((-74, -100), (80, -202)),
+    "designe": ((-40, -50), (106, -122)),
+    "pousse": ((60, -100), (90, -114)),
+    "equilibre": ((-104, -124), (102, -100)),
 }
 COUDES = {
+    "haut": ((-84, -124), (84, -124)),
+    "course": ((-84, -94), (70, -82)),
     "hanches": ((-66, -74), (66, -74)),
     "tete": ((-78, -140), (78, -140)),
     "poing": ((-66, -104), (66, -104)),
@@ -1103,14 +1501,22 @@ COUDES = {
     "etire": ((-70, -150), (70, -150)),
     "coucou": ((-60, -70), (86, -112)),
     "chut": ((-60, -70), (44, -72)),
+    "court": ((-78, -96), (64, -86)),
+    "saute": ((-76, -150), (76, -150)),
+    "lance": ((-66, -76), (100, -150)),
+    "designe": ((-66, -74), None),
+    "pousse": ((14, -76), (58, -80)),
+    "equilibre": ((-70, -108), (70, -96)),
 }
 DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete", "chut"}
 # Pas des pieds associé par défaut à une pose de bras.
-PAS_POSE = {"course": "marche", "marche": "marche", "danse": "pointe", "victoire": "saute"}
+PAS_POSE = {"course": "court", "marche": "marche", "danse": "pointe", "victoire": "saute",
+            "court": "court", "saute": "saute", "lance": "marche", "pousse": "marche", "equilibre": "pointe"}
 # Inclinaison de la tête (en degrés) selon l'expression : un peu de vie.
 # Inclinaison du corps (en degrés) selon la pose : on se penche en avant pour
 # courir, en arrière pour tirer, vers le bras levé pour danser.
-INCLINE = {"course": 8, "marche": 3, "danse": -5, "victoire": -3, "tire": -6}
+INCLINE = {"course": 11, "marche": 3, "danse": -5, "victoire": -3, "tire": -6, "montre": 2, "salut": -2,
+           "court": 13, "lance": -7, "designe": 3, "pousse": 11, "equilibre": -6}
 PENCHE = {"timide": -7, "triste": 6, "pleure": 6, "inquiet": -5, "malin": 6, "content": 4,
           "chante": -5, "miam": 4, "oups": -6, "degoute": -6, "fier": -3, "dort": 7}
 
@@ -1161,6 +1567,18 @@ def oeil(x, y, style="normal", regard=(0, 0), sclere=False, taille=1.0):
         m.append(ellipse(x + dx * 3, y + dy * 3, 6.5 * t * k, 8.5 * t * k, ENCRE))
         m.append(cercle(x + dx * 3 + 2, y + dy * 3 - 3, 2.2 * t * k, "#fff"))
         m.append(cercle(x + dx * 3 - 2.2 * t, y + dy * 3 + 3.6 * t, 1.1 * t * k, "#fff", opacity=0.75))
+    return "".join(m)
+
+
+def yeux_trois_quarts(ex, ey, style, regard, sclere=False, tourne=0, taille=1.0):
+    """Les deux yeux ; en trois quarts (tourne ≠ 0), l'œil le plus loin est un
+    peu plus petit et plus proche du nez."""
+    k = min(abs(tourne) / 10, 1) * 0.16
+    loin = -1 if tourne > 0 else 1
+    m = []
+    for sgn in (-1, 1):
+        f = 1 - k if (tourne and sgn == loin) else 1
+        m.append(oeil(sgn * ex * f, ey, style, regard, sclere, taille * f))
     return "".join(m)
 
 
@@ -1294,21 +1712,35 @@ def avec_contour(m, s=1.0, opacite=0.5):
 OMBRE_SOL = [True]
 
 
+# Sens de l'ombre portée douce : 1 = vers la droite (lumière venue d'en haut
+# à gauche), 0 = ombre centrée. Les livres de sciences gardent 0 : une ombre
+# n'y est dessinée dans un sens que si le Soleil est placé en conséquence.
+OMBRE_SENS = [1]
+
+
 def ombre_sol(x=0, y=0, rx=50, ry=9, opacite=0.13):
-    """Ombre douce posée au sol sous un personnage, plus dense au centre."""
-    return ellipse(x, y, rx * 1.12, ry * 1.4, radial([(0, "#000", min(opacite * 2.2, 0.5)), (0.55, "#000", opacite * 1.2), (1, "#000", 0)]))
+    """Ombre au sol : ombre portée allongée du côté opposé à la lumière
+    (OMBRE_SENS), puis ombre de contact plus dense sous l'objet."""
+    return (ellipse(x + rx * 0.4 * OMBRE_SENS[0], y - ry * 0.2, rx * (1.4 if OMBRE_SENS[0] else 1.2), ry * 1.25, radial([(0, "#1c2a52", opacite * 0.9), (0.6, "#1c2a52", opacite * 0.45), (1, "#1c2a52", 0)]))
+            + ellipse(x, y, rx * 1.05, ry * 1.3, radial([(0, "#000", min(opacite * 2.2, 0.5)), (0.55, "#000", opacite * 1.1), (1, "#000", 0)])))
 
 
-def ombrage(forme, sombre=(), clair=(), opacite=0.11):
+def ombrage(forme, sombre=(), clair=(), opacite=0.11, reflets=()):
     """Ombre et reflet découpés dans `forme` (élément SVG servant de masque).
 
-    sombre / clair : listes de (x, y, rx, ry[, rot]) d'ellipses."""
+    sombre / clair : listes de (x, y, rx, ry[, rot]) d'ellipses ; reflets :
+    lumière réfléchie, très douce, au bord de la partie dans l'ombre. L'ombre
+    est froide (bleu nuit) plutôt que noire."""
     cid = uid("k")
     m = []
+    # ombres à bord fondu : le modelé tourne doucement avec la forme
+    flou = radial([(0, "#1c2a52", min(opacite * 1.35, 1)), (0.62, "#1c2a52", min(opacite * 1.2, 1)), (1, "#1c2a52", 0)])
     for e in sombre:
-        m.append(ellipse(*e[:4], "#000", rot=e[4] if len(e) > 4 else None, opacity=opacite))
+        m.append(ellipse(*e[:4], flou, rot=e[4] if len(e) > 4 else None))
+    for e in reflets:
+        m.append(ellipse(*e[:4], "#fff4e6", rot=e[4] if len(e) > 4 else None, opacity=0.16))
     for e in clair:
-        m.append(ellipse(*e[:4], "#fff", rot=e[4] if len(e) > 4 else None, opacity=0.22))
+        m.append(ellipse(*e[:4], "#fff", rot=e[4] if len(e) > 4 else None, opacity=0.24))
     return el("clipPath", forme, id=cid) + g(m, clip_path=f"url(#{cid})")
 
 
@@ -1343,6 +1775,8 @@ def _motif(forme_clip, motif, couleur_motif):
 TOUPET = {"ours", "chat", "chien", "renard", "loup", "ecureuil", "singe", "castor", "lapin", "souris",
           "lievre", "rat", "chevre", "cerf", "panda", "ane"}
 COIFFES = {"chapeau", "toque", "bonnet", "casque", "couronne"}
+# Espèces aux joues ébouriffées.
+JOUES_POILUES = {"chat", "renard", "loup", "ecureuil"}
 
 
 def _pieds(pas, pieds, bord, haut=False):
@@ -1352,14 +1786,18 @@ def _pieds(pas, pieds, bord, haut=False):
         return [ellipse(-30, -14, 12, 18, pieds, rot=30, stroke=bord, stroke_width=2),
                 ellipse(30, -14, 12, 18, pieds, rot=-30, stroke=bord, stroke_width=2)]
     for sgn in (-1, 1):
-        x, yy, rot = sgn * 21, -9, 0
+        # au repos, le poids sur un pied : le droit un peu en avant (plus bas,
+        # plus grand), les deux pointes légèrement ouvertes
+        x, yy, rot, rx = sgn * 21, -9 + sgn * 1.5, sgn * 7, 19 + sgn * 0.8
         if pas == "marche" and sgn > 0:
-            x, yy, rot = 26, -20, -24
+            x, yy, rot, rx = 26, -20, -24, 19
         elif pas == "pointe" and sgn > 0:
-            x, yy, rot = 24, -12, -40
+            x, yy, rot, rx = 24, -12, -40, 19
+        elif pas == "court":
+            x, yy, rot, rx = (-18, -8, -6, 20) if sgn < 0 else (30, -38, -58, 17)
         elif pas == "saute":
-            x, yy, rot = sgn * 20, -6, sgn * 28
-        m.append(ellipse(x, yy, 19, 11, pieds, rot=rot or None, stroke=bord, stroke_width=2))
+            x, yy, rot, rx = sgn * 20, -6, sgn * 28, 19
+        m.append(ellipse(x, yy, rx, 11, pieds, rot=rot or None, stroke=bord, stroke_width=2))
         # doigts : deux petits plis à l'avant
         for dx in (-6, 6):
             ang = math.radians(rot)
@@ -1407,7 +1845,7 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     bord_main = _assombrir(peau_main, 0.72)
     # vue de trois quarts : quand le personnage regarde de côté, son ventre
     # et son visage glissent un peu de ce côté-là
-    tourne = max(-1.0, min(1.0, regard[0])) * 7
+    tourne = max(-1.0, min(1.0, regard[0])) * 10
     incline = 0 if pieds_haut or rot else INCLINE.get(bras, 0)
     m = []
     if derriere:
@@ -1490,7 +1928,7 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
                 for yy in (-80, -60):
                     m.append(cercle(0, yy, 3.6, eclaircir(habit, 0.55), stroke=fonce_h, stroke_width=1.5))
         elif K.get("ventre"):
-            m.append(ellipse(tourne * 0.6, -54, 27, 35, volume(c2, 0.3, 0.88)))
+            m.append(ellipse(tourne * 0.8, -54, 27 - abs(tourne) * 0.25, 35, volume(c2, 0.3, 0.88)))
             if espece == "cigale":
                 for yy in (-72, -56, -40):
                     m.append(chemin(f"M -20 {yy} Q 0 {yy + 6} 20 {yy}", stroke=_assombrir(c2, 0.8), sw=3))
@@ -1503,8 +1941,8 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
             m.append(ellipse(0, -62, 42, 52, "#fff"))
             m.append(chemin("M -40 -80 Q 0 -60 40 -80 L 36 -104 Q 0 -118 -36 -104 Z", "#343a40"))
     # modelé : côté droit plus sombre, ombre de la tête, reflet
-    m.append(ombrage(ellipse(0, -62, 42, 52, "#000"), sombre=[(40, -46, 34, 62), (0, -104, 36, 14)],
-                     clair=[(-24, -84, 7, 13, 30)]))
+    m.append(ombrage(ellipse(0, -62, 42, 52, "#000"), sombre=[(40, -46, 34, 62), (0, -104, 36, 14), (0, -6, 40, 12)],
+                     clair=[(-24, -84, 7, 13, 30), (-36, -56, 3.5, 18, 8)], reflets=[(46, -52, 9, 34)]))
     if "tablier" in acc:
         m.append(chemin("M -26 -96 L 26 -96 L 30 -30 Q 0 -18 -30 -30 Z", "#fff", stroke="#e9ecef", sw=2))
         m.append(rect(-14, -64, 28, 18, "#ffe3e3", rx=4))
@@ -1599,7 +2037,7 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     sclere = False
     tete_c = c
     r = 55
-    tourne = max(-1.0, min(1.0, regard[0])) * 7
+    tourne = max(-1.0, min(1.0, regard[0])) * 10
 
     # oreilles derrière la tête
     if espece == "ours" or espece == "castor":
@@ -1707,7 +2145,13 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     m.append(cercle(0, hy, r, volume(tete_c, 0.25, 0.82)))
     # modelé de la tête : joue droite dans l'ombre, reflet sur le front
     m.append(ombrage(cercle(0, hy, r, "#000"), sombre=[(r * 0.75, hy + r * 0.45, r * 0.8, r * 0.75)],
-                     clair=[(-r * 0.45, hy - r * 0.58, r * 0.26, r * 0.14, -30)], opacite=0.08))
+                     clair=[(-r * 0.45, hy - r * 0.58, r * 0.26, r * 0.14, -30)], opacite=0.08,
+                     reflets=[(r * 1.02, hy + r * 0.25, r * 0.16, r * 0.55, -15)]))
+    if espece in JOUES_POILUES:
+        # touffes de poils ébouriffées sur les joues
+        for sgn in (-1, 1):
+            m.append(poly([(sgn * (r - 9), hy + 4), (sgn * (r + 9), hy + 12), (sgn * (r - 2), hy + 18), (sgn * (r + 7), hy + 27),
+                           (sgn * (r - 8), hy + 30)], tete_c))
     if espece in TOUPET and not (COIFFES & set(acc)):
         m.append(chemin(f"M -14 {hy - r + 6} Q -12 {hy - r - 12} -2 {hy - r - 2} Q 2 {hy - r - 18} 9 {hy - r - 1} Q 16 {hy - r - 10} 16 {hy - r + 6} Z", tete_c))
     debut_visage = len(m)
@@ -1764,7 +2208,7 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
     # yeux
     if espece == "panda":
         pass
-    m.append(oeil(-ex, ey, ys, regard, sclere) + oeil(ex, ey, ys, regard, sclere))
+    m.append(yeux_trois_quarts(ex, ey, ys, regard, sclere, tourne))
     m.append(sourcils(ex, ey if espece != "grenouille" else -200, ss))
     if larmes:
         for sgn in (-1, 1):
@@ -1901,39 +2345,63 @@ def chapeau(x, y, s=1.0, couleur="#fa5252", ruban="#ffd43b", rot=0, fleur_=True)
 
 # --- Personnages de forme différente ----------------------------------------
 
+def _plumes(cx, cy, rx, ry, rot, c, nb=3):
+    """Aile en relief : ellipse modelée et bouts de plumes marqués."""
+    fonce = _assombrir(c, 0.68)
+    m = [ellipse(cx, cy, rx, ry, volume(c, 0.32, 0.72), rot=rot)]
+    a = math.radians(rot or 0)
+    for k in range(nb):
+        t = (k + 1) / (nb + 1)
+        # petites encoches vers le bout de l'aile
+        px, py = 0, ry * (0.25 + 0.6 * t)
+        dx = (t - 0.5) * rx * 1.2
+        x0, y0 = cx + (dx * math.cos(a) - py * math.sin(a)), cy + (dx * math.sin(a) + py * math.cos(a))
+        x1, y1 = cx + (dx * 0.6 * math.cos(a) - (py - ry * 0.35) * math.sin(a)), cy + (dx * 0.6 * math.sin(a) + (py - ry * 0.35) * math.cos(a))
+        m.append(trait(n(x0), n(y0), n(x1), n(y1), fonce, max(1.5, rx * 0.12), opacity=0.55))
+    return "".join(m)
+
+
 def oiseau(x, y, s=1.0, couleur="#4dabf7", ventre="#e7f5ff", expr="sourire", ailes="bas",
            bec_ouvert=False, flip=False, regard=(0, 0), rot=0, pattes=True, acc=()):
     """Petit oiseau tout rond, (x, y) = sous les pattes."""
     ys, bs, ss = EXPRESSIONS[expr]
+    aile = _assombrir(couleur, 0.85)
+    fonce = _assombrir(couleur, 0.8)
     m = []
     if pattes:
         for sgn in (-1, 1):
             m.append(trait(sgn * 12, -30, sgn * 12, -4, "#f08c00", 4))
             m.append(chemin(f"M {sgn * 12 - 9} 0 L {sgn * 12} -6 L {sgn * 12 + 9} 0", stroke="#f08c00", sw=3.5))
-    m.append(poly([(38, -70), (66, -86), (62, -60)], _assombrir(couleur, 0.8)))
+    # queue : trois plumes en éventail
+    m.append(poly([(38, -70), (66, -86), (62, -60)], lineaire([(0, eclaircir(fonce, 0.2)), (1, _assombrir(fonce, 0.75))], 0, 0, 1, 1)))
+    m.append(chemin("M 42 -70 L 63 -80 M 42 -68 L 62 -66", stroke=_assombrir(fonce, 0.7), sw=1.5, opacity=0.6))
     if ailes == "haut":
-        m.append(ellipse(-50, -88, 14, 30, _assombrir(couleur, 0.85), rot=-40))
-        m.append(ellipse(50, -88, 14, 30, _assombrir(couleur, 0.85), rot=40))
-    m.append(cercle(0, -68, 44, couleur))
-    m.append(ellipse(0, -52, 28, 26, ventre))
+        m.append(_plumes(-50, -88, 14, 30, -40, aile))
+        m.append(_plumes(50, -88, 14, 30, 40, aile))
+    m.append(cercle(0, -68, 44, volume(couleur, 0.32, 0.78)))
+    m.append(ellipse(0, -52, 28, 26, volume(ventre, 0.4, 0.88)))
+    m.append(chemin("M -14 -40 q 4 4 8 0 M 2 -38 q 4 4 8 0 M -6 -30 q 4 4 8 0", stroke=_assombrir(ventre, 0.8), sw=1.6, opacity=0.6))
+    m.append(ombrage(cercle(0, -68, 44, "#000"), sombre=[(30, -40, 40, 34)], clair=[(-20, -98, 12, 7, -30)], reflets=[(44, -60, 7, 26)]))
     if ailes == "bas":
-        m.append(ellipse(-40, -60, 12, 24, _assombrir(couleur, 0.85), rot=20))
-        m.append(ellipse(40, -60, 12, 24, _assombrir(couleur, 0.85), rot=-20))
+        m.append(_plumes(-40, -60, 12, 24, 20, aile))
+        m.append(_plumes(40, -60, 12, 24, -20, aile))
     elif ailes == "ouvertes":
-        m.append(ellipse(-58, -72, 12, 30, _assombrir(couleur, 0.85), rot=60))
-        m.append(ellipse(58, -72, 12, 30, _assombrir(couleur, 0.85), rot=-60))
+        m.append(_plumes(-58, -72, 12, 30, 60, aile))
+        m.append(_plumes(58, -72, 12, 30, -60, aile))
     m.append(chemin("M -6 -112 Q -2 -124 6 -118 Q 2 -126 12 -124", stroke=_assombrir(couleur, 0.8), sw=4))
     m.append(ellipse(-26, -70, 7, 4.5, ROSE, opacity=0.7) + ellipse(26, -70, 7, 4.5, ROSE, opacity=0.7))
     m.append(oeil(-15, -82, ys, regard, taille=0.85) + oeil(15, -82, ys, regard, taille=0.85))
     m.append(sourcils(15, -80, ss))
+    bec_h, bec_b = lineaire(["#ffc078", "#f76707"]), lineaire(["#ff922b", "#d9480f"])
     if bec_ouvert or bs in ("ouverte", "o", "crie"):
-        m.append(poly([(-9, -70), (9, -70), (0, -80)], "#ff922b"))
-        m.append(poly([(-8, -66), (8, -66), (0, -54)], "#f76707"))
+        m.append(poly([(-9, -70), (9, -70), (0, -80)], bec_h))
+        m.append(poly([(-8, -66), (8, -66), (0, -54)], bec_b))
     else:
-        m.append(poly([(-9, -70), (9, -70), (0, -58)], "#ff922b"))
+        m.append(poly([(-9, -70), (9, -70), (0, -58)], bec_h))
+        m.append(trait(-2, -68, 2, -68, "#fff", 1.5, opacity=0.6))
     if "noeud" in acc:
         m.append(g([poly([(20, -108), (6, -118), (6, -98)], "#fa5252"), poly([(20, -108), (34, -118), (34, -98)], "#fa5252"), cercle(20, -108, 5, "#c92a2a")]))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
 
 
 def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", ailes="bas",
@@ -1943,27 +2411,31 @@ def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", a
     fonce = _assombrir(couleur, 0.8)
     m = []
     for sgn in (-1, 1):
-        m.append(ellipse(sgn * 18, -4, 14, 7, "#f08c00"))
+        m.append(ellipse(sgn * 18, -4, 14, 7, volume("#f08c00", 0.4, 0.75)))
+        m.append(chemin(f"M {sgn * 18 - 8} -2 v 5 M {sgn * 18} -1 v 6 M {sgn * 18 + 8} -2 v 5", stroke="#c25e00", sw=2))
     if ailes == "haut":
-        m.append(ellipse(-56, -110, 18, 44, fonce, rot=-35))
-        m.append(ellipse(56, -110, 18, 44, fonce, rot=35))
-    m.append(ellipse(0, -80, 58, 78, couleur))
+        m.append(_plumes(-56, -110, 18, 44, -35, fonce, 4))
+        m.append(_plumes(56, -110, 18, 44, 35, fonce, 4))
+    m.append(ellipse(0, -80, 58, 78, volume(couleur, 0.28, 0.78)))
     for sgn in (-1, 1):
-        m.append(poly([(sgn * 30, -140), (sgn * 52, -178), (sgn * 52, -130)], couleur))
-    m.append(ellipse(0, -62, 36, 46, eclaircir(couleur, 0.55)))
+        m.append(poly([(sgn * 30, -140), (sgn * 52, -178), (sgn * 52, -130)], cylindre(couleur, 0.25, 0.75)))
+        m.append(chemin(f"M {sgn * 38} -142 L {sgn * 50} -168", stroke=fonce, sw=2, opacity=0.6))
+    m.append(ellipse(0, -62, 36, 46, volume(eclaircir(couleur, 0.55), 0.35, 0.88)))
     for row in range(3):
         for k in range(3 - (row % 2)):
             xx = -18 + k * 18 + (row % 2) * 9
             yy = -80 + row * 16
             m.append(chemin(f"M {xx - 5} {yy} Q {xx} {yy + 6} {xx + 5} {yy}", stroke=fonce, sw=2.5))
+    m.append(ombrage(ellipse(0, -80, 58, 78, "#000"), sombre=[(40, -40, 46, 70)], clair=[(-30, -128, 14, 8, -30)], reflets=[(58, -70, 8, 36)]))
     if ailes == "bas":
-        m.append(ellipse(-54, -78, 16, 42, fonce, rot=10))
-        m.append(ellipse(54, -78, 16, 42, fonce, rot=-10))
+        m.append(_plumes(-54, -78, 16, 42, 10, fonce, 4))
+        m.append(_plumes(54, -78, 16, 42, -10, fonce, 4))
     elif ailes == "ouvertes":
-        m.append(ellipse(-76, -96, 16, 44, fonce, rot=60))
-        m.append(ellipse(76, -96, 16, 44, fonce, rot=-60))
+        m.append(_plumes(-76, -96, 16, 44, 60, fonce, 4))
+        m.append(_plumes(76, -96, 16, 44, -60, fonce, 4))
     for sgn in (-1, 1):
-        m.append(cercle(sgn * 22, -120, 26, visage))
+        m.append(cercle(sgn * 22, -120, 26, radial([(0, eclaircir(visage, 0.5)), (0.75, visage), (1, _assombrir(visage, 0.85))])))
+        m.append(cercle(sgn * 22, -120, 26, "none", stroke=_assombrir(visage, 0.8), stroke_width=2))
     ex, ey = 22, -120
     for sgn in (-1, 1):
         if ys in ("heureux", "fermes"):
@@ -1972,10 +2444,10 @@ def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", a
             k = 1.2 if ys == "grand" else 1.0
             m.append(cercle(sgn * ex, ey, 14 * k, "#fff", stroke=ENCRE, stroke_width=1.5))
             dy = 1.2 if ys == "bas" else 0
-            m.append(cercle(sgn * ex + regard[0] * 4, ey + (regard[1] + dy) * 4, 8 * k, ENCRE))
+            m.append(cercle(sgn * ex + regard[0] * 4, ey + (regard[1] + dy) * 4, 8 * k, radial([(0, "#4a3418"), (0.6, ENCRE), (1, ENCRE)])))
             m.append(cercle(sgn * ex + regard[0] * 4 + 3, ey + (regard[1] + dy) * 4 - 3, 2.5, "#fff"))
     m.append(sourcils(22, -114, ss))
-    m.append(poly([(-7, -108), (7, -108), (0, -94)], "#f59f00"))
+    m.append(poly([(-7, -108), (7, -108), (0, -94)], lineaire(["#ffc078", "#e67700"])))
     if bs in ("ouverte", "o", "crie", "baille"):
         m.append(poly([(-6, -96), (6, -96), (0, -88)], "#e67700"))
     elif bs in ("triste",):
@@ -1983,20 +2455,26 @@ def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", a
     if "lunettes" in acc:
         m.append(g([cercle(-ex, ey, 20, "none", stroke=ENCRE, stroke_width=3.5), cercle(ex, ey, 20, "none", stroke=ENCRE, stroke_width=3.5)]))
     if "echarpe" in acc:
-        m.append(g([rect(-46, -100, 92, 16, "#fa5252", rx=8), chemin("M 18 -90 L 30 -48 L 14 -48 L 8 -90 Z", "#fa5252")]))
-    return place(m, x, y, s, flip=flip)
+        m.append(g([rect(-46, -100, 92, 16, cylindre("#fa5252", 0.3, 0.75, vertical=True), rx=8), chemin("M 18 -90 L 30 -48 L 14 -48 L 8 -90 Z", cylindre("#fa5252", 0.3, 0.75))]))
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
 
 
 def escargot(x, y, s=1.0, coquille="#f59f00", corps="#b2f2bb", expr="sourire", flip=False, regard=(1, 0), acc=()):
     """Escargot de profil, la tête à droite. (x, y) = au sol, au milieu."""
     ys, bs, ss = EXPRESSIONS[expr]
     fonce = _assombrir(coquille, 0.75)
-    m = [chemin("M -80 0 Q -84 -26 -50 -28 L 50 -30 Q 62 -30 66 -60 Q 70 -96 92 -96 Q 116 -96 116 -60 Q 116 -20 96 -6 Q 86 0 60 0 Z", corps)]
+    pied = "M -80 0 Q -84 -26 -50 -28 L 50 -30 Q 62 -30 66 -60 Q 70 -96 92 -96 Q 116 -96 116 -60 Q 116 -20 96 -6 Q 86 0 60 0 Z"
+    m = []
+    if OMBRE_SOL[0]:
+        m.append(ombre_sol(10, 0, 96, 8, 0.12))
+    m += [chemin(pied, lineaire([(0, eclaircir(corps, 0.35)), (0.5, corps), (1, _assombrir(corps, 0.78))])),
+          ombrage(chemin(pied, "#000"), sombre=[(10, 2, 100, 12), (112, -40, 14, 40)], clair=[(84, -84, 8, 5, -30)]),
+          chemin("M -70 -8 Q 0 -14 60 -10", stroke=eclaircir(corps, 0.5), sw=2.5, opacity=0.6)]
     for dx, ang in ((82, -20), (104, 16)):
         a = math.radians(ang - 90)
         tx, ty = dx + math.cos(a) * 44, -92 + math.sin(a) * 44
-        m.append(trait(dx, -92, tx, ty, corps, 7))
-        m.append(cercle(tx, ty, 11, "#fff", stroke=ENCRE, stroke_width=1.5))
+        m.append(trait(dx, -92, tx, ty, _assombrir(corps, 0.85) if dx < 90 else corps, 7))
+        m.append(cercle(tx, ty, 11, volume("#ffffff", 0, 0.85), stroke=ENCRE, stroke_width=1.5))
         if ys in ("heureux", "fermes"):
             m.append(oeil(tx, ty, ys, (0, 0), taille=0.7))
         else:
@@ -2004,47 +2482,74 @@ def escargot(x, y, s=1.0, coquille="#f59f00", corps="#b2f2bb", expr="sourire", f
             m.append(cercle(tx + regard[0] * 3 + 2, ty + regard[1] * 3 - 2, 1.8, "#fff"))
     m.append(ellipse(102, -58, 8, 5, ROSE, opacity=0.7))
     m.append(bouche(96, -48, bs, 0.8))
-    m.append(cercle(-12, -72, 60, coquille))
+    # coquille bombée : spirale, stries de croissance, reflet
+    m.append(cercle(-12, -72, 60, volume(coquille, 0.4, 0.68)))
+    m.append(_decoupe(chemin(" ".join(f"M {n(-12 + math.cos(math.radians(a)) * 20)} {n(-72 + math.sin(math.radians(a)) * 20)} "
+                                      f"L {n(-12 + math.cos(math.radians(a)) * 62)} {n(-72 + math.sin(math.radians(a)) * 62)}" for a in range(0, 360, 24)),
+                             stroke=fonce, sw=2, opacity=0.25), cercle(-12, -72, 60, "#000")))
     m.append(chemin("M -12 -72 m 0 -8 a 8 8 0 1 1 -8 8 a 18 18 0 1 1 18 18 a 30 30 0 1 1 -30 -30 a 44 44 0 1 1 44 44", stroke=fonce, sw=7))
+    m.append(chemin("M -12 -72 m 0 -8 a 8 8 0 1 1 -8 8 a 18 18 0 1 1 18 18 a 30 30 0 1 1 -30 -30 a 44 44 0 1 1 44 44",
+                    stroke=eclaircir(coquille, 0.45), sw=2, opacity=0.6, transform="translate(-2 -3)"))
+    m.append(chemin("M -56 -96 A 50 50 0 0 1 -20 -124", stroke="#fff", sw=6, opacity=0.4))
     if "chapeau" in acc:
         m.append(chapeau(92, -100, 0.6, "#4dabf7"))
-    return place(m, x, y, s, flip=flip)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
 
 
 def poisson(x, y, s=1.0, couleur="#ff922b", expr="sourire", flip=False, rot=0, bulles=False):
     """Poisson rouge, tête à droite. (x, y) = centre."""
     ys, bs, ss = EXPRESSIONS[expr]
     fonce = _assombrir(couleur, 0.85)
-    m = [chemin("M -40 0 L -80 -30 Q -70 0 -80 30 Z", fonce),
-         chemin("M -10 -30 Q 5 -55 25 -34 Z", fonce),
-         ellipse(0, 0, 48, 34, couleur),
-         chemin("M -6 18 Q 4 30 16 22 Z", fonce),
-         chemin("M 8 -26 Q -2 0 8 26", stroke=fonce, sw=3),
-         ]
+    nageoire = lineaire([(0, (eclaircir(couleur, 0.35))), (1, _assombrir(couleur, 0.7))], 1, 0, 0, 0)
+    corps = ellipse(0, 0, 48, 34, "#000")
+    m = [chemin("M -40 0 L -80 -30 Q -70 0 -80 30 Z", nageoire),
+         chemin("M -44 0 L -76 -20 M -44 0 L -78 0 M -44 0 L -76 20", stroke=_assombrir(couleur, 0.65), sw=1.5, opacity=0.6),
+         chemin("M -10 -30 Q 5 -55 25 -34 Z", lineaire([eclaircir(couleur, 0.3), fonce])),
+         ellipse(0, 0, 48, 34, volume(couleur, 0.38, 0.75))]
+    # écailles en arcs, découpées au corps
+    ecailles = " ".join(f"M {n(xx)} {n(yy)} q 6 6 0 12" for xx in range(-30, 14, 10) for yy in range(-24 + (xx // 10 % 2) * 6, 22, 12))
+    m.append(_decoupe(chemin(ecailles, stroke=_assombrir(couleur, 0.7), sw=1.6, opacity=0.45), corps))
+    m.append(ombrage(corps, sombre=[(10, 26, 50, 16)], clair=[(-6, -20, 20, 6, -8)], reflets=[(4, 32, 30, 4)]))
+    m += [chemin("M -6 18 Q 4 30 16 22 Z", nageoire),
+          chemin("M 8 -26 Q -2 0 8 26", stroke=fonce, sw=3)]
     m.append(oeil(26, -8, ys, (0.5, 0), taille=0.9))
-    m.append(sourcils(26, -6, ss) if False else "")
     m.append(bouche(40, 8, bs, 0.5))
     if bulles:
-        m += [cercle(62, -30, 6, "none", stroke="#fff", stroke_width=2.5), cercle(74, -54, 9, "none", stroke="#fff", stroke_width=2.5)]
-    return place(m, x, y, s, flip=flip, rot=rot)
+        m += [cercle(62, -30, 6, "none", stroke="#fff", stroke_width=2.5), cercle(74, -54, 9, "none", stroke="#fff", stroke_width=2.5),
+              cercle(60, -32, 1.8, "#fff"), cercle(71, -57, 2.5, "#fff")]
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
 
 
 def tortue(x, y, s=1.0, carapace="#40c057", peau="#b2f2bb", expr="sourire", flip=False, regard=(1, 0)):
     """Tortue de profil, tête à droite. (x, y) = au sol, au milieu."""
     ys, bs, ss = EXPRESSIONS[expr]
     fonce = _assombrir(carapace, 0.75)
-    m = [ellipse(-50, -10, 16, 14, peau), ellipse(40, -10, 16, 14, peau),
-         chemin("M 50 -40 Q 70 -60 90 -76 Q 124 -96 136 -64 Q 144 -36 110 -34 Q 84 -32 60 -24 Z", peau),
-         chemin("M -88 -24 Q -80 -120 0 -120 Q 80 -120 88 -24 Z", carapace),
-         rect(-94, -30, 188, 14, fonce, rx=7)]
+    peau_v = volume(peau, 0.35, 0.78)
+    dome = "M -88 -24 Q -80 -120 0 -120 Q 80 -120 88 -24 Z"
+    cou = "M 50 -40 Q 70 -60 90 -76 Q 124 -96 136 -64 Q 144 -36 110 -34 Q 84 -32 60 -24 Z"
+    m = []
+    if OMBRE_SOL[0]:
+        m.append(ombre_sol(10, 0, 110, 10, 0.13))
+    m += [ellipse(-50, -10, 16, 14, volume(_assombrir(peau, 0.85), 0.3, 0.75)), ellipse(40, -10, 16, 14, volume(_assombrir(peau, 0.85), 0.3, 0.75)),
+          chemin(cou, lineaire([(0, eclaircir(peau, 0.3)), (0.5, peau), (1, _assombrir(peau, 0.8))])),
+          chemin("M 70 -50 q 10 4 18 0 M 74 -40 q 10 4 18 0", stroke=_assombrir(peau, 0.75), sw=2, opacity=0.6),
+          chemin(dome, volume(carapace, 0.3, 0.7))]
+    # écailles bombées : chacune son reflet
     for px, py in [(-44, -60), (0, -84), (44, -60), (-6, -44)]:
-        m.append(poly([(px - 20, py), (px - 10, py - 18), (px + 10, py - 18), (px + 20, py), (px + 10, py + 18), (px - 10, py + 18)], fonce, opacity=0.55))
-    m.append(ellipse(-24, -14, 16, 14, peau))
-    m.append(ellipse(22, -14, 16, 14, peau))
+        hexa = [(px - 20, py), (px - 10, py - 18), (px + 10, py - 18), (px + 20, py), (px + 10, py + 18), (px - 10, py + 18)]
+        m.append(poly(hexa, fonce, opacity=0.55))
+        m.append(poly([(px - 14, py), (px - 7, py - 12), (px + 7, py - 12), (px + 14, py), (px + 7, py + 12), (px - 7, py + 12)],
+                      volume(eclaircir(carapace, 0.1), 0.35, 0.8)))
+    m.append(ombrage(chemin(dome, "#000"), sombre=[(60, -30, 60, 40)], clair=[(-40, -100, 26, 9, -20)], reflets=[(86, -40, 8, 20)]))
+    m += [rect(-94, -30, 188, 14, cylindre(fonce, 0.3, 0.7, vertical=True), rx=7),
+          chemin(" ".join(f"M {xx} -30 v 14" for xx in range(-70, 90, 28)), stroke=_assombrir(fonce, 0.7), sw=2, opacity=0.6)]
+    m.append(ellipse(-24, -14, 16, 14, peau_v))
+    m.append(ellipse(22, -14, 16, 14, peau_v))
+    m.append(chemin("M -32 -2 v 4 M -24 -1 v 4 M 14 -2 v 4 M 22 -1 v 4", stroke=_assombrir(peau, 0.6), sw=2))
     m.append(oeil(114, -70, ys, regard, taille=0.9))
     m.append(ellipse(124, -52, 7, 4.5, ROSE, opacity=0.7))
     m.append(bouche(126, -46, bs, 0.7))
-    return place(m, x, y, s, flip=flip)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
 
 
 def faisceau(x0, y0, x1, y1, r, fill="#000", **a):

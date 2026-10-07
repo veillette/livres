@@ -144,7 +144,7 @@ def p06():
     rue_maisons(S)
     S.add(maison(560, 620, 1.3, mur="#ffc9c9", toit="#c92a2a"))
     S.add(barriere(520, 700, 1.0, largeur=520))
-    S.add(perso("chien", 600, 760, 1.15, expr="joie", bras="haut", regard=(-1, 0)))
+    S.add(perso("chien", 600, 760, 1.15, expr="joie", bras="saute", regard=(-1, 0)))
     S.add(texte(620, 330, "Wouf !", 60, "#a0693a", contour="#fff"))
     S.add(rosa(200, 790, 1.6, expr="rire", bras="salut", regard=(1, 0)))
     return S

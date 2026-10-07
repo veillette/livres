@@ -197,7 +197,7 @@ def p03():
     for x in (360, 470, 580):
         S.add(rondin(x, 700, 24))
     S.add(planche(470, 663, 340, 28))
-    S.add(ecureuil(160, 770, 0.95, expr="rire", bras="tire", rot=-8))
+    S.add(ecureuil(160, 770, 0.95, expr="rire", bras="pousse"))
     S.add(fleche(610, 590, 730, 590, "#e8590c"))
     S.add(castor(720, 790, 0.9, expr="surpris", bras="haut"))
     S.add(texte(420, 230, "Ça roule !", 70, "#e8590c", contour="#fff"))

@@ -140,7 +140,7 @@ def p07():
     S.add(chemin("M 0 620 q 40 -14 80 0 q 40 14 80 0 q 40 -14 80 0 M 40 720 q 40 -14 80 0 q 40 14 80 0", stroke="#a5d8ff", sw=6))
     S.add(chemin("M 340 800 Q 330 640 460 570 Q 600 530 800 540 L 800 800 Z", "#8ce99a"))
     S.add(brin_herbe(250, 660, 1.2, rot=-10))
-    S.add(fourmi(600, 740, 1.3, expr="rire", bras="haut", pieds_haut=True))
+    S.add(fourmi(600, 740, 1.3, expr="rire", bras="saute", pieds_haut=True))
     S.add(texte(560, 330, "Sauvée !", 64, "#2b8a3e", contour="#fff"))
     return S
 

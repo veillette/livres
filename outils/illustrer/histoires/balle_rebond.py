@@ -225,7 +225,7 @@ def p08():
     jardin(S, 640, 4)
     S.add(arbre(110, 660, 0.9))
     S.add(trampoline(430, 740, 440, creux=6))
-    S.add(pirouette(430, 380, 1.1, expr="rire", bras="haut", pieds_haut=True), mouvement(380, 410, 1.0, rot=-90))
+    S.add(pirouette(430, 380, 1.1, expr="rire", bras="saute", pieds_haut=True), mouvement(380, 410, 1.0, rot=-90))
     S.add(chiot(720, 780, 0.75, expr="rire", bras="haut"))
     S.add(texte(560, 150, "Encore plus haut !", 54, "#ae3ec9", contour="#fff"))
     return S
@@ -234,7 +234,7 @@ def p08():
 def p09():
     S = Scene()
     jardin(S, 640, 5)
-    S.add(pirouette(400, 760, 1.25, expr="concentre", bras="large", sy=1.05))
+    S.add(pirouette(400, 760, 1.25, expr="concentre", bras="equilibre", pas="", sy=1.05))
     S.add(g([trait(300, 420 + k * 30, 300, 470 + k * 30, ENCRE, 4, opacity=0.4) for k in range(3)]))
     S.add(g([trait(500, 420 + k * 30, 500, 470 + k * 30, ENCRE, 4, opacity=0.4) for k in range(3)]))
     S.add(ressort(220, 760, 90, 50, couleur="#ae3ec9"), ressort(580, 760, 90, 50, couleur="#ae3ec9"))

@@ -194,7 +194,7 @@ def p06():
         rr = r.uniform(0, 1) ** 0.5
         S.add(feuille_chene(500 + math.cos(a) * 230 * rr, 760 + math.sin(a) * 110 * rr, 1.3, cols[k % 5], rot=r.uniform(0, 360)))
     feuilles_qui_tombent(S, 9, (330, 280, 700, 560), 14)
-    S.add(ecureuil(500, 580, 1.2, expr="rire", bras="haut", pieds_haut=True))
+    S.add(ecureuil(500, 580, 1.2, expr="rire", bras="saute", pieds_haut=True))
     S.add(bulle(250, 130, 400, 80, "N'aie pas peur !", 38, pointe=(170, 280)))
     return S
 

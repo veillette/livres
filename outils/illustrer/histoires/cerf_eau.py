@@ -28,10 +28,10 @@ def ondes_eau():
 
 
 def cerf_et_reflet(S, x, s=1.2, **k):
-    c = cerf_profil(x, EAU_Y, s, **k)
-    S.add(reflet(c))
+    # deux dessins distincts : chacun garde ses propres identifiants SVG
+    S.add(reflet(cerf_profil(x, EAU_Y, s, **k)))
     S.add(ondes_eau())
-    S.add(c)
+    S.add(cerf_profil(x, EAU_Y, s, **k))
 
 
 def loup(x, y, s=1.0, **k):

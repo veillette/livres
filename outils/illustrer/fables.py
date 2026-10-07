@@ -127,9 +127,11 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     for dx in (-10, 12):
         m.append(trait(dx, -150, dx + (6 if dx > 0 else -4), 0, rouge, 6))
         m.append(chemin(f"M {dx - 14} 0 L {dx} -4 L {dx + 16} 0", stroke=rouge, sw=5))
-    m.append(chemin("M -40 -200 L -110 -170 L -40 -160 Z", ailes))
-    m.append(ellipse(0, -190, 62, 40, plumes, stroke="#dee2e6", stroke_width=3))
-    m.append(chemin("M -52 -200 Q -20 -150 40 -176 Q 10 -168 -10 -186 Z", ailes))
+    m.append(chemin("M -40 -200 L -110 -170 L -40 -160 Z", lineaire([eclaircir(ailes, 0.2), _assombrir(ailes, 0.8)])))
+    m.append(ellipse(0, -190, 62, 40, volume(plumes, 0.3, 0.82), stroke="#dee2e6", stroke_width=3))
+    m.append(ombrage(ellipse(0, -190, 62, 40, "#000"), sombre=[(10, -156, 62, 16)], clair=[(-16, -216, 26, 6, -6)]))
+    m.append(chemin("M -52 -200 Q -20 -150 40 -176 Q 10 -168 -10 -186 Z", lineaire([eclaircir(ailes, 0.25), ailes, _assombrir(ailes, 0.75)], 0, 0, 1, 1)))
+    m.append(chemin("M -36 -186 Q -10 -168 20 -174 M -40 -176 Q -14 -160 10 -166", stroke=eclaircir(ailes, 0.3), sw=1.5, opacity=0.5))
     if cou == "table":
         # cou penché vers une table : le bout du bec arrive vers (138, -156)
         m.append(chemin("M 36 -210 Q 70 -250 100 -262", stroke=plumes, sw=24))
@@ -149,8 +151,8 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     if huppe:
         m.append(chemin(f"M {hx - 10} {hy - 20} Q {hx - 40} {hy - 40} {hx - 70} {hy - 30}", stroke=huppe, sw=5))
         m.append(chemin(f"M {hx - 6} {hy - 22} Q {hx - 34} {hy - 50} {hx - 62} {hy - 48}", stroke=huppe, sw=4))
-    m.append(cercle(hx, hy, 26, plumes, stroke="#dee2e6", stroke_width=3))
-    m.append(chemin(bec, rouge))
+    m.append(cercle(hx, hy, 26, volume(plumes, 0.3, 0.84), stroke="#dee2e6", stroke_width=3))
+    m.append(chemin(bec, lineaire([eclaircir(rouge, 0.3), _assombrir(rouge, 0.8)])))
     if objet:
         bout = {"table": (hx + 34, hy + 112), "baisse": (hx + 30, hy + 110)}.get(cou, (hx + 118, hy + 8))
         m.append(place(objet, *bout))
@@ -158,7 +160,9 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     if ss:
         m.append(place(sourcils(0, 0, ss), hx + 4, hy - 4))
     m.append(ellipse(hx - 6, hy + 10, 6, 3.5, ROSE, opacity=0.8))
-    return place(m, x, y, s, flip=flip)
+    if OMBRE_SOL[0]:
+        m.insert(0, ombre_sol(4, 0, 40, 7, 0.13))
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
 
 
 def moucheron(x, y, s=1.0, expr="malin", flip=False, rot=0, regard=(1, 0), trompette=False):
@@ -506,31 +510,37 @@ def champ_ble(S, y=560, graine=3, n_=40):
         S.add(ble(rr.uniform(0, 800), y + rr.uniform(10, 240), rr.uniform(0.6, 1.1)))
 
 
-def ville(S, y=560):
-    """Rangée d'immeubles et de maisons de ville en fond."""
+def ville(S, y=560, lumiere=False):
+    """Rue d'immeubles de ville en fond, sur deux plans : silhouettes lointaines
+    voilées de brume, puis immeubles détaillés (corniches, balcons, volets,
+    toits en mansarde ou en tuiles, boutiques)."""
     couleurs = ["#ffc9c9", "#d0bfff", "#a5d8ff", "#ffec99", "#b2f2bb", "#ffd8a8"]
+    volets = ["#1971c2", "#2f9e44", None, "#c2255c", "#495057", None]
+    toits = ["mansarde", "pignon", "plat", "mansarde", "pignon", "plat"]
+    # arrière-plan : toits et clochers lointains, bleutés
+    lointain_c = "#b6c2dc"
+    d = []
+    x = -10
+    k = 0
+    while x < 820:
+        w = 70 + (k * 29) % 40
+        h = 300 + (k * 61) % 140
+        d.append(f"M {x} {y} V {y - h} H {x + w} V {y} Z")
+        if k % 3 == 1:
+            d.append(f"M {x + w / 2 - 12} {y - h} L {x + w / 2} {y - h - 60} L {x + w / 2 + 12} {y - h} Z")
+        x += w + 4
+        k += 1
+    S.add(chemin(" ".join(d), lointain_c, opacity=0.55))
+    S.add(rect(0, y - 460, S.w, 460, lineaire([(0, "#ffffff", 0), (1, "#ffffff", 0.35)])))
     x = -20
     k = 0
     while x < 820:
         w = 110 + (k * 37) % 50
         h = 220 + (k * 83) % 180
-        c = couleurs[k % len(couleurs)]
-        toit_c = _assombrir(c, 0.75)
-        S.add(rect(x, y - h, w, h, cylindre(c, 0.15, 0.84)))
-        # rangs de briques discrets, ombre du toit, chaînage d'angle
-        S.add(chemin(" ".join(f"M {x} {yy} h {w}" for yy in range(int(y - h + 18), int(y), 18)), stroke=_assombrir(c, 0.8), sw=1.2, opacity=0.35))
-        S.add(rect(x + w - 8, y - h, 8, h, _assombrir(c, 0.85)))
-        S.add(poly([(x - 6, y - h), (x + w / 2, y - h - 50), (x + w + 6, y - h)], lineaire([(0, eclaircir(toit_c, 0.2)), (1, _assombrir(toit_c, 0.8))], 0, 0, 1, 1)))
-        S.add(rect(x - 8, y - h - 2, w + 16, 7, _assombrir(toit_c, 0.75), rx=3))
-        S.add(rect(x, y - h + 5, w, 10, "#000", opacity=0.15))
-        for row in range(int(h // 70)):
-            for col in range(2):
-                fx, fy, fw = x + 18 + col * (w / 2), y - h + 24 + row * 70, w / 2 - 36
-                S.add(rect(fx - 3, fy - 3, fw + 6, 46, _assombrir(c, 0.8), rx=5))
-                S.add(rect(fx, fy, fw, 40, "#fff9db", rx=4))
-                S.add(poly([(fx, fy), (fx + fw, fy), (fx + fw, fy + 6), (fx + 5, fy + 6), (fx + 5, fy + 40), (fx, fy + 40)], "#000", opacity=0.14))
-                S.add(trait(fx + fw / 2, fy, fx + fw / 2, fy + 40, eclaircir(c, 0.4), 2.5))
-                S.add(rect(fx - 5, fy + 40, fw + 10, 5, eclaircir(c, 0.5), rx=2))
+        etages = max(3, int(round((h - 20) / 70)))
+        S.add(immeuble(x, y, w, etages, couleurs[k % 6], toit=toits[k % 6], volets=volets[k % 6],
+                       rdc="boutique" if k % 3 == 2 else "porte", balcons=k % 2 == 0, lumiere=lumiere, graine=k + 1,
+                       h_etage=(h - 20) / etages))
         x += w + 6
         k += 1
 
@@ -684,8 +694,9 @@ def cerf_profil(x, y, s=1.0, expr="fier", flip=False, regard=(1, 0), rot=0, cour
         m.append(trait(x0, y0, x1, y1, col, 11))
         m.append(ellipse(x1, y1 - 4, 8, 6, "#3b2412"))
     m.append(ellipse(-92, -140, 12, 16, "#fff", rot=-30))
-    m.append(ellipse(0, -130, 92, 42, c))
-    m.append(ellipse(6, -112, 64, 18, c2))
+    m.append(ellipse(0, -130, 92, 42, volume(c, 0.3, 0.75)))
+    m.append(ellipse(6, -112, 64, 18, volume(c2, 0.3, 0.9)))
+    m.append(ombrage(ellipse(0, -130, 92, 42, "#000"), sombre=[(10, -92, 90, 16), (-78, -124, 24, 34)], clair=[(-24, -160, 40, 7, -4)]))
     # cou et tête
     if tete_basse:
         m.append(poly([(54, -150), (80, -158), (138, -70), (110, -56)], c))
@@ -700,8 +711,8 @@ def cerf_profil(x, y, s=1.0, expr="fier", flip=False, regard=(1, 0), rot=0, cour
         tete.append(chemin(f"M {-14 + sgn * 6} -92 Q {6 + sgn * 6} -110 {8 + sgn * 6} -134", stroke=bois, sw=7))
         tete.append(chemin(f"M {-30 + sgn * 18} -116 Q {-62 + sgn * 18} -116 {-78 + sgn * 18} -134", stroke=bois, sw=6))
     tete.append(place([ellipse(0, -26, 12, 26, c), ellipse(0, -26, 6, 18, "#ffd8a8")], -24, -10, 1.0, rot=-60))
-    tete.append(ellipse(0, 0, 40, 26, c, rot=24))
-    tete.append(ellipse(30, 14, 18, 14, c2, rot=24))
+    tete.append(ellipse(0, 0, 40, 26, volume(c, 0.32, 0.75), rot=24))
+    tete.append(ellipse(30, 14, 18, 14, volume(c2, 0.3, 0.88), rot=24))
     tete.append(ellipse(42, 14, 5, 4, ENCRE))
     tete.append(oeil(-2, -6, ys, regard, taille=0.85))
     if ss:
@@ -709,7 +720,9 @@ def cerf_profil(x, y, s=1.0, expr="fier", flip=False, regard=(1, 0), rot=0, cour
     tete.append(ellipse(10, 10, 6, 3.5, ROSE, opacity=0.8))
     tete.append(place(bouche(0, 0, bs, 0.5), 28, 24))
     m.append(place(tete, hx, hy, 1.0, rot=ang - 24))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    if OMBRE_SOL[0] and not rot:
+        m.insert(0, ombre_sol(6, 0, 100, 11, 0.13))
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
 
 
 GRIS_ANE = "#9aa1a8"
@@ -730,26 +743,29 @@ def ane_profil(x, y, s=1.0, expr="sourire", flip=False, regard=(1, 0), ploie=Fal
     for k, px in enumerate((-58, -34, 40, 64)):
         c = fonce if k in (1, 2) else couleur
         ecart = (18 if px < 0 else -18) if ploie else 0
-        m.append(rect(px - 10 + ecart * 0.5, -70 + dy, 20, 70 - dy, c, rx=8))
-        m.append(rect(px - 11 + ecart * 0.5, -12, 22, 12, "#495057", rx=4))
+        m.append(rect(px - 10 + ecart * 0.5, -70 + dy, 20, 70 - dy, cylindre(c, 0.25, 0.7), rx=8))
+        m.append(rect(px - 11 + ecart * 0.5, -12, 22, 12, cylindre("#495057", 0.3, 0.7), rx=4))
     # corps
-    m.append(ellipse(0, -84 + dy, 88, 40, couleur))
-    m.append(ellipse(4, -70 + dy, 60, 20, eclaircir(couleur, 0.5)))
+    m.append(ellipse(0, -84 + dy, 88, 40, volume(couleur, 0.3, 0.75)))
+    m.append(ellipse(4, -70 + dy, 60, 20, volume(eclaircir(couleur, 0.5), 0.3, 0.9)))
+    m.append(ombrage(ellipse(0, -84 + dy, 88, 40, "#000"), sombre=[(10, -48 + dy, 90, 16), (-74, -80 + dy, 24, 34)], clair=[(-24, -112 + dy, 40, 7, -4)]))
     # cou et tête
     hx, hy = 104, -154 + dy * 1.5
-    m.append(poly([(50, -110 + dy), (80, -160 + dy), (116, -140 + dy), (86, -80 + dy)], couleur))
+    m.append(poly([(50, -110 + dy), (80, -160 + dy), (116, -140 + dy), (86, -80 + dy)], cylindre(couleur, 0.2, 0.75)))
     m.append(chemin(f"M 56 {-112 + dy} Q 70 {-150 + dy} 88 {-170 + dy}", stroke="#495057", sw=8))
     for sgn, ang in ((-1, -30), (1, 10)):
         m.append(place([ellipse(0, -30, 11, 32, couleur), ellipse(0, -30, 5, 22, "#ffe3e3")], hx - 10 + sgn * 10, hy - 26, 1.0, rot=ang))
-    m.append(ellipse(hx, hy, 44, 30, couleur, rot=24))
-    m.append(ellipse(hx + 30, hy + 16, 24, 20, "#e9ecef", rot=24))
+    m.append(ellipse(hx, hy, 44, 30, volume(couleur, 0.32, 0.75), rot=24))
+    m.append(ellipse(hx + 30, hy + 16, 24, 20, volume("#e9ecef", 0.3, 0.85), rot=24))
     m.append(ellipse(hx + 38, hy + 14, 3.5, 5, "#495057"))
     m.append(oeil(hx - 4, hy - 8, ys, regard, taille=0.9))
     if ss:
         m.append(place(sourcils(0, 0, ss), hx - 4, hy - 6, 0.8))
     m.append(ellipse(hx + 8, hy + 12, 7, 4, ROSE, opacity=0.8))
     m.append(place(bouche(0, 0, bs, 0.6), hx + 24, hy + 26))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    if OMBRE_SOL[0] and not rot:
+        m.insert(0, ombre_sol(6, 0, 100, 11, 0.13))
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
 
 
 
@@ -761,18 +777,24 @@ def cheval_profil(x, y, s=1.0, couleur="#a0522d", criniere="#4a2c17", expr="fier
     ys, bs, ss = EXPRESSIONS[expr]
     fonce = assombrir(couleur, 0.8)
     dy = 18 if ploie else 0
-    m = [chemin(f"M -100 {-130 + dy} Q -150 {-110 + dy} -140 {-30 + dy}", stroke=criniere, sw=18)]
+    m = [ombre_sol(10, 0, 130, 12, 0.13) if OMBRE_SOL[0] and not rot else "",
+         chemin(f"M -100 {-130 + dy} Q -150 {-110 + dy} -140 {-30 + dy}", stroke=criniere, sw=18),
+         chemin(f"M -104 {-126 + dy} Q -140 {-108 + dy} -134 {-40 + dy}", stroke=eclaircir(criniere, 0.25), sw=4, opacity=0.6)]
     for k, px in enumerate((-72, -46, 52, 78)):
+        # pattes du côté opposé plus sombres : elles sont plus loin
         col = fonce if k in (1, 2) else couleur
-        m.append(rect(px - 11, -100 + dy, 22, 100 - dy, col, rx=8))
-        m.append(rect(px - 12, -14, 24, 14, "#343a40", rx=4))
-    m.append(ellipse(0, -118 + dy, 110, 48, couleur))
+        m.append(rect(px - 11, -100 + dy, 22, 100 - dy, cylindre(col, 0.25, 0.7), rx=8))
+        m.append(ellipse(px, -46, 9, 7, _assombrir(col, 0.85), opacity=0.7))
+        m.append(rect(px - 12, -14, 24, 14, cylindre("#343a40", 0.3, 0.7), rx=4))
+    corps = ellipse(0, -118 + dy, 110, 48, "#000")
+    m.append(ellipse(0, -118 + dy, 110, 48, volume(couleur, 0.3, 0.75)))
+    m.append(ombrage(corps, sombre=[(10, -76 + dy, 110, 22), (-90, -110 + dy, 30, 40)], clair=[(-30, -150 + dy, 50, 9, -4)], reflets=[(20, -72 + dy, 70, 6)]))
     hx, hy = 138, -230 + dy * 1.5
-    m.append(poly([(60, -150 + dy), (100, -236 + dy), (150, -214 + dy), (110, -110 + dy)], couleur))
+    m.append(poly([(60, -150 + dy), (100, -236 + dy), (150, -214 + dy), (110, -110 + dy)], cylindre(couleur, 0.2, 0.75)))
     m.append(chemin(f"M 64 {-150 + dy} Q 84 {-210 + dy} 108 {-250 + dy}", stroke=criniere, sw=16))
     m.append(place([ellipse(0, -20, 9, 22, couleur), ellipse(0, -20, 4, 14, "#ffd8a8")], hx - 14, hy - 30, 1.0, rot=-10))
-    m.append(ellipse(hx + 10, hy + 10, 50, 28, couleur, rot=34))
-    m.append(ellipse(hx + 40, hy + 34, 22, 18, assombrir(couleur, 0.9), rot=34))
+    m.append(ellipse(hx + 10, hy + 10, 50, 28, volume(couleur, 0.32, 0.75), rot=34))
+    m.append(ellipse(hx + 40, hy + 34, 22, 18, volume(assombrir(couleur, 0.9), 0.25, 0.8), rot=34))
     m.append(ellipse(hx + 48, hy + 32, 3.5, 5, ENCRE))
     m.append(chemin(f"M {hx - 26} {hy - 26} Q {hx - 4} {hy - 46} {hx + 14} {hy - 30}", criniere, stroke=criniere, sw=6))
     m.append(oeil(hx, hy - 4, ys, regard, taille=0.9))
@@ -782,7 +804,7 @@ def cheval_profil(x, y, s=1.0, couleur="#a0522d", criniere="#4a2c17", expr="fier
     m.append(place(bouche(0, 0, bs, 0.6), hx + 32, hy + 48))
     if charge:
         m.append(place(charge, 0, dy))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
 
 
 def bat(x=0, y=-110, s=1.0, nb=2, couleur="#e9d8c4"):

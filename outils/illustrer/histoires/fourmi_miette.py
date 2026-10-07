@@ -76,7 +76,7 @@ def p02():
     S = Scene()
     macro(S, 3)
     S.add(miette(520, 700, 1.7))
-    S.add(perso("fourmi", 290, 730, 1.15, expr="concentre", bras="tire", **FOURMI))
+    S.add(perso("fourmi", 290, 730, 1.15, expr="concentre", bras="pousse", **FOURMI))
     for k in range(3):
         S.add(goutte(230 + k * 24, 400 + k * 12, 0.8, "#74c0fc"))
     S.add(texte(560, 330, "Hmmmf !", 56, "#e8590c", contour="#fff"))

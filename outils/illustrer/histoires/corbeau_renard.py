@@ -90,7 +90,7 @@ def p06():
     S = Scene()
     scene_arbre(S, branche_y=160, branche_x=280)
     S.add(corbeau(400, 164, 1.1, expr="rire", fromage_bec=True))
-    S.add(perso("renard", 320, 560, 1.3, expr="concentre", bras="haut", regard=(1, -1), pieds_haut=True))
+    S.add(perso("renard", 320, 560, 1.3, expr="concentre", bras="saute", regard=(1, -1), pieds_haut=True))
     S.add(mouvement(320, 660, 1.2, rot=-90))
     S.add(texte(160, 330, "Hop !", 60, "#e8590c", contour="#fff"))
     return S
