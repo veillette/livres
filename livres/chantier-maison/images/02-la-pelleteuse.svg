@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<defs><linearGradient id="d3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d3)"/>
+<path d="M -160.4 600 Q 127.6 344.3 415.6 600 Z" fill="#b2f2bb"/>
+<path d="M 114.8 600 Q 395.9 381.4 676.9 600 Z" fill="#b2f2bb"/>
+<path d="M 347.2 600 Q 628.8 376.7 910.4 600 Z" fill="#b2f2bb"/>
+<rect x="0" y="600" width="800" height="200" fill="#d9a066"/>
+<circle cx="30" cy="660" r="6" fill="#a0693a"/>
+<circle cx="97" cy="710" r="6" fill="#a0693a"/>
+<circle cx="164" cy="760" r="6" fill="#a0693a"/>
+<circle cx="231" cy="660" r="6" fill="#a0693a"/>
+<circle cx="298" cy="710" r="6" fill="#a0693a"/>
+<circle cx="365" cy="760" r="6" fill="#a0693a"/>
+<circle cx="432" cy="660" r="6" fill="#a0693a"/>
+<circle cx="499" cy="710" r="6" fill="#a0693a"/>
+<circle cx="566" cy="760" r="6" fill="#a0693a"/>
+<circle cx="633" cy="660" r="6" fill="#a0693a"/>
+<circle cx="700" cy="710" r="6" fill="#a0693a"/>
+<circle cx="767" cy="760" r="6" fill="#a0693a"/>
+<ellipse cx="560" cy="680" rx="200" ry="50" fill="#7c4a1e"/>
+<g transform="translate(320 740)"><rect x="-200" y="-60" width="280" height="50" rx="24" fill="#495057"/><circle cx="-176" cy="-35" r="14" fill="#868e96"/><circle cx="-130" cy="-35" r="14" fill="#868e96"/><circle cx="-84" cy="-35" r="14" fill="#868e96"/><circle cx="-38" cy="-35" r="14" fill="#868e96"/><circle cx="8" cy="-35" r="14" fill="#868e96"/><circle cx="54" cy="-35" r="14" fill="#868e96"/><rect x="-170" y="-170" width="220" height="110" rx="12" fill="#fab005"/><rect x="-160" y="-260" width="110" height="100" rx="10" fill="#fab005"/><rect x="-148" y="-248" width="86" height="70" rx="6" fill="#a5d8ff"/><path d="M 30 -150 L 150 -280 L 260 -160" fill="none" stroke="#f08c00" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/><path d="M 240 -170 L 300 -110 L 250 -70 L 220 -120 Z" fill="#868e96"/></g>
+<g transform="translate(130 620)"><path d="M -90 0 Q -40 -90 0 -90 Q 40 -90 90 0 Z" fill="#a0693a"/></g>
+<text x="250" y="200" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="64" text-anchor="middle" fill="#f08c00" stroke="#fff" stroke-width="9.1" stroke-linejoin="round" paint-order="stroke">Vroum !</text>
+</svg>

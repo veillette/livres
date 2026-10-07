@@ -145,7 +145,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
              robe=True, jambes="#495057", chaussures=None, expr="sourire", bras="bas", regard=(0, 0),
              flip=False, acc=(), couleur_acc=OR, objet=None, derriere=None, larmes=False, rot=0,
              barbe=None, cape=None, sirene=None, motif_robe=None, joues=True, sy=None, ailes=None,
-             ceinture=None):
+             ceinture=None, tenue=None, coiffe=None):
     """Un personnage humain vu de face (princesse, prince, roi, fée, sorcière…).
 
     peau / cheveux : clé de PEAUX / CHEVEUX ou couleur ; coiffure : "longs",
@@ -157,6 +157,9 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     cape : couleur d'une cape ; barbe : couleur d'une barbe ;
     sirene : (couleur, couleur_nageoire) remplace les jambes par une queue ;
     ailes : couleur d'ailes de fée.
+    tenue : dessin (coordonnées locales) posé sur le vêtement, sous les bras
+            (blouse, gilet, badge…) ; coiffe : dessin posé sur la tête, par-dessus
+            les cheveux (casque, casquette, masque…).
     """
     p = PEAUX.get(peau, peau)
     ch = CHEVEUX.get(cheveux, cheveux)
@@ -197,6 +200,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
             m.append(rect(-8, -64, 16, 14, OR, rx=3))
     if "col" in acc:
         m.append(chemin("M -30 -108 Q 0 -86 30 -108 Q 0 -96 -30 -108 Z", "#fff"))
+    if tenue:
+        m.append(tenue)
 
     # --- bras
     main_g, main_d = POSES[bras]
@@ -264,6 +269,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     if "bonnet_nuit" in acc:
         m.append(g([chemin("M -54 -168 Q -40 -226 20 -224 Q 70 -220 84 -150 Q 60 -196 30 -200 Q 0 -196 54 -168 Z", couleur_acc),
                     chemin("M -56 -166 Q 0 -196 56 -166", stroke="#fff", sw=10), cercle(86, -146, 12, "#fff")]))
+    if coiffe:
+        m.append(coiffe)
 
     if devant:
         m.append(bras_svg + mains_svg)
