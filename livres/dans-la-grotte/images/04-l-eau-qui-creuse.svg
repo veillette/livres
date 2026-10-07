@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<defs><linearGradient id="d5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d5)"/>
+<g transform="translate(400 70) scale(1.4 1.4)"><g><g transform="translate(0 8)"><circle cx="-55" cy="10" r="38" fill="#adb5bd"/><circle cx="-15" cy="-18" r="50" fill="#adb5bd"/><circle cx="40" cy="-8" r="42" fill="#adb5bd"/><circle cx="78" cy="18" r="30" fill="#adb5bd"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#adb5bd"/></g><circle cx="-55" cy="10" r="38" fill="#ced4da"/><circle cx="-15" cy="-18" r="50" fill="#ced4da"/><circle cx="40" cy="-8" r="42" fill="#ced4da"/><circle cx="78" cy="18" r="30" fill="#ced4da"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ced4da"/></g></g>
+<line x1="323.2" y1="122.4" x2="317.2" y2="144.4" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="372.8" y1="128.6" x2="366.8" y2="150.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="270.6" y1="158.2" x2="264.6" y2="180.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="534.6" y1="206.1" x2="528.6" y2="228.1" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="487.2" y1="136.6" x2="481.2" y2="158.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="416.4" y1="143.2" x2="410.4" y2="165.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="303.5" y1="122.7" x2="297.5" y2="144.7" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="316.5" y1="221.3" x2="310.5" y2="243.3" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="507" y1="206.8" x2="501" y2="228.8" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="498.1" y1="133.2" x2="492.1" y2="155.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="346.1" y1="185.2" x2="340.1" y2="207.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="476.9" y1="212.6" x2="470.9" y2="234.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="522.8" y1="120.4" x2="516.8" y2="142.4" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="437.8" y1="190.6" x2="431.8" y2="212.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="406.8" y1="131.3" x2="400.8" y2="153.3" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="396.8" y1="120.7" x2="390.8" y2="142.7" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="539.7" y1="213.9" x2="533.7" y2="235.9" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="419.8" y1="146" x2="413.8" y2="168" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="531.7" y1="178.7" x2="525.7" y2="200.7" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="523.5" y1="211.8" x2="517.5" y2="233.8" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="407.6" y1="159.7" x2="401.6" y2="181.7" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="435.7" y1="161.7" x2="429.7" y2="183.7" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="300" y1="146.6" x2="294" y2="168.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="501.9" y1="115.2" x2="495.9" y2="137.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<line x1="264.4" y1="185.2" x2="258.4" y2="207.2" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+<rect x="0" y="230" width="800" height="30" fill="#69db7c"/>
+<rect x="0" y="260" width="800" height="540" fill="#e9dcc5"/>
+<line x1="0" y1="300" x2="800" y2="300" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="360" x2="800" y2="360" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="420" x2="800" y2="420" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="480" x2="800" y2="480" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="540" x2="800" y2="540" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="600" x2="800" y2="600" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="660" x2="800" y2="660" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="720" x2="800" y2="720" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="780" x2="800" y2="780" stroke="#d9c7b0" stroke-width="4" stroke-linecap="round"/>
+<path d="M 380 260 L 360 330 L 400 400 L 380 470" fill="none" stroke="#a68a64" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 120 560 Q 240 500 380 560 Q 520 620 700 540 L 700 640 Q 520 720 380 660 Q 240 600 120 660 Z" fill="#2b2238"/>
+<g transform="translate(370 300) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<g transform="translate(386 340) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<g transform="translate(370 380) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<g transform="translate(386 420) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<g transform="translate(370 460) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<g transform="translate(386 500) scale(0.9 0.9)"><path d="M 0 -16 Q 12 0 8 8 Q 0 16 -8 8 Q -12 0 0 -16 Z" fill="#4dabf7"/></g>
+<text x="560" y="360" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="38" text-anchor="middle" fill="#7c4a1e" stroke="#fff" stroke-width="5.4" stroke-linejoin="round" paint-order="stroke">le calcaire</text>
+<text x="410" y="740" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#5f3dc4" stroke="#fff" stroke-width="6.3" stroke-linejoin="round" paint-order="stroke">des millions d'années !</text>
+</svg>
