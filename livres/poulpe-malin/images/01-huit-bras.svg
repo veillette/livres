@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3bc9db"/><stop offset="1" stop-color="#1864ab"/></linearGradient></defs>
+<defs><linearGradient id="d2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3bc9db"/><stop offset="1" stop-color="#1864ab"/></linearGradient><linearGradient id="vola3c69f5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5db9f"/><stop offset="0.22" stop-color="#f4d58d"/><stop offset="1" stop-color="#c3aa70"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="url(#d2)"/>
 <polygon points="80,0 150,0 240,680 120,680" fill="#ffffff" opacity="0.06"/>
 <polygon points="280,0 350,0 440,680 320,680" fill="#ffffff" opacity="0.06"/>
 <polygon points="480,0 550,0 640,680 520,680" fill="#ffffff" opacity="0.06"/>
 <polygon points="680,0 750,0 840,680 720,680" fill="#ffffff" opacity="0.06"/>
-<path d="M 0 680 Q 200 650 400 680 T 800 670 L 800 800 L 0 800 Z" fill="#f4d58d"/>
+<path d="M 0 680 Q 200 650 400 680 T 800 670 L 800 800 L 0 800 Z" fill="url(#vola3c69f5)"/>
 <circle cx="30" cy="710" r="3" fill="#e8c170"/>
 <circle cx="121" cy="757" r="3" fill="#e8c170"/>
 <circle cx="212" cy="804" r="3" fill="#e8c170"/>

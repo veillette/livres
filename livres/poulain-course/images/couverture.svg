@@ -1,9 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<defs><linearGradient id="d1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="0.5" stop-color="#b9dffd"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient><linearGradient id="vol418fca6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c1ea7d"/><stop offset="0.5" stop-color="#a9e34b"/><stop offset="1" stop-color="#94c742"/></linearGradient><linearGradient id="vol904759d" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="#f0f9ff" stop-opacity="0"/><stop offset="0.75" stop-color="#f0f9ff" stop-opacity="0.35"/><stop offset="1" stop-color="#f0f9ff" stop-opacity="0.1"/></linearGradient><linearGradient id="vol9aae608" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.3"/></linearGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="url(#d1)"/>
-<path d="M -151.7 520 Q 188.1 359.8 527.8 520 Z" fill="#a9e34b"/>
-<path d="M 25.5 520 Q 350.2 285 674.9 520 Z" fill="#a9e34b"/>
-<path d="M 432.6 520 Q 687 299.3 941.5 520 Z" fill="#a9e34b"/>
+<rect x="0" y="0" width="800" height="800" fill="url(#vol904759d)"/>
+<path d="M -60 520 L -60 459.5 Q 69.1 275.9 198.1 450.7 Q 316.2 294.5 434.3 468.4 Q 546.4 301.6 658.5 460 Q 783.5 243.8 908.6 467.2 L 908.6 520 Z" fill="#a8d76a" opacity="0.4"/>
+<path d="M -151.7 520 Q 188.1 359.8 527.8 520 Z" fill="url(#vol418fca6)"/>
+<path d="M -49.7 479.9 Q 69.2 443.9 188.1 439.9" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<path d="M 25.5 520 Q 350.2 285 674.9 520 Z" fill="url(#vol418fca6)"/>
+<path d="M 122.9 461.3 Q 236.5 408.4 350.2 402.5" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<path d="M 432.6 520 Q 687 299.3 941.5 520 Z" fill="url(#vol418fca6)"/>
+<path d="M 508.9 464.8 Q 598 415.2 687 409.7" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<rect x="0" y="443" width="800" height="81" fill="url(#vol9aae608)"/>
 <rect x="0" y="520" width="800" height="280" fill="#69db7c"/>
 <circle cx="764.8" cy="786.4" r="3.2" fill="#91a7ff" opacity="0.55"/>
 <circle cx="67.9" cy="757.2" r="5.2" fill="#91a7ff" opacity="0.55"/>

@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2a52"/><stop offset="1" stop-color="#4c5b9a"/></linearGradient></defs>
+<defs><linearGradient id="d7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2a52"/><stop offset="0.5" stop-color="#38477d"/><stop offset="1" stop-color="#4c5b9a"/></linearGradient><linearGradient id="vol0af0909" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b1a586"/><stop offset="0.22" stop-color="#a39470"/><stop offset="1" stop-color="#827659"/></linearGradient><linearGradient id="vol18a1423" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="#939cc2" stop-opacity="0"/><stop offset="0.75" stop-color="#939cc2" stop-opacity="0.35"/><stop offset="1" stop-color="#939cc2" stop-opacity="0.1"/></linearGradient><linearGradient id="vol3fa619e" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#689ac8"/><stop offset="0.5" stop-color="#1864ab"/><stop offset="1" stop-color="#145591"/></linearGradient><radialGradient id="vol6fe5f1c" cx="0.5" cy="0.5" r="0.5"><stop offset="0.45" stop-color="#fff3bf" stop-opacity="0.22"/><stop offset="1" stop-color="#fff3bf" stop-opacity="0"/></radialGradient><radialGradient id="vold969abe" cx="0.4" cy="0.4" r="0.6" fx="0.3" fy="0.3"><stop offset="0" stop-color="#fffae5"/><stop offset="0.55" stop-color="#fff3bf"/><stop offset="1" stop-color="#e0d5a8"/></radialGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="url(#d7)"/>
+<rect x="0" y="0" width="800" height="800" fill="url(#vol18a1423)"/>
 <circle cx="498.3" cy="319" r="3.4" fill="#fff3bf"/>
 <polygon points="595.9,389.3 595.3,395 600.1,398.1 594.5,399.3 593,404.9 590.1,399.9 584.4,400.2 588.2,395.9 586.2,390.6 591.4,392.9" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.5" stroke-linejoin="round"/>
 <polygon points="520.3,379.1 521.8,384.7 527.4,385.9 522.6,389 523.2,394.7 518.7,391.1 513.4,393.5 515.5,388.1 511.6,383.8 517.4,384.1" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.5" stroke-linejoin="round"/>
@@ -41,8 +42,8 @@
 <circle cx="638.1" cy="149.6" r="3" fill="#fff3bf"/>
 <circle cx="662.6" cy="150.5" r="3.2" fill="#fff3bf"/>
 <circle cx="550.7" cy="419.7" r="2.5" fill="#fff3bf"/>
-<rect x="0" y="360" width="800" height="130" fill="#1864ab"/>
-<g><circle cx="400" cy="170" r="63" fill="#fff3bf" opacity="0.15"/><circle cx="400" cy="170" r="42" fill="#fff3bf"/><circle cx="387.4" cy="159.5" r="6.7" fill="#ffe066" opacity="0.6"/><circle cx="414.7" cy="182.6" r="4.6" fill="#ffe066" opacity="0.6"/></g>
+<rect x="0" y="360" width="800" height="130" fill="url(#vol3fa619e)"/>
+<g><circle cx="400" cy="170" r="79.8" fill="url(#vol6fe5f1c)"/><circle cx="400" cy="170" r="63" fill="#fff3bf" opacity="0.15"/><circle cx="400" cy="170" r="42" fill="url(#vold969abe)"/><circle cx="387.4" cy="159.5" r="6.7" fill="#ffe066" opacity="0.6"/><circle cx="414.7" cy="182.6" r="4.6" fill="#ffe066" opacity="0.6"/><circle cx="402.1" cy="146.9" r="3.4" fill="#ffe066" opacity="0.5"/><path d="M 381.9 162 a 5.9 5.9 0 0 0 10.9 0" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></g>
 <rect x="350" y="370" width="100" height="6" rx="3" fill="#fff3bf" opacity="0.8"/>
 <rect x="366" y="388" width="92" height="6" rx="3" fill="#fff3bf" opacity="0.7"/>
 <rect x="350" y="406" width="84" height="6" rx="3" fill="#fff3bf" opacity="0.6"/>
@@ -50,7 +51,7 @@
 <rect x="350" y="442" width="68" height="6" rx="3" fill="#fff3bf" opacity="0.4"/>
 <rect x="366" y="460" width="60" height="6" rx="3" fill="#fff3bf" opacity="0.3"/>
 <path d="M 0 470 Q 200 436 400 460 T 800 450 L 800 800 L 0 800 Z" fill="#ffffff" opacity="0.35"/>
-<path d="M 0 484 Q 200 450 400 474 T 800 464 L 800 800 L 0 800 Z" fill="#a39470"/>
+<path d="M 0 484 Q 200 450 400 474 T 800 464 L 800 800 L 0 800 Z" fill="url(#vol0af0909)"/>
 <circle cx="634.7" cy="740.1" r="3" fill="#857a5c"/>
 <circle cx="209.3" cy="510.1" r="3.3" fill="#857a5c"/>
 <circle cx="376.2" cy="722.7" r="2.7" fill="#857a5c"/>

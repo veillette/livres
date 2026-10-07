@@ -1,9 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d36" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f76707"/><stop offset="1" stop-color="#ffd8a8"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d36)"/>
-<path d="M -241.1 500 Q 100.5 332.1 442.2 500 Z" fill="#a9e34b"/>
-<path d="M 199.9 500 Q 424.6 318.8 649.3 500 Z" fill="#a9e34b"/>
-<path d="M 485.3 500 Q 726.6 275.4 967.8 500 Z" fill="#a9e34b"/>
+<defs><linearGradient id="d37" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f76707"/><stop offset="0.5" stop-color="#fbaa67"/><stop offset="1" stop-color="#ffd8a8"/></linearGradient><linearGradient id="vol418fca6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c1ea7d"/><stop offset="0.5" stop-color="#a9e34b"/><stop offset="1" stop-color="#94c742"/></linearGradient><linearGradient id="vol9aae608" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.3"/></linearGradient><linearGradient id="vole3a6fb8" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="#ffe7ca" stop-opacity="0"/><stop offset="0.75" stop-color="#ffe7ca" stop-opacity="0.35"/><stop offset="1" stop-color="#ffe7ca" stop-opacity="0.1"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d37)"/>
+<rect x="0" y="0" width="800" height="800" fill="url(#vole3a6fb8)"/>
+<path d="M -60 500 L -60 439.5 Q 37.6 255.6 135.2 435.5 Q 224.7 252.3 314.3 424.2 Q 424.6 251 534.9 428.8 Q 640.2 269.8 745.5 427.4 Q 838 222.5 930.6 426.2 L 930.6 500 Z" fill="#a8d76a" opacity="0.4"/>
+<path d="M -241.1 500 Q 100.5 332.1 442.2 500 Z" fill="url(#vol418fca6)"/>
+<path d="M -138.6 458 Q -19 420.2 100.5 416.1" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<path d="M 199.9 500 Q 424.6 318.8 649.3 500 Z" fill="url(#vol418fca6)"/>
+<path d="M 267.3 454.7 Q 345.9 413.9 424.6 409.4" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<path d="M 485.3 500 Q 726.6 275.4 967.8 500 Z" fill="url(#vol418fca6)"/>
+<path d="M 557.7 443.8 Q 642.1 393.3 726.6 387.7" fill="none" stroke="#d4f1a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<rect x="0" y="423" width="800" height="81" fill="url(#vol9aae608)"/>
 <rect x="0" y="500" width="800" height="300" fill="#69db7c"/>
 <circle cx="181.4" cy="789.4" r="3.4" fill="#91a7ff" opacity="0.55"/>
 <circle cx="563.9" cy="543.9" r="3.7" fill="#91a7ff" opacity="0.55"/>

@@ -193,6 +193,17 @@ générées par un petit outil Python, sans aucune dépendance, dans
   `pas=` (`"marche"`, `"pointe"`, `"saute"`), `penche=` (degrés) et `ombre=`
   permettent de les régler. Un livre qui dessine de vraies ombres portées
   coupe l'ombre douce avec `OMBRES_DOUCES = False` dans son script ;
+  les corps et les têtes sont remplis de dégradés en relief, le visage glisse
+  en vue de trois quarts quand `regard=` part de côté, et le corps se penche
+  pour courir, marcher, danser ou tirer (`INCLINE`) ;
+- relief des décors : `lineaire()`, `radial()`, `volume()` et `cylindre()`
+  fabriquent des dégradés partagés (identifiant tiré de la définition, ajoutés
+  aux `<defs>` de la page qui les emploie). Ciel avec brume d'horizon, sol plus
+  sombre et texturé au premier plan, collines précédées d'une chaîne lointaine
+  à demi fondue dans le ciel (trois plans), arbres, sapins, maisons (tuiles,
+  bardage, linteaux, appuis, ombre sous le toit), châteaux (pierres, tuiles),
+  montagnes (`pic()`, versant à l'ombre), intérieurs (parquet en perspective,
+  pénombre des coins), fenêtres, portes et meubles en relief ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
 - `fantastique.py` : personnages humains et créatures des contes ;
 - `sciences.py` : personnages et schémas des livres de sciences (caneton,

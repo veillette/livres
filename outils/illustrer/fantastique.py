@@ -10,7 +10,7 @@ face, les pieds en (0, 0) et la tête vers y = -150.
                    acc=("couronne",), expr="rire", bras="haut"))
 """
 from base import *
-from base import POSES, COUDES, DEVANT_VISAGE, EXPRESSIONS, PAS_POSE, PENCHE, _bras, _main, _assombrir
+from base import POSES, COUDES, DEVANT_VISAGE, EXPRESSIONS, INCLINE, PAS_POSE, PENCHE, _bras, _main, _assombrir
 
 PEAUX = {
     "claire": "#fbd9bd",
@@ -189,17 +189,21 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         return g(contenu, f"rotate({n(penche)} 0 -112)") if penche else contenu
 
     fonce_h = _assombrir(habit, 0.75)
+    # vue de trois quarts quand le regard part de côté ; corps penché selon la pose
+    tourne_ = max(-1.0, min(1.0, regard[0])) * 6
+    incline = 0 if rot or sirene else INCLINE.get(bras, 0)
     m = []
     if derriere:
         m.append(derriere)
     if ailes:
         m.append(_ailes_fee(ailes))
     if cape:
-        m.append(chemin("M -34 -106 Q -76 -40 -72 -4 L 72 -4 Q 76 -40 34 -106 Z", cape))
+        m.append(chemin("M -34 -106 Q -76 -40 -72 -4 L 72 -4 Q 76 -40 34 -106 Z", cylindre(cape, 0.2, 0.72)))
         m.append(chemin("M -40 -60 Q -52 -30 -54 -6 M 40 -60 Q 52 -30 54 -6", stroke=_assombrir(cape, 0.8), sw=3))
     m.append(tourne(_cheveux_derriere(coiffure, ch)))
 
     # --- jambes, robe ou queue de sirène
+    haut_corps = None
     if sirene:
         m.append(_queue_sirene(*sirene))
         m.append(ellipse(0, -80, 34, 30, p))
@@ -207,7 +211,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     elif robe:
         m += _chaussures(pas, chaussures, 14, 8, 16, -6)
         forme = "M -26 -106 Q 0 -112 26 -106 L 32 -74 Q 60 -34 66 -12 Q 0 2 -66 -12 Q -60 -34 -32 -74 Z"
-        m.append(chemin(forme, habit))
+        m.append(chemin(forme, cylindre(habit, 0.24, 0.78)))
         if motif_robe:
             m.append(chemin("M -66 -12 Q 0 2 66 -12 L 64 -22 Q 0 -8 -64 -22 Z", motif_robe))
             for k in range(-2, 3):
@@ -218,9 +222,10 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         m.append(ombrage(chemin(forme, "#000"), sombre=[(54, -40, 34, 70)], clair=[(-24, -90, 6, 12, 20)]))
         m.append(rect(-32, -80, 64, 10, ceinture or _assombrir(habit, 0.85), rx=5))
         m.append(chemin("M -20 -106 Q 0 -94 20 -106", stroke=fonce_h, sw=2.5))
+        haut_corps = len(m) - 2
     else:
-        jambe_d = rect(6, -52, 20, 46, jambes, rx=8)
-        m.append(rect(-26, -52, 20, 46, jambes, rx=8))
+        jambe_d = rect(6, -52, 20, 46, cylindre(jambes, 0.25, 0.7), rx=8)
+        m.append(rect(-26, -52, 20, 46, cylindre(jambes, 0.25, 0.7), rx=8))
         m.append(trait(-16, -40, -16, -12, _assombrir(jambes, 0.8), 2, opacity=0.6))
         if pas in ("marche", "pointe"):
             m.append(g(jambe_d, "rotate(-22 16 -50)"))
@@ -228,8 +233,9 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
             m.append(jambe_d)
             m.append(trait(16, -40, 16, -12, _assombrir(jambes, 0.8), 2, opacity=0.6))
         m += _chaussures(pas, chaussures, 16, 9, 17, -6)
+        haut_corps = len(m)
         forme = "M -32 -106 Q 0 -112 32 -106 L 40 -46 Q 0 -36 -40 -46 Z"
-        m.append(chemin(forme, habit))
+        m.append(chemin(forme, cylindre(habit, 0.24, 0.78)))
         m.append(ombrage(chemin(forme, "#000"), sombre=[(40, -70, 22, 46)], clair=[(-22, -92, 6, 11, 20)]))
         m.append(chemin("M -20 -106 Q 0 -92 20 -106", stroke=fonce_h, sw=2.5))
         m.append(rect(-38, -62, 76, 10, ceinture or _assombrir(habit, 0.75), rx=5))
@@ -264,11 +270,14 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     m.append(rect(-9, -116, 18, 16, p))
     m.append(ellipse(0, -106, 10, 4, _assombrir(p, 0.8), opacity=0.7))
     t = []
+    oreilles = []
     for sgn in (-1, 1):
-        t.append(cercle(sgn * 49, -148, 11, p))
-        t.append(chemin(f"M {sgn * 50} -154 Q {sgn * 55} -148 {sgn * 50} -142", stroke=bord_p, sw=2.5))
-    t.append(cercle(0, -150, 50, p))
+        oreilles.append(cercle(sgn * 49, -148, 11, p))
+        oreilles.append(chemin(f"M {sgn * 50} -154 Q {sgn * 55} -148 {sgn * 50} -142", stroke=bord_p, sw=2.5))
+    t.append(g(oreilles, f"translate({n(-tourne_ * 0.45)} 0)") if tourne_ else g(oreilles))
+    t.append(cercle(0, -150, 50, volume(p, 0.25, 0.84)))
     t.append(ombrage(cercle(0, -150, 50, "#000"), sombre=[(36, -124, 40, 38)], clair=[(-22, -180, 13, 7, -30)], opacite=0.07))
+    debut_visage = len(t)
     if barbe:
         t.append(_barbe(barbe))
     if joues:
@@ -286,6 +295,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     t.append(bouche(0, -121, bs, 0.9))
     if "lunettes" in acc:
         t.append(g([cercle(-18, -150, 14, "none", stroke=ENCRE, stroke_width=3), cercle(18, -150, 14, "none", stroke=ENCRE, stroke_width=3), trait(-4, -150, 4, -150, ENCRE, 3)]))
+    if tourne_:
+        t = t[:debut_visage] + [g(t[debut_visage:], f"translate({n(tourne_)} 0)")]
 
     # --- cheveux devant et coiffes
     if "casque" in acc:
@@ -320,9 +331,12 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
 
     if devant:
         m.append(bras_svg + mains_svg)
+    if incline and haut_corps is not None:
+        # le haut du corps penche autour des hanches ; jambes et pieds restent au sol
+        m = m[:haut_corps] + [g(m[haut_corps:], f"rotate({n(incline)} 0 {-80 if robe else -46})")]
     dessin = avec_contour(m, s)
     if (OMBRE_SOL[0] if ombre is None else ombre) and not rot and not sirene:
-        dessin = ombre_sol(0, -3, 52) + dessin
+        dessin = ombre_sol(incline * 0.8, -3, 52) + dessin
     return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
 
 
@@ -660,42 +674,93 @@ def luciole(x, y, s=1.0, allumee=True, expr="sourire", flip=False):
 # Décors
 # ---------------------------------------------------------------------------
 
+def _pierres(x0, y0, w, h, c, pas_=22, larg=34, opacite=0.32):
+    """Appareil de pierres : assises horizontales et joints décalés."""
+    d = []
+    for k, yy in enumerate(range(int(y0 + pas_), int(y0 + h), pas_)):
+        d.append(f"M {n(x0)} {yy} H {n(x0 + w)}")
+        dec = (k % 2) * larg / 2
+        xx = x0 + dec + larg / 2
+        while xx < x0 + w - 4:
+            d.append(f"M {n(xx)} {yy} v {-pas_}")
+            xx += larg
+    return chemin(" ".join(d), stroke=_assombrir(c, 0.72), sw=1.5, opacity=opacite)
+
+
 def chateau(x, y, s=1.0, mur="#f3d9fa", mur2="#e5dbff", toit="#e64980", drapeau="#fab005",
             porte_c="#a0522d", fenetres="#ffe066", nuit_=False):
     """Château de conte ; (x, y) = milieu de la base. Largeur ≈ 520, hauteur ≈ 520."""
     vitre = "#ffe066" if nuit_ else fenetres
     m = []
+    if OMBRE_SOL[0]:
+        m.append(ombre_sol(20, 0, 300, 18, 0.15))
+
+    def fenetre_tour(tx, fy):
+        return [rect(tx - 14, fy - 4, 28, 42, _assombrir(mur2, 0.8), rx=13),
+                rect(tx - 10, fy, 20, 34, vitre, rx=10),
+                rect(tx - 10, fy, 20, 8, "#000", opacity=0.18, rx=4),
+                rect(tx - 14, fy + 34, 28, 6, eclaircir(mur2, 0.5), rx=2)]
 
     def tourelle(tx, base, h, w, toit_h):
-        t = [rect(tx - w / 2, base - h, w, h, mur2),
-             poly([(tx - w / 2 - 14, base - h + 2), (tx, base - h - toit_h), (tx + w / 2 + 14, base - h + 2)], toit),
-             trait(tx, base - h - toit_h, tx, base - h - toit_h - 40, "#495057", 4),
-             poly([(tx, base - h - toit_h - 40), (tx + 38, base - h - toit_h - 30), (tx, base - h - toit_h - 20)], drapeau),
-             rect(tx - 10, base - h + 40, 20, 34, vitre, rx=10)]
+        haut = base - h
+        cone = [(tx - w / 2 - 14, haut + 2), (tx, haut - toit_h), (tx + w / 2 + 14, haut + 2)]
+        cid = uid("k")
+        tuiles = " ".join(f"M {n(tx - w)} {n(yy)} " + " ".join("q 7 8 14 0" for _ in range(int(w * 2 / 14) + 1))
+                          for yy in range(int(haut - toit_h + 24), int(haut + 2), 14))
+        t = [rect(tx - w / 2, haut, w, h, cylindre(mur2, 0.3, 0.74)),
+             _pierres(tx - w / 2, haut, w, h, mur2),
+             rect(tx - w / 2, haut, w, 16, "#000", opacity=0.16),
+             poly(cone, cylindre(toit, 0.3, 0.68)),
+             el("clipPath", poly(cone, "#000"), id=cid) + g(chemin(tuiles, stroke=_assombrir(toit, 0.7), sw=1.8, opacity=0.5), clip_path=f"url(#{cid})"),
+             rect(tx - w / 2 - 16, haut - 2, w + 32, 8, _assombrir(toit, 0.65), rx=4),
+             trait(tx, haut - toit_h, tx, haut - toit_h - 40, "#495057", 4),
+             chemin(f"M {n(tx)} {n(haut - toit_h - 40)} Q {n(tx + 20)} {n(haut - toit_h - 42)} {n(tx + 38)} {n(haut - toit_h - 30)} Q {n(tx + 20)} {n(haut - toit_h - 26)} {n(tx)} {n(haut - toit_h - 20)} Z", cylindre(drapeau, 0.3, 0.75, vertical=True))]
+        t += fenetre_tour(tx, haut + 40)
         return t
 
     # donjon central
     m += tourelle(0, -170, 190, 120, 120)
-    # corps
-    m.append(rect(-190, -220, 380, 220, mur))
+    # corps de logis, créneaux et leur ombre
+    m.append(rect(-190, -220, 380, 220, lineaire([(0, eclaircir(mur, 0.25)), (0.5, mur), (1, _assombrir(mur, 0.86))], 0, 0, 1, 0)))
+    m.append(_pierres(-190, -220, 380, 220, mur, 26, 44, 0.28))
     for k in range(8):
-        m.append(rect(-190 + k * 50, -244, 30, 26, mur))
+        cx = -190 + k * 50
+        m.append(rect(cx, -244, 30, 26, cylindre(mur, 0.3, 0.8)))
+        m.append(rect(cx, -244, 30, 4, eclaircir(mur, 0.5)))
+    m.append(rect(-190, -220, 380, 12, "#000", opacity=0.14))
+    m.append(rect(-190, -14, 380, 14, _assombrir(mur, 0.8)))
     # tours latérales
     m += tourelle(-210, 0, 300, 100, 110)
     m += tourelle(210, 0, 300, 100, 110)
-    # porte et fenêtres
-    m.append(chemin("M -50 0 L -50 -80 Q 0 -140 50 -80 L 50 0 Z", porte_c))
+    # porte : claveaux de l'arc, planches, ferrures
+    m.append(chemin("M -62 0 L -62 -82 Q 0 -156 62 -82 L 62 0 Z", _assombrir(mur, 0.8)))
+    m.append(chemin("M -50 0 L -50 -80 Q 0 -140 50 -80 L 50 0 Z", cylindre(porte_c, 0.2, 0.7)))
+    m.append(chemin("M -56 -80 Q 0 -150 56 -80", stroke=eclaircir(mur, 0.5), sw=3, opacity=0.8))
+    m.append(chemin("M -25 -6 V -110 M 25 -6 V -110", stroke=_assombrir(porte_c, 0.75), sw=2.5, opacity=0.7))
     m.append(chemin("M -40 0 L -40 -78 Q 0 -126 40 -78 L 40 0", stroke=_assombrir(porte_c, 0.7), sw=4))
     m.append(trait(0, -118, 0, 0, _assombrir(porte_c, 0.7), 4))
+    m.append(chemin("M -46 -30 H -6 M 6 -30 H 46 M -46 -70 H -6 M 6 -70 H 46", stroke="#495057", sw=4, opacity=0.8))
+    m += [cercle(-10, -50, 4, volume(OR, 0.6, 0.7)), cercle(10, -50, 4, volume(OR, 0.6, 0.7))]
     for fx in (-120, 120):
+        m.append(chemin(f"M {fx - 24} -114 L {fx - 24} -150 Q {fx} -184 {fx + 24} -150 L {fx + 24} -114 Z", _assombrir(mur, 0.82)))
         m.append(chemin(f"M {fx - 18} -120 L {fx - 18} -150 Q {fx} -176 {fx + 18} -150 L {fx + 18} -120 Z", vitre))
+        m.append(chemin(f"M {fx - 18} -120 L {fx - 18} -150 Q {fx} -176 {fx + 18} -150 L {fx + 12} -146 Q {fx} -166 {fx - 12} -146 L {fx - 12} -120 Z", "#000", opacity=0.16))
+        m.append(trait(fx, -168, fx, -120, _assombrir(mur, 0.75), 3))
+        m.append(rect(fx - 26, -120, 52, 7, eclaircir(mur, 0.5), rx=2))
+        if nuit_:
+            m.append(ellipse(fx, -146, 46, 44, radial([(0, "#ffe066", 0.4), (1, "#ffe066", 0)])))
     return place(m, x, y, s)
 
 
 def tour_seule(x, y, s=1.0, mur="#e5dbff", toit="#e64980", fenetre_c="#ffe066", h=420):
-    m = [rect(-70, -h, 140, h, mur),
-         poly([(-90, -h + 2), (0, -h - 150), (90, -h + 2)], toit),
+    m = [rect(-70, -h, 140, h, cylindre(mur, 0.3, 0.74)),
+         _pierres(-70, -h, 140, h, mur, 24, 36, 0.3),
+         rect(-70, -h, 140, 18, "#000", opacity=0.16),
+         poly([(-90, -h + 2), (0, -h - 150), (90, -h + 2)], cylindre(toit, 0.3, 0.68)),
+         rect(-92, -h - 2, 184, 9, _assombrir(toit, 0.65), rx=4),
+         chemin(f"M -32 {-h + 114} L -32 {-h + 58} Q 0 {-h + 22} 32 {-h + 58} L 32 {-h + 114} Z", _assombrir(mur, 0.8)),
          chemin(f"M -26 {-h + 110} L -26 {-h + 60} Q 0 {-h + 30} 26 {-h + 60} L 26 {-h + 110} Z", fenetre_c),
+         chemin(f"M -26 {-h + 110} L -26 {-h + 60} Q 0 {-h + 30} 26 {-h + 60} L 18 {-h + 64} Q 0 {-h + 42} -18 {-h + 64} L -18 {-h + 110} Z", "#000", opacity=0.15),
          rect(-40, -h + 106, 80, 12, _assombrir(mur, 0.85), rx=4)]
     for k in range(6):
         m.append(rect(-70 + (k % 2) * 60, -h + 160 + k * 40, 40, 14, _assombrir(mur, 0.93), rx=3))
@@ -795,7 +860,7 @@ def ocean(S, haut="#1c7ed6", bas="#0b4f8a", sable="#f4d58d", y_sable=660, rayons
         for k in range(4):
             x0 = 80 + k * 200
             S.add(poly([(x0, 0), (x0 + 70, 0), (x0 + 160, y_sable), (x0 + 40, y_sable)], "#ffffff", opacity=0.06))
-    S.add(chemin(f"M 0 {y_sable} Q 200 {y_sable - 30} 400 {y_sable} T 800 {y_sable - 10} L 800 800 L 0 800 Z", sable))
+    S.add(chemin(f"M 0 {y_sable} Q 200 {y_sable - 30} 400 {y_sable} T 800 {y_sable - 10} L 800 800 L 0 800 Z", terrain(sable)))
     for k in range(18):
         S.add(cercle(30 + (k * 91) % 760, y_sable + 30 + (k * 47) % 110, 3, "#e8c170"))
 

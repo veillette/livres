@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-
+<defs><radialGradient id="vol6ff428d" cx="0.5" cy="0.5" r="0.5" fx="0.4" fy="0.4"><stop offset="0" stop-color="#fff2c4"/><stop offset="0.6" stop-color="#ffd43b"/><stop offset="1" stop-color="#eac336"/></radialGradient><radialGradient id="vola5db7ce" cx="0.5" cy="0.5" r="0.5"><stop offset="0.55" stop-color="#ffd43b" stop-opacity="0.35"/><stop offset="1" stop-color="#ffd43b" stop-opacity="0"/></radialGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="#5c4033"/>
 <polygon points="0,0 400,0 0,420" fill="#7c5a3c"/>
 <polygon points="800,0 400,0 800,420" fill="#7c5a3c"/>
@@ -14,6 +14,6 @@
 <g transform="translate(570 164) scale(1.7 1.7)"><path d="M -8 0 Q -10 10 -6 18" fill="none" stroke="#2b2b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M 8 0 Q 10 10 6 18" fill="none" stroke="#2b2b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="0" cy="62" rx="32" ry="50" fill="#5c4636"/><path d="M -28 40 Q -6 60 -14 104 M 28 40 Q 6 60 14 104" fill="none" stroke="#49382b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="0" cy="70" rx="16" ry="30" fill="#8a6a50"/><polygon points="-8,120 -28,150 -24,112" fill="#8a6a50"/><polygon points="8,120 28,150 24,112" fill="#8a6a50"/><circle cx="0" cy="112" r="24" fill="#8a6a50"/><path d="M -13.8 117 Q -9 122.2 -4.2 117" fill="none" stroke="#2b2b3a" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M 4.2 117 Q 9 122.2 13.8 117" fill="none" stroke="#2b2b3a" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-16" cy="108" rx="4" ry="2.5" fill="#ff8fab" opacity="0.7"/><ellipse cx="16" cy="108" rx="4" ry="2.5" fill="#ff8fab" opacity="0.7"/><g transform="translate(0 100) rotate(180)"><path d="M -4.2 1 Q 0 7 4.2 1" fill="none" stroke="#2b2b3a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g></g>
 <g><text x="640" y="420" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#ffd8a8">z</text><text x="664" y="394" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#ffd8a8">z</text><text x="694" y="360" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="44" text-anchor="middle" fill="#ffd8a8">Z</text></g>
 <rect x="330" y="470" width="140" height="110" rx="8" fill="#a5d8ff"/>
-<g><circle cx="400" cy="520" r="24" fill="#ffd43b"/></g>
+<g><circle cx="400" cy="520" r="38.4" fill="url(#vola5db7ce)"/><circle cx="400" cy="520" r="24" fill="url(#vol6ff428d)"/></g>
 <rect x="396" y="470" width="8" height="110" fill="#8d5524"/>
 </svg>

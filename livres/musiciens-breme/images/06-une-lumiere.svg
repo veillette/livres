@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d61" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2a52"/><stop offset="1" stop-color="#5f3dc4"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d61)"/>
+<defs><linearGradient id="d68" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2a52"/><stop offset="0.5" stop-color="#443596"/><stop offset="1" stop-color="#5f3dc4"/></linearGradient><linearGradient id="volbfc850a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c9c5c"/><stop offset="0.22" stop-color="#2b8a3e"/><stop offset="1" stop-color="#226e31"/></linearGradient><linearGradient id="vole6f5e1d" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="#9f8adb" stop-opacity="0"/><stop offset="0.75" stop-color="#9f8adb" stop-opacity="0.35"/><stop offset="1" stop-color="#9f8adb" stop-opacity="0.1"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d68)"/>
+<rect x="0" y="0" width="800" height="800" fill="url(#vole6f5e1d)"/>
 <circle cx="188.8" cy="46.4" r="1.8" fill="#fff3bf"/>
 <circle cx="53.2" cy="180.7" r="3.1" fill="#fff3bf"/>
 <circle cx="612.1" cy="99.9" r="2.1" fill="#fff3bf"/>
@@ -31,5 +32,7 @@
 <circle cx="660" cy="520" r="36" fill="#ffe066" opacity="0.4"/>
 <rect x="640" y="500" width="40" height="40" fill="#ffe066"/>
 <text x="620" y="420" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="40" text-anchor="middle" fill="#ffe066">Une lumière !</text>
-<path d="M 0 700 Q 240.0 682 400.0 700 T 800 700 L 800 800 L 0 800 Z" fill="#2b8a3e"/>
+<path d="M 0 700 Q 240.0 682 400.0 700 T 800 700 L 800 800 L 0 800 Z" fill="url(#volbfc850a)"/>
+<path d="M 0 700 Q 240.0 682 400.0 700 T 800 700" fill="none" stroke="#8abe94" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+<path d="M 153.5 740.6 q 3.2 -4.8 6.4 0 m 2.4 0 q 2.4 -3.2 4.8 0 M 667.7 774.8 q 5.8 -8.6 11.5 0 m 4.3 0 q 4.3 -5.8 8.6 0 M 259 769.3 q 5.4 -8 10.7 0 m 4 0 q 4 -5.4 8 0 M 673.2 730.3 q 2.4 -3.6 4.9 0 m 1.8 0 q 1.8 -2.4 3.6 0 M 126.6 735.7 q 2.8 -4.2 5.6 0 m 2.1 0 q 2.1 -2.8 4.2 0 M 267.7 745.4 q 3.6 -5.3 7.1 0 m 2.7 0 q 2.7 -3.6 5.3 0 M 230.7 783.1 q 6.4 -9.6 12.8 0 m 4.8 0 q 4.8 -6.4 9.6 0 M 490.6 769.8 q 5.4 -8.1 10.8 0 m 4 0 q 4 -5.4 8.1 0 M 265.1 750.8 q 4 -5.9 7.9 0 m 3 0 q 3 -4 5.9 0 M 71.6 755.4 q 4.3 -6.5 8.6 0 m 3.2 0 q 3.2 -4.3 6.5 0 M 48.6 763.7 q 4.9 -7.4 9.9 0 m 3.7 0 q 3.7 -4.9 7.4 0 M 668.9 765.4 q 5.1 -7.6 10.1 0 m 3.8 0 q 3.8 -5.1 7.6 0 M 453.3 786.4 q 6.6 -9.9 13.3 0 m 5 0 q 5 -6.6 9.9 0 M 376.4 757.6 q 4.5 -6.7 8.9 0 m 3.4 0 q 3.4 -4.5 6.7 0 M 659.5 768.3 q 5.3 -7.9 10.6 0 m 4 0 q 4 -5.3 7.9 0 M 698.1 740.7 q 3.2 -4.8 6.4 0 m 2.4 0 q 2.4 -3.2 4.8 0 M 303.6 786 q 6.6 -9.9 13.2 0 m 5 0 q 5 -6.6 9.9 0 M 336.9 773.4 q 5.7 -8.5 11.3 0 m 4.2 0 q 4.2 -5.7 8.5 0 M 673.3 774.8 q 5.8 -8.6 11.5 0 m 4.3 0 q 4.3 -5.8 8.6 0 M 281.9 750 q 3.9 -5.8 7.8 0 m 2.9 0 q 2.9 -3.9 5.8 0 M 505.4 766.7 q 5.1 -7.7 10.3 0 m 3.9 0 q 3.9 -5.1 7.7 0 M 393.4 771.9 q 5.5 -8.3 11.1 0 m 4.2 0 q 4.2 -5.5 8.3 0 M 472.4 740.5 q 3.2 -4.8 6.4 0 m 2.4 0 q 2.4 -3.2 4.8 0 M 145.6 771.6 q 5.5 -8.3 11 0 m 4.1 0 q 4.1 -5.5 8.3 0 M 771.3 739.6 q 3.1 -4.7 6.2 0 m 2.3 0 q 2.3 -3.1 4.7 0 M 360 782.8 q 6.4 -9.5 12.7 0 m 4.8 0 q 4.8 -6.4 9.5 0" fill="none" stroke="#216b30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
 </svg>

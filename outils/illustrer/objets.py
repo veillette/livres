@@ -3,7 +3,7 @@ import math
 import random
 
 from base import (ENCRE, cercle, chemin, ellipse, el, g, place, poly, rect, texte, trait,
-                  _assombrir, eclaircir, uid, n)
+                  _assombrir, eclaircir, uid, n, pic)
 
 
 def bol(x, y, s=1.0, couleur="#74c0fc", contenu="#fff3bf", cuillere=True):
@@ -434,10 +434,7 @@ def ballon_air(x, y, s=1.0, couleur="#fa5252", fil=160, fil_courbe=20):
 def montagnes(S_or_none, y, couleurs=("#b197fc", "#9775fa"), neige=True):
     m = []
     for k, (cx, h, w) in enumerate([(150, 260, 220), (430, 330, 260), (680, 240, 200)]):
-        c = couleurs[k % len(couleurs)]
-        m.append(poly([(cx - w, y), (cx, y - h), (cx + w, y)], c))
-        if neige:
-            m.append(poly([(cx - w * 0.28, y - h * 0.72), (cx, y - h), (cx + w * 0.28, y - h * 0.72), (cx + w * 0.1, y - h * 0.66), (cx, y - h * 0.74), (cx - w * 0.12, y - h * 0.65)], "#fff"))
+        m.append(pic(cx - w, y, cx, y - h, cx + w, y, couleurs[k % len(couleurs)], neige))
     return g(m)
 
 

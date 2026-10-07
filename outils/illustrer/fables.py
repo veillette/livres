@@ -515,11 +515,22 @@ def ville(S, y=560):
         w = 110 + (k * 37) % 50
         h = 220 + (k * 83) % 180
         c = couleurs[k % len(couleurs)]
-        S.add(rect(x, y - h, w, h, c))
-        S.add(poly([(x - 6, y - h), (x + w / 2, y - h - 50), (x + w + 6, y - h)], _assombrir(c, 0.75)))
+        toit_c = _assombrir(c, 0.75)
+        S.add(rect(x, y - h, w, h, cylindre(c, 0.15, 0.84)))
+        # rangs de briques discrets, ombre du toit, chaînage d'angle
+        S.add(chemin(" ".join(f"M {x} {yy} h {w}" for yy in range(int(y - h + 18), int(y), 18)), stroke=_assombrir(c, 0.8), sw=1.2, opacity=0.35))
+        S.add(rect(x + w - 8, y - h, 8, h, _assombrir(c, 0.85)))
+        S.add(poly([(x - 6, y - h), (x + w / 2, y - h - 50), (x + w + 6, y - h)], lineaire([(0, eclaircir(toit_c, 0.2)), (1, _assombrir(toit_c, 0.8))], 0, 0, 1, 1)))
+        S.add(rect(x - 8, y - h - 2, w + 16, 7, _assombrir(toit_c, 0.75), rx=3))
+        S.add(rect(x, y - h + 5, w, 10, "#000", opacity=0.15))
         for row in range(int(h // 70)):
             for col in range(2):
-                S.add(rect(x + 18 + col * (w / 2), y - h + 24 + row * 70, w / 2 - 36, 40, "#fff9db", rx=4))
+                fx, fy, fw = x + 18 + col * (w / 2), y - h + 24 + row * 70, w / 2 - 36
+                S.add(rect(fx - 3, fy - 3, fw + 6, 46, _assombrir(c, 0.8), rx=5))
+                S.add(rect(fx, fy, fw, 40, "#fff9db", rx=4))
+                S.add(poly([(fx, fy), (fx + fw, fy), (fx + fw, fy + 6), (fx + 5, fy + 6), (fx + 5, fy + 40), (fx, fy + 40)], "#000", opacity=0.14))
+                S.add(trait(fx + fw / 2, fy, fx + fw / 2, fy + 40, eclaircir(c, 0.4), 2.5))
+                S.add(rect(fx - 5, fy + 40, fw + 10, 5, eclaircir(c, 0.5), rx=2))
         x += w + 6
         k += 1
 

@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d35" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d35)"/>
+<defs><linearGradient id="d36" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74c0fc"/><stop offset="0.5" stop-color="#b9dffd"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient><linearGradient id="vol904759d" x1="0" y1="0" x2="0" y2="1"><stop offset="0.35" stop-color="#f0f9ff" stop-opacity="0"/><stop offset="0.75" stop-color="#f0f9ff" stop-opacity="0.35"/><stop offset="1" stop-color="#f0f9ff" stop-opacity="0.1"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d36)"/>
+<rect x="0" y="0" width="800" height="800" fill="url(#vol904759d)"/>
 <rect x="0" y="140" width="800" height="220" fill="#e9ecef"/>
 <polygon points="0,140 800,140 800,100 0,100" fill="#c92a2a"/>
 <rect x="70" y="100" width="16" height="260" fill="#adb5bd"/>
