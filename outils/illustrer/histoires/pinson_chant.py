@@ -13,13 +13,14 @@ ROUGEGORGE = dict(couleur="#a47148", ventre="#ff8787")
 
 def foret(S, brume=False):
     ciel(S, "#b2f2bb" if not brume else "#ced4da", "#ebfbee" if not brume else "#f1f3f5")
-    S.add(rect(300, 0, 200, 800, "#8d5524"))
-    S.add(chemin("M 400 300 Q 600 260 820 280", stroke="#8d5524", sw=34),
-          chemin("M 400 520 Q 200 470 -20 490", stroke="#8d5524", sw=34),
-          chemin("M 420 700 Q 600 660 820 690", stroke="#8d5524", sw=30))
-    for x, y, r in [(80, 80, 140), (400, 30, 170), (720, 90, 150), (760, 460, 90), (40, 380, 90)]:
-        S.add(cercle(x, y, r, "#40c057" if not brume else "#8ca99a"))
-    S.add(rect(0, 760, 800, 40, "#69db7c"))
+    S.add(tronc(300, 0, 200, 800, rx=0))
+    for d, ep in (("M 400 300 Q 600 260 820 280", 34), ("M 400 520 Q 200 470 -20 490", 34), ("M 420 700 Q 600 660 820 690", 30)):
+        S.add(chemin(d, stroke="#6d4424", sw=ep + 4), chemin(d, stroke="#8d5524", sw=ep),
+              place(chemin(d, stroke="#b5835a", sw=6, opacity=0.6), 0, -ep * 0.28))
+    S.add(rect(300, 0, 200, 260, lineaire([(0, "#000", 0.3), (1, "#000", 0)])))
+    vert = "#40c057" if not brume else "#8ca99a"
+    S.add(feuillage([(x, y, r, vert) for x, y, r in [(80, 80, 140), (400, 30, 170), (720, 90, 150), (760, 460, 90), (40, 380, 90)]]))
+    S.add(rect(0, 760, 800, 40, terrain("#69db7c")))
 
 
 def pouet(x, y, taille=70, rot=-8):

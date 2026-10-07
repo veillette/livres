@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v21`).
+2 492 illustrations SVG** (cache hors ligne `v22`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -327,3 +327,21 @@ relief, vue de trois quarts quand ils regardent de côté, corps penché pour
 courir, marcher, danser ou tirer. Planches revues dans Chromium (échantillon
 aléatoire de tous les rayons, scènes d'intérieur, de nuit et de conte).
 `verifier-images.py` sans erreur. Le cache hors ligne passe à `v21`.
+
+## Relief des dessins propres à chaque livre (7 octobre 2026)
+
+Aucun livre ajouté (185 livres, 2 900 pages, 2 492 SVG). Modelé automatique
+des aplats de tous les dessins des livres (léger dégradé, lumière en haut à
+gauche) ; restent plats les formes semi-transparentes, les masques, les
+formes de la couleur du fond (fausses découpes) et les astres éclairés des
+livres de sciences (phases de la Lune, planètes, sphères : `sans_relief()`).
+Reprise à la main des décors les plus visibles : maisons de paille, de bois
+et de briques des trois petits cochons ; maison en pain d'épice ; chaumière
+de la chèvre ; grange et poulailler ; niche ; cabane perchée de Capucine ;
+caserne des pompiers ; maison du chantier ; école de Bambou ; grands arbres
+du coq, du corbeau, du pinson, des ours et de Lunettes ; arbres sombres de
+la forêt des contes ; pont de bois et tronc sur le torrent (rochers à
+fissures). Les 185 couvertures et 120 pages tirées au hasard ont été revues
+dans Chromium : aucune fausse découpe devenue visible. Régénération
+déterministe (identique livre par livre et pour l'ensemble),
+`verifier-images.py` sans erreur. Le cache hors ligne passe à `v22`.

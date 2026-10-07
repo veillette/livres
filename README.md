@@ -204,6 +204,14 @@ générées par un petit outil Python, sans aucune dépendance, dans
   bardage, linteaux, appuis, ombre sous le toit), châteaux (pierres, tuiles),
   montagnes (`pic()`, versant à l'ombre), intérieurs (parquet en perspective,
   pénombre des coins), fenêtres, portes et meubles en relief ;
+- modelé automatique : à l'écriture de la page, chaque aplat des dessins
+  propres aux livres reçoit un léger dégradé (lumière en haut à gauche), sauf
+  les formes semi-transparentes, les masques et découpes, les formes de la
+  couleur du fond et les groupes `sans_relief()` (astres éclairés des livres
+  de sciences) ; `RELIEF = False` dans un script le coupe. Textures
+  partagées pour les bâtiments et les arbres des livres : `briques()`,
+  `planches()`, `chaume()`, `tuiles()`, `pierres()`, `ombre_avancee()`,
+  `feuillage()`, `tronc()`, `arbre_branche()` ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
 - `fantastique.py` : personnages humains et créatures des contes ;
 - `sciences.py` : personnages et schémas des livres de sciences (caneton,

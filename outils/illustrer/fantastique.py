@@ -674,19 +674,6 @@ def luciole(x, y, s=1.0, allumee=True, expr="sourire", flip=False):
 # Décors
 # ---------------------------------------------------------------------------
 
-def _pierres(x0, y0, w, h, c, pas_=22, larg=34, opacite=0.32):
-    """Appareil de pierres : assises horizontales et joints décalés."""
-    d = []
-    for k, yy in enumerate(range(int(y0 + pas_), int(y0 + h), pas_)):
-        d.append(f"M {n(x0)} {yy} H {n(x0 + w)}")
-        dec = (k % 2) * larg / 2
-        xx = x0 + dec + larg / 2
-        while xx < x0 + w - 4:
-            d.append(f"M {n(xx)} {yy} v {-pas_}")
-            xx += larg
-    return chemin(" ".join(d), stroke=_assombrir(c, 0.72), sw=1.5, opacity=opacite)
-
-
 def chateau(x, y, s=1.0, mur="#f3d9fa", mur2="#e5dbff", toit="#e64980", drapeau="#fab005",
             porte_c="#a0522d", fenetres="#ffe066", nuit_=False):
     """Château de conte ; (x, y) = milieu de la base. Largeur ≈ 520, hauteur ≈ 520."""
@@ -708,7 +695,7 @@ def chateau(x, y, s=1.0, mur="#f3d9fa", mur2="#e5dbff", toit="#e64980", drapeau=
         tuiles = " ".join(f"M {n(tx - w)} {n(yy)} " + " ".join("q 7 8 14 0" for _ in range(int(w * 2 / 14) + 1))
                           for yy in range(int(haut - toit_h + 24), int(haut + 2), 14))
         t = [rect(tx - w / 2, haut, w, h, cylindre(mur2, 0.3, 0.74)),
-             _pierres(tx - w / 2, haut, w, h, mur2),
+             pierres(tx - w / 2, haut, w, h, mur2),
              rect(tx - w / 2, haut, w, 16, "#000", opacity=0.16),
              poly(cone, cylindre(toit, 0.3, 0.68)),
              el("clipPath", poly(cone, "#000"), id=cid) + g(chemin(tuiles, stroke=_assombrir(toit, 0.7), sw=1.8, opacity=0.5), clip_path=f"url(#{cid})"),
@@ -722,7 +709,7 @@ def chateau(x, y, s=1.0, mur="#f3d9fa", mur2="#e5dbff", toit="#e64980", drapeau=
     m += tourelle(0, -170, 190, 120, 120)
     # corps de logis, créneaux et leur ombre
     m.append(rect(-190, -220, 380, 220, lineaire([(0, eclaircir(mur, 0.25)), (0.5, mur), (1, _assombrir(mur, 0.86))], 0, 0, 1, 0)))
-    m.append(_pierres(-190, -220, 380, 220, mur, 26, 44, 0.28))
+    m.append(pierres(-190, -220, 380, 220, mur, pas_=26, larg=44, opacite=0.28))
     for k in range(8):
         cx = -190 + k * 50
         m.append(rect(cx, -244, 30, 26, cylindre(mur, 0.3, 0.8)))
@@ -754,7 +741,7 @@ def chateau(x, y, s=1.0, mur="#f3d9fa", mur2="#e5dbff", toit="#e64980", drapeau=
 
 def tour_seule(x, y, s=1.0, mur="#e5dbff", toit="#e64980", fenetre_c="#ffe066", h=420):
     m = [rect(-70, -h, 140, h, cylindre(mur, 0.3, 0.74)),
-         _pierres(-70, -h, 140, h, mur, 24, 36, 0.3),
+         pierres(-70, -h, 140, h, mur, pas_=24, larg=36, opacite=0.3),
          rect(-70, -h, 140, 18, "#000", opacity=0.16),
          poly([(-90, -h + 2), (0, -h - 150), (90, -h + 2)], cylindre(toit, 0.3, 0.68)),
          rect(-92, -h - 2, 184, 9, _assombrir(toit, 0.65), rx=4),

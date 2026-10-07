@@ -111,6 +111,16 @@ IMAGES = [
     l'attitude, accessoires, oiseaux, chouette, escargot, poisson, tortue,
     `bulle`, `pensee` ; mettre `OMBRES_DOUCES = False` dans le script d'un
     livre qui dessine ses propres ombres portées (`sciences.py`) ;
+  - relief (`base.py`) : chaque aplat reçoit automatiquement un léger
+    dégradé à l'écriture de la page ; pour aller plus loin, `volume()`,
+    `cylindre()`, `lineaire()`, `radial()` (remplissages), `ombre_sol()`,
+    `ombre_avancee()` (sous un toit), textures `briques()`, `planches()`,
+    `chaume()`, `tuiles()`, `pierres()` (découpées à une forme), arbres
+    `feuillage()`, `tronc()`, `arbre_branche()`, montagnes `pic()`, sols
+    `terrain()`. Composer les paysages sur trois plans (lointain fondu dans
+    le ciel, plan moyen, premier plan plus sombre). `sans_relief()` garde un
+    dessin en aplats (éclairage physique, fausse découpe de la couleur du
+    fond) ; `RELIEF = False` coupe le modelé automatique pour tout un livre ;
   - `objets.py` : accessoires du quotidien ;
   - `fantastique.py` : humains (`personne`, `princesse`, `chevalier`, `roi`,
     `sorciere`), dragon, licorne, château, océan, fées ;

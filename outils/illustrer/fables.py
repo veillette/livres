@@ -8,7 +8,7 @@ singe) sont des espèces de `perso()` dans `base.py`. Mêmes conventions :
 page de 800 × 800, pieds en (0, 0).
 """
 from base import *
-from base import EXPRESSIONS, _assombrir
+from base import EXPRESSIONS, _assombrir, _decoupe
 from objets import *
 from fantastique import *
 from sciences import canard, vent_visage, rafales, vent, fleche, ombre_sous, enfant, cheval, ondes, rayons_soleil
@@ -799,14 +799,30 @@ def pont_tronc(S, y=520, x0=180, x1=620, ep=26):
     """Torrent entre deux rochers, enjambé par un tronc étroit ; le dessus du tronc est en y."""
     ciel(S, "#a5d8ff", "#e7f5ff")
     S.add(montagnes(None, 420, ("#b2c4ff", "#91a7ff"), neige=True))
-    S.add(rect(0, 640, 800, 160, "#4dabf7"))
+    S.add(rect(0, 640, 800, 160, lineaire(["#74c0fc", "#4dabf7", "#1c7ed6"])))
     for k in range(5):
         yy = 670 + k * 26
         S.add(chemin(" ".join(f"M {40 + i * 150 + (k % 2) * 60} {yy} q 25 -10 50 0" for i in range(6)), stroke="#d0ebff", sw=5))
-    S.add(chemin(f"M 0 {y - 10} L {x0 + 30} {y - 10} Q {x0 + 70} {y + 60} {x0 + 40} 800 L 0 800 Z", "#868e96"))
-    S.add(chemin(f"M 800 {y - 10} L {x1 - 30} {y - 10} Q {x1 - 70} {y + 60} {x1 - 40} 800 L 800 800 Z", "#868e96"))
+    rocher_g = f"M 0 {y - 10} L {x0 + 30} {y - 10} Q {x0 + 70} {y + 60} {x0 + 40} 800 L 0 800 Z"
+    rocher_d = f"M 800 {y - 10} L {x1 - 30} {y - 10} Q {x1 - 70} {y + 60} {x1 - 40} 800 L 800 800 Z"
+    S.add(chemin(rocher_g, lineaire(["#adb5bd", "#868e96", "#5c636a"], 0, 0, 1, 0)))
+    S.add(chemin(rocher_d, lineaire(["#5c636a", "#868e96", "#adb5bd"], 0, 0, 1, 0)))
+    r = random.Random(17)
+    for d, xa, xb in ((rocher_g, 0, x0 + 60), (rocher_d, x1 - 60, 800)):
+        # strates et fissures irrégulières de la roche
+        traits = []
+        for _ in range(9):
+            xx, yy = r.uniform(xa, xb), r.uniform(y + 20, 780)
+            traits.append(f"M {n(xx)} {n(yy)} l {n(r.uniform(14, 40))} {n(r.uniform(-8, 8))} l {n(r.uniform(6, 20))} {n(r.uniform(4, 16))}")
+        S.add(_decoupe(chemin(" ".join(traits), stroke="#495057", sw=3, opacity=0.5)
+                       + chemin(" ".join(t.replace("M ", "M ", 1) for t in traits), stroke="#ced4da", sw=1.5, opacity=0.5, transform="translate(0 3)"),
+                       chemin(d, "#000")))
+    S.add(rect(0, y + 6, 800, 26, lineaire([(0, "#000", 0.22), (1, "#000", 0)])))
     S.add(chemin(f"M 0 {y - 14} L {x0 + 30} {y - 14} L {x0 + 30} {y + 6} L 0 {y + 6} Z", "#69db7c"))
     S.add(chemin(f"M 800 {y - 14} L {x1 - 30} {y - 14} L {x1 - 30} {y + 6} L 800 {y + 6} Z", "#69db7c"))
-    S.add(rect(x0 - 20, y, x1 - x0 + 40, ep, "#8d5524", rx=ep / 2))
+    S.add(ellipse((x0 + x1) / 2, 660, (x1 - x0) * 0.45, 10, "#000", opacity=0.15))
+    S.add(rect(x0 - 20, y, x1 - x0 + 40, ep, cylindre("#8d5524", 0.3, 0.6, vertical=True), rx=ep / 2))
+    S.add(chemin(" ".join(f"M {x} {y + ep * 0.55} q 20 -4 40 0" for x in range(int(x0) + 20, int(x1) - 40, 70)), stroke="#5c3a1e", sw=2, opacity=0.6))
     S.add(trait(x0, y + 8, x1, y + 8, "#a0693a", 4))
+    S.add(trait(x0, y + 4, x1, y + 4, "#c49a6c", 2, opacity=0.8))
     S.add(ellipse(x0 - 20, y + ep / 2, 10, ep / 2, "#c49a6c"), ellipse(x1 + 20, y + ep / 2, 10, ep / 2, "#c49a6c"))

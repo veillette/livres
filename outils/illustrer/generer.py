@@ -31,6 +31,8 @@ def generer(module):
     base._compteur[0] = 0
     # pas d'ombre douce sous les personnages si le livre dessine ses ombres
     base.OMBRE_SOL[0] = getattr(module, "OMBRES_DOUCES", True)
+    # modelé automatique des aplats, sauf si le livre le refuse
+    base.RELIEF_AUTO[0] = getattr(module, "RELIEF", True)
     dossier = os.path.join(RACINE, "livres", module.ID, "images")
     for nom, fabrique in module.IMAGES:
         fabrique().enregistrer(os.path.join(dossier, nom))

@@ -182,6 +182,74 @@ def luminance(c):
     return 0.5 if rvb is None else (0.299 * rvb[0] + 0.587 * rvb[1] + 0.114 * rvb[2]) / 255
 
 
+# --- Modelé automatique -------------------------------------------------------
+# Les dessins propres à chaque livre sont faits d'aplats ; à l'écriture de la
+# page, chaque forme pleine reçoit un léger dégradé (lumière en haut à gauche).
+# Restent plates : formes semi-transparentes, contenus de masques, de découpes
+# et de textes, groupes marqués data-relief="non" (éclairage physique des
+# livres de sciences) et formes de la couleur du fond (fausses découpes).
+RELIEF_AUTO = [True]
+_BALISE = re.compile(r"<(/?)([a-zA-Z]+)([^>]*?)(/?)>")
+_SANS_RELIEF = {"clipPath", "mask", "defs", "linearGradient", "radialGradient", "filter", "text", "pattern"}
+_FORMES = {"rect", "circle", "ellipse", "polygon", "path"}
+
+
+def sans_relief(contenu):
+    """Garde un dessin en aplats (éclairage voulu, découpe de la couleur du fond)."""
+    return el("g", "".join(contenu) if isinstance(contenu, (list, tuple)) else contenu, data_relief="non")
+
+
+def _valeur(attrs, nom):
+    m = re.search(rf'\s{nom}="([^"]*)"', attrs)
+    return m.group(1) if m else None
+
+
+def _relief_auto(texte_svg, w, h, fonds):
+    out, pos, pile, saut = [], 0, [], 0
+    for m in _BALISE.finditer(texte_svg):
+        ferme, tag, attrs, auto = m.groups()
+        if ferme:
+            if pile:
+                saut -= pile.pop()
+            continue
+        bloque = tag in _SANS_RELIEF or 'data-relief="non"' in attrs
+        if not auto:
+            pile.append(1 if bloque else 0)
+            saut += 1 if bloque else 0
+        if saut or bloque or tag not in _FORMES:
+            continue
+        fill = _valeur(attrs, "fill")
+        if not fill or not fill.startswith("#") or _rvb(fill) is None or fill.lower() in fonds:
+            continue
+        if " opacity=" in attrs or "fill-opacity=" in attrs or luminance(fill) < 0.1:
+            continue
+        large = tag == "rect" and float(_valeur(attrs, "width") or 0) >= 0.9 * w
+        if large and float(_valeur(attrs, "height") or 0) >= 0.9 * h:
+            continue
+        if large:
+            remp = lineaire([(0, eclaircir(fill, 0.1)), (1, _assombrir(fill, 0.88))])
+        else:
+            remp = lineaire([(0, eclaircir(fill, 0.16)), (0.5, fill), (1, _assombrir(fill, 0.84))], 0, 0, 1, 1)
+        debut = m.start(3) + attrs.index(f'fill="{fill}"')
+        out.append(texte_svg[pos:debut] + f'fill="{remp}"')
+        pos = debut + len(f'fill="{fill}"')
+    out.append(texte_svg[pos:])
+    return "".join(out)
+
+
+def _couleurs_fond(scene):
+    """Couleurs du fond de la page : arrêts des dégradés du ciel, grands aplats."""
+    fonds = set()
+    for d in scene.defs:
+        fonds.update(c.lower() for c in re.findall(r'stop-color="(#[0-9a-fA-F]{3,6})"', d))
+    for e in scene.els:
+        if e.startswith("<rect") and float(_valeur(e, "width") or 0) >= 0.9 * scene.w:
+            f = _valeur(e, "fill")
+            if f and f.startswith("#"):
+                fonds.add(f.lower())
+    return fonds
+
+
 class Scene:
     def __init__(self, w=800, h=800):
         self.w, self.h = w, h
@@ -211,6 +279,8 @@ class Scene:
 
     def svg(self):
         corps = "\n".join(self.els)
+        if RELIEF_AUTO[0]:
+            corps = _relief_auto(corps, self.w, self.h, _couleurs_fond(self))
         propres = "".join(self.defs)
         partages = sorted(set(re.findall(r"url\(#(vol[0-9a-f]{7})\)", propres + corps)))
         tous = propres + "".join(_DEGRADES[i] for i in partages)
@@ -329,7 +399,7 @@ def lune(x, y, r=45, couleur="#fff3bf", fond_ciel=None, croissant=False, visage=
     m = [cercle(x, y, r * 1.9, radial([(0.45, couleur, 0.22), (1, couleur, 0)])), cercle(x, y, r * 1.5, couleur, opacity=0.15),
          cercle(x, y, r, volume(couleur, 0.6, 0.88))]
     if croissant and fond_ciel:
-        m.append(cercle(x + r * 0.45, y - r * 0.2, r * 0.9, fond_ciel))
+        m.append(sans_relief(cercle(x + r * 0.45, y - r * 0.2, r * 0.9, fond_ciel)))
     else:
         m.append(cercle(x - r * 0.3, y - r * 0.25, r * 0.16, "#ffe066", opacity=0.6))
         m.append(cercle(x + r * 0.35, y + r * 0.3, r * 0.11, "#ffe066", opacity=0.6))
@@ -534,6 +604,62 @@ def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre=
         if lumiere:
             m.append(ellipse(fx + 20, -100, 44, 40, radial([(0, "#ffe066", 0.45), (1, "#ffe066", 0)])))
     return place(m, x, y, s)
+
+
+def feuillage(boules, opacite=None):
+    """Couronne d'arbre en relief : boules (x, y, r, couleur) éclairées en haut
+    à gauche, touffes de feuilles et ombre du dessous."""
+    m = [cercle(x, y, r, volume(c, 0.28, 0.72)) for x, y, r, c in boules]
+    m.append(ombrage(g([cercle(x, y, r, "#000") for x, y, r, _ in boules]),
+                     sombre=[(x + r * 0.3, y + r * 0.75, r * 0.95, r * 0.4) for x, y, r, _ in boules], opacite=0.1))
+    touffe = "q 4 -9 10 -5 q 5 -8 11 -1"
+    for x, y, r, c in boules:
+        k = r / 90
+        m.append(chemin(" ".join(f"M {n(x + dx * r)} {n(y + dy * r)} q {n(4 * k)} {n(-9 * k)} {n(10 * k)} {n(-5 * k)} q {n(5 * k)} {n(-8 * k)} {n(11 * k)} {n(-1 * k)}"
+                                 for dx, dy in [(-0.45, 0.05), (0.15, -0.35), (0.05, 0.4), (-0.15, -0.6)]),
+                        stroke=_assombrir(c, 0.72), sw=max(2, 3 * k), opacity=0.45))
+    return g(m, opacity=opacite)
+
+
+def tronc(x, y, w, h, c="#8d5524", rx=12):
+    """Tronc vertical en relief ; (x, y) = coin haut gauche."""
+    r = random.Random(int(x * 3 + h))
+    fentes = " ".join(f"M {n(x + w * (k + 0.5) / 4 + r.uniform(-4, 4))} {n(y0)} q {n(r.uniform(-5, 5))} {n(L / 2)} 0 {n(L)}"
+                      for k in range(4) for y0, L in [(y + r.uniform(0.1, 0.5) * h, r.uniform(0.12, 0.25) * h)])
+    return g([rect(x, y, w, h, cylindre(c, 0.25, 0.65), rx=rx),
+              chemin(fentes, stroke=_assombrir(c, 0.62), sw=max(2, w / 22), opacity=0.55)])
+
+
+def arbre_branche(S, x, branche_y, branche_x, w, feuillage, clairs, tronc="#8d5524", sol_y=700):
+    """Grand arbre coupé par le haut de la page, une longue branche horizontale
+    vers la gauche (perchoir) ; feuillage / clairs : listes de (x, y, r)."""
+    fonce = _assombrir(tronc, 0.65)
+    S.add(ombre_sol(x + 10, sol_y, w * 1.25, 15, 0.2))
+    S.add(rect(x - w / 2, 0, w, sol_y, cylindre(tronc, 0.25, 0.65)))
+    S.add(chemin(f"M {n(x - w / 2 - 14)} {sol_y + 2} Q {n(x - w / 2)} {sol_y - 20} {n(x - w / 2)} {sol_y - 60} L {n(x + w / 2)} {sol_y - 60} "
+                 f"Q {n(x + w / 2)} {sol_y - 20} {n(x + w / 2 + 18)} {sol_y + 2} Z", cylindre(tronc, 0.25, 0.65)))
+    # écorce : longues fentes et nœud
+    r = random.Random(int(x))
+    fentes = " ".join(f"M {n(x - w / 2 + k * w / 5)} {n(y0)} q {n(r.uniform(-6, 6))} {n(L / 2)} 0 {n(L)}"
+                      for k in range(1, 5) for y0, L in [(r.uniform(20, 300), r.uniform(80, 160)), (r.uniform(380, 560), r.uniform(60, 120))])
+    S.add(chemin(fentes, stroke=fonce, sw=3, opacity=0.55))
+    S.add(ellipse(x + w * 0.12, 470, w * 0.14, w * 0.2, fonce, opacity=0.6), ellipse(x + w * 0.12, 472, w * 0.07, w * 0.11, _assombrir(tronc, 0.45)))
+    branche = (f"M {n(x - w / 2 + 4)} {branche_y + 24} Q {n((x + branche_x) / 2)} {branche_y + 8} {branche_x} {branche_y + 4} "
+               f"L {branche_x} {branche_y + 24} Q {n((x + branche_x) / 2)} {branche_y + 38} {n(x - w / 2 + 4)} {branche_y + 54} Z")
+    S.add(chemin(branche, lineaire([eclaircir(tronc, 0.25), tronc, fonce])))
+    S.add(chemin(f"M {n(x - w / 2 + 4)} {branche_y + 26} Q {n((x + branche_x) / 2)} {branche_y + 10} {branche_x} {branche_y + 6}",
+                 stroke=eclaircir(tronc, 0.4), sw=3, opacity=0.7))
+    # ombre de la couronne sur le tronc
+    S.add(rect(x - w / 2, 0, w, 300, lineaire([(0, "#000", 0.35), (1, "#000", 0)])))
+    vert = feuillage[0][3] if len(feuillage[0]) > 3 else "#40c057"
+    for f in feuillage:
+        S.add(cercle(f[0], f[1], f[2], volume(f[3] if len(f) > 3 else vert, 0.28, 0.72)))
+    for f in clairs:
+        S.add(cercle(f[0], f[1], f[2], volume(f[3] if len(f) > 3 else eclaircir(vert, 0.15), 0.3, 0.8)))
+    touffe = "q 4 -9 10 -5 q 5 -8 11 -1"
+    S.add(chemin(" ".join(f"M {n(fx + dx)} {n(fy + dy)} {touffe}" for fx, fy, rr, *_ in feuillage + clairs
+                          for dx, dy in [(-rr * 0.4, rr * 0.1), (rr * 0.2, -rr * 0.3), (rr * 0.1, rr * 0.45)]),
+                 stroke=_assombrir(vert, 0.72), sw=3, opacity=0.45))
 
 
 def pic(x0, y0, xs, ys, x1, y1, c, neige=True):
@@ -806,6 +932,94 @@ def porte(x, y, w=150, h=300, couleur="#b5835a", ouverte=False):
                   chemin(f"M {n(px + 3)} {n(py + ph - 2)} H {n(px + pw - 2)} V {n(py + 3)}", stroke="#fff", sw=3, opacity=0.25)]
         m += [cercle(x + w / 2 - 22, y - h / 2, 8, volume("#ffd43b", 0.6, 0.65)), cercle(x + w / 2 - 24, y - h / 2 - 2.5, 2.5, "#fff")]
     return g(m)
+
+
+# --- Textures de construction -------------------------------------------------
+# Pour les bâtiments dessinés dans les scripts des livres : chaque fonction
+# renvoie un calque à poser par-dessus une forme déjà remplie, découpé à sa
+# silhouette quand `forme` (élément SVG) est donné.
+
+def _decoupe(contenu, forme):
+    if not forme:
+        return contenu
+    cid = uid("k")
+    return el("clipPath", forme, id=cid) + g(contenu, clip_path=f"url(#{cid})")
+
+
+def briques(x, y, w, h, c, forme=None, hb=16, lb=34):
+    """Joints de briques décalés d'un rang à l'autre et reflet sur chaque rang."""
+    joints, reflets = [], []
+    for k, yy in enumerate(range(int(y), int(y + h), hb)):
+        joints.append(f"M {n(x)} {yy} h {n(w)}")
+        reflets.append(f"M {n(x)} {yy + 2.5} h {n(w)}")
+        xx = x + (k % 2) * lb / 2
+        while xx < x + w:
+            joints.append(f"M {n(xx)} {yy} v {hb}")
+            xx += lb
+    return _decoupe(chemin(" ".join(reflets), stroke=eclaircir(c, 0.4), sw=1.5, opacity=0.45)
+                    + chemin(" ".join(joints), stroke=_assombrir(c, 0.6), sw=2, opacity=0.6), forme)
+
+
+def planches(x, y, w, h, c, forme=None, larg=22, vertical=True):
+    """Planches de bois : joints, veinures et nœuds."""
+    r = random.Random(int(x * 7 + y * 3 + w))
+    fonce = _assombrir(c, 0.62)
+    joints, veines = [], []
+    if vertical:
+        xx = x
+        while xx < x + w:
+            joints.append(f"M {n(xx)} {n(y)} v {n(h)}")
+            for _ in range(2):
+                vy = r.uniform(y, y + h * 0.8)
+                veines.append(f"M {n(xx + r.uniform(5, larg - 5))} {n(vy)} q 3 {n(h * 0.08)} 0 {n(h * 0.16)}")
+            xx += larg
+    else:
+        yy = y
+        while yy < y + h:
+            joints.append(f"M {n(x)} {n(yy)} h {n(w)}")
+            for _ in range(2):
+                vx = r.uniform(x, x + w * 0.8)
+                veines.append(f"M {n(vx)} {n(yy + r.uniform(5, larg - 5))} q {n(w * 0.08)} 3 {n(w * 0.16)} 0")
+            yy += larg
+    return _decoupe(chemin(" ".join(joints), stroke=fonce, sw=2.5, opacity=0.6)
+                    + chemin(" ".join(veines), stroke=fonce, sw=1.5, opacity=0.35), forme)
+
+
+def chaume(x, y, w, h, c, forme=None, graine=1):
+    """Paille ou chaume : brins obliques serrés, plus sombres en bas de chaque rang."""
+    r = random.Random(graine)
+    clairs, fonces = [], []
+    for yy in range(int(y), int(y + h), 14):
+        for _ in range(int(w / 9)):
+            xx = r.uniform(x, x + w)
+            L = r.uniform(12, 22)
+            (clairs if r.random() < 0.5 else fonces).append(f"M {n(xx)} {yy} l {n(r.uniform(-3, 3))} {n(L)}")
+    return _decoupe(chemin(" ".join(clairs), stroke=eclaircir(c, 0.45), sw=2, opacity=0.7)
+                    + chemin(" ".join(fonces), stroke=_assombrir(c, 0.7), sw=2, opacity=0.6), forme)
+
+
+def tuiles(x, y, w, h, c, forme=None, pas_=15):
+    """Rangs de tuiles arrondies."""
+    d = " ".join(f"M {n(x - (k % 2) * pas_ / 2)} {yy} " + " ".join(f"q {n(pas_ / 2)} {n(pas_ * 0.6)} {pas_} 0" for _ in range(int(w / pas_) + 2))
+                 for k, yy in enumerate(range(int(y + pas_), int(y + h + pas_), pas_)))
+    return _decoupe(chemin(d, stroke=_assombrir(c, 0.68), sw=2, opacity=0.55), forme)
+
+
+def pierres(x, y, w, h, c, forme=None, pas_=22, larg=34, opacite=0.32):
+    """Appareil de pierres : assises horizontales et joints décalés."""
+    d = []
+    for k, yy in enumerate(range(int(y + pas_), int(y + h), pas_)):
+        d.append(f"M {n(x)} {yy} H {n(x + w)}")
+        xx = x + (k % 2) * larg / 2 + larg / 2
+        while xx < x + w - 4:
+            d.append(f"M {n(xx)} {yy} v {-pas_}")
+            xx += larg
+    return _decoupe(chemin(" ".join(d), stroke=_assombrir(c, 0.72), sw=1.5, opacity=opacite), forme)
+
+
+def ombre_avancee(x, y, w, h=16, opacite=0.18):
+    """Ombre portée sous un toit, une corniche ou un balcon (bord haut en y)."""
+    return rect(x, y, w, h, lineaire([(0, "#000", opacite), (1, "#000", 0)]))
 
 
 # ---------------------------------------------------------------------------

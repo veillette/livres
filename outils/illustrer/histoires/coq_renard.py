@@ -17,12 +17,9 @@ def ferme(S, soir=False):
 
 
 def arbre_perchoir(S, x=560, branche_y=370, branche_x=320):
-    S.add(rect(x - 40, 0, 80, 700, "#8d5524"))
-    S.add(chemin(f"M {x - 36} {branche_y + 24} Q {(x + branche_x) / 2} {branche_y + 8} {branche_x} {branche_y + 4} L {branche_x} {branche_y + 24} Q {(x + branche_x) / 2} {branche_y + 36} {x - 36} {branche_y + 52} Z", "#8d5524"))
-    for fx, fy, r in [(x - 10, 50, 130), (x + 130, 120, 110), (x - 160, 110, 90), (x + 60, -20, 120), (branche_x - 10, branche_y - 20, 46)]:
-        S.add(cercle(fx, fy, r, "#40c057"))
-    S.add(cercle(x - 90, 170, 60, "#51cf66"), cercle(x + 70, 220, 70, "#51cf66"))
-    S.add(ellipse(x, 700, 80, 12, "#6d4424", opacity=0.4))
+    arbre_branche(S, x, branche_y, branche_x, 80,
+                  [(x - 10, 50, 130), (x + 130, 120, 110), (x - 160, 110, 90), (x + 60, -20, 120), (branche_x - 10, branche_y - 20, 46)],
+                  [(x - 90, 170, 60, "#51cf66"), (x + 70, 220, 70, "#51cf66")])
 
 
 def scene_arbre(S, soir=False, **k):

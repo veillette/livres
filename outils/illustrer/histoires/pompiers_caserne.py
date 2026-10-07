@@ -50,13 +50,24 @@ def camion_pompiers(x, y, s=1.0, flip=False, gyro=True, echelle_=True):
 def caserne(S):
     ciel(S)
     S.add(rect(0, 120, 800, 480, "#ffe8cc"))
-    S.add(rect(0, 100, 800, 40, "#c92a2a"))
+    S.add(briques(0, 140, 800, 460, "#ffe8cc", hb=20, lb=44))
+    S.add(rect(0, 100, 800, 40, cylindre("#c92a2a", 0.3, 0.7, vertical=True)))
+    S.add(ombre_avancee(0, 140, 800, 22, 0.25))
     S.add(rect(240, 150, 320, 56, "#fff", rx=8), texte(400, 192, "POMPIERS", 42, ROUGE))
     for x in (40, 420):
-        S.add(rect(x, 240, 340, 360, "#e9ecef", stroke="#adb5bd", stroke_width=6))
+        # embrasure profonde, porte sectionnelle à panneaux et hublots
+        S.add(rect(x - 12, 228, 364, 372, "#d9c2a3"))
+        S.add(rect(x, 240, 340, 360, cylindre("#e9ecef", 0.3, 0.82), stroke="#adb5bd", stroke_width=6))
+        S.add(rect(x, 240, 340, 20, "#000", opacity=0.15))
         for k in range(1, 6):
             S.add(trait(x, 240 + k * 60, x + 340, 240 + k * 60, "#ced4da", 4))
-    S.add(rect(0, 600, 800, 200, "#adb5bd"))
+            S.add(trait(x, 243 + k * 60, x + 340, 243 + k * 60, "#ffffff", 2, opacity=0.8))
+        for k in range(4):
+            S.add(rect(x + 30 + k * 76, 262, 54, 32, "#a5d8ff", rx=4, stroke="#adb5bd", stroke_width=3))
+            S.add(poly([(x + 36 + k * 76, 294), (x + 50 + k * 76, 262), (x + 58 + k * 76, 262), (x + 44 + k * 76, 294)], "#fff", opacity=0.45))
+    S.add(rect(0, 600, 800, 200, lineaire(["#ced4da", "#adb5bd", "#868e96"])))
+    S.add(rect(0, 600, 800, 12, "#000", opacity=0.12))
+    S.add(chemin(" ".join(f"M {x} 600 L {x * 1.6 - 240} 800" for x in range(0, 801, 100)), stroke="#868e96", sw=2, opacity=0.5))
 
 
 def flamme(x, y, s=1.0):

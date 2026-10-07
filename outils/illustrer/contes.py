@@ -194,13 +194,24 @@ def maison_paille(x, y, s=1.0, souffle=0.0):
     """Hutte de paille ; `souffle` (0 à 1) fait s'envoler les brins."""
     m = []
     if souffle < 1:
-        m.append(chemin("M -110 0 L -110 -110 L 110 -110 L 110 0 Z", "#ffe066"))
-        m.append(chemin("M -140 -100 Q 0 -280 140 -100 Z", "#fcc419"))
-        for k in range(-5, 6):
-            m.append(trait(k * 20, -8, k * 20 + 4, -104, "#f59f00", 3, opacity=0.6))
+        if OMBRE_SOL[0]:
+            m.append(ombre_sol(10, 0, 150, 14, 0.16))
+        mur = "M -110 0 L -110 -110 L 110 -110 L 110 0 Z"
+        toit = "M -140 -100 Q 0 -280 140 -100 Z"
+        m.append(chemin(mur, cylindre("#ffe066", 0.3, 0.8)))
+        m.append(chaume(-110, -110, 220, 110, "#ffe066", chemin(mur, "#000"), graine=4))
+        m.append(ombre_avancee(-110, -110, 220, 26, 0.22))
+        m.append(chemin(toit, radial([(0, "#ffe066"), (0.6, "#fcc419"), (1, "#e67700")], cx=0.4, cy=0.75, r=0.75, fx=0.35, fy=0.6)))
+        m.append(chaume(-140, -200, 280, 100, "#fcc419", chemin(toit, "#000"), graine=7))
         for k in range(-6, 7):
             m.append(trait(k * 20, -104, k * 10, -200 + abs(k) * 12, "#e67700", 3, opacity=0.5))
-        m.append(chemin("M -30 0 L -30 -70 Q 0 -96 30 -70 L 30 0 Z", "#a0522d"))
+        # bord du toit effiloché
+        m.append(chemin(" ".join(f"M {k * 14} -102 l {(k % 3) - 1} 14" for k in range(-10, 11)), stroke="#e67700", sw=3, opacity=0.8))
+        m.append(chemin("M -138 -100 Q 0 -112 138 -100", stroke="#b35c00", sw=4, opacity=0.5))
+        m.append(chemin("M -36 0 L -36 -72 Q 0 -104 36 -72 L 36 0 Z", "#7a5a12", opacity=0.6))
+        m.append(chemin("M -30 0 L -30 -70 Q 0 -96 30 -70 L 30 0 Z", cylindre("#a0522d", 0.2, 0.7)))
+        m.append(planches(-30, -96, 60, 96, "#a0522d", chemin("M -30 0 L -30 -70 Q 0 -96 30 -70 L 30 0 Z", "#000"), larg=15))
+        m.append(cercle(18, -40, 4, volume("#ffd43b", 0.6, 0.7)))
     if souffle > 0:
         r = random.Random(3)
         for _ in range(int(40 * souffle)):
@@ -214,13 +225,28 @@ def maison_bois(x, y, s=1.0, tombe=0.0):
     """Cabane en planches ; `tombe` (0 à 1) : planches qui s'écroulent."""
     m = []
     if tombe < 1:
+        if OMBRE_SOL[0]:
+            m.append(ombre_sol(10, 0, 150, 14, 0.16))
         for k in range(-5, 5):
-            m.append(rect(k * 22, -130, 20, 130, "#c68642" if k % 2 else "#b5835a"))
-        m.append(poly([(-130, -126), (0, -236), (130, -126)], "#8d5524"))
+            m.append(rect(k * 22, -130, 20, 130, cylindre("#c68642" if k % 2 else "#b5835a", 0.25, 0.75)))
+        m.append(planches(-110, -130, 220, 130, "#b5835a", larg=22))
+        m.append(chemin(" ".join(f"M {k * 22 + 10} -118 v 0.1 M {k * 22 + 10} -12 v 0.1" for k in range(-5, 5)), stroke="#3b2414", sw=4))
+        m.append(ombre_avancee(-110, -130, 220, 22, 0.25))
+        toit = [(-130, -126), (0, -236), (130, -126)]
+        m.append(poly(toit, lineaire([(0, "#a0693a"), (0.5, "#8d5524"), (1, "#5c3a1e")], 0, 0, 1, 1)))
         for k in range(4):
             m.append(trait(-100 + k * 20, -140 - k * 18, 100 - k * 20, -140 - k * 18, "#6d4424", 4))
-        m.append(rect(-26, -80, 52, 80, "#6d4424", rx=4))
-        m.append(rect(52, -110, 40, 36, "#a5d8ff", stroke="#6d4424", stroke_width=5))
+            m.append(trait(-100 + k * 20, -137 - k * 18, 100 - k * 20, -137 - k * 18, "#b5835a", 1.5, opacity=0.6))
+        m.append(chemin("M -130 -126 L 0 -236 L 130 -126", stroke="#4a2e16", sw=6))
+        m.append(rect(-30, -84, 60, 84, "#4a2e16", rx=5))
+        m.append(rect(-26, -80, 52, 80, cylindre("#6d4424", 0.2, 0.7), rx=4))
+        m.append(planches(-26, -80, 52, 80, "#6d4424", larg=13))
+        m.append(chemin("M -22 -66 L 22 -14", stroke="#4a2e16", sw=5))
+        m.append(cercle(16, -40, 4, volume("#adb5bd", 0.6, 0.6)))
+        m += [rect(52, -110, 40, 36, "#a5d8ff", stroke="#6d4424", stroke_width=5),
+              poly([(55, -107), (89, -107), (89, -102), (60, -102), (60, -77), (55, -77)], "#000", opacity=0.18),
+              poly([(62, -77), (74, -107), (80, -107), (68, -77)], "#fff", opacity=0.35),
+              rect(46, -76, 52, 7, "#8d5524", rx=2)]
     if tombe > 0:
         r = random.Random(5)
         for k in range(12):
@@ -231,26 +257,50 @@ def maison_bois(x, y, s=1.0, tombe=0.0):
 
 def maison_briques(x, y, s=1.0, fumee=False, feu=False):
     """Maison de briques solide avec une cheminée."""
-    m = [rect(-130, -170, 260, 170, "#e8590c")]
+    m = []
+    if OMBRE_SOL[0]:
+        m.append(ombre_sol(12, 0, 175, 16, 0.16))
+    m.append(rect(-130, -170, 260, 170, cylindre("#e8590c", 0.18, 0.8)))
     for row in range(8):
         yy = -170 + row * 21
         m.append(trait(-130, yy, 130, yy, "#ffd8a8", 3))
+        m.append(trait(-130, yy + 18, 130, yy + 18, "#a63d00", 1.5, opacity=0.5))
         off = 0 if row % 2 else 20
         for k in range(-3, 4):
             xx = k * 40 + off
             if -130 < xx < 130:
                 m.append(trait(xx, yy, xx, yy + 21, "#ffd8a8", 3))
-    m.append(rect(60, -290, 44, 120, "#c92a2a"))
-    m.append(rect(52, -300, 60, 16, "#a61e4d"))
+    m.append(rect(110, -170, 20, 170, "#000", opacity=0.12))
+    m.append(rect(-136, -14, 272, 14, cylindre("#adb5bd", 0.3, 0.75), rx=2))
+    m.append(rect(60, -290, 44, 120, cylindre("#c92a2a", 0.2, 0.7)))
+    m.append(briques(60, -290, 44, 120, "#c92a2a", hb=14, lb=22))
+    m.append(rect(52, -300, 60, 16, cylindre("#a61e4d", 0.25, 0.7)))
+    m.append(ombre_avancee(60, -284, 44, 10, 0.25))
     if fumee:
         m.append(chemin("M 82 -306 Q 60 -340 90 -370 Q 120 -400 96 -440", stroke="#dee2e6", sw=16, opacity=0.8))
+        m.append(chemin("M 82 -306 Q 60 -340 90 -370 Q 120 -400 96 -440", stroke="#fff", sw=6, opacity=0.6))
     if feu:
-        m.append(g([chemin("M 64 -300 Q 70 -340 82 -320 Q 86 -360 100 -318 Q 106 -332 104 -300 Z", "#ff922b")]))
-    m.append(poly([(-156, -166), (0, -276), (156, -166)], "#862e9c"))
-    m.append(rect(-32, -100, 64, 100, "#5c3a1e", rx=6))
-    m.append(cercle(20, -50, 5, "#ffd43b"))
-    m.append(rect(-104, -136, 48, 44, "#ffe066", stroke="#fff", stroke_width=5))
-    m.append(rect(56, -136, 48, 44, "#ffe066", stroke="#fff", stroke_width=5))
+        m.append(g([chemin("M 64 -300 Q 70 -340 82 -320 Q 86 -360 100 -318 Q 106 -332 104 -300 Z", "#ff922b"),
+                    chemin("M 74 -300 Q 78 -326 86 -314 Q 90 -336 96 -300 Z", "#ffd43b")]))
+    toit = [(-156, -166), (0, -276), (156, -166)]
+    m.append(ombre_avancee(-130, -170, 260, 22, 0.25))
+    m.append(poly(toit, lineaire([(0, "#b464d6"), (0.5, "#862e9c"), (1, "#5a1d6b")], 0, 0, 1, 1)))
+    m.append(tuiles(-160, -280, 320, 115, "#862e9c", poly(toit, "#000"), pas_=18))
+    m.append(chemin("M -156 -166 L 0 -276 L 156 -166", stroke="#4a1658", sw=7))
+    m.append(chemin("M -140 -170 L 0 -268", stroke="#d0a2e0", sw=3, opacity=0.6))
+    m.append(rect(-160, -170, 320, 8, "#4a1658", rx=4))
+    # porte et fenêtres en profondeur
+    m.append(rect(-40, -108, 80, 108, "#f1f3f5", rx=8))
+    m.append(rect(-32, -100, 64, 100, cylindre("#5c3a1e", 0.2, 0.7), rx=6))
+    m.append(planches(-32, -100, 64, 100, "#5c3a1e", larg=16))
+    m.append(cercle(20, -50, 5, volume("#ffd43b", 0.6, 0.7)))
+    m.append(rect(-46, -6, 92, 8, cylindre("#adb5bd", 0.3, 0.75), rx=2))
+    for fx in (-104, 56):
+        m += [rect(fx - 6, -146, 60, 10, "#f1f3f5", rx=2),
+              rect(fx, -136, 48, 44, "#ffe066", stroke="#fff", stroke_width=5),
+              poly([(fx + 2, -134), (fx + 46, -134), (fx + 46, -128), (fx + 8, -128), (fx + 8, -94), (fx + 2, -94)], "#000", opacity=0.15),
+              trait(fx + 24, -136, fx + 24, -92, "#fff", 3.5),
+              rect(fx - 6, -92, 60, 8, "#f1f3f5", rx=2), rect(fx - 4, -84, 56, 5, "#000", opacity=0.14)]
     return place(m, x, y, s)
 
 
@@ -399,10 +449,18 @@ def hache(x, y, s=1.0, rot=0):
 
 def maison_bonbons(x, y, s=1.0):
     """Maison en pain d'épice, toit de chocolat et bonbons ; (x, y) = milieu de la base."""
-    m = [rect(-160, -200, 320, 200, "#c9772b")]
+    r = random.Random(9)
+    m = [ombre_sol(14, 0, 200, 16, 0.16), rect(-80, -390, 40, 90, cylindre("#fcc2d7", 0.3, 0.75)),
+         rect(-160, -200, 320, 200, cylindre("#c9772b", 0.2, 0.78))]
+    # pâte de pain d'épice : petits trous de cuisson
+    m.append(chemin(" ".join(f"M {n(r.uniform(-150, 150))} {n(r.uniform(-180, -40))} v 0.1" for _ in range(40)), stroke="#8a4d16", sw=4, opacity=0.5))
+    m.append(ombre_avancee(-160, -196, 320, 26, 0.25))
     for k in range(8):
-        m.append(chemin(f"M {-160 + k * 40} -200 q 20 18 40 0", stroke="#fff", sw=6))
-    m.append(poly([(-196, -190), (0, -360), (196, -190)], "#6d3b1a"))
+        m.append(chemin(f"M {-160 + k * 40} -200 q 20 18 40 0", stroke="#e9ecef", sw=7))
+        m.append(chemin(f"M {-160 + k * 40} -202 q 20 18 40 0", stroke="#fff", sw=4))
+    m.append(poly([(-196, -190), (0, -360), (196, -190)], lineaire([(0, "#8f5426"), (0.5, "#6d3b1a"), (1, "#3f200b")], 0, 0, 1, 1)))
+    m.append(chemin("M -196 -190 L 0 -360 L 196 -190", stroke="#3f200b", sw=7))
+    m.append(chemin("M -176 -194 L 0 -350", stroke="#a8683a", sw=4, opacity=0.7))
     for k in range(6):
         yy = -206 - k * 26
         w = 180 - k * 28
@@ -414,13 +472,14 @@ def maison_bonbons(x, y, s=1.0):
     m.append(chemin("M -40 0 L -40 -110 Q 0 -150 40 -110 L 40 0", stroke="#fff", sw=8))
     for fx in (-110, 110):
         m.append(rect(fx - 34, -150, 68, 60, "#ffe066"))
+        m.append(poly([(fx - 34, -150), (fx + 34, -150), (fx + 34, -143), (fx - 27, -143), (fx - 27, -90), (fx - 34, -90)], "#000", opacity=0.15))
         m.append(rect(fx - 34, -150, 68, 60, "none", stroke="#fff", stroke_width=8, rx=4))
         m.append(trait(fx, -150, fx, -90, "#fff", 5))
     for k in range(-3, 4):
         m.append(g([rect(k * 44 - 8, -24, 16, 24, "#fff"), rect(k * 44 - 8, -20, 16, 5, "#fa5252"), rect(k * 44 - 8, -10, 16, 5, "#fa5252"),
                     cercle(k * 44, -34, 14, ["#fa5252", "#51cf66", "#4dabf7", "#fcc419"][k % 4])]))
-    m.append(rect(-80, -390, 40, 70, "#fcc2d7"))
     m.append(ellipse(-60, -392, 24, 8, "#fff"))
+    m.append(ellipse(-64, -395, 12, 3, "#fff", opacity=0.8))
     return place(m, x, y, s)
 
 
@@ -514,10 +573,12 @@ def bottes(x, y, s=1.0, couleur="#5c3a1e", rot=0):
 
 
 def gros_arbre_sombre(x, y, s=1.0):
-    m = [chemin("M -40 0 Q -20 -120 -30 -260 L 30 -260 Q 20 -120 40 0 Z", "#5c3a1e"),
+    m = [ombre_sol(6, 0, 70, 10, 0.2),
+         chemin("M -40 0 Q -20 -120 -30 -260 L 30 -260 Q 20 -120 40 0 Z", cylindre("#5c3a1e", 0.25, 0.6)),
+         chemin("M -10 -20 q 6 -50 -2 -100 M 12 -90 q -6 -40 2 -80", stroke="#3b2412", sw=3, opacity=0.6),
          chemin("M -30 -200 Q -90 -250 -130 -230", stroke="#5c3a1e", sw=18),
          chemin("M 26 -220 Q 90 -270 140 -250", stroke="#5c3a1e", sw=16),
-         cercle(0, -320, 110, "#2b8a3e"), cercle(-100, -270, 70, "#237032"), cercle(100, -280, 70, "#237032")]
+         feuillage([(0, -320, 110, "#2b8a3e"), (-100, -270, 70, "#237032"), (100, -280, 70, "#237032")])]
     return place(m, x, y, s)
 
 
@@ -545,14 +606,16 @@ def panier(x, y, s=1.0, contenu="galette"):
 
 def pont_bois(x, y, w=420, s=1.0):
     """Pont de bois en arche ; (x, y) = milieu du tablier."""
-    m = [chemin(f"M {-w / 2} 40 Q 0 -30 {w / 2} 40", stroke="#6d4424", sw=26)]
+    m = [ellipse(0, 84, w * 0.5, 16, "#000", opacity=0.14),
+         chemin(f"M {-w / 2} 40 Q 0 -30 {w / 2} 40", stroke="#4a2e16", sw=30),
+         chemin(f"M {-w / 2} 40 Q 0 -30 {w / 2} 40", stroke="#6d4424", sw=24)]
     for k in range(11):
         t = k / 10
         px = -w / 2 + w * t
         py = 40 - 70 * 4 * t * (1 - t) * 0.5
         m.append(rect(px - w / 22, py - 14, w / 11 - 2, 16, "#c68642", rx=3))
     for sgn in (-1, 1):
-        m.append(rect(sgn * w * 0.3 - 8, 0, 16, 90, "#6d4424"))
+        m.append(rect(sgn * w * 0.3 - 8, 0, 16, 90, cylindre("#6d4424", 0.3, 0.65)))
     m.append(chemin(f"M {-w / 2} 0 Q 0 -70 {w / 2} 0", stroke="#8d5524", sw=8))
     for k in range(1, 10):
         t = k / 10
