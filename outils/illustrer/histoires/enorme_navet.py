@@ -157,8 +157,8 @@ def p11():
     S = Scene()
     potager(S)
     S.add(navet(650, 790, 0.7, visible=1.0))
-    S.add(papi(150, 790, 1.1, expr="rire", bras="haut"), mamie(290, 790, 1.0, expr="rire", bras="joues"), fille(410, 790, 0.9, expr="rire", bras="haut"))
-    S.add(chien(510, 790, 0.7, expr="rire", bras="haut"), chat(580, 800, 0.55, expr="rire"))
+    S.add(papi(150, 790, 1.1, expr="rire", bras="haut"), mamie(290, 790, 1.0, expr="rire", bras="joues"), fille(410, 790, 0.9, expr="rire", bras="applaudit"))
+    S.add(chien(510, 790, 0.7, expr="rire", bras="victoire"), chat(580, 800, 0.55, expr="rire"))
     S.add(souris(650, 585, 0.5, expr="fier", bras="haut"))
     S.add(texte(400, 160, "Bravo, la souris !", 56, "#e64980", contour="#fff"))
     return S

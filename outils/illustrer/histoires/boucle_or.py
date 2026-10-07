@@ -195,7 +195,7 @@ def p13():
 def p14():
     S = Scene()
     maison_ours(S)
-    S.add(boucle(250, 790, 1.35, expr="content", bras="salut"))
+    S.add(boucle(250, 790, 1.35, expr="content", bras="coucou"))
     S.add(texte(560, 330, "Toc, toc, toc !", 50, "#6d4424", contour="#fff"))
     S.add(ours_("bebe", 610, 800, 0.8, expr="rire", bras="salut"))
     return S

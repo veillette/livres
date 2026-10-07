@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v19`).
+2 492 illustrations SVG** (cache hors ligne `v20`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -143,6 +143,41 @@ obrigada, gato, beijinho, bom dia, gosto muito de ti) ; signe « merci ».
 `verifier-images.py` sans erreur et régénération complète identique pour les
 livres existants (185 livres, 2 900 pages, 2 492 SVG). Le cache hors ligne
 passe à `v19`.
+
+## Personnages plus détaillés, 7 octobre 2026
+
+Amélioration voulue de tous les personnages, donc de presque toutes les
+illustrations (185 livres, 2 900 pages, 2 492 SVG, dont 2 150 modifiés).
+Dans `base.py` (`perso()`) et `fantastique.py` (`personne()`) :
+
+- liseré foncé autour de chaque personnage (filtre SVG), bras bordés d'un
+  trait plus sombre pour se détacher du corps, pli du coude ;
+- modelé : côté droit du corps et bas du visage dans l'ombre, reflet sur le
+  front, ombre du menton sur le cou ;
+- mains avec un pouce tourné vers le corps, pieds avec deux doigts,
+  chaussures avec un reflet, revers de manche au poignet ;
+- animaux : petite mèche sur la tête des espèces à poils, poils au bord du
+  ventre, bout de queue plus foncé (chat), poils de la queue (renard, loup),
+  laine bouclée (mouton) ; vêtements avec encolure et boutons ;
+- humains : mèches et reflet dans les cheveux, creux de l'oreille, plis de la
+  robe, encolure, pli du pantalon ;
+- yeux avec un second reflet ; tête un peu penchée selon l'expression
+  (timide, triste, malin, content…), sauf quand les mains touchent le visage ;
+- petite ombre douce au sol, absente des personnages tournés ou en l'air, et
+  coupée (`OMBRES_DOUCES = False`) dans les trois livres qui dessinent de
+  vraies ombres portées (L'ombre de Léon, Max et son ombre, L'ours et la nuit),
+  pour garder des ombres physiquement exactes ;
+- nouvelles poses : `danse`, `applaudit`, `victoire`, `coucou`, `chut`,
+  `etire`, `epaules`, `marche`, et pieds en mouvement (`pas="marche"`,
+  `"pointe"`, `"saute"`), choisis automatiquement pour `course`, `danse` et
+  `victoire`. Elles remplacent l'ancienne pose sur une cinquantaine de pages
+  dont le texte s'y prête (danse, applaudissements, « chut », bâillements,
+  « coucou », au revoir) ; trois descriptions ont été ajustées.
+
+Planches revues dans Chromium (toutes les espèces, toutes les poses, et un
+échantillon de pages de chaque rayon) ; `verifier-images.py` sans erreur,
+`node --test` réussi, régénération complète identique. Le cache hors ligne
+passe à `v20`.
 
 ## Parcours livre par livre
 

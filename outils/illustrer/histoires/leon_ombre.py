@@ -13,6 +13,8 @@ from sciences import _filtre_ombre
 from fantastique import personne
 
 ID = "leon-ombre"
+# les ombres de ce livre sont de vraies ombres portées
+OMBRES_DOUCES = False
 LEON = dict(peau="brune", cheveux="noir", coiffure="courts", habit="#40c057", robe=False, jambes="#1971c2")
 ROSE_ = dict(peau="claire", cheveux="blond", coiffure="queue", habit="#f783ac", robe=True)
 MAMAN = dict(peau="brune", cheveux="noir", coiffure="chignon", habit="#7048e8", robe=True)
@@ -211,10 +213,10 @@ def p11():
     # vue de dessus : trois ombres tracées autour de la même croix
     cx, cy = 400, 440
     fid = _filtre_ombre(S, 0.85, (1, 1, 1))
-    silhouette = leon(0, 0, 0.9)
-    S.add(g(silhouette, filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(90) scale(0.9 1.5)"))
-    S.add(g(silhouette, filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(-90) scale(0.9 1.5)"))
-    S.add(g(silhouette, filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(180) scale(0.9 0.35)"))
+    # un dessin neuf par ombre : chaque personnage porte ses propres identifiants
+    S.add(g(leon(0, 0, 0.9), filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(90) scale(0.9 1.5)"))
+    S.add(g(leon(0, 0, 0.9), filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(-90) scale(0.9 1.5)"))
+    S.add(g(leon(0, 0, 0.9), filter=f"url(#{fid})", transform=f"translate({cx} {cy}) rotate(180) scale(0.9 0.35)"))
     S.add(croix(cx, cy, "#e8590c"))
     S.add(texte(700, 380, "9 h", 50, "#e8590c"), texte(100, 380, "17 h", 50, "#e8590c"), texte(400, 560, "12 h", 50, "#e8590c"))
     S.add(texte(400, 120, "Le tour de l'ombre de Léon", 40, ENCRE))

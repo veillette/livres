@@ -227,7 +227,7 @@ def p14():
     S = Scene()
     salon(S)
     S.add(cigale(260, 740, 1.4, expr="chante", **avec_violon()))
-    S.add(fourmi(480, 740, 1.2, expr="rire", bras="haut", pieds_haut=True))
+    S.add(fourmi(480, 740, 1.2, expr="rire", bras="danse", pieds_haut=True))
     S.add(notes(380, 330, 1.0), notes(150, 300, 0.8))
     return S
 

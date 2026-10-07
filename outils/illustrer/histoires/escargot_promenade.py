@@ -125,7 +125,7 @@ def p07():
     for k in range(20):
         S.add(rect(50 + (k * 97) % 700, 660 + (k * 31) % 120, 10, 6, ["#ff6b6b", "#ffd43b", "#4dabf7"][k % 3], rot=None))
     S.add(perso("lapin", 540, 720, 1.2, expr="neutre", bras="bas", regard=(-1, 0)))
-    S.add(perso("renard", 700, 740, 1.0, expr="baille", bras="haut"))
+    S.add(perso("renard", 700, 740, 1.0, expr="baille", bras="etire"))
     S.add(perso("ours", 380, 740, 1.1, expr="dort"))
     S.add(escargot(170, 770, 1.4, expr="sourire", **LEON))
     S.add(bulle(560, 330, 330, 80, "Tu as tout raté !", 32, pointe=(540, 460)))

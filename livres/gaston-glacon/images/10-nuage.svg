@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4dabf7"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d5)"/>
+<defs><linearGradient id="d8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4dabf7"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d8)"/>
 <polygon points="420,800 620,460 820,800" fill="#adb5bd"/>
 <polygon points="620,460 660,530 580,530" fill="#fff"/>
 <g transform="translate(360 180) scale(2.4 2.4)"><g><g transform="translate(0 8)"><circle cx="-55" cy="10" r="38" fill="#dbe4ff"/><circle cx="-15" cy="-18" r="50" fill="#dbe4ff"/><circle cx="40" cy="-8" r="42" fill="#dbe4ff"/><circle cx="78" cy="18" r="30" fill="#dbe4ff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#dbe4ff"/></g><circle cx="-55" cy="10" r="38" fill="#ffffff"/><circle cx="-15" cy="-18" r="50" fill="#ffffff"/><circle cx="40" cy="-8" r="42" fill="#ffffff"/><circle cx="78" cy="18" r="30" fill="#ffffff"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ffffff"/></g></g>

@@ -165,7 +165,7 @@ def p11():
     village(S, fete=True, montagne=False)
     S.add(bartolo(560, 840, 2.6, expr="timide", bras="porte", objet=cerf_volant(0, -120, 0.5)))
     for k, (x, gg) in enumerate([(100, GENS[3]), (220, GENS[1]), (330, ZOE)]):
-        S.add(personne(x, 790, 0.95 if k < 2 else 1.1, expr="rire", bras="haut", **gg))
+        S.add(personne(x, 790, 0.95 if k < 2 else 1.1, expr="rire", bras=("applaudit", "haut", "coucou")[k], **gg))
     S.add(texte(280, 330, "Merci, géant !", 52, "#4c6ef5", contour="#fff"))
     return S
 

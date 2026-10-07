@@ -173,7 +173,7 @@ def p12():
     S = Scene()
     dans_la_maison(S, soir=True)
     S.add(maman(260, 760, 1.35, expr="fier", bras="hanches", regard=(1, 0)))
-    S.add(chevreau(520, 760, 1.0, expr="rire", bras="haut", regard=(-1, 0)))
+    S.add(chevreau(520, 760, 1.0, expr="rire", bras="applaudit", regard=(-1, 0)))
     S.add(bulle(380, 120, 560, 120, "Deux sûretés valent\nmieux qu'une !", 38, pointe=(300, 340)))
     return S
 

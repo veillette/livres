@@ -131,7 +131,7 @@ def p02():
     S.add(maison(680, 500, 1.2, "#ffffff", "#c92a2a", "#343a40"))
     S.add(etoile(250, 740, 1.15, expr="fier"))
     S.add(caramel(560, 750, 0.7, expr="sourire", flip=True, regard=(-1, 0)))
-    S.add(jo(700, 790, 1.2, expr="rire", bras="haut", flip=True))
+    S.add(jo(700, 790, 1.2, expr="rire", bras="victoire", flip=True))
     S.add(bulle(420, 160, 420, 80, "Un futur champion !", 38, pointe=(640, 430)))
     S.add(g([etoile5(150 + k * 60, 330, 14, "#fab005") for k in range(3)]))
     return S

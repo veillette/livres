@@ -234,7 +234,7 @@ def p11():
     jardin(S, "#ffc078", "#fff4e6", 600, 5)
     S.add(maison(660, 600, 0.9, "#ffe8cc", "#5f3dc4", lumiere=True))
     S.add(velo(440, 740, 1.2, "#e64980"))
-    S.add(lucie(250, 760, 1.15, expr="content", bras="salut", regard=(1, -1)))
+    S.add(lucie(250, 760, 1.15, expr="content", bras="coucou", regard=(1, -1)))
     S.add(hugo(110, 760, 1.05, expr="rire"))
     S.add(ding(560, 330, 1.2, expr="content", regard=(-1, 0)))
     S.add(texte(560, 200, "À demain !", 50, "#f59f00", contour="#fff"))

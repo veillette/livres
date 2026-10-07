@@ -132,8 +132,8 @@ def p07():
 def p08():
     S = Scene()
     etang_chateau(S)
-    S.add(personne(110, 630, 1.0, expr="rire", bras="haut", **CONSEILLERS[0]))
-    S.add(personne(640, 600, 1.0, expr="rire", bras="haut", **CONSEILLERS[1]))
+    S.add(personne(110, 630, 1.0, expr="rire", bras="applaudit", **CONSEILLERS[0]))
+    S.add(personne(640, 600, 1.0, expr="rire", bras="applaudit", **CONSEILLERS[1]))
     S.add(roi(380, 600, 1.4, expr="concentre", bras="tete"))
     S.add(texte(400, 150, "Hum… elle a raison !", 50, "#c92a2a", contour="#fff"))
     return S

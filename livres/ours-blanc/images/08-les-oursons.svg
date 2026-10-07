@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d11" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16213e"/><stop offset="1" stop-color="#3b4a7a"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d11)"/>
+<defs><linearGradient id="d17" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16213e"/><stop offset="1" stop-color="#3b4a7a"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d17)"/>
 <circle cx="190.4" cy="157.8" r="2.7" fill="#fff3bf"/>
 <polygon points="502,8.9 503.7,15.7 510.6,17.2 504.7,21 505.4,28 500,23.5 493.5,26.4 496.1,19.8 491.4,14.6 498.4,15" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.8" stroke-linejoin="round"/>
 <circle cx="187.5" cy="288.7" r="3.2" fill="#fff3bf"/>

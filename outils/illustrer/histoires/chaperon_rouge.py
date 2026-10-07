@@ -73,7 +73,7 @@ def p01():
     collines(S, 600, "#b2f2bb", graine=3)
     sol(S, 600, "#94d82d")
     S.add(maison(170, 620, 0.9, toit="#e03131"))
-    S.add(chaperon(470, 790, 1.5, expr="content", bras="salut"))
+    S.add(chaperon(470, 790, 1.5, expr="content", bras="coucou"))
     S.add(fleur(680, 740, 0.9), fleur(740, 760, 0.8, "#cc5de8"))
     return S
 

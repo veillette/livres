@@ -214,7 +214,7 @@ def p10():
     S = Scene()
     interieur(S, "#fff4e6", "#e8c39e", 600, papier="#ffd8a8")
     S.add(tapis(420, 720, 320, 60, "#d3f9d8", "#8ce99a"))
-    S.add(hugo(250, 780, 1.55, expr="rire", bras="salut", tenue=stethoscope()))
+    S.add(hugo(250, 780, 1.55, expr="rire", bras="coucou", tenue=stethoscope()))
     S.add(perso("ours", 450, 720, 0.6, expr="sourire", couleur="#d9a066"))
     S.add(perso("lapin", 560, 720, 0.6, expr="content", bras="donne", flip=True))
     S.add(rect(538, 630, 20, 12, "#fff", rx=4))

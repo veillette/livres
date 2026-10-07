@@ -112,7 +112,7 @@ def p02():
     S.add(fleur(380, 650, 0.8), fleur(730, 660, 0.8, "#cc5de8"))
     S.add(mamie(580, 790, 1.1, expr="rire", bras="ouverts"))
     S.add(lilou(360, 790, 0.95, expr="content", bras="porte", objet=doudou(0, -64, 0.45)))
-    S.add(papa(130, 790, 1.15, expr="sourire", bras="salut"))
+    S.add(papa(130, 790, 1.15, expr="sourire", bras="coucou"))
     return S
 
 

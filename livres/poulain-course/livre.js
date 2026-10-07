@@ -22,7 +22,7 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/02-un-champion.svg",
-      description: "Devant la grange rouge et blanche de la ferme, Jo, l'entraîneuse, lève les bras de joie devant Caramel et sa maman Étoile. « Un futur champion ! »",
+      description: "Devant la grange rouge et blanche de la ferme, Jo, l'entraîneuse, lève le poing de joie devant Caramel et sa maman Étoile. « Un futur champion ! »",
       texte: "Sa maman, Étoile, est une championne de course. Elle a gagné plein de trophées.\n\n« Caramel sera un champion, lui aussi ! » dit Jo, l'entraîneuse.",
     },
     {

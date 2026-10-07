@@ -218,7 +218,7 @@ def p08():
     for k in range(7):
         S.add(chauve_souris_dort(110 + k * 95, 130 + (k % 2) * 20, 1.0))
     S.add(theo(300, 780, 1.3, habit="#7048e8", expr="surpris", bras="bouche", regard=(1, -1)))
-    S.add(lili(470, 780, 1.0, expr="timide", bras="bouche", regard=(-1, -1)))
+    S.add(lili(470, 780, 1.0, expr="timide", bras="chut", regard=(-1, -1)))
     S.add(texte(400, 450, "Chut…", 60, "#e5dbff", contour="#2b2238"))
     S.add(zzz(560, 300, 0.9, "#e5dbff"))
     return S

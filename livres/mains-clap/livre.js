@@ -58,7 +58,7 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/09-tout-le-corps.svg",
-      description: "Les cinq enfants dansent en riant, chacun à sa façon : bras en l'air, bras ouverts, mains sur la tête ; des notes de musique volent autour d'eux. « On danse ! »",
+      description: "Les cinq enfants dansent en riant, chacun à sa façon : bras en l'air, poing levé, bras ouverts, mains sur la tête ; des notes de musique volent autour d'eux. « On danse ! »",
       texte: "Et tout mon corps danse, danse,\n\ntourne, saute et se balance !\n\nEt toi, que fais-tu ?",
     },
     {

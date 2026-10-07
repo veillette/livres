@@ -46,7 +46,7 @@ def p01():
     chambre(S)
     S.add(berceau(560, 740, 1.2, "dort"))
     S.add(zzz(600, 440, 1.0))
-    S.add(perso("elephant", 330, 760, 1.9, expr="sourire", bras="bouche", regard=(1, 0), **MAMAN))
+    S.add(perso("elephant", 330, 760, 1.9, expr="sourire", bras="chut", regard=(1, 0), **MAMAN))
     S.add(perso("elephant", 120, 770, 1.2, expr="content", regard=(1, -0.5), **BABOU))
     S.add(bulle(300, 140, 220, 80, "Chut !", 46, pointe=(330, 290)))
     return S

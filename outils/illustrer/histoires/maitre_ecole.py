@@ -108,7 +108,7 @@ def p02():
     S.add(porte_manteaux(40, 230, 4))
     for k, c in enumerate(("#fa5252", "#4dabf7", "#ffd43b")):
         S.add(manteau(85 + k * 90, 256, c))
-    S.add(ali(640, 790, 1.55, expr="rire", bras="salut", regard=(-1, 0)))
+    S.add(ali(640, 790, 1.55, expr="rire", bras="coucou", regard=(-1, 0)))
     S.add(enfant_n(2, 180, 790, 1.05, expr="joie", bras="salut", regard=(1, 0)))
     S.add(enfant_n(3, 330, 790, 1.05, expr="content", bras="bas", regard=(1, 0)))
     S.add(enfant_n(4, 470, 790, 1.05, expr="rire", bras="haut", regard=(1, 0)))
@@ -223,7 +223,7 @@ def p10():
               expr="content", bras="ouverts", regard=(-1, 0)))
     S.add(enfant_n(1, 470, 790, 1.05, expr="rire", bras="haut", regard=(1, 0)))
     S.add(enfant_n(0, 300, 790, 1.05, expr="content", bras="salut", regard=(-1, 0)))
-    S.add(ali(130, 790, 1.5, expr="content", bras="salut"))
+    S.add(ali(130, 790, 1.5, expr="content", bras="coucou"))
     S.add(bulle(340, 120, 400, 90, "Au revoir, maître !", 34, pointe=(320, 520)))
     return S
 

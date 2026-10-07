@@ -130,7 +130,7 @@ def p08():
     S = Scene()
     grenier(S)
     for k, (sx, sy_) in enumerate([(110, 760), (240, 780), (400, 760), (560, 780), (690, 760)]):
-        S.add(souris(sx, sy_, 0.85, n_=k, expr="rire", bras="haut"))
+        S.add(souris(sx, sy_, 0.85, n_=k, expr="rire", bras=("haut", "danse", "applaudit")[k % 3]))
     S.add(texte(400, 380, "Hourra !", 72, "#845ef7", contour="#fff"))
     S.add(paillettes(200, 400, 1.0), paillettes(600, 420, 1.0))
     return S

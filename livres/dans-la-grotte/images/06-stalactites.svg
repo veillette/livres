@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><radialGradient id="d7"><stop offset="0" stop-color="#ffe8a3"/><stop offset="1" stop-color="#2b223800"/></radialGradient></defs>
+<defs><radialGradient id="d46"><stop offset="0" stop-color="#ffe8a3"/><stop offset="1" stop-color="#2b223800"/></radialGradient></defs>
 <rect x="0" y="0" width="800" height="800" fill="#2b2238"/>
-<circle cx="400" cy="420" r="460" fill="url(#d7)"/>
+<circle cx="400" cy="420" r="460" fill="url(#d46)"/>
 <path d="M 0 0 L 800 0 L 800 120 Q 750 187.6 700 132.9 Q 650 169.1 600 110.5 Q 550 140 500 126.5 Q 450 168.2 400 130.4 Q 350 162.4 300 130.8 Q 250 156.4 200 132.1 Q 150 183.8 100 116.6 Q 50 172.3 0 127.3 Z" fill="#4a3b5c"/>
 <path d="M 0 700 Q 200 670 400 700 T 800 690 L 800 800 L 0 800 Z" fill="#5f4b74"/>
 <polygon points="125,140 175,140 150,400" fill="#d9c7b0"/>

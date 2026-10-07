@@ -72,7 +72,7 @@ def vignette():
 def p01():
     S = Scene()
     fond_couleur(S, "#ffdeeb", "#fff0f6", 1, "#f783ac")
-    S.add(enfant_("ines", 400, 790, 1.6, expr="rire", bras="porte"), eclat(400, 672, 1.4, "#fab005"))
+    S.add(enfant_("ines", 400, 790, 1.6, expr="rire", bras="applaudit"), eclat(400, 632, 1.4, "#fab005"))
     S.add(gros_mot(200, 220, "Clap !", "#e64980"), gros_mot(600, 300, "Clap !", "#e64980", rot=8))
     return S
 
@@ -145,10 +145,10 @@ def p08():
 def p09():
     S = Scene()
     fond_couleur(S, "#fff3bf", "#d3f9d8", 9, "#ffd43b")
-    S.add(enfant_("malo", 120, 790, 1.0, expr="rire", bras="haut", rot=-10))
+    S.add(enfant_("malo", 120, 790, 1.0, expr="rire", bras="danse", rot=-10))
     S.add(enfant_("ines", 280, 760, 1.05, expr="rire", bras="ouverts", rot=8))
     S.add(enfant_("lin", 430, 790, 1.0, expr="rire", bras="tete"))
-    S.add(enfant_("sami", 580, 740, 1.05, expr="rire", bras="haut", rot=-8))
+    S.add(enfant_("sami", 580, 740, 1.05, expr="rire", bras="victoire", rot=-8))
     S.add(enfant_("jade", 720, 790, 0.95, expr="rire", bras="salut", rot=10))
     S.add(notes(180, 280, 1.2, "#e64980"), notes(560, 240, 1.2, "#7048e8"))
     S.add(gros_mot(400, 160, "On danse !", "#f08c00", 76))

@@ -190,8 +190,8 @@ def p14():
     S.add(fenetre(80, 150, 160, 140, nuit_=True, rideaux="#fa5252"))
     S.add(cadre_mur(560, 150))
     S.add(tapis(400, 720, 330, 60))
-    S.add(cochon(0, 200, 740, 1.2, expr="chante", bras="ouverts"), cochon(1, 400, 760, 1.3, expr="rire", bras="haut"),
-          cochon(2, 600, 740, 1.2, expr="chante", bras="ouverts", acc=()))
+    S.add(cochon(0, 200, 740, 1.2, expr="chante", bras="danse"), cochon(1, 400, 760, 1.3, expr="rire", bras="haut"),
+          cochon(2, 600, 740, 1.2, expr="chante", bras="danse", acc=()))
     S.add(notes(300, 400, 1.0), notes(520, 380, 0.9, "#e64980"))
     return S
 

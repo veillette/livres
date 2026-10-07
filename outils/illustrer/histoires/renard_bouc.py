@@ -144,7 +144,7 @@ def p11():
 def p12():
     S = Scene()
     chaleur(S, puits_=(600, 740, 1.0))
-    S.add(renard(260, 740, 1.35, expr="rire", bras="salut", flip=True))
+    S.add(renard(260, 740, 1.35, expr="rire", bras="coucou", flip=True))
     S.add(mouvement(420, 620, 1.0, rot=180))
     S.add(bulle(260, 150, 360, 100, "Débrouille-toi !", 38, pointe=(260, 430)))
     return S

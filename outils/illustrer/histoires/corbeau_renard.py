@@ -105,7 +105,7 @@ def p07():
     S = Scene()
     scene_arbre(S)
     S.add(corbeau(420, 334, 1.2, expr="surpris", fromage_bec=True, regard=(0, 1)))
-    S.add(perso("renard", 260, 770, 1.45, expr="malin", bras="salut", regard=(1, -1)))
+    S.add(perso("renard", 260, 770, 1.45, expr="malin", bras="coucou", regard=(1, -1)))
     S.add(bulle(230, 120, 370, 110, "Eh ! Bonjour,\nMonsieur du Corbeau !", 32, pointe=(250, 470)))
     return S
 

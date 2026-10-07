@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d5)"/>
+<defs><linearGradient id="d41" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d41)"/>
 <g transform="translate(400 70) scale(1.4 1.4)"><g><g transform="translate(0 8)"><circle cx="-55" cy="10" r="38" fill="#adb5bd"/><circle cx="-15" cy="-18" r="50" fill="#adb5bd"/><circle cx="40" cy="-8" r="42" fill="#adb5bd"/><circle cx="78" cy="18" r="30" fill="#adb5bd"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#adb5bd"/></g><circle cx="-55" cy="10" r="38" fill="#ced4da"/><circle cx="-15" cy="-18" r="50" fill="#ced4da"/><circle cx="40" cy="-8" r="42" fill="#ced4da"/><circle cx="78" cy="18" r="30" fill="#ced4da"/><rect x="-95" y="5" width="200" height="50" rx="25" fill="#ced4da"/></g></g>
 <line x1="323.2" y1="122.4" x2="317.2" y2="144.4" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
 <line x1="372.8" y1="128.6" x2="366.8" y2="150.6" stroke="#4dabf7" stroke-width="4" stroke-linecap="round" opacity="0.8"/>

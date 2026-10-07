@@ -13,6 +13,8 @@ from objets import *
 from sciences import *
 
 ID = "ours-nuit"
+# les ombres de ce livre sont de vraies ombres portées
+OMBRES_DOUCES = False
 PETIT = dict(habit="#9775fa", motif="pois", couleur_motif="#e5dbff")
 PYJAMA = dict(habit="#9775fa", motif="pois", couleur_motif="#e5dbff", acc=("bonnet",), couleur_acc="#9775fa")
 MAMAN = dict(habit="#f783ac", acc=("fleur",), couleur_acc="#fcc2d7")

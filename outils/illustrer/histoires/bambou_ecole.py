@@ -157,7 +157,7 @@ def p08():
     ecole(S)
     S.add(papa(280, 790, 1.45, expr="rire", bras="ouverts"))
     S.add(bambou(480, 790, 1.1, expr="rire", bras="haut"))
-    S.add(capucine(660, 790, 0.95, expr="rire", bras="salut"))
+    S.add(capucine(660, 790, 0.95, expr="rire", bras="coucou"))
     S.add(coeur(380, 330, 1.0, "#ff8787"), coeur(560, 300, 0.7, "#ff8787"))
     return S
 

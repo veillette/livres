@@ -123,7 +123,7 @@ def p03():
     S = Scene()
     chambre(S)
     S.add(fenetre(80, 100, 200, 180, "#5f3dc4", rideaux="#b197fc", nuit_=True))
-    S.add(bao(420, 760, 1.4, expr="baille", bras="haut", rot=-8))
+    S.add(bao(420, 760, 1.4, expr="baille", bras="etire", rot=-8))
     S.add(mouvement(270, 520, 1.1, rot=-20), mouvement(570, 520, 1.1, rot=20))
     S.add(baille_txt(640, 280, 50, 3))
     return S
@@ -197,7 +197,7 @@ def p10():
     S.add(cercle(150, 560, 120, "#ffe066", opacity=0.2), lune(150, 560, 26, "#ffe066", visage=True))
     dans_le_lit(S, g([bao(360, 800, 1.2, expr="dort"), doudou(430, 700, 0.32, expr="dort")]))
     S.add(zzz(470, 380, 1.4, "#e5dbff"))
-    S.add(maman(650, 790, 1.5, expr="content", bras="bouche", flip=True))
+    S.add(maman(650, 790, 1.5, expr="content", bras="chut", flip=True))
     S.add(texte(400, 160, "Chut…", 60, "#fff3bf", contour="#3b2a7a"))
     return S
 

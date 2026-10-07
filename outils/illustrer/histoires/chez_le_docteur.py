@@ -109,7 +109,7 @@ def p02():
     S = Scene()
     piece(S)
     S.add(porte(130, 600, 160, 330, "#a5d8ff", ouverte=True))
-    S.add(doc(360, 760, 1.6, expr="content", bras="salut", regard=(1, 0)))
+    S.add(doc(360, 760, 1.6, expr="content", bras="coucou", regard=(1, 0)))
     S.add(lou(600, 760, 1.15, expr="timide", bras="bas", regard=(-1, 0)))
     S.add(bulle(330, 120, 330, 90, "Bonjour, Lou !", 40, pointe=(350, 330)))
     return S

@@ -58,7 +58,7 @@ def p01():
     foire(S)
     mg, md = mains(330, 760, 1.5, "salut")
     S.add(ballon_air(md[0], md[1], 1.1, ROUGE, fil=160))
-    S.add(perso("chien", 330, 760, 1.5, expr="rire", bras="salut", **NINO))
+    S.add(perso("chien", 330, 760, 1.5, expr="rire", bras="danse", **NINO))
     S.add(perso("chien", 580, 760, 1.8, expr="content", bras="bas", regard=(-1, -0.5), **MAMAN))
     return S
 
@@ -136,7 +136,7 @@ def p08():
     S.add(cercle(560, 140, 8, "#4dabf7"))
     S.add(rect(80, 470, 380, 60, "#fff", rx=10), rect(60, 520, 420, 40, "#748ffc", rx=6))
     S.add(fenetre(110, 90, 250, 220, "#74c0fc", rideaux="#ffd43b", contenu=nuage(80, 120, 0.4) + ballon_air(190, 170, 0.2, ROUGE, fil=40)))
-    S.add(perso("chien", 400, 760, 1.6, expr="content", bras="salut", regard=(-1, -1), **NINO))
+    S.add(perso("chien", 400, 760, 1.6, expr="content", bras="coucou", regard=(-1, -1), **NINO))
     S.add(bulle(620, 500, 300, 80, "Bon voyage !", 36, pointe=(480, 560)))
     return S
 

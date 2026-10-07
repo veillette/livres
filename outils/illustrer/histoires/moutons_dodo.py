@@ -57,7 +57,7 @@ def couverture():
     S.add(barriere(420, 740, 1.0))
     S.add(mouton_saute(420, 560, 1.2))
     S.add(perso("mouton", 640, 770, 1.0, expr="surpris", regard=(-1, 0)))
-    S.add(perso("souris", 210, 770, 1.2, expr="rire", bras="haut", **LILI))
+    S.add(perso("souris", 210, 770, 1.2, expr="rire", bras="applaudit", **LILI))
     S.add(numero(420, 290, 1))
     return S
 
@@ -152,7 +152,7 @@ def p06():
 def p07():
     S = Scene()
     pre_nuit(S, 8)
-    S.add(perso("mouton", 200, 760, 1.3, expr="baille", bras="haut"))
+    S.add(perso("mouton", 200, 760, 1.3, expr="baille", bras="etire"))
     S.add(numero(200, 360, 8))
     S.add(mouton_dort(560, 760, 1.4))
     S.add(numero(560, 500, 9))
