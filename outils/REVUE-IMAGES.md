@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **162 livres, 2 570 pages et
-2 208 illustrations SVG** (cache hors ligne `v17`).
+Catalogue actuel, après les ajouts d'octobre : **172 livres, 2 710 pages et
+2 328 illustrations SVG** (cache hors ligne `v18`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -91,6 +91,26 @@ débordement, le cadre illustré garde au moins 56,3 % de la page.
 `verifier-images.py` sans erreur et régénération complète identique pour les
 livres existants (162 livres, 2 570 pages, 2 208 SVG). Le cache hors ligne
 passe à `v17`.
+
+## Ajout du 7 octobre 2026
+
+Dix livres dans un nouveau rayon « Les métiers » (172 livres au catalogue) :
+Lou chez le docteur ; Les dents de Timéo (la dentiste) ; Une journée chez les
+pompiers ; Le boulanger de la nuit ; La tournée de Rosa (la factrice) ; Biscuit
+chez la vétérinaire ; Inès, policière ; Une année à la ferme (l'agricultrice) ;
+La journée du maître ; Sur le chantier. Les tenues et coiffes communes sont
+dans le nouveau module `outils/illustrer/metiers.py`, posées sur `personne()`
+grâce à deux nouveaux paramètres facultatifs (`tenue=`, `coiffe=`) qui ne
+changent aucun SVG existant. Planches de toutes leurs illustrations revues dans
+Chromium (cadrage, visages non masqués par les casques et casquettes,
+cohérence des personnages d'une page à l'autre, accord entre dessin,
+description et texte) ; notions vérifiées : vingt dents de lait, quatre
+ingrédients du pain et levée par les bulles de gaz de la levure, blé semé à
+l'automne et moissonné en été, bulle du niveau au milieu quand le mur est
+droit, béton qui durcit après avoir été versé, heures des horloges.
+`verifier-images.py` sans erreur et régénération complète identique pour les
+livres existants (172 livres, 2 710 pages, 2 328 SVG). Le cache hors ligne
+passe à `v18`.
 
 ## Parcours livre par livre
 
