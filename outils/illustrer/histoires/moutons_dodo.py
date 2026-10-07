@@ -146,6 +146,7 @@ def p06():
         S.add(perso("mouton", x, 770, 1.0, expr="dort"))
     S.add(texte(400, 240, "On respire…", 56, "#fff3bf"))
     S.add(texte(400, 310, "tout doucement…", 44, "#fff3bf"))
+    S.cachette(560, 640)
     return S
 
 

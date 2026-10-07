@@ -44,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v23"` → `"v24"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v24"` → `"v25"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -218,6 +218,29 @@ générées par un petit outil Python, sans aucune dépendance, dans
   `feuillage()`, `tronc()`, `arbre_branche()` ; le modelé des personnages et
   des animaux (`ombrage()`) met des ombres froides à bord fondu et une
   lumière réfléchie au bord ;
+- finition de la page (`Scene.svg()`) : chaque page reçoit la lumière de son
+  moment (`AMBIANCES` : jour, soir, nuit, intérieur, sous l'eau…), déduit du
+  décor (`ciel()`, `nuit()`, `interieur()`, `ocean()`…) ou imposé par
+  `S.ambiance()` : teinte bleutée la nuit ou dorée le soir, posée sous les
+  halos des sources de lumière (`S.lumiere()` ; la lune, les maisons
+  éclairées, les lampes, les lucioles et les étoiles qui parlent posent le
+  leur), halo en lumière douce et vignettage ; patine de vieux papier très
+  pâle sur les fables et les contes (`GLACIS` dans un script pour la
+  changer). Les livres de sciences n'ont ni teinte ni halo. Le grain du
+  papier est posé par `css/pages.css` sur chaque page du site ;
+- cadrage : `S.camera(zoom, cx, cy)` fait un gros plan sans bord vide,
+  `S.dessus()` pose bulles et onomatopées hors zoom, `S.vers_page()` vise un
+  point de la scène ;
+- petite bête cachée : une coccinelle (une étoile de mer sous l'eau) se cache
+  sur chaque page pleine, sur une cachette libre proposée par le décor
+  (`sol`, `interieur`, `piece`, `ocean`), jamais sur un personnage
+  (`occuper()`) ; `S.cachette(x, y)` impose la place, `CACHE = None` dans un
+  script la retire. Elle n'apparaît que dans les livres où elle est sur
+  toutes les pages : `generer.py` signale les pages qui la privent d'un livre ;
+- intérieurs au caractère marqué : `piece(S, style)` (`chaumiere`, `manoir`,
+  `chateau`, `chambre`, `cuisine`) ; le papier peint d'`interieur(papier=…)`
+  change d'un livre à l'autre (`rayures`, `pois`, `fleurs`, `losanges`,
+  `etoiles` ; `PAPIER_PEINT` dans un script pour le choisir), `motif_mural()` ;
 - paysages en trois plans réutilisables : `paysage()` compose une scène
   complète (ciel, montagnes ou collines lointaines, collines et bosquets,
   sol) ; `lointain()` (chaîne bleuie et voilée), `bosquet()` (arbres du plan
@@ -233,6 +256,12 @@ générées par un petit outil Python, sans aucune dépendance, dans
   de `ville()` (`fables.py`) en est faite ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
 - `fantastique.py` : personnages humains et créatures des contes ;
+  `personne()` règle l'âge (`stature=` : `petit`, `enfant`, `ado`, `adulte`,
+  `ancien`), la silhouette (`carrure=`), le visage (`nez=`, `yeux=`,
+  `taches=`, `rides=`) et la coiffure (`longs`, `tresses`, `chignon`,
+  `carre`, `afro`, `couettes`, `raie`…) ; `ancre()` et `mains_personne()`
+  placent un objet dans la main d'un adulte ; poses d'échange `main`,
+  `epaule`, `tend`, `mains_jointes`, `ramasse`, `leve_doigt` ;
 - `sciences.py` : personnages et schémas des livres de sciences (caneton,
   pingouin, nuage, graine, glaçon, enfants, astronaute), avec des outils qui
   respectent la physique : phases de la Lune, ombres portées selon la position
@@ -274,6 +303,13 @@ python3 outils/illustrer/generer.py ours-gateau   # un seul livre
 
 Les images sont écrites dans `livres/<id>/images/`. Il reste à écrire le texte
 dans `livres/<id>/livre.js`.
+
+Les règles de composition (plans variés, gros plans, lumière, âges des
+personnages, décors, échelles, petite bête) sont réunies dans la compétence
+[`direction-artistique`](.claude/skills/direction-artistique/SKILL.md) ; la
+compétence [`retoucher-livre`](.claude/skills/retoucher-livre/SKILL.md) décrit
+comment reprendre les images d'un livre existant, avec une planche
+avant/après (`.claude/skills/retoucher-livre/avant-apres.js`).
 
 ### Revoir les illustrations
 

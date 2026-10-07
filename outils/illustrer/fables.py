@@ -46,6 +46,7 @@ def corbeau(x, y, s=1.0, expr="fier", ailes="bas", bec_ouvert=False, flip=False,
         m.append(trait(-6, -66, 6, -66, "#495057", 2))
     if fromage_bec:
         m.append(fromage(4, -42, 0.9, rot=-8))
+    occuper(x - 75 * s, y - 180 * s, x + 75 * s, y)
     return place(m, x, y, s, flip=flip, rot=rot)
 
 
@@ -94,6 +95,7 @@ def coq(x, y, s=1.0, poule=False, expr="fier", ailes="bas", bec_ouvert=False, fl
     else:
         m += [cercle(-14, -114, 11, crete), cercle(0, -122, 13, crete), cercle(14, -116, 11, crete)]
         m.append(ellipse(-4, -50, 6, 10, crete) + ellipse(5, -48, 6, 9, crete))
+    occuper(x - 85 * s, y - 210 * s, x + 85 * s, y)
     return place(m, x, y, s, flip=flip, rot=rot)
 
 
@@ -162,6 +164,7 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     m.append(ellipse(hx - 6, hy + 10, 6, 3.5, ROSE, opacity=0.8))
     if OMBRE_SOL[0]:
         m.insert(0, ombre_sol(4, 0, 40, 7, 0.13))
+    occuper(x - 90 * s, y - 320 * s, x + 90 * s, y)
     return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
 
 

@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v23`).
+2 492 illustrations SVG** (cache hors ligne `v24`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -394,3 +394,67 @@ toutes les scènes reprises, revues dans Chromium ; régénération déterminist
 (identique livre par livre et pour l'ensemble) ; `verifier-images.py` sans
 erreur ; `node --test` réussi. Le poids total des SVG passe de 58 à 71 Mo.
 Le cache hors ligne passe à `v23`.
+
+## Direction artistique : lumière, cadrage, âges et petite bête (7 octobre 2026)
+
+Aucun livre ajouté (185 livres, 2 900 pages, 2 492 SVG). Retouche globale
+voulue : la finition des pages change, donc tous les SVG sont régénérés.
+
+- Finition de chaque page (`Scene.svg()`, `AMBIANCES`) : moment déduit du
+  décor ou imposé (`S.ambiance()`). La nuit reçoit une teinte bleutée et un
+  vignettage marqué, le soir une teinte dorée ; les sources de lumière
+  (`S.lumiere()`, et d'elles-mêmes la lune, `maison(lumiere=True)`,
+  `lampe()`, `luciole()`, `etoile_perso()`) brillent au-dessus de la teinte.
+  Halo doux et vignettage léger le jour et dans les intérieurs. Ni teinte ni
+  halo en sciences ; fonds unis sombres (salle noire, espace) sans teinte.
+  Patine de vieux papier très pâle sur les fables et les contes. Calques
+  posés seulement sur une scène qui a un fond (pas sur les vignettes
+  transparentes). Un premier essai de glacis teinté par la couleur du livre
+  grisait les ciels bleus : abandonné.
+- Grain du papier : posé par `css/pages.css` sur toute la page, à l'échelle
+  de l'écran (dans le SVG, il devenait du bruit sur les couvertures de 228 px
+  de la bibliothèque) ; retiré à l'impression.
+- Cadrage : `S.camera()` (gros plan sans bord vide), `S.dessus()` et
+  `S.vers_page()` pour les bulles hors zoom.
+- Personnages humains : `stature=` (`petit`, `enfant`, `ado`, `adulte`,
+  `ancien`), `carrure=`, `nez=`, `yeux=`, `taches=`, `rides=`, coiffures
+  `carre`, `afro`, `couettes`, `raie` ; `ancre()` et `mains_personne()` pour
+  les objets tenus ; poses d'échange `main`, `epaule`, `tend`,
+  `mains_jointes`, `ramasse`, `leve_doigt`.
+- Intérieurs : `piece()` (`chaumiere`, `manoir`, `chateau`, `chambre`,
+  `cuisine`) ; le papier peint d'`interieur(papier=…)` prend un motif propre
+  à chaque livre (rayures, pois, fleurs, losanges ou étoiles).
+- Petite bête cachée : une coccinelle (une étoile de mer sous l'eau) sur
+  chaque page pleine, dans une cachette libre proposée par le décor, au plus
+  près d'un bord et jamais sur un personnage (`occuper()`). Tout ou rien par
+  livre : 56 livres l'ont sur toutes leurs pages ; `generer.py` nomme les
+  pages qui en privent les autres. Seize pages complétées à la main
+  (`S.cachette()`). La bibliothèque l'annonce aux enfants.
+- Livres retouchés :
+  - *Le Petit Chaperon rouge* : chaumière de la mère-grand, cuisine de la
+    maman, adultes et grand-mère à leur taille, gros plans de plus en plus
+    serrés sur « grandes oreilles » puis « grands yeux » (descriptions mises
+    à jour) ;
+  - *Cendrillon* : salon à boiseries, cuisine au coin du feu éclairée par la
+    cheminée, belle-mère grande et sèche, demi-sœurs ronde et fine, prince
+    adulte, marraine âgée, château qui domine l'escalier de minuit,
+    mariage main dans la main ;
+  - *La chenille qui devient papillon* : jardin flou derrière la tige (fil,
+    chrysalide, sortie), chrysalide plus grande ;
+  - *La chouette qui vole sans bruit* : la chasse vue d'en bas, plongée en diagonale
+    devant la pleine lune ;
+  - *Le boulanger de la nuit* : vitrine garnie de pains qui éclaire la rue.
+  - Vérifié sans retouche : les abeilles de *Bzzz ! La ruche des abeilles* sont à la
+    bonne échelle (une ouvrière fait 2,5 à 3 alvéoles de long).
+- Compétences : `direction-artistique` (règles de plans, lumière, âges,
+  décors, petite bête) et `retoucher-livre` (parcours de retouche, planche
+  avant/après `avant-apres.js`) ; `nouveau-livre` et `AGENTS.md` y renvoient.
+
+Contrôles : planches de toutes les pages retouchées, des pages de nuit et de
+soir (deux par livre), d'un intérieur par livre, de 49 pages de jour et de
+80 pages à petite bête tirées au hasard, revues dans Chromium ; bibliothèque
+et lecteur à l'écran (densité 1 et 2) ; export PDF de *Cendrillon* (4,5 Mo,
+comme avant). Régénération déterministe ; `verifier-images.py` sans erreur ;
+`node --test` réussi. Temps d'affichage de la bibliothèque inchangé
+(≈ 3,7 s dans Chromium). Le poids total de `livres/` passe de 68,6 à 75,0 Mo.
+Le cache hors ligne passe à `v24`.

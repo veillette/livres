@@ -268,6 +268,32 @@ def p05():
     return S
 
 
+def jardin_flou(S, graine=1, teinte="#d0ebff"):
+    """Arrière-plan « en gros plan » : le jardin derrière la tige est flou,
+    comme sur une photo de près (feuillages en taches douces, reflets ronds)."""
+    ciel(S, teinte, "#f4fce3")
+    r = random.Random(graine)
+    for _ in range(9):
+        c = r.choice(("#8ce99a", "#69db7c", "#c0eb75", "#ffe066", "#b2f2bb"))
+        S.add(ellipse(r.uniform(0, 800), r.uniform(250, 800), r.uniform(120, 220), r.uniform(90, 170),
+                      radial([(0, c, 0.6), (0.6, c, 0.3), (1, c, 0)])))
+    for xx, hh, gr in ((90, 640, 3), (620, 700, 6)):
+        S.add(g(fenouil(xx, 860, 1.2, hh, fleurs=False, graine=gr), opacity=0.28))
+    for _ in range(12):
+        S.add(cercle(r.uniform(0, 800), r.uniform(0, 800), r.uniform(10, 28), radial([(0, "#ffffff", 0.5), (0.8, "#ffffff", 0.2), (1, "#ffffff", 0)])))
+
+
+def _feuille_fenouil(S, x, y, s=1.0, sgn=1):
+    """Brin de feuille de fenouil net, au premier plan, contre la tige."""
+    m = []
+    for j in range(5):
+        a = math.radians(-90 + sgn * (25 + j * 16))
+        L = 130 - j * 10
+        m.append(chemin(f"M 0 0 Q {n(math.cos(a) * L * 0.6)} {n(math.sin(a) * L * 0.4)} {n(math.cos(a) * L)} {n(math.sin(a) * L)}",
+                        stroke="#74b816", sw=4))
+    S.add(place(m, x, y, s))
+
+
 def _tige_verticale(S, x=330):
     S.add(rect(x - 12, 0, 24, 800, "#5c940d"))
     S.add(rect(x - 12, 0, 6, 800, "#74b816"))
@@ -275,7 +301,7 @@ def _tige_verticale(S, x=330):
 
 def p06():
     S = Scene()
-    fond(S, "#e7f5ff")
+    jardin_flou(S, graine=6)
     _tige_verticale(S)
     S.add(chenille(400, 600, 1.6, rot=-90, bosse=0.0, expr="concentre"))
     S.add(chemin("M 318 440 Q 380 410 440 440", stroke="#ffffff", sw=4))
@@ -289,17 +315,19 @@ def p06():
 
 def p07():
     S = Scene()
-    fond(S, "#e7f5ff")
+    jardin_flou(S, graine=7, teinte="#e5dbff")
     _tige_verticale(S)
-    S.add(chrysalide(360, 620, 2.2))
-    S.add(texte(620, 300, "chut…", 60, "#5c940d", contour="#fff"))
-    S.add(zzz(560, 420, 1.0, "#5c940d"))
+    _feuille_fenouil(S, 342, 300, 1.2, 1)
+    _feuille_fenouil(S, 318, 700, 1.0, -1)
+    S.add(chrysalide(360, 640, 2.6))
+    S.add(texte(610, 250, "chut…", 60, "#5c940d", contour="#fff"))
+    S.add(zzz(560, 380, 1.0, "#5c940d"))
     return S
 
 
 def p08():
     S = Scene()
-    fond(S, "#fff9db")
+    jardin_flou(S, graine=8, teinte="#fff3bf")
     _tige_verticale(S)
     S.add(chrysalide(360, 380, 1.8, ouverte=True))
     S.add(machaon(392, 470, 1.2, fripe=True))

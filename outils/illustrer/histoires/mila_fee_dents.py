@@ -129,6 +129,7 @@ def couverture():
     S.add(maison(170, 760, 0.9, mur="#dbe4ff", toit="#1c7ed6", lumiere=False))
     S.add(mila(400, 660, 1.7, expr="content", bras="tient", objet=dent(86, -180, 0.85, rot=12)))
     S.add(etincelles(650, 560, 1.0, graine=5), etincelles(170, 300, 0.8, graine=9, couleur="#d0ebff"))
+    S.cachette(690, 770)
     return S
 
 

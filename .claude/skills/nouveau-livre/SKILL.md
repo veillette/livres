@@ -57,6 +57,12 @@ Consignes d'écriture :
 
 ## 3. Dessiner les illustrations
 
+Suivre la compétence [`direction-artistique`](../direction-artistique/SKILL.md) :
+prévoir d'abord le **plan** de chaque page (plan large, moyen, gros plan avec
+`S.camera()`, jamais plus de deux pages de suite au même plan), l'**âge** de
+chaque personnage (`stature=`), le **moment** et les **lumières** de chaque
+scène, et le **lieu** des intérieurs (`piece()`).
+
 Créer `outils/illustrer/histoires/<id_souligne>.py` sur le modèle
 d'`ours_gateau.py` :
 
@@ -133,7 +139,16 @@ IMAGES = [
     vu de trois quarts qui regarde son voisin ;
   - `objets.py` : accessoires du quotidien ;
   - `fantastique.py` : humains (`personne`, `princesse`, `chevalier`, `roi`,
-    `sorciere`), dragon, licorne, château, océan, fées ;
+    `sorciere`) avec `stature=` (`petit`, `enfant`, `ado`, `adulte`,
+    `ancien`), `carrure=`, `nez=`, `yeux=`, `taches=` et les coiffures
+    `carre`, `afro`, `couettes`, `raie`… ; `ancre()` et `mains_personne()`
+    pour placer un objet dans la main d'un adulte ; dragon, licorne, château,
+    océan, fées ;
+  - cadrage et lumière (`base.py`) : `S.camera(zoom, cx, cy)`, `S.dessus()`
+    (bulles hors zoom), `S.vers_page()`, `S.ambiance()`, `S.lumiere()` ;
+    intérieurs `piece(S, "chaumiere" | "manoir" | "chateau" | "chambre" |
+    "cuisine")` ; poses d'échange `main`, `epaule`, `tend`, `mains_jointes`,
+    `ramasse`, `leve_doigt` ; petite bête cachée `S.cachette(x, y)` ;
   - `contes.py`, `fables.py`, `sciences.py` : personnages et outils de leur
     rayon (`sciences.py` respecte la physique : l'utiliser plutôt que de
     refaire ombres, phases de Lune, arcs-en-ciel, champs, ondes) ;
@@ -146,9 +161,13 @@ IMAGES = [
 - Garder le même personnage d'une page à l'autre (mêmes couleurs,
   accessoires) grâce à des `dict` de réglages comme `HEROS`.
 - Cadrage : le personnage principal grand et lisible, les pieds au-dessus du
-  bas de l'image, rien de coupé sur les côtés ; laisser de l'air en haut des
-  images `pleine-page` (le texte s'y pose en bulle en bas) et ne pas mettre
-  d'éléments importants tout en bas des couvertures (titre en haut).
+  bas de l'image, rien de coupé sur les côtés (sauf gros plan voulu) ;
+  laisser de l'air en haut des images `pleine-page` (le texte s'y pose en
+  bulle en bas) et ne pas mettre d'éléments importants tout en bas des
+  couvertures (titre en haut).
+- Petite bête cachée : `generer.py` la pose seul quand le décor propose des
+  cachettes (`sol`, `interieur`, `piece`, `ocean`) ; s'il affiche `petite bête
+  absente : pas de cachette sur …`, ajouter `S.cachette(x, y)` sur ces pages.
 - Le texte dans les dessins (bulles, étiquettes) reste rare, court et en
   français.
 - Noms de fichiers : `couverture.svg`, `<nom>-seul.svg` pour la vignette, puis
@@ -245,7 +264,9 @@ d'images. Contrôler pour chaque page :
 - le dessin correspond à la `description` et au texte (personnages présents,
   actions, objets, nombre, moment de la journée) ;
 - rien n'est coupé, rien ne déborde, pas de chevauchement disgracieux ;
-- personnages cohérents d'une page à l'autre ;
+- personnages cohérents d'une page à l'autre, adultes et enfants à leur taille ;
+- plans variés, aucune page presque vide, lumières visibles la nuit ;
+- petite bête présente sur toutes les pages pleines, jamais sur un visage ;
 - exactitude scientifique pour le rayon Sciences.
 
 Corriger les scripts, régénérer, revoir. Écrire la planche dans le

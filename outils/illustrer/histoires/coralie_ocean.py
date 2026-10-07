@@ -333,6 +333,7 @@ def p11():
                  expr="content", bras="montre", flip=True, objet=bouteille(86, -130, 0.45)))
     S.add(bouteille(560, 770, 0.5, rot=80), canette(730, 700, 0.5, rot=-80))
     S.add(bulle(560, 150, 440, 110, "Nous aussi,\non ramasse tout !", 38, pointe=(650, 470)))
+    S.cachette(90, 770, "eau")
     return S
 
 

@@ -164,6 +164,7 @@ def p09():
     S.add(bibi(150, 790, 1.0, expr="rire", bras="haut"), mimi(320, 790, 0.4, expr="rire", bras="haut"), ballon_jeu(240, 520, 30))
     S.add(bibi(560, 790, 1.0, expr="dort"), mimi(720, 790, 0.4, expr="dort"), zzz(620, 520, 0.9, "#e5dbff"))
     S.add(etiquette(200, 330, "le jour !", "#f08c00", 50), texte(600, 330, "la nuit !", 50, "#fff3bf", contour="#1c2a52"))
+    S.cachette(240, 492)
     return S
 
 

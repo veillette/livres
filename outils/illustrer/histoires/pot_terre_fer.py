@@ -120,6 +120,7 @@ def p08():
     S.add(terre(640, 750, 1.0, expr="oups", bras="haut", rot=-20, fele=True, eclats=True))
     S.add(mouvement(380, 560, 1.2, rot=30))
     S.add(texte(320, 230, "BADABOUM !", 64, "#c92a2a", contour="#fff"))
+    S.cachette(120, 660)
     return S
 
 

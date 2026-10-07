@@ -146,6 +146,7 @@ def p08():
     for x, y in [(300, 400), (520, 360), (690, 470), (90, 500)]:
         S.add(cercle(x, y, 6, "#ffe066"), cercle(x, y, 16, "#ffe066", opacity=0.3))
     S.add(pensee(560, 200, 110, papillon(520, 200, 0.9) + toile(610, 200, 40, perles=False) + coccinelle(570, 240, 0.9), depuis=(520, 440)))
+    S.cachette(756, 716)
     return S
 
 

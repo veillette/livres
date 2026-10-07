@@ -233,6 +233,7 @@ def p15():
     S.add(chemin("M 0 800 L 0 640 Q 300 520 520 600 Q 680 650 800 700 L 800 800 Z", "#2b8a3e"))
     S.add(loup(330, 610, 1.3, expr="chante", bras="bas", regard=(1, -1)))
     S.add(texte(560, 360, "Aouuuu !", 56, "#fff3bf"))
+    S.cachette(620, 740)
     return S
 
 
