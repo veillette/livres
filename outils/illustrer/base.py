@@ -581,14 +581,35 @@ POSES = {
     "course": ((-66, -112), (56, -44)),
     "tire": ((72, -70), (92, -64)),
     "poing": ((-60, -150), (60, -150)),
+    # poses plus vivantes
+    "danse": ((-84, -150), (70, -62)),
+    "applaudit": ((-8, -98), (12, -102)),
+    "victoire": ((-52, -40), (54, -186)),
+    "epaules": ((-82, -112), (82, -112)),
+    "etire": ((-58, -214), (58, -214)),
+    "coucou": ((-52, -40), (82, -176)),
+    "marche": ((-58, -56), (50, -44)),
+    "chut": ((-52, -40), (4, -118)),
 }
 COUDES = {
     "hanches": ((-66, -74), (66, -74)),
     "tete": ((-78, -140), (78, -140)),
     "poing": ((-66, -104), (66, -104)),
     "calin": ((-72, -84), (72, -84)),
+    "danse": ((-76, -100), (78, -84)),
+    "applaudit": ((-66, -66), (66, -70)),
+    "victoire": ((-60, -70), (78, -118)),
+    "epaules": ((-60, -64), (60, -64)),
+    "etire": ((-70, -150), (70, -150)),
+    "coucou": ((-60, -70), (86, -112)),
+    "chut": ((-60, -70), (44, -72)),
 }
-DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete"}
+DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete", "chut"}
+# Pas des pieds associé par défaut à une pose de bras.
+PAS_POSE = {"course": "marche", "marche": "marche", "danse": "pointe", "victoire": "saute"}
+# Inclinaison de la tête (en degrés) selon l'expression : un peu de vie.
+PENCHE = {"timide": -7, "triste": 6, "pleure": 6, "inquiet": -5, "malin": 6, "content": 4,
+          "chante": -5, "miam": 4, "oups": -6, "degoute": -6, "fier": -3, "dort": 7}
 
 EXPRESSIONS = {
     # yeux, bouche, sourcils
@@ -636,6 +657,7 @@ def oeil(x, y, style="normal", regard=(0, 0), sclere=False, taille=1.0):
     else:
         m.append(ellipse(x + dx * 3, y + dy * 3, 6.5 * t * k, 8.5 * t * k, ENCRE))
         m.append(cercle(x + dx * 3 + 2, y + dy * 3 - 3, 2.2 * t * k, "#fff"))
+        m.append(cercle(x + dx * 3 - 2.2 * t, y + dy * 3 + 3.6 * t, 1.1 * t * k, "#fff", opacity=0.75))
     return "".join(m)
 
 
@@ -705,14 +727,86 @@ def sourcils(ex, ey, style):
     return "".join(m)
 
 
-def _bras(x0, y0, main, coude, couleur, largeur=15):
-    hx, hy = main
+def _controle(x0, y0, main, coude):
+    """Point de contrôle de la courbe d'un bras (épaule → main)."""
     if coude:
-        cx, cy = coude
-        return chemin(f"M {x0} {y0} Q {cx} {cy} {hx} {hy}", stroke=couleur, sw=largeur)
-    mx, my = (x0 + hx) / 2, (y0 + hy) / 2
+        return coude
+    hx, hy = main
     sgn = 1 if hx >= x0 else -1
-    return chemin(f"M {x0} {y0} Q {n(mx + sgn * 8)} {n(my + 6)} {hx} {hy}", stroke=couleur, sw=largeur)
+    return ((x0 + hx) / 2 + sgn * 8, (y0 + hy) / 2 + 6)
+
+
+def _bras(x0, y0, main, coude, couleur, largeur=15, bord=None, poignet=None):
+    """Bras courbe de l'épaule (x0, y0) à la main ; `bord` : liseré plus foncé,
+    `poignet` : couleur d'un revers de manche près de la main."""
+    hx, hy = main
+    cx, cy = _controle(x0, y0, main, coude)
+    d = f"M {x0} {y0} Q {n(cx)} {n(cy)} {hx} {hy}"
+    m = []
+    if bord:
+        m.append(chemin(d, stroke=bord, sw=largeur + 4))
+    m.append(chemin(d, stroke=couleur, sw=largeur))
+    if bord:
+        # pli du coude : petit trait au milieu de la courbe
+        px, py = (x0 + 2 * cx + hx) / 4, (y0 + 2 * cy + hy) / 4
+        tx, ty = hx - x0, hy - y0
+        L = math.hypot(tx, ty) or 1
+        nx, ny = -ty / L, tx / L
+        if math.hypot(cx - (x0 + hx) / 2, cy - (y0 + hy) / 2) > 14:
+            m.append(trait(n(px + nx * 3 - tx / L * 3), n(py + ny * 3 - ty / L * 3), n(px + nx * 3 + tx / L * 3), n(py + ny * 3 + ty / L * 3), bord, 2, opacity=0.6))
+    if poignet:
+        k = 0.24
+        bx, by = hx + (cx - hx) * k, hy + (cy - hy) * k
+        m.append(cercle(n(bx), n(by), largeur * 0.6, poignet))
+    return "".join(m)
+
+
+def _main(hx, hy, r, couleur, bord=None):
+    """Main (ou patte) ronde avec un petit pouce tourné vers le corps."""
+    sgn = 1 if hx >= 0 else -1
+    a = dict(stroke=bord, stroke_width=2) if bord else {}
+    return (ellipse(n(hx - sgn * r * 0.72), n(hy - r * 0.5), r * 0.45, r * 0.55, couleur, rot=sgn * -30, **a)
+            + cercle(hx, hy, r, couleur, **a))
+
+
+def filtre_contour(epaisseur=2.4, couleur=ENCRE, opacite=0.5):
+    """Filtre SVG qui entoure une silhouette d'un liseré ; renvoie (définition, url)."""
+    fid = uid("c")
+    f = el("filter", el("feMorphology", in_="SourceAlpha", operator="dilate", radius=n(epaisseur, 2), result="e")
+           + el("feFlood", flood_color=couleur, flood_opacity=opacite)
+           + el("feComposite", in2="e", operator="in", result="o")
+           + el("feMerge", el("feMergeNode", in_="o") + el("feMergeNode", in_="SourceGraphic")),
+           id=fid, x="-15%", y="-15%", width="130%", height="130%")
+    return f, f"url(#{fid})"
+
+
+def avec_contour(m, s=1.0, opacite=0.5):
+    """Entoure un dessin (coordonnées locales, échelle s) d'un liseré foncé."""
+    f, url = filtre_contour(2.3 / max(s, 0.3) ** 0.45, opacite=opacite)
+    return f + g(m, filter=url)
+
+
+# Ombres douces sous les personnages ; un livre qui dessine de vraies ombres
+# portées (livres de sciences) les coupe avec `OMBRES_DOUCES = False`.
+OMBRE_SOL = [True]
+
+
+def ombre_sol(x=0, y=0, rx=50, ry=9, opacite=0.13):
+    """Ombre douce posée au sol sous un personnage."""
+    return ellipse(x, y, rx, ry, "#000", opacity=opacite)
+
+
+def ombrage(forme, sombre=(), clair=(), opacite=0.11):
+    """Ombre et reflet découpés dans `forme` (élément SVG servant de masque).
+
+    sombre / clair : listes de (x, y, rx, ry[, rot]) d'ellipses."""
+    cid = uid("k")
+    m = []
+    for e in sombre:
+        m.append(ellipse(*e[:4], "#000", rot=e[4] if len(e) > 4 else None, opacity=opacite))
+    for e in clair:
+        m.append(ellipse(*e[:4], "#fff", rot=e[4] if len(e) > 4 else None, opacity=0.22))
+    return el("clipPath", forme, id=cid) + g(m, clip_path=f"url(#{cid})")
 
 
 def mains(x, y, s=1.0, bras="bas", flip=False):
@@ -742,10 +836,39 @@ def _motif(forme_clip, motif, couleur_motif):
     return "".join(m)
 
 
+# Espèces à poils qui reçoivent une petite mèche sur le haut de la tête.
+TOUPET = {"ours", "chat", "chien", "renard", "loup", "ecureuil", "singe", "castor", "lapin", "souris",
+          "lievre", "rat", "chevre", "cerf", "panda", "ane"}
+COIFFES = {"chapeau", "toque", "bonnet", "casque", "couronne"}
+
+
+def _pieds(pas, pieds, bord, haut=False):
+    """Les deux pieds, posés, en marche, sur la pointe ou en l'air."""
+    m = []
+    if haut:
+        return [ellipse(-30, -14, 12, 18, pieds, rot=30, stroke=bord, stroke_width=2),
+                ellipse(30, -14, 12, 18, pieds, rot=-30, stroke=bord, stroke_width=2)]
+    for sgn in (-1, 1):
+        x, yy, rot = sgn * 21, -9, 0
+        if pas == "marche" and sgn > 0:
+            x, yy, rot = 26, -20, -24
+        elif pas == "pointe" and sgn > 0:
+            x, yy, rot = 24, -12, -40
+        elif pas == "saute":
+            x, yy, rot = sgn * 20, -6, sgn * 28
+        m.append(ellipse(x, yy, 19, 11, pieds, rot=rot or None, stroke=bord, stroke_width=2))
+        # doigts : deux petits plis à l'avant
+        for dx in (-6, 6):
+            ang = math.radians(rot)
+            px, py = x + dx * math.cos(ang), yy + 5 + dx * math.sin(ang)
+            m.append(trait(n(px), n(py), n(px - 2 * math.sin(ang)), n(py - 6 * math.cos(ang)), bord, 2, opacity=0.7))
+    return m
+
+
 def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regard=(0, 0),
           couleur=None, habit=None, motif=None, couleur_motif="#ffffff", acc=(), objet=None,
           derriere=None, rot=0, larmes=False, joues=True, couleur_acc=None, tache=False,
-          sy=None, pieds_haut=False, visage=None):
+          sy=None, pieds_haut=False, visage=None, pas=None, penche=None, ombre=None):
     """Un personnage animal, dessiné de face.
 
     espece : clé de ESPECES ; expr : clé de EXPRESSIONS ; bras : clé de POSES.
@@ -754,6 +877,10 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
           "lunettes", "echarpe", "tablier", "couronne", "fleur".
     objet : dessin (coordonnées locales) tenu devant le corps, entre les bras et les mains.
     derriere : dessin (coordonnées locales) placé derrière le personnage.
+    pas : position des pieds, "marche", "pointe" ou "saute" (déduite de la pose
+          si absente) ; penche : inclinaison de la tête en degrés (déduite de
+          l'expression si absente) ; ombre : ombre douce au sol (par défaut
+          OMBRE_SOL).
     """
     K = ESPECES[espece]
     c = couleur or K["c"]
@@ -763,6 +890,8 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         pieds = K["pieds"]
     if couleur_acc is None:
         couleur_acc = "#fa5252"
+    if pas is None:
+        pas = PAS_POSE.get(bras)
     yeux_style, bouche_style, sourcils_style = EXPRESSIONS[expr]
     manche = habit or c
     peau_main = c if espece != "panda" else "#343a40"
@@ -771,6 +900,8 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         manche = habit or "#868e96"
     if espece == "panda":
         manche = habit or "#343a40"
+    bord_manche = _assombrir(manche, 0.72)
+    bord_main = _assombrir(peau_main, 0.72)
     m = []
     if derriere:
         m.append(derriere)
@@ -778,13 +909,16 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     # --- derrière : queue, grandes oreilles
     if espece == "chat":
         m.append(chemin("M 28 -40 Q 80 -40 78 -95 Q 76 -120 92 -126", stroke=c, sw=13))
+        m.append(chemin("M 84 -112 Q 86 -122 92 -126", stroke=_assombrir(c, 0.8), sw=13))
     elif espece == "renard":
         m.append(ellipse(62, -58, 26, 58, c, rot=40))
+        m.append(chemin("M 46 -40 Q 64 -60 70 -90", stroke=_assombrir(c, 0.85), sw=3, opacity=0.6))
         m.append(ellipse(95, -95, 14, 20, "#fff4e6", rot=40))
     elif espece in ("souris", "rat"):
         m.append(chemin("M 22 -20 Q 80 -8 76 -64 Q 72 -96 98 -104", stroke="#ffa8a8", sw=6))
     elif espece == "loup":
         m.append(ellipse(62, -58, 26, 58, c, rot=40))
+        m.append(chemin("M 46 -40 Q 64 -60 70 -90", stroke=_assombrir(c, 0.8), sw=3, opacity=0.6))
         m.append(ellipse(95, -95, 14, 20, "#dee2e6", rot=40))
     elif espece in ("lion", "ane", "boeuf"):
         touffe = K.get("criniere") or _assombrir(c, 0.6)
@@ -824,12 +958,7 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
             m.append(poly([(cx - 10, cy), (cx + math.cos(a) * 26, cy + math.sin(a) * 26), (cx + 10, cy)], K["piquants"]))
 
     # --- pieds
-    if not pieds_haut:
-        m.append(ellipse(-21, -9, 19, 11, pieds))
-        m.append(ellipse(21, -9, 19, 11, pieds))
-    else:
-        m.append(ellipse(-30, -14, 12, 18, pieds, rot=30))
-        m.append(ellipse(30, -14, 12, 18, pieds, rot=-30))
+    m += _pieds(pas, pieds, _assombrir(pieds, 0.7), haut=pieds_haut)
 
     # --- corps
     corps = ellipse(0, -62, 42, 52, "#000")
@@ -838,32 +967,55 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
             a = math.radians(k * 36)
             m.append(cercle(math.cos(a) * 36, -62 + math.sin(a) * 44, 18, "#f8f9fa", stroke="#dee2e6", stroke_width=3))
         m.append(ellipse(0, -62, 42, 50, "#f8f9fa"))
+        for k in range(5):
+            a = math.radians(30 + k * 70)
+            m.append(chemin(f"M {n(math.cos(a) * 18 - 6)} {n(-62 + math.sin(a) * 24)} q 6 -7 12 0", stroke="#dee2e6", sw=3))
     else:
         m.append(ellipse(0, -62, 42, 52, habit or c))
         if habit:
             m.append(_motif(corps, motif, couleur_motif))
+            fonce_h = _assombrir(habit, 0.78)
+            # encolure et boutons
+            m.append(chemin("M -24 -106 Q 0 -90 24 -106", stroke=fonce_h, sw=3))
+            if not motif and "tablier" not in acc:
+                for yy in (-80, -60):
+                    m.append(cercle(0, yy, 3.6, eclaircir(habit, 0.55), stroke=fonce_h, stroke_width=1.5))
         elif K.get("ventre"):
             m.append(ellipse(0, -54, 27, 35, c2))
             if espece == "cigale":
                 for yy in (-72, -56, -40):
                     m.append(chemin(f"M -20 {yy} Q 0 {yy + 6} 20 {yy}", stroke=_assombrir(c2, 0.8), sw=3))
+            elif espece not in ("grenouille", "elephant", "cochon", "fourmi"):
+                # quelques poils au bord du ventre
+                for sgn in (-1, 1):
+                    m.append(chemin(f"M {sgn * 25} -66 l {sgn * 5} -4 l {sgn * -1} 6", stroke=_assombrir(c2, 0.85), sw=2))
+                    m.append(chemin(f"M {sgn * 24} -42 l {sgn * 5} -4 l {sgn * -1} 6", stroke=_assombrir(c2, 0.85), sw=2))
         if espece == "panda" and not habit:
             m.append(ellipse(0, -62, 42, 52, "#fff"))
             m.append(chemin("M -40 -80 Q 0 -60 40 -80 L 36 -104 Q 0 -118 -36 -104 Z", "#343a40"))
+    # modelé : côté droit plus sombre, ombre de la tête, reflet
+    m.append(ombrage(ellipse(0, -62, 42, 52, "#000"), sombre=[(40, -46, 34, 62), (0, -104, 36, 14)],
+                     clair=[(-24, -84, 7, 13, 30)]))
     if "tablier" in acc:
         m.append(chemin("M -26 -96 L 26 -96 L 30 -30 Q 0 -18 -30 -30 Z", "#fff", stroke="#e9ecef", sw=2))
         m.append(rect(-14, -64, 28, 18, "#ffe3e3", rx=4))
         m.append(trait(-36, -92, 36, -92, "#fff", 5))
     if "cape" in acc:
         m.insert(0, chemin("M -40 -100 Q -70 -40 -64 -4 L 64 -4 Q 70 -40 40 -100 Z", couleur_acc))
+        m.insert(1, chemin("M -20 -96 Q -36 -50 -30 -6 M 20 -96 Q 36 -50 30 -6", stroke=_assombrir(couleur_acc, 0.8), sw=3))
 
     # --- bras
     main_g, main_d = POSES[bras]
     coude_g, coude_d = COUDES.get(bras, (None, None))
-    bras_svg = (_bras(-32, -96, main_g, coude_g, manche) + _bras(32, -96, main_d, coude_d, manche))
-    mains_svg = cercle(main_g[0], main_g[1], 11.5, peau_main) + cercle(main_d[0], main_d[1], 11.5, peau_main)
     if bras == "croises":
-        bras_svg = (_bras(-32, -96, main_g, (-40, -60), manche) + _bras(32, -96, main_d, (40, -64), manche))
+        coude_g, coude_d = (-40, -60), (40, -64)
+    poignet = _assombrir(habit, 0.85) if habit else None
+
+    def un_bras(x0, main, coude):
+        return _bras(x0, -96, main, coude, manche, bord=bord_manche, poignet=poignet)
+
+    bras_svg = un_bras(-32, main_g, coude_g) + un_bras(32, main_d, coude_d)
+    mains_svg = _main(*main_g, 11.5, peau_main, bord_main) + _main(*main_d, 11.5, peau_main, bord_main)
     devant = bras in DEVANT_VISAGE
     if not devant:
         m.append(bras_svg)
@@ -873,28 +1025,56 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     elif objet:
         m.append(objet)
 
-    # --- tête
-    m.append(_tete(espece, K, c, c2, yeux_style, bouche_style, sourcils_style, regard, joues, expr, larmes, acc, couleur_acc, tache))
+    # --- tête, un peu penchée selon l'humeur
+    tete = _tete(espece, K, c, c2, yeux_style, bouche_style, sourcils_style, regard, joues, expr, larmes, acc, couleur_acc, tache)
+    if penche is None:
+        penche = 0 if devant or bras in ("porte", "tete") else PENCHE.get(expr, 0)
+    m.append(g(tete, f"rotate({n(penche)} 0 -100)") if penche else tete)
+    if "echarpe" in acc:
+        m.append(_echarpe(couleur_acc))
 
     if devant:
         if bras == "pense":
-            m.append(_bras(-32, -96, main_g, None, manche) + cercle(main_g[0], main_g[1], 11.5, peau_main))
-            m.append(_bras(32, -96, main_d, (40, -80), manche) + cercle(main_d[0], main_d[1], 11.5, peau_main))
+            m.append(_bras(-32, -96, main_g, None, manche, bord=bord_manche, poignet=poignet) + _main(*main_g, 11.5, peau_main, bord_main))
+            m.append(_bras(32, -96, main_d, (40, -80), manche, bord=bord_manche, poignet=poignet) + _main(*main_d, 11.5, peau_main, bord_main))
         else:
             m.append(bras_svg + mains_svg)
 
-    return place(m, x, y, s, flip=flip, rot=rot, sy=sy)
+    dessin = avec_contour(m, s)
+    if (OMBRE_SOL[0] if ombre is None else ombre) and not rot and not pieds_haut:
+        dessin = ombre_sol(0, -3 if pas != "saute" else 4, 54 if pas != "saute" else 40) + dessin
+    return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
+
+
+def _echarpe(ca):
+    return g([rect(-42, -104, 84, 18, ca, rx=9), chemin("M 18 -94 L 30 -48 L 14 -48 L 8 -94 Z", ca),
+              trait(15, -56, 29, -56, "#fff", 3, opacity=0.6), trait(-30, -95, 30, -95, _assombrir(ca, 0.8), 2, opacity=0.6)])
+
+
+def _rvb(hexa):
+    """« #rrggbb » ou « #rgb » → (r, v, b) ; None pour une autre couleur."""
+    h = hexa.lstrip("#") if isinstance(hexa, str) else ""
+    if len(h) == 3:
+        h = "".join(c * 2 for c in h)
+    try:
+        return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) if len(h) == 6 else None
+    except ValueError:
+        return None
 
 
 def _assombrir(hexa, k=0.8):
-    hexa = hexa.lstrip("#")
-    r, gg, b = (int(hexa[i:i + 2], 16) for i in (0, 2, 4))
+    rvb = _rvb(hexa)
+    if rvb is None:
+        return hexa
+    r, gg, b = rvb
     return "#%02x%02x%02x" % (int(r * k), int(gg * k), int(b * k))
 
 
 def eclaircir(hexa, k=0.5):
-    hexa = hexa.lstrip("#")
-    r, gg, b = (int(hexa[i:i + 2], 16) for i in (0, 2, 4))
+    rvb = _rvb(hexa)
+    if rvb is None:
+        return hexa
+    r, gg, b = rvb
     return "#%02x%02x%02x" % (int(r + (255 - r) * k), int(gg + (255 - gg) * k), int(b + (255 - b) * k))
 
 
@@ -1010,6 +1190,11 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         my = -125
 
     m.append(cercle(0, hy, r, tete_c))
+    # modelé de la tête : joue droite dans l'ombre, reflet sur le front
+    m.append(ombrage(cercle(0, hy, r, "#000"), sombre=[(r * 0.75, hy + r * 0.45, r * 0.8, r * 0.75)],
+                     clair=[(-r * 0.45, hy - r * 0.58, r * 0.26, r * 0.14, -30)], opacite=0.08))
+    if espece in TOUPET and not (COIFFES & set(acc)):
+        m.append(chemin(f"M -14 {hy - r + 6} Q -12 {hy - r - 12} -2 {hy - r - 2} Q 2 {hy - r - 18} 9 {hy - r - 1} Q 16 {hy - r - 10} 16 {hy - r + 6} Z", tete_c))
 
     if espece == "mouton":
         for k, (wx, wy) in enumerate([(-30, -192), (-10, -202), (12, -202), (32, -190), (0, -188)]):
@@ -1180,9 +1365,6 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         m.append(g([cercle(-ex, ey, 15, "none", stroke=ENCRE, stroke_width=3.5), cercle(ex, ey, 15, "none", stroke=ENCRE, stroke_width=3.5), trait(-ex + 15, ey, ex - 15, ey, ENCRE, 3)]))
     if "couronne" in acc:
         m.append(poly([(-34, -196), (-34, -232), (-17, -212), (0, -240), (17, -212), (34, -232), (34, -196)], "#ffd43b", stroke="#f59f00", stroke_width=3))
-    if "echarpe" in acc:
-        m.append(g([rect(-42, -104, 84, 18, ca, rx=9), chemin("M 18 -94 L 30 -48 L 14 -48 L 8 -94 Z", ca),
-                    trait(15, -56, 29, -56, "#fff", 3, opacity=0.6)]))
     return g(m)
 
 

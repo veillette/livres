@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d11" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d11)"/>
+<defs><linearGradient id="d74" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5d8ff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d74)"/>
 <g><polygon points="-70,420 150,160 370,420" fill="#b2c4ff"/><polygon points="88.4,232.8 150,160 211.6,232.8 172,248.4 150,227.6 123.6,251" fill="#fff"/><polygon points="170,420 430,90 690,420" fill="#91a7ff"/><polygon points="357.2,182.4 430,90 502.8,182.4 456,202.2 430,175.8 398.8,205.5" fill="#fff"/><polygon points="480,420 680,180 880,420" fill="#b2c4ff"/><polygon points="624,247.2 680,180 736,247.2 700,261.6 680,242.4 656,264" fill="#fff"/></g>
 <rect x="0" y="640" width="800" height="160" fill="#4dabf7"/>
 <path d="M 40 670 q 25 -10 50 0 M 190 670 q 25 -10 50 0 M 340 670 q 25 -10 50 0 M 490 670 q 25 -10 50 0 M 640 670 q 25 -10 50 0 M 790 670 q 25 -10 50 0" fill="none" stroke="#d0ebff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>

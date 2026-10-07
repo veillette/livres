@@ -215,7 +215,7 @@ def p09():
     S.add(trait(md[0] + 200, md[1] - 160, 470, 600, "#495057", 2))
     S.add(aimant_u(470, 612, 0.25, rot=180))
     S.add(poisson_papier(470, 640, 1.0, "#ff6b6b", rot=-70))
-    S.add(tom(680, 700, 1.2, expr="rire", bras="haut", regard=(-1, 0), flip=True))
+    S.add(tom(680, 700, 1.2, expr="rire", bras="applaudit", regard=(-1, 0), flip=True))
     return S
 
 

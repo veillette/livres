@@ -325,7 +325,7 @@ def p12():
     S.add(castor(400, 318, 0.6, expr="rire", bras="haut"), ecureuil(620, 318, 0.55, expr="rire", bras="salut"))
     S.add(poulie(270, 248, 26), corde("M 296 248 L 296 330"), panier_corde(296, 330, 0.8))
     S.add(corde("M 244 248 L 244 640"))
-    S.add(herisson(190, 770, 0.8, expr="rire", bras="haut", regard=(1, -1)), souris(320, 780, 0.6, expr="rire", bras="haut"))
+    S.add(herisson(190, 770, 0.8, expr="rire", bras="haut", regard=(1, -1)), souris(320, 780, 0.6, expr="rire", bras="danse"))
     S.add(notes(640, 520, 1.0, "#e8590c"))
     return S
 

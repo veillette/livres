@@ -78,7 +78,7 @@ def p01():
     S = Scene()
     colline(S)
     troupeau(S)
-    S.add(pierre(250, 790, 1.4, expr="baille", bras="tete"))
+    S.add(pierre(250, 790, 1.4, expr="baille", bras="etire"))
     S.add(texte(300, 280, "Bof…", 52, "#495057", contour="#fff"))
     return S
 

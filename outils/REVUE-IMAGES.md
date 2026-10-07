@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **172 livres, 2 710 pages et
-2 328 illustrations SVG** (cache hors ligne `v18`).
+Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
+2 492 illustrations SVG** (cache hors ligne `v20`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -111,6 +111,73 @@ droit, béton qui durcit après avoir été versé, heures des horloges.
 `verifier-images.py` sans erreur et régénération complète identique pour les
 livres existants (172 livres, 2 710 pages, 2 328 SVG). Le cache hors ligne
 passe à `v18`.
+
+## Ajout du 7 octobre 2026 (suite)
+
+Treize livres (185 livres au catalogue). Rayon Sciences : Pourquoi la Lune me
+suit ? ; Le voyage d'une goutte d'eau ; L'ombre de Léon ; Combien pèse un
+nuage ? ; Le petit son qui voulait voyager ; Dans la grotte (visite inspirée
+de Mammoth Cave, au Kentucky). Rayon Petites histoires : Je n'ai pas
+sommeil ! ; Le jour où j'ai perdu ma dent ; Mamie parle une autre langue ;
+La grande colère de Zoé ; Mon ami qui ne parle pas ; La course des chevaux
+(un poulain du Kentucky qui préfère marcher). Rayon Les animaux : Le cardinal
+rouge. Tous les dessins sont dans les scripts de chaque livre (le cardinal,
+la voiture vue de profil, la grotte, le pré à clôture noire…) ; aucun module
+partagé n'a été modifié. Planches de toutes les illustrations revues dans
+Chromium (cadrage, personnages cachés sous la couette sans pieds visibles,
+bulles dans l'image, accord entre dessin, description et texte). Notions
+vérifiées : parallaxe (les objets proches défilent, la Lune à 384 000 km
+reste à la même place dans la vitre, expérience du pouce) ; cycle de l'eau
+(vapeur invisible, sel qui reste dans la mer, condensation dans l'air froid) ;
+ombre toujours opposée au Soleil, longue le matin vers l'ouest, courte à
+midi, longue le soir vers l'est, et opposée au lampadaire ; petit cumulus
+d'environ 500 tonnes d'eau (cent éléphants, plus de trois mille baignoires),
+un million de gouttelettes pour une goutte de pluie ; son qui se propage de
+proche en proche, plus de quatre fois plus vite dans l'eau, par une ficelle
+tendue, les murs et le bois, mais pas dans le vide ; grotte à environ 12 °C,
+creusée par l'eau qui dissout le calcaire, stalactites qui gagnent un
+centimètre en plusieurs dizaines d'années ; cardinal non migrateur, femelle
+qui chante aussi, nourrissage bec à bec, environ douze jours de couvaison,
+jeunes bruns au bec foncé, attaque de son reflet ; mots portugais (olá,
+obrigada, gato, beijinho, bom dia, gosto muito de ti) ; signe « merci ».
+`verifier-images.py` sans erreur et régénération complète identique pour les
+livres existants (185 livres, 2 900 pages, 2 492 SVG). Le cache hors ligne
+passe à `v19`.
+
+## Personnages plus détaillés, 7 octobre 2026
+
+Amélioration voulue de tous les personnages, donc de presque toutes les
+illustrations (185 livres, 2 900 pages, 2 492 SVG, dont 2 150 modifiés).
+Dans `base.py` (`perso()`) et `fantastique.py` (`personne()`) :
+
+- liseré foncé autour de chaque personnage (filtre SVG), bras bordés d'un
+  trait plus sombre pour se détacher du corps, pli du coude ;
+- modelé : côté droit du corps et bas du visage dans l'ombre, reflet sur le
+  front, ombre du menton sur le cou ;
+- mains avec un pouce tourné vers le corps, pieds avec deux doigts,
+  chaussures avec un reflet, revers de manche au poignet ;
+- animaux : petite mèche sur la tête des espèces à poils, poils au bord du
+  ventre, bout de queue plus foncé (chat), poils de la queue (renard, loup),
+  laine bouclée (mouton) ; vêtements avec encolure et boutons ;
+- humains : mèches et reflet dans les cheveux, creux de l'oreille, plis de la
+  robe, encolure, pli du pantalon ;
+- yeux avec un second reflet ; tête un peu penchée selon l'expression
+  (timide, triste, malin, content…), sauf quand les mains touchent le visage ;
+- petite ombre douce au sol, absente des personnages tournés ou en l'air, et
+  coupée (`OMBRES_DOUCES = False`) dans les trois livres qui dessinent de
+  vraies ombres portées (L'ombre de Léon, Max et son ombre, L'ours et la nuit),
+  pour garder des ombres physiquement exactes ;
+- nouvelles poses : `danse`, `applaudit`, `victoire`, `coucou`, `chut`,
+  `etire`, `epaules`, `marche`, et pieds en mouvement (`pas="marche"`,
+  `"pointe"`, `"saute"`), choisis automatiquement pour `course`, `danse` et
+  `victoire`. Elles remplacent l'ancienne pose sur une cinquantaine de pages
+  dont le texte s'y prête (danse, applaudissements, « chut », bâillements,
+  « coucou », au revoir) ; trois descriptions ont été ajustées.
+
+Planches revues dans Chromium (toutes les espèces, toutes les poses, et un
+échantillon de pages de chaque rayon) ; `verifier-images.py` sans erreur,
+`node --test` réussi, régénération complète identique. Le cache hors ligne
+passe à `v20`.
 
 ## Parcours livre par livre
 

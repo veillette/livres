@@ -363,10 +363,10 @@ def p12():
     S.add(gros_nuage(430, 150, 1.7, gris=False, expr="rire", larmes=True))
     pluie(S, 70, 8, (0, 230, 800, 800), "#4dabf7")
     S.add(puits(520, 700, 0.8, plein=True))
-    S.add(personne(380, 760, 1.2, expr="rire", bras="haut", **MAMAN))
+    S.add(personne(380, 760, 1.2, expr="rire", bras="danse", **MAMAN))
     S.add(personne(690, 790, 1.2, expr="rire", bras="ouverts", **MAMIE))
     S.add(chevre(560, 790, 0.45, expr="rire"))
-    S.add(aya(220, 790, 1.4, expr="rire", bras="haut"))
+    S.add(aya(220, 790, 1.4, expr="rire", bras="danse"))
     return S
 
 

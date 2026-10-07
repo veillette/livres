@@ -91,7 +91,7 @@ def p04():
     S.add(texte(250, 130, "tic", 44, "#f08c00", rot=-12), texte(560, 130, "tac", 44, "#f08c00", rot=12))
     S.add(perso("ours", 150, 690, 1.05, expr="concentre", bras="haut", **PETIT))
     S.add(texte(150, 380, "1, 2, 3…", 34, "#e8590c"))
-    S.add(perso("ours", 400, 740, 1.05, expr="chante", bras="ouverts", rot=-8, **PETIT))
+    S.add(perso("ours", 400, 740, 1.05, expr="chante", bras="danse", rot=-8, **PETIT))
     S.add(notes(440, 440, 0.9, "#e8590c"))
     S.add(perso("ours", 650, 700, 1.05, expr="inquiet", bras="joues", **PETIT))
     S.add(texte(650, 390, "C'est long !", 32, "#e8590c"))

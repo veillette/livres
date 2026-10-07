@@ -208,7 +208,7 @@ def p12():
 def p13():
     S = Scene()
     salle(S)
-    S.add(rat_champs(260, 760, 1.4, expr="neutre", bras="salut", objet=None))
+    S.add(rat_champs(260, 760, 1.4, expr="neutre", bras="coucou", objet=None))
     S.add(sac(120, 760, 0.7))
     S.add(rat_ville(560, 760, 1.3, expr="surpris", bras="joues"))
     S.add(bulle(300, 130, 460, 100, "Merci, mais je rentre !", 34, pointe=(270, 330)))

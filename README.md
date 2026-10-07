@@ -44,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v18"` → `"v19"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v19"` → `"v20"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -178,13 +178,21 @@ AGENTS.md, CLAUDE.md        consignes pour les agents de code (non publiées)
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (172 livres, 2 328 SVG) sont
+Les illustrations de tous les livres du catalogue (185 livres, 2 492 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 
 - `base.py` : décors (ciel, collines, intérieurs, nuit…), personnages animaux
   vus de face avec leurs expressions (`sourire`, `rire`, `triste`, `fache`,
-  `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`…) ;
+  `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`,
+  `danse`, `applaudit`, `victoire`, `coucou`, `chut`, `etire`, `epaules`,
+  `marche`…). Les personnages (animaux de `perso()` et humains de
+  `personne()`) reçoivent automatiquement un liseré, un modelé (ombre et
+  reflet), des mains avec un pouce, des doigts de pied, une petite ombre au
+  sol et une tête légèrement penchée selon l'expression ; les paramètres
+  `pas=` (`"marche"`, `"pointe"`, `"saute"`), `penche=` (degrés) et `ombre=`
+  permettent de les régler. Un livre qui dessine de vraies ombres portées
+  coupe l'ombre douce avec `OMBRES_DOUCES = False` dans son script ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
 - `fantastique.py` : personnages humains et créatures des contes ;
 - `sciences.py` : personnages et schémas des livres de sciences (caneton,

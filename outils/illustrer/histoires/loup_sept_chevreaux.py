@@ -197,7 +197,7 @@ def p12():
     S.add(gros_sac(420, 660, 0.9, cailloux=True))
     S.add(chevreau(0, 540, 660, 0.55, expr="malin", bras="porte", objet=caillou(0, -60, 0.5)))
     S.add(chevreau(1, 620, 660, 0.55, expr="rire", bras="porte", objet=caillou(0, -60, 0.5)))
-    S.add(maman(730, 660, 1.0, expr="malin", bras="bouche"))
+    S.add(maman(730, 660, 1.0, expr="malin", bras="chut"))
     S.add(texte(500, 200, "Chut !", 70, "#1c7ed6", contour="#fff"))
     return S
 
@@ -215,10 +215,10 @@ def p13():
 def p14():
     S = Scene()
     dehors(S)
-    S.add(maman(420, 780, 1.3, expr="rire", bras="haut"))
+    S.add(maman(420, 780, 1.3, expr="rire", bras="danse"))
     for i in range(7):
         x = 110 + i * 95 if i < 3 else 330 + i * 65
-        S.add(chevreau(i, x, 790 - (i % 2) * 30, 0.55, expr="rire", bras="haut", rot=(-8 if i % 2 else 8)))
+        S.add(chevreau(i, x, 790 - (i % 2) * 30, 0.55, expr="rire", bras=("haut", "danse")[i % 2], rot=(-8 if i % 2 else 8)))
     S.add(notes(250, 420, 0.9, "#e64980"), notes(560, 400, 0.9, "#1c7ed6"))
     return S
 

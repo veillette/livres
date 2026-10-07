@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d10" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141c3a"/><stop offset="1" stop-color="#34427a"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d10)"/>
+<defs><linearGradient id="d67" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141c3a"/><stop offset="1" stop-color="#34427a"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d67)"/>
 <circle cx="85.5" cy="351.3" r="3.4" fill="#fff3bf"/>
 <circle cx="216.9" cy="127.9" r="2.8" fill="#fff3bf"/>
 <circle cx="242.4" cy="342.1" r="3.1" fill="#fff3bf"/>
@@ -41,7 +41,7 @@
 <circle cx="434" cy="48.4" r="2.4" fill="#fff3bf"/>
 <circle cx="784.4" cy="437.2" r="3.4" fill="#fff3bf"/>
 <circle cx="54.5" cy="396.9" r="1.8" fill="#fff3bf"/>
-<g transform="translate(680 110)"><circle cx="0" cy="0" r="60" fill="#fff3bf" opacity="0.12"/><circle cx="0" cy="0" r="40" fill="#fff3bf"/><clipPath id="l11"><circle cx="0" cy="0" r="40" fill="#000"/></clipPath><g clip-path="url(#l11)" opacity="0.7"><circle cx="-12" cy="-12" r="7.2" fill="#e9d8a6"/><circle cx="12.8" cy="11.2" r="5.2" fill="#e9d8a6"/><circle cx="15.2" cy="-15.2" r="3.6" fill="#e9d8a6"/><circle cx="-8" cy="16.8" r="4" fill="#e9d8a6"/><circle cx="2" cy="0.8" r="3.2" fill="#e9d8a6"/></g></g>
+<g transform="translate(680 110)"><circle cx="0" cy="0" r="60" fill="#fff3bf" opacity="0.12"/><circle cx="0" cy="0" r="40" fill="#fff3bf"/><clipPath id="l68"><circle cx="0" cy="0" r="40" fill="#000"/></clipPath><g clip-path="url(#l68)" opacity="0.7"><circle cx="-12" cy="-12" r="7.2" fill="#e9d8a6"/><circle cx="12.8" cy="11.2" r="5.2" fill="#e9d8a6"/><circle cx="15.2" cy="-15.2" r="3.6" fill="#e9d8a6"/><circle cx="-8" cy="16.8" r="4" fill="#e9d8a6"/><circle cx="2" cy="0.8" r="3.2" fill="#e9d8a6"/></g></g>
 <g transform="translate(0 800)"><polygon points="-50,0 0,-200 50,0" fill="#101733"/></g>
 <g transform="translate(130 800)"><polygon points="-50,0 0,-240 50,0" fill="#101733"/></g>
 <g transform="translate(260 800)"><polygon points="-50,0 0,-280 50,0" fill="#101733"/></g>

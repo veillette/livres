@@ -54,7 +54,7 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/08-hourra.svg",
-      description: "Toutes les souris lèvent les bras en criant de joie.",
+      description: "Toutes les souris crient de joie : elles lèvent les bras, dansent et applaudissent.",
       texte: "« Bravo ! Hourra ! Quelle idée formidable ! »\n\nToutes les souris applaudissent et dansent de joie.",
     },
     {

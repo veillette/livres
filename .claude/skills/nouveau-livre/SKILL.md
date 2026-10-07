@@ -106,8 +106,11 @@ IMAGES = [
   (`grep -n "^def " outils/illustrer/*.py`).
   - `base.py` : `Scene`, formes, décors (`ciel`, `nuit`, `interieur`,
     `collines`, `eau`…), `perso(espece, …)` avec `ESPECES`, `EXPRESSIONS`,
-    `POSES` et accessoires, oiseaux, chouette, escargot, poisson, tortue,
-    `bulle`, `pensee` ;
+    `POSES` (dont `danse`, `applaudit`, `victoire`, `coucou`, `chut`,
+    `etire`, `epaules`, `marche`), `pas=` / `penche=` pour varier
+    l'attitude, accessoires, oiseaux, chouette, escargot, poisson, tortue,
+    `bulle`, `pensee` ; mettre `OMBRES_DOUCES = False` dans le script d'un
+    livre qui dessine ses propres ombres portées (`sciences.py`) ;
   - `objets.py` : accessoires du quotidien ;
   - `fantastique.py` : humains (`personne`, `princesse`, `chevalier`, `roi`,
     `sorciere`), dragon, licorne, château, océan, fées ;

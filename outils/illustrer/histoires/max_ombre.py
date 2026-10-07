@@ -9,6 +9,8 @@ from objets import *
 from sciences import *
 
 ID = "max-ombre"
+# les ombres de ce livre sont de vraies ombres portées
+OMBRES_DOUCES = False
 MAX = dict(tache=True, acc=("echarpe",), couleur_acc="#fa5252")
 MISTIGRI = dict(couleur="#adb5bd", visage="#f1f3f5")
 

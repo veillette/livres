@@ -78,7 +78,7 @@ def p02():
     etabli_(S)
     S.add(cuir(420, 648, 1.2))
     S.add(bougie(560, 648, 1.0))
-    S.add(cordonnier(180, 790, expr="baille", bras="tete", acc=("lunettes", "bonnet_nuit"), couleur_acc="#74c0fc"))
+    S.add(cordonnier(180, 790, expr="baille", bras="etire", acc=("lunettes", "bonnet_nuit"), couleur_acc="#74c0fc"))
     S.add(bulle(420, 150, 460, 100, "Je coudrai les souliers\ndemain matin…", 32, pointe=(200, 470)))
     return S
 
@@ -189,7 +189,7 @@ def p12():
     S = Scene()
     atelier(S, nuit_=True)
     etabli_(S)
-    S.add(lutin_(320, 650, 0.75, habille=True, expr="rire", bras="haut"), lutin_(520, 650, 0.75, habille=True, expr="rire", bras="ouverts"))
+    S.add(lutin_(320, 650, 0.75, habille=True, expr="rire", bras="danse"), lutin_(520, 650, 0.75, habille=True, expr="rire", bras="ouverts"))
     S.add(notes(420, 380, 0.9, "#fcc419"))
     S.add(texte(420, 300, "Que nous sommes beaux !", 44, "#fcc419", contour="#1c2a52"))
     return S
@@ -202,7 +202,7 @@ def p13():
                                                                                        place(lutin_(0, 0, 0.3, habille=True, expr="rire", bras="salut"), 680, 230)])))
     etabli_(S, 380)
     S.add(paire(380, 648, 0.9, "#fcc419"))
-    S.add(cordonnier(160, 790, expr="rire", bras="salut"), femme(620, 790, expr="rire", bras="salut"))
+    S.add(cordonnier(160, 790, expr="rire", bras="coucou"), femme(620, 790, expr="rire", bras="salut"))
     return S
 
 

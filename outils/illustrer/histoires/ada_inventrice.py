@@ -385,8 +385,8 @@ def p11():
         r = random.Random(k)
         S.add(place(rect(-6, -9, 12, 18, r.choice(["#fa5252", "#ffd43b", "#4dabf7", "#69db7c", "#cc5de8"])),
                     r.uniform(40, 760), r.uniform(60, 330), rot=r.randint(0, 80)))
-    S.add(roi(110, 780, 1.1, expr="rire", bras="haut"))
-    S.add(reine(690, 780, 1.1, expr="rire", bras="haut"))
+    S.add(roi(110, 780, 1.1, expr="rire", bras="applaudit"))
+    S.add(reine(690, 780, 1.1, expr="rire", bras="applaudit"))
     S.add(garde(230, 790, 0.95, expr="rire", bras="ouverts"), garde(570, 790, 0.95, expr="rire", bras="ouverts"))
     S.add(ada(400, 790, 1.45, expr="fier", bras="haut"))
     return S

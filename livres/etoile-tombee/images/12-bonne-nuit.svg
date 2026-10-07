@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
-<defs><linearGradient id="d13" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141e46"/><stop offset="1" stop-color="#3b5bdb"/></linearGradient></defs>
-<rect x="0" y="0" width="800" height="800" fill="url(#d13)"/>
+<defs><linearGradient id="d46" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141e46"/><stop offset="1" stop-color="#3b5bdb"/></linearGradient></defs>
+<rect x="0" y="0" width="800" height="800" fill="url(#d46)"/>
 <polygon points="181.8,356.2 184,362.3 190.5,363.1 185.4,367.2 186.6,373.6 181.2,370 175.4,373.1 177.2,366.8 172.4,362.3 179,362.1" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.7" stroke-linejoin="round"/>
 <polygon points="200.1,370.7 201.1,377 207.1,379 201.5,381.9 201.4,388.2 197,383.7 190.9,385.6 193.8,380 190.1,374.8 196.4,375.8" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.7" stroke-linejoin="round"/>
 <polygon points="363,178 365.4,184.5 372.3,185.4 366.8,189.7 368.1,196.6 362.3,192.7 356.2,196 358.1,189.3 353,184.5 360,184.3" fill="#fff3bf" stroke="#fff3bf" stroke-width="1.8" stroke-linejoin="round"/>
