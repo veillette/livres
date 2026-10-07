@@ -10,6 +10,7 @@ renvoie une Scene). Les images sont écrites dans `livres/<id>/images/`.
 """
 import importlib
 import os
+import re
 import sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +26,16 @@ def modules():
             yield importlib.import_module(f"histoires.{nom[:-3]}")
 
 
+def rayon(id_livre):
+    """Rayon du livre, lu dans son livre.js (None s'il n'existe pas encore)."""
+    chemin = os.path.join(RACINE, "livres", id_livre, "livre.js")
+    if not os.path.exists(chemin):
+        return None
+    with open(chemin, encoding="utf-8") as fh:
+        m = re.search(r'rayon:\s*"([^"]+)"', fh.read())
+    return m.group(1) if m else None
+
+
 def generer(module):
     # numérotation des identifiants SVG propre à chaque livre : le résultat ne
     # dépend pas des autres livres générés en même temps
@@ -33,6 +44,8 @@ def generer(module):
     base.OMBRE_SOL[0] = getattr(module, "OMBRES_DOUCES", True)
     # modelé automatique des aplats, sauf si le livre le refuse
     base.RELIEF_AUTO[0] = getattr(module, "RELIEF", True)
+    # ombre douce orientée (lumière à gauche), sauf dans les livres de sciences
+    base.OMBRE_SENS[0] = getattr(module, "SENS_OMBRE", 0 if rayon(module.ID) == "sciences" else 1)
     dossier = os.path.join(RACINE, "livres", module.ID, "images")
     for nom, fabrique in module.IMAGES:
         fabrique().enregistrer(os.path.join(dossier, nom))

@@ -72,12 +72,12 @@
 <polygon points="499.2,639.3 501,645.8 507.7,647.1 502.1,650.9 502.9,657.6 497.5,653.4 491.4,656.3 493.7,649.9 489.1,644.9 495.9,645.2" fill="url(#vol5a8b60b)" stroke="#fff3bf" stroke-width="1.8" stroke-linejoin="round"/>
 <circle cx="282.8" cy="314.9" r="2.7" fill="url(#vol5a8b60b)"/>
 <circle cx="400" cy="430" r="250" fill="none" stroke="#adb5bd" stroke-width="3" stroke-dasharray="10 12"/>
-<g data-relief="non"><g transform="translate(400 430)"><circle cx="0" cy="0" r="90" fill="#1c7ed6"/><clipPath id="b83"><circle cx="0" cy="0" r="90" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b83)"><rect x="0" y="-92" width="92" height="184" fill="#0b1433" opacity="0.55"/></g></g></g>
+<g data-relief="non"><g transform="translate(400 430)"><circle cx="0" cy="0" r="90" fill="#1c7ed6"/><clipPath id="b85"><circle cx="0" cy="0" r="90" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b85)"><rect x="0" y="-92" width="92" height="184" fill="#0b1433" opacity="0.55"/></g></g></g>
 <circle cx="370" cy="410" r="34" fill="#51cf66" opacity="0.9"/>
 <line x1="560.7" y1="238.5" x2="361.5" y2="71.4" stroke="#ffe066" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 10" opacity="0.7"/>
 <g><line x1="560.7" y1="238.5" x2="458" y2="152.4" stroke="#ffe066" stroke-width="7" stroke-linecap="round"/><polygon points="445.8,142.1 465.2,147 454,160.3" fill="url(#vol88cbe44)" stroke="#ffe066" stroke-width="3" stroke-linejoin="round"/></g>
 <g><line x1="560.7" y1="238.5" x2="506.7" y2="302.8" stroke="#b197fc" stroke-width="7" stroke-linecap="round"/><polygon points="496.4,315.1 501.3,295.7 514.7,306.9" fill="url(#volc6ea12d)" stroke="#b197fc" stroke-width="3" stroke-linejoin="round"/></g>
-<g data-relief="non"><g transform="translate(560.7 238.5)"><circle cx="0" cy="0" r="40" fill="#e9ecef"/><clipPath id="b84"><circle cx="0" cy="0" r="40" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b84)"><rect x="0" y="-42" width="42" height="84" fill="#0b1433" opacity="0.55"/></g></g></g>
+<g data-relief="non"><g transform="translate(560.7 238.5)"><circle cx="0" cy="0" r="40" fill="#e9ecef"/><clipPath id="b86"><circle cx="0" cy="0" r="40" fill="#000"/></clipPath><g transform="rotate(360)" clip-path="url(#b86)"><rect x="0" y="-42" width="42" height="84" fill="#0b1433" opacity="0.55"/></g></g></g>
 <text x="455.1" y="116.4" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="32" text-anchor="middle" fill="#ffe066">vitesse</text>
 <text x="510.7" y="368.5" font-family="Fredoka, Andika, sans-serif" font-weight="700" font-size="32" text-anchor="middle" fill="#b197fc">gravité</text>
 </svg>

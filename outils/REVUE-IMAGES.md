@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v22`).
+2 492 illustrations SVG** (cache hors ligne `v23`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -345,3 +345,52 @@ fissures). Les 185 couvertures et 120 pages tirées au hasard ont été revues
 dans Chromium : aucune fausse découpe devenue visible. Régénération
 déterministe (identique livre par livre et pour l'ensemble),
 `verifier-images.py` sans erreur. Le cache hors ligne passe à `v22`.
+
+## Profondeur, poses et architecture (7 octobre 2026)
+
+Aucun livre ajouté (185 livres, 2 900 pages, 2 492 SVG) ; outils partagés
+enrichis, donc presque toutes les illustrations sont régénérées.
+
+- Paysages sur trois plans nets : chaîne lointaine bleuie (`lointain()`),
+  plaine du plan moyen au pied des collines (le ciel ne passe plus entre les
+  collines et le sol), versant droit des collines à l'ombre, bosquets voilés
+  sur les pentes (`bosquet()`), et premier plan du sol plus grand et plus
+  contrasté : touffes d'herbe (`touffe()`), cailloux sur le sable, ombres de
+  congères sur la neige (`premier_plan_sol()`, `sol(…, premier=False)` pour
+  s'en passer). Nouveaux outils : `paysage()` (scène complète, collines ou
+  montagnes), `repoussoir()` (feuillage sombre dans un coin du premier plan).
+  Savane : acacias en volume, herbes sèches plus grandes devant.
+- Architecture : `maison()` vue de trois quarts (mur latéral dans l'ombre, pan
+  de toit qui fuit, cheminée qui en sort, chaînage d'angle, gouttière et
+  descente, fenêtres à linteau et appui saillant, volets en option),
+  `immeuble()` réutilisable (mansarde à lucarnes, pignon ou toit plat,
+  corniche et bandeaux avec leur ombre, balcons en fer forgé, volets,
+  boutique à store rayé, soubassement à refends, côté en perspective) et
+  ses pièces : `fenetre_facade()`, `volet()`, `chainage()`, `cote_batiment()`,
+  `garde_corps()`, `store_banne()`. La rue de `ville()` (rat des villes,
+  empereur, policière…) passe sur deux plans, silhouettes lointaines voilées
+  puis immeubles détaillés.
+- Personnages : ombres propres froides à bord fondu et lumière réfléchie au
+  bord du corps et de la tête, liseré de lumière, ombre portée allongée du
+  côté opposé à la lumière ; pieds en appui (l'un un peu en avant) au repos ;
+  trois quarts plus marqués (œil lointain plus petit, ventre décalé) ; joues
+  ébouriffées du chat, du renard, du loup et de l'écureuil. Nouvelles poses :
+  `court`, `saute`, `lance`, `designe`, `pousse`, `equilibre` ; la course
+  (`course`) lève un pied et penche davantage, les bras levés (`haut`) se
+  plient aux coudes. Seize scènes reprises avec ces poses (sauts de joie,
+  trampoline, équilibre, course vers Papa, poussée de la miette, etc.).
+- Animaux dessinés à part en volume, avec liseré : oiseau (et donc corbeau,
+  coq, colombe), chouette, escargot (coquille striée), poisson (écailles),
+  tortue (écailles bombées), cheval, âne et cerf de profil (pattes du côté
+  opposé plus sombres), cigogne et héron.
+- Exactitude : dans les livres de sciences, l'ombre douce reste centrée
+  (`OMBRE_SENS`, réglable par livre avec `SENS_OMBRE`) pour ne jamais
+  contredire la position du Soleil dessiné.
+- Corrections : le moulin des deux ânes passe devant les collines ; les
+  reflets du cerf sont dessinés à part (identifiants SVG distincts).
+
+Contrôles : planches des 185 couvertures, de 90 pages tirées au hasard et de
+toutes les scènes reprises, revues dans Chromium ; régénération déterministe
+(identique livre par livre et pour l'ensemble) ; `verifier-images.py` sans
+erreur ; `node --test` réussi. Le poids total des SVG passe de 58 à 71 Mo.
+Le cache hors ligne passe à `v23`.

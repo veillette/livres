@@ -190,7 +190,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
 
     fonce_h = _assombrir(habit, 0.75)
     # vue de trois quarts quand le regard part de côté ; corps penché selon la pose
-    tourne_ = max(-1.0, min(1.0, regard[0])) * 6
+    tourne_ = max(-1.0, min(1.0, regard[0])) * 9
     incline = 0 if rot or sirene else INCLINE.get(bras, 0)
     m = []
     if derriere:
@@ -219,7 +219,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         # plis de la jupe et modelé
         for x0, x1 in ((-14, -30), (0, 0), (14, 30)):
             m.append(chemin(f"M {x0} -70 Q {n((x0 + x1) / 2 + (x1 - x0) * 0.1)} -40 {x1} -8", stroke=fonce_h, sw=2.5, opacity=0.45))
-        m.append(ombrage(chemin(forme, "#000"), sombre=[(54, -40, 34, 70)], clair=[(-24, -90, 6, 12, 20)]))
+        m.append(ombrage(chemin(forme, "#000"), sombre=[(54, -40, 34, 70), (0, -6, 70, 10)], clair=[(-24, -90, 6, 12, 20), (-48, -36, 4, 22, 30)],
+                         reflets=[(64, -24, 8, 30, -30)]))
         m.append(rect(-32, -80, 64, 10, ceinture or _assombrir(habit, 0.85), rx=5))
         m.append(chemin("M -20 -106 Q 0 -94 20 -106", stroke=fonce_h, sw=2.5))
         haut_corps = len(m) - 2
@@ -229,6 +230,10 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         m.append(trait(-16, -40, -16, -12, _assombrir(jambes, 0.8), 2, opacity=0.6))
         if pas in ("marche", "pointe"):
             m.append(g(jambe_d, "rotate(-22 16 -50)"))
+        elif pas == "court":
+            # genou plié, pied ramené derrière
+            m.append(g(rect(31, -33, 16, 22, cylindre(_assombrir(jambes, 0.9), 0.25, 0.7), rx=8), "rotate(20 39 -31)"))
+            m.append(g(rect(6, -54, 20, 32, cylindre(jambes, 0.25, 0.7), rx=9), "rotate(-50 16 -50)"))
         else:
             m.append(jambe_d)
             m.append(trait(16, -40, 16, -12, _assombrir(jambes, 0.8), 2, opacity=0.6))
@@ -236,7 +241,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         haut_corps = len(m)
         forme = "M -32 -106 Q 0 -112 32 -106 L 40 -46 Q 0 -36 -40 -46 Z"
         m.append(chemin(forme, cylindre(habit, 0.24, 0.78)))
-        m.append(ombrage(chemin(forme, "#000"), sombre=[(40, -70, 22, 46)], clair=[(-22, -92, 6, 11, 20)]))
+        m.append(ombrage(chemin(forme, "#000"), sombre=[(40, -70, 22, 46), (0, -40, 44, 8)], clair=[(-22, -92, 6, 11, 20), (-33, -70, 3, 16, 6)],
+                         reflets=[(42, -66, 6, 30)]))
         m.append(chemin("M -20 -106 Q 0 -92 20 -106", stroke=fonce_h, sw=2.5))
         m.append(rect(-38, -62, 76, 10, ceinture or _assombrir(habit, 0.75), rx=5))
         if ceinture:
@@ -276,7 +282,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         oreilles.append(chemin(f"M {sgn * 50} -154 Q {sgn * 55} -148 {sgn * 50} -142", stroke=bord_p, sw=2.5))
     t.append(g(oreilles, f"translate({n(-tourne_ * 0.45)} 0)") if tourne_ else g(oreilles))
     t.append(cercle(0, -150, 50, volume(p, 0.25, 0.84)))
-    t.append(ombrage(cercle(0, -150, 50, "#000"), sombre=[(36, -124, 40, 38)], clair=[(-22, -180, 13, 7, -30)], opacite=0.07))
+    t.append(ombrage(cercle(0, -150, 50, "#000"), sombre=[(36, -124, 40, 38)], clair=[(-22, -180, 13, 7, -30)], opacite=0.07,
+                     reflets=[(51, -140, 8, 26, -15)]))
     debut_visage = len(t)
     if barbe:
         t.append(_barbe(barbe))
@@ -286,7 +293,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         jr = 1.3 if rouge else 1.0
         for sgn in (-1, 1):
             t.append(ellipse(sgn * 30, -128, 9 * jr, 5.5 * jr, jc, opacity=0.6))
-    t.append(oeil(-18, -150, ys, regard) + oeil(18, -150, ys, regard))
+    t.append(yeux_trois_quarts(18, -150, ys, regard, tourne=tourne_))
     t.append(sourcils(18, -150, ss))
     if larmes:
         for sgn in (-1, 1):
@@ -348,6 +355,8 @@ def _chaussures(pas, couleur, rx, ry, ecart, y):
         x, yy, rot = sgn * ecart, y, 0
         if pas in ("marche", "pointe") and sgn > 0:
             x, yy, rot = ecart + 18, y - 12, -24
+        elif pas == "court" and sgn > 0:
+            x, yy, rot = ecart + 18, y - 8, -15
         elif pas == "saute":
             yy, rot = y + 2, sgn * 22
         m.append(ellipse(x, yy, rx, ry, couleur, rot=rot or None, stroke=bord, stroke_width=2))

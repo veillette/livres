@@ -218,7 +218,7 @@ def p03():
     salle(S)
     S.add(tapis(400, 720, 330, 60, "#d0bfff", "#9775fa"))
     S.add(personne(560, 740, 1.45, expr="content", bras="large", acc=("couronne",), **REINE))
-    S.add(capu(250, 760, 1.3, robe=True, expr="oups", bras="ouverts", rot=-22))
+    S.add(capu(250, 760, 1.3, robe=True, expr="oups", bras="equilibre", rot=-22))
     S.add(mouvement(150, 520, 1.0, rot=-30), mouvement(380, 540, 1.0, rot=200))
     S.add(texte(250, 400, "Oh là là…", 56, "#c2255c", contour="#fff"))
     return S

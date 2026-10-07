@@ -121,6 +121,16 @@ IMAGES = [
     le ciel, plan moyen, premier plan plus sombre). `sans_relief()` garde un
     dessin en aplats (éclairage physique, fausse découpe de la couleur du
     fond) ; `RELIEF = False` coupe le modelé automatique pour tout un livre ;
+  - paysages et bâtiments réutilisables (`base.py`) : `paysage()` (ciel,
+    lointain, collines à bosquets, sol à touffes en une ligne), `lointain()`,
+    `bosquet()`, `touffe()`, `repoussoir()` (coin de feuillage au premier
+    plan) ; `maison()` de trois quarts (`volets=`, `cote=False`),
+    `immeuble()` (mansarde, pignon ou toit plat, balcons, boutique),
+    `fenetre_facade()`, `volet()`, `chainage()`, `garde_corps()`,
+    `store_banne()` ; poses dynamiques `court`, `saute`, `lance`,
+    `designe`, `pousse`, `equilibre` (préférer `saute` pour un saut de
+    joie, `court` pour une course) et `regard=(±1, 0)` pour un personnage
+    vu de trois quarts qui regarde son voisin ;
   - `objets.py` : accessoires du quotidien ;
   - `fantastique.py` : humains (`personne`, `princesse`, `chevalier`, `roi`,
     `sorciere`), dragon, licorne, château, océan, fées ;

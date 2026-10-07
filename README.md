@@ -44,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v19"` → `"v20"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v23"` → `"v24"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -186,13 +186,17 @@ générées par un petit outil Python, sans aucune dépendance, dans
   vus de face avec leurs expressions (`sourire`, `rire`, `triste`, `fache`,
   `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`,
   `danse`, `applaudit`, `victoire`, `coucou`, `chut`, `etire`, `epaules`,
-  `marche`…). Les personnages (animaux de `perso()` et humains de
+  `marche`, et les poses dynamiques `court`, `saute`, `lance`, `designe`,
+  `pousse`, `equilibre`…). Les personnages (animaux de `perso()` et humains de
   `personne()`) reçoivent automatiquement un liseré, un modelé (ombre et
   reflet), des mains avec un pouce, des doigts de pied, une petite ombre au
   sol et une tête légèrement penchée selon l'expression ; les paramètres
   `pas=` (`"marche"`, `"pointe"`, `"saute"`), `penche=` (degrés) et `ombre=`
   permettent de les régler. Un livre qui dessine de vraies ombres portées
   coupe l'ombre douce avec `OMBRES_DOUCES = False` dans son script ;
+  l'ombre douce s'allonge du côté opposé à la lumière (en haut à gauche),
+  sauf dans les livres de sciences où elle reste centrée (`SENS_OMBRE` dans
+  un script pour choisir : 1 vers la droite, 0 centrée) ;
   les corps et les têtes sont remplis de dégradés en relief, le visage glisse
   en vue de trois quarts quand `regard=` part de côté, et le corps se penche
   pour courir, marcher, danser ou tirer (`INCLINE`) ;
@@ -211,7 +215,22 @@ générées par un petit outil Python, sans aucune dépendance, dans
   de sciences) ; `RELIEF = False` dans un script le coupe. Textures
   partagées pour les bâtiments et les arbres des livres : `briques()`,
   `planches()`, `chaume()`, `tuiles()`, `pierres()`, `ombre_avancee()`,
-  `feuillage()`, `tronc()`, `arbre_branche()` ;
+  `feuillage()`, `tronc()`, `arbre_branche()` ; le modelé des personnages et
+  des animaux (`ombrage()`) met des ombres froides à bord fondu et une
+  lumière réfléchie au bord ;
+- paysages en trois plans réutilisables : `paysage()` compose une scène
+  complète (ciel, montagnes ou collines lointaines, collines et bosquets,
+  sol) ; `lointain()` (chaîne bleuie et voilée), `bosquet()` (arbres du plan
+  moyen), `touffe()` et `premier_plan_sol()` (touffes, cailloux ou congères
+  plus grands près du bas ; `sol(…, premier=False)` les retire),
+  `repoussoir()` (feuillage sombre dans un coin du premier plan) ;
+- architecture réutilisable : `maison()` vue de trois quarts (mur latéral et
+  pan de toit qui fuient selon `FUITE`, chaînage d'angle, gouttière, volets
+  avec `volets=`, `cote=False` pour une façade seule), `immeuble()` (toit en
+  mansarde, à pignon ou plat, corniche et bandeaux ombrés, balcons, volets,
+  boutique à store) et leurs pièces : `fenetre_facade()`, `volet()`,
+  `chainage()`, `cote_batiment()`, `garde_corps()`, `store_banne()` ; la rue
+  de `ville()` (`fables.py`) en est faite ;
 - `objets.py` : accessoires (gâteau, vélo, parapluie, bocal, cubes…) ;
 - `fantastique.py` : personnages humains et créatures des contes ;
 - `sciences.py` : personnages et schémas des livres de sciences (caneton,

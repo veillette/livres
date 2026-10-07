@@ -61,8 +61,8 @@ def vignette():
 def p01():
     S = Scene()
     montagne(S)
-    S.add(blanchette(220, 730, 1.2, expr="rire", bras="haut"))
-    S.add(biquette(580, 730, 1.2, expr="rire", bras="haut"))
+    S.add(blanchette(220, 730, 1.2, expr="rire", bras="saute"))
+    S.add(biquette(580, 730, 1.2, expr="rire", bras="saute"))
     S.add(texte(400, 300, "Hop ! Hop !", 54, BLEU, contour="#fff"))
     return S
 

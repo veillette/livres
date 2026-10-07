@@ -77,11 +77,20 @@ def herbes(S, y0, y1, nb=24, graine=1, couleur="#40c057", s=0.7):
 
 def acacia(x, y, s=1.0, feuillage="#82c91e", feuillage2="#74b816", tronc="#7c4a1e"):
     """Acacia de la savane, au sommet plat ; (x, y) = pied du tronc."""
-    m = [chemin("M -14 0 Q -8 -90 -4 -150 Q -40 -190 -90 -204 L -84 -214 Q -36 -200 0 -170 Q 20 -210 70 -226 L 76 -216 "
-                "Q 34 -196 14 -150 Q 12 -80 16 0 Z", tronc),
-         ellipse(-60, -228, 120, 34, feuillage2),
-         ellipse(30, -246, 130, 36, feuillage),
-         ellipse(-20, -262, 90, 26, feuillage)]
+    branches = ("M -14 0 Q -8 -90 -4 -150 Q -40 -190 -90 -204 L -84 -214 Q -36 -200 0 -170 Q 20 -210 70 -226 L 76 -216 "
+                "Q 34 -196 14 -150 Q 12 -80 16 0 Z")
+    m = [ombre_sol(30, 0, 120, 12, 0.12) if OMBRE_SOL[0] else "",
+         chemin(branches, lineaire([(0, eclaircir(tronc, 0.25)), (0.5, tronc), (1, _assombrir(tronc, 0.65))], 0, 0, 1, 0)),
+         chemin("M -4 -20 q 3 -30 0 -60 M 6 -70 q -3 -24 2 -50", stroke=_assombrir(tronc, 0.6), sw=2.5, opacity=0.5)]
+    nappes = [(-60, -228, 120, 34, feuillage2), (30, -246, 130, 36, feuillage), (-20, -262, 90, 26, feuillage)]
+    for cx, cy, rx, ry, c in nappes:
+        m.append(ellipse(cx, cy, rx, ry, volume(c, 0.3, 0.72)))
+    # dessous de la couronne dans l'ombre, dessus éclairé, touffes de feuilles
+    m.append(ombrage(g([ellipse(cx, cy, rx, ry, "#000") for cx, cy, rx, ry, _ in nappes]),
+                     sombre=[(cx + 10, cy + ry * 0.8, rx * 0.95, ry * 0.45) for cx, cy, rx, ry, _ in nappes],
+                     clair=[(-40, -280, 40, 7, -4)], opacite=0.14))
+    m.append(chemin(" ".join(f"M {cx + dx} {cy - 4} q 4 -8 9 -4 q 5 -7 10 0" for cx, cy, rx, ry, _ in nappes for dx in (-rx * 0.6, -rx * 0.1, rx * 0.4)),
+                    stroke=_assombrir(feuillage, 0.7), sw=2.5, opacity=0.45))
     return place(m, x, y, s)
 
 
@@ -99,8 +108,10 @@ def savane(S, y=560, haut="#74c0fc", bas="#fff3bf", sol_c="#f4d58d", graine=2, a
     r = random.Random(graine)
     for _ in range(28):
         x, yy = r.uniform(10, 790), r.uniform(y + 20, 790)
-        S.add(chemin(f"M {n(x - 8)} {n(yy)} L {n(x - 12)} {n(yy - 20)} M {n(x)} {n(yy)} L {n(x)} {n(yy - 26)} M {n(x + 8)} {n(yy)} L {n(x + 13)} {n(yy - 19)}",
-                     stroke="#d9a441", sw=3.5))
+        # herbes sèches plus grandes et plus contrastées au premier plan
+        k = 0.6 + 0.9 * (yy - y) / max(800 - y, 1)
+        S.add(chemin(f"M {n(x - 8 * k)} {n(yy)} L {n(x - 12 * k)} {n(yy - 20 * k)} M {n(x)} {n(yy)} L {n(x)} {n(yy - 26 * k)} M {n(x + 8 * k)} {n(yy)} L {n(x + 13 * k)} {n(yy - 19 * k)}",
+                     stroke=melange("#e9c46a", "#b07d2b", min(k - 0.5, 1)), sw=3.5 * k ** 0.5))
 
 
 def banquise(S, y=520, haut="#a5d8ff", bas="#e7f5ff", mer=True, nuit_=False, graine=1):
