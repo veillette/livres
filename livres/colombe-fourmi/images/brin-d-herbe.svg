@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" width="400" height="270">
-
-<g transform="translate(200 150) rotate(-10) scale(1.5 1.5)"><path d="M -110 0 Q 0 -14 110 0 Q 0 10 -110 0 Z" fill="#51cf66"/><line x1="-100" y1="0" x2="100" y2="-2" stroke="#2f9e44" stroke-width="2" stroke-linecap="round"/></g>
+<defs><linearGradient id="vole143ec3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6cd67e"/><stop offset="0.5" stop-color="#51cf66"/><stop offset="1" stop-color="#44ad55"/></linearGradient></defs>
+<g transform="translate(200 150) rotate(-10) scale(1.5 1.5)"><path d="M -110 0 Q 0 -14 110 0 Q 0 10 -110 0 Z" fill="url(#vole143ec3)"/><line x1="-100" y1="0" x2="100" y2="-2" stroke="#2f9e44" stroke-width="2" stroke-linecap="round"/></g>
 </svg>
