@@ -8,8 +8,9 @@ et les **imprimer sur des feuilles** pour en faire de vrais livres.
   n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
   fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
-  précédente / suivante, Début / Fin, glisser du doigt ; double page sur un
-  écran large d'au moins 900 px ; lecture à voix haute « 🔊 Écouter »).
+  précédente / suivante, Début / Fin, glisser du doigt ; double page dès
+  900 px de large, si l'écran est nettement plus large que haut ; lecture à
+  voix haute « 🔊 Écouter »).
 - `imprimer.html?livre=<id>` : aperçu des feuilles et impression.
 
 Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
@@ -44,9 +45,9 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v25"` → `"v26"`) pour que le nouveau livre et les
-  nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
-  sont seulement revalidés, pas re-téléchargés.
+  en haut de `sw.js` (aujourd'hui `"v26"`, donc `"v26"` → `"v27"`) pour que le
+  nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
+  Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
   s'affichent tout de suite.
 
@@ -172,8 +173,8 @@ outils/verifier-images.py   vérification des livres et des images (non publiée
 outils/imposition.test.js   tests de l'ordre des pages du livret (non publiés)
 outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
-AGENTS.md, CLAUDE.md        consignes pour les agents de code (non publiées)
-.claude/skills/nouveau-livre/   compétence « créer un livre » + planche.js (non publiées)
+AGENTS.md           consignes pour les agents de code (non publiées)
+.claude/skills/     compétences nouveau-livre, direction-artistique, retoucher-livre (non publiées)
 ```
 
 ## Dessiner les illustrations

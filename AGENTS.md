@@ -59,10 +59,19 @@ relancer `generer.py` et valider les SVG produits dans le même commit.
   change des SVG existants, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (`"v17"` → `"v18"`) et mettre à jour les totaux
-  (livres, pages, SVG) du README (section « Dessiner les illustrations ») et
-  de `outils/REVUE-IMAGES.md`, ainsi qu'une entrée « Ajout du … » dans ce
-  dernier. `verifier-images.py` affiche les totaux exacts.
+  `VERSION` dans `sw.js` (aujourd'hui `"v26"`, donc `"v26"` → `"v27"`) et
+  mettre à jour les totaux (livres, pages, SVG) du README (section
+  « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
+  qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche
+  les totaux exacts.
+- **Documentation à jour** : dans le même changement, relire les textes qui
+  décrivent ce qui a bougé et les corriger. Le README porte les commandes,
+  les types de pages, l'arborescence et les totaux ; ce fichier et les
+  compétences `.claude/skills/` portent les règles, la liste des rayons et
+  les exemples de `VERSION` ; `outils/REVUE-IMAGES.md` porte les totaux en
+  tête et une entrée datée (les entrées anciennes ne se réécrivent pas).
+  Les chiffres vivants se vérifient avec `python3 outils/verifier-images.py`
+  et la constante `VERSION` de `sw.js`.
 - Le contenu doit convenir à de jeunes enfants : bienveillant, sans violence
   gratuite, sans peur excessive ; les livres de sciences doivent être
   **physiquement exacts** (ombres opposées au Soleil, phases de la Lune,

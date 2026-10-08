@@ -111,8 +111,10 @@ S.dessus(bulle(560, 150, 420, 100, "C'est pour mieux\nte voir !", 32,
   ensemble** : poses `main` (se donner la main, l'un des deux `flip=True`),
   `epaule`, `tend`, `mains_jointes`, `ramasse`, `leve_doigt`, en plus de
   `donne`, `calin`, `ouverts`…
-- Taille relative : à même échelle `s`, un adulte dépasse un enfant d'environ
-  un quart ; ne pas « corriger » en agrandissant l'enfant.
+- Taille relative : à même échelle `s`, le corps d'un adulte
+  (`STATURES` : hauteur 1,3) est environ trois dixièmes plus long que celui
+  d'un enfant, avec une tête un peu plus petite ; ne pas « corriger » en
+  agrandissant l'enfant.
 
 ## 4. Décors
 

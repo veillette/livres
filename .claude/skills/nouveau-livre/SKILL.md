@@ -1,6 +1,6 @@
 ---
 name: nouveau-livre
-description: Créer un nouveau livre illustré pour enfants dans ce dépôt (texte, illustrations SVG générées en Python, livre.js, catalogue, cache hors ligne, vérifications et revue des planches). À utiliser dès qu'on demande d'ajouter, d'écrire ou d'illustrer un ou plusieurs livres, une histoire, une fable, un conte ou un livre de sciences.
+description: Créer un nouveau livre illustré pour enfants dans ce dépôt (texte, illustrations SVG générées en Python, livre.js, catalogue, cache hors ligne, vérifications et revue des planches). À utiliser dès qu'on demande d'ajouter, d'écrire ou d'illustrer un ou plusieurs livres, une histoire, une fable, un conte, un documentaire animalier, un métier, une fête, une comptine, une histoire de fées ou un livre de sciences.
 ---
 
 # Créer un nouveau livre
@@ -15,9 +15,8 @@ Pour plusieurs livres, faire les étapes 1 à 5 pour chacun, puis les étapes 6
 ## 1. Cadrer le livre
 
 - **Rayon** : un identifiant de `RAYONS` en bas de `livres/catalogue.js`
-  (`sciences`, `animaux`, `histoires`, `comptines`, `feerie`, `fables`,
-  `contes`). En
-  ajouter un seulement si on le demande.
+  (`sciences`, `animaux`, `histoires`, `metiers`, `fetes`, `comptines`,
+  `feerie`, `fables`, `contes`). En ajouter un seulement si on le demande.
 - **Identifiant** : court, minuscules, chiffres et tirets, unique dans
   `livres/` (ex. `ours-gateau`, `lina-aimant`). Le script de dessin
   s'appellera `outils/illustrer/histoires/<id avec soulignés>.py`.
@@ -154,7 +153,14 @@ IMAGES = [
     refaire ombres, phases de Lune, arcs-en-ciel, champs, ondes) ;
   - `animaux.py` : décors et petites bêtes des documentaires animaliers
     (savane, banquise, mare, coupe du sol, plage, mouche, abeille, ver…),
-    `loupe` et schéma en `cycle`.
+    `loupe` et schéma en `cycle` ;
+  - `metiers.py` : tenues et coiffes du rayon « Les métiers », passées à
+    `personne()` par `tenue=` et `coiffe=` ; `pro()` pose un adulte au
+    travail ;
+  - fêtes déjà au catalogue : les textes sont dans `livres_fetes.py`, les
+    dessins dans `fetes.py`, et `creer_livres_fetes.py` réécrit les dix
+    `livre.js` et leurs modules `histoires/`. Une **nouvelle** fête suit le
+    parcours habituel de ce fichier ; ne pas relancer ce script pour elle.
 - Ce qui ne sert qu'à ce livre se dessine dans son propre script. Ne modifier
   un module partagé que par **ajout** (nouvelle fonction ou nouveau paramètre
   avec valeur par défaut) pour ne changer aucun SVG existant.
@@ -224,15 +230,17 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (`"v17"` → `"v18"`), une seule fois
-  par lot de livres.
+- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v26"`, donc
+  `"v26"` → `"v27"`), une seule fois par lot de livres.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux
   (livres, pages, SVG) :
-  - README, section « Dessiner les illustrations » (`N livres, M SVG`) ;
-  - README, exemple de `VERSION` dans « Application installable » ;
+  - README, section « Dessiner les illustrations » (`N livres, M pages, P SVG`) ;
+  - exemples de `VERSION` : README (« Application installable »), `AGENTS.md`
+    et cette compétence (le cran suivant, à partir de la constante de `sw.js`) ;
   - `outils/REVUE-IMAGES.md` : totaux en tête et nouvelle section
     « Ajout du <date> » (livres ajoutés, contrôles faits, nouvelle `VERSION`),
-    sur le modèle des sections précédentes.
+    sur le modèle des sections précédentes. Les entrées déjà écrites ne se
+    réécrivent pas.
 - Si un nouveau rayon a été créé, le citer dans l'introduction du README.
 
 ## 7. Vérifier
@@ -266,7 +274,8 @@ d'images. Contrôler pour chaque page :
 - rien n'est coupé, rien ne déborde, pas de chevauchement disgracieux ;
 - personnages cohérents d'une page à l'autre, adultes et enfants à leur taille ;
 - plans variés, aucune page presque vide, lumières visibles la nuit ;
-- petite bête présente sur toutes les pages pleines, jamais sur un visage ;
+- petite bête présente sur toutes les pages pleines, jamais sur un
+  personnage, une bulle ou un texte ;
 - exactitude scientifique pour le rayon Sciences.
 
 Corriger les scripts, régénérer, revoir. Écrire la planche dans le
@@ -282,8 +291,8 @@ Un commit par lot, message en français à l'infinitif, par exemple :
 Ajouter « Mon beau livre » au rayon Petites histoires
 
 Nouveau livre de 15 pages (illustrations générées par outils/illustrer).
-Le cache hors ligne passe à v16 et les totaux de la documentation sont mis
-à jour (133 livres, 2 201 pages, 1 897 SVG).
+Le cache hors ligne passe à v27. Totaux après ajout, copiés de
+verifier-images.py : N livres, M pages, P SVG.
 ```
 
 Le commit contient : `livres/<id>/` (livre.js et images), le script de
