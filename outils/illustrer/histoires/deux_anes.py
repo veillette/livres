@@ -183,7 +183,7 @@ def p08():
     eau_devant(S, 640)
     S.add(texte(560, 230, "Glouglouglou…", 54, "#1971c2", contour="#fff"))
     S.add(fleche(620, 380, 620, 480, "#e03131"))
-    S.cachette(570, 730, "air")
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -210,7 +210,7 @@ def p10():
     cadichon(S, 540, 740, 1.0, mouillees=True, expr="inquiet", rot=-8)
     eau_devant(S, 630)
     S.add(texte(400, 200, "Ho hisse !", 64, "#2f9e44", contour="#fff"))
-    S.cachette(730, 500, "air")
+    S.cachette(260, 730, "air")
     return S
 
 

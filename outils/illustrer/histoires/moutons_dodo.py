@@ -148,7 +148,7 @@ def p06():
         S.add(perso("mouton", x, 770, 1.0, expr="dort"))
     S.add(texte(400, 240, "On respire…", 56, "#fff3bf"))
     S.add(texte(400, 310, "tout doucement…", 44, "#fff3bf"))
-    S.cachette(560, 640)
+    S.cachette(90, 120, "air")
     return S
 
 
@@ -160,6 +160,7 @@ def p07():
     S.add(mouton_dort(560, 760, 1.4))
     S.add(numero(560, 500, 9))
     S.add(zzz(640, 520, 1.0, "#fff3bf"))
+    S.cachette(90, 120, "air")
     return S
 
 

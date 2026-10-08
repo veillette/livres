@@ -162,6 +162,7 @@ def p09():
     for dx in (-60, -30, 30, 60):
         S.add(roseau(420 + dx, 740, 0.9, penche=dx / 6, visage_=False))
     S.add(texte(400, 180, "Brrr !", 70, "#1864ab", contour="#fff"))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -180,6 +181,7 @@ def p11():
     S.add(cygne(560, 660, 0.9), cygne(680, 740, 0.8, flip=False))
     S.add(cygne(230, 720, 1.0, couleur="#f8f9fa", expr="timide", flip=False))
     S.add(bulle(260, 200, 440, 100, "Ils vont se moquer\nde moi…", 34, pointe=(310, 520)))
+    S.cachette(450, 730, "air")
     return S
 
 

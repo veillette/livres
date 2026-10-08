@@ -293,6 +293,7 @@ def p08():
         S.add(feuille(x, y, 1.0, c, rot=rr))
     S.add(soleil(140, 260, 40, "#ffd43b"))
     S.add(bulle(400, 110, 600, 110, "Nous aussi, nous attendons\nnotre tour !", 38, pointe=(560, 370)))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -335,6 +336,7 @@ def p10():
         S.add(chemin(f"M {400 + dx * 0.6} 600 Q {400 + dx} 640 {400 + dx * 1.4} 680", stroke="#e9d8c4", sw=4))
     S.add(zzz(470, 520, 0.9), zzz(250, 470, 0.8))
     S.add(texte(400, 760, "Sous la neige, les graines dorment au chaud.", 32, "#ffffff"))
+    S.cachette(730, 368)  # sur la neige, pas dans la terre
     return S
 
 
@@ -373,6 +375,7 @@ def p12():
     S.add(perce_neige(420, 740, 2.0))
     S.add(coeur(400, 330, 1.4, "#f783ac"), etincelles(400, 450, 1.0, graine=6, couleur="#ffd43b"))
     S.add(bulle(400, 130, 520, 110, "C'est un perce-neige.\nJe l'ai gardé pour toi !", 36, pointe=(560, 400)))
+    S.cachette(730, 220, "air")
     return S
 
 

@@ -102,9 +102,10 @@ L'essentiel :
   petit poisson sous l'eau) : elle doit être sur **toutes** les pages pleines
   du livre, sinon `generer.py` la retire du livre et l'écrit (`petite bête
   absente : …`) ; compléter avec `S.cachette(x, y)` ou l'outil
-  `retoucher-livre/cachettes.py`. Un personnage dessiné à la main dans un
-  script ajoute `+ occuper(x0, y0, x1, y1)` à son dessin pour que la bête
-  ne s'y pose pas.
+  `retoucher-livre/cachettes.py` (`--verifier` pour contrôler les places).
+  Un personnage dessiné à la main dans un script ajoute `occuper(x0, y0, x1,
+  y1)` à son dessin (repère local) pour que la bête ne s'y pose pas ; une
+  page dans l'espace se met hors du jeu avec `S.cachette(None)`.
 
 Pour revoir et améliorer un livre existant, suivre **`retoucher-livre`**
 ([`.claude/skills/retoucher-livre/SKILL.md`](.claude/skills/retoucher-livre/SKILL.md)).

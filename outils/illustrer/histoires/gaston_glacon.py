@@ -324,7 +324,7 @@ def p15():
     S.add(fleche(590, 520, 460, 330, CHAUD, 7), texte(430, 450, "s'évapore", 30, CHAUD))
     S.add(fleche(530, 250, 700, 500, FROID, 7), texte(700, 340, "se condense", 30, FROID))
     S.add(fleche(540, 680, 250, 680, FROID, 7), texte(395, 720, "gèle", 32, FROID))
-    S.cachette(180, 570, "air")
+    S.cachette(110, 110, "air")
     return S
 
 

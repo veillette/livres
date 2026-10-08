@@ -154,6 +154,7 @@ def p01():
         y = 700 - (k % 2) * 30
         S.add(manchot(x, y, 0.95 - k * 0.06, penche=(-6 if k % 2 else 6), expr="sourire"))
     S.add(g([trait(60 + k * 30, 720, 20 + k * 30, 730, "#d0ebff", 4) for k in range(3)]))
+    S.cachette(730, 320, "air")
     return S
 
 
@@ -170,6 +171,7 @@ def p02():
     S.add(manchot(300, 760, 1.3, expr="chante", bec_ouvert=True))
     S.add(manchot(520, 760, 1.3, flip=True, expr="content"))
     S.add(notes(420, 380, 1.1, "#1971c2"))
+    S.cachette(730, 320, "air")
     return S
 
 

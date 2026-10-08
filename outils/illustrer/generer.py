@@ -88,7 +88,9 @@ def generer(module):
         # la petite bête est un jeu : elle doit être sur toutes les pages
         # pleines du livre, sinon elle n'est sur aucune (S.cachette(x, y)
         # complète une page sans cachette proposée par le décor)
-        pleines = [(nom, S) for nom, S in scenes if S.w >= 600]
+        # (une page peut se mettre hors du jeu avec S.cachette(None) : une
+        # page dans l'espace, où une coccinelle n'a rien à faire)
+        pleines = [(nom, S) for nom, S in scenes if S.w >= 600 and S._cachette is not False]
         sans = [nom for nom, S in pleines if not S._bete(nom)]
         if sans:
             base.BETE_CACHEE[0] = None

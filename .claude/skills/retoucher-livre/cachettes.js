@@ -6,8 +6,10 @@
  *
  *     node cachettes.js pages.json places.json
  *
- * pages.json : [{cle, svg, occupe: [[x0, y0, x1, y1], …], couverture}]
- * places.json : {cle: [x, y] ou null}, en coordonnées de la page 800 × 800.
+ * pages.json : [{cle, svg, occupe: [[x0, y0, x1, y1], …], couverture, point?}]
+ * places.json : {cle: [x, y] ou null}, en coordonnées de la page 800 × 800 ;
+ * avec `point`, {cle: {moy: [r, v, b], ecart}} : mesure sous une bête déjà
+ * placée (mode --verifier de cachettes.py).
  */
 const fs = require("fs");
 const { chromium } = require("playwright");
@@ -15,7 +17,7 @@ const { chromium } = require("playwright");
 const [entree, sortie] = process.argv.slice(2);
 const pages = JSON.parse(fs.readFileSync(entree, "utf8"));
 
-function analyser({ svg, occupe, couverture }) {
+function analyser({ svg, occupe, couverture, point }) {
   return new Promise((resolve) => {
     const W = 800, H = 800;
     const img = new Image();
@@ -42,6 +44,16 @@ function analyser({ svg, occupe, couverture }) {
       }
       const somme = (T, x0, y0, x1, y1) =>
         T[y1 * (W + 1) + x1] - T[y0 * (W + 1) + x1] - T[y1 * (W + 1) + x0] + T[y0 * (W + 1) + x0];
+      if (point) {
+        // mesure seule : couleur moyenne et détail sous la bête déjà placée
+        const [px, py] = point.map(Math.round);
+        const x0 = Math.max(px - 22, 0), y0 = Math.max(py - 16, 0), x1 = Math.min(px + 22, W), y1 = Math.min(py + 16, H);
+        const n = Math.max((x1 - x0) * (y1 - y0), 1);
+        const moy = [0, 1, 2].map((k) => somme(S[k], x0, y0, x1, y1) / n);
+        const ecart = Math.sqrt(Math.max(0, [0, 1, 2].reduce((t, k) => t + somme(Q[k], x0, y0, x1, y1) / n - moy[k] * moy[k], 0) / 3));
+        resolve({ moy, ecart });
+        return;
+      }
       const reserve = (x, y) => occupe.some(([a, b, e, f]) => x > a - 38 && x < e + 38 && y > b - 34 && y < f + 34);
       let meilleur = null;
       for (let cy = couverture ? 320 : 70; cy <= H - 70; cy += 10) {
@@ -49,7 +61,7 @@ function analyser({ svg, occupe, couverture }) {
           if (reserve(cx, cy)) continue;
           const x0 = cx - 26, y0 = cy - 22, x1 = cx + 26, y1 = cy + 22, n = (x1 - x0) * (y1 - y0);
           const moy = [0, 1, 2].map((k) => somme(S[k], x0, y0, x1, y1) / n);
-          const ecart = Math.sqrt([0, 1, 2].reduce((t, k) => t + somme(Q[k], x0, y0, x1, y1) / n - moy[k] * moy[k], 0) / 3);
+          const ecart = Math.sqrt(Math.max(0, [0, 1, 2].reduce((t, k) => t + somme(Q[k], x0, y0, x1, y1) / n - moy[k] * moy[k], 0) / 3));
           if (ecart > 0.05) continue;                               // trop de détails
           const [r, g, b] = moy, haut = Math.max(r, g, b), bas = Math.min(r, g, b);
           if (bas > 0.93 && haut - bas < 0.06) continue;            // blanc (bulle, papier vide)

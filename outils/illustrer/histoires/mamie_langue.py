@@ -167,6 +167,7 @@ def p06():
     S.add(rect(140, 672, 420, 70, "#ff922b", rx=18))
     S.add(avo(640, 790, 1.35, expr="chante", flip=True))
     S.add(notes(500, 380, 1.2, "#e5dbff"), notes(400, 300, 0.9, "#e5dbff"))
+    S.cachette(350, 70, "air")
     return S
 
 

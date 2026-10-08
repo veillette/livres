@@ -104,6 +104,7 @@ def couverture():
     S.add(vache(190, 720, 0.85, flip=True))
     S.add(jeanne(450, 790, 1.85, expr="rire", bras="salut"))
     S.add(coq(660, 790, 0.9, flip=True))
+    S.cachette(70, 420, "air")
     return S
 
 

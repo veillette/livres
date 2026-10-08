@@ -142,6 +142,7 @@ def p04():
     S.add(plume(220, 790, 1.3, lunettes=True, expr="bouche_bee", bras="ouverts", regard=(1, -1)))
     S.add(paillettes(420, 380, 1.0, "#fab005"))
     S.add(texte(560, 430, "Tout est net !", 52, "#1971c2", contour="#fff"))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -187,6 +188,7 @@ def p08():
     S.add(rect(650, 640, 120, 160, "#c68642", rx=6), rect(640, 630, 140, 18, "#a0693a", rx=6))
     S.add(g([cercle(685, 616, 16, "none", stroke=ROUGE, stroke_width=5), cercle(725, 616, 16, "none", stroke=ROUGE, stroke_width=5), trait(700, 616, 710, 616, ROUGE, 4)]))
     S.add(lampe(752, 630, 0.45, allumee=False), zzz(330, 520, 1.0, "#e5dbff"))
+    S.cachette(560, 70, "air")
     return S
 
 

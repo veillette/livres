@@ -10,6 +10,7 @@ import math
 import random
 
 from base import *
+from base import _cachettes_sol
 from base import _assombrir
 from sciences import fleche_courbe
 
@@ -180,6 +181,8 @@ def nenuphar_haut(x, y, s=1.0, fleur_c=None):
 
 def sous_l_eau(S, haut="#a9e34b", bas="#2b8a3e", fond_c="#8d6e4a", y_fond=690, graine=3, plantes=True):
     """Vue sous l'eau d'une mare : eau verte, vase au fond, plantes."""
+    S._decor("eau")
+    _cachettes_sol(S, y_fond, 12)
     S.add(rect(0, 0, S.w, S.h, S.degrade([haut, bas])))
     S.add(rect(0, 0, 800, 36, "#d3f9d8", opacity=0.5))
     S.add(chemin(f"M 0 {y_fond} Q 200 {y_fond - 24} 400 {y_fond} T 800 {y_fond - 10} L 800 800 L 0 800 Z", fond_c))
@@ -210,6 +213,8 @@ def coupe_terre(S, y=300, ciel_=True, graine=4, herbe_c="#69db7c", terre="#a0693
     S.add(rect(0, y, 800, 800 - y, S.degrade([terre, terre2])))
     S.add(chemin(f"M 0 {y + 6} Q 200 {y - 8} 400 {y + 6} T 800 {y} L 800 {y + 26} L 0 {y + 26} Z", "#4a2e16", opacity=0.25))
     S.add(chemin(f"M 0 {y - 10} Q 200 {y - 26} 400 {y - 10} T 800 {y - 16} L 800 {y + 12} L 0 {y + 12} Z", herbe_c))
+    # la petite bête se pose sur l'herbe, jamais dans la terre
+    _cachettes_sol(S, y - 4, dy=0)
     r = random.Random(graine)
     for _ in range(14):
         S.add(ellipse(r.uniform(10, 790), r.uniform(y + 60, 790), r.uniform(8, 22), r.uniform(6, 14),

@@ -283,6 +283,7 @@ def p12():
     S.add(zzz(300, 500, 1.0, "#e5dbff"))
     S.add(etagere(660, 420, 200, "#c68642", g([balle(610, 420, 22, ROUGE), mousse(660, 398, 22), pate(710, 420, 0.65)])))
     S.add(maman(660, 790, 1.0, expr="sourire", bras="bas"))
+    S.cachette(490, 70, "air")
     return S
 
 

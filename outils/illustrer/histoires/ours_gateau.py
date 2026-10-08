@@ -81,6 +81,7 @@ def p03():
     S.add(perso("ours", 680, 720, 1.35, expr="surpris", bras="joues", regard=(-1, 0), **PETIT))
     S.add(perso("ours", 150, 760, 1.6, expr="sourire", bras="hanches", regard=(1, 0), **PAPI))
     S.add(bulle(230, 170, 280, 90, "Pas encore !", 40, pointe=(170, 420)))
+    S.cachette(480, 730, "air")
     return S
 
 
@@ -108,6 +109,7 @@ def p05():
     S.add(perso("ours", 560, 740, 1.5, expr="content", bras="bas", **PETIT))
     S.add(perso("chat", 700, 760, 0.9, expr="miam", bras="bas", regard=(-1, 0), couleur="#868e96"))
     S.add(texte(560, 250, "Mmm…", 60, "#e8590c"))
+    S.cachette(70, 670, "air")
     return S
 
 
@@ -119,6 +121,7 @@ def p06():
                 objet=gateau(0, -10, 0.7, fumee=True) + gants_four(-64, -70, 1.1) + gants_four(64, -70, 1.1)))
     S.add(perso("ours", 130, 760, 1.2, expr="bouche_bee", bras="haut", regard=(1, 0), **PETIT))
     S.add(texte(620, 200, "DING !", 90, "#fa5252", contour="#fff", rot=8))
+    S.cachette(260, 70, "air")
     return S
 
 

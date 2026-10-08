@@ -195,6 +195,7 @@ def p07():
     S.add(ines(320, 800, 1.45, expr="concentre", bras="hanches", regard=(1, 0)))
     S.add(leon(470, 800, 1.15, expr="inquiet", bras="montre", regard=(1, -0.5)))
     S.add(texte(400, 160, "Rouge… bleu… jaune…", 40, MARINE, contour="#fff"))
+    S.cachette(730, 160, "air")
     return S
 
 

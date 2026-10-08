@@ -207,6 +207,7 @@ def p09():
     S.add(rect(214, 578, 10, 13, "#ffffff", rx=3, stroke="#adb5bd", stroke_width=2))
     S.add(texte(500, 470, "chut…", 44, "#fff3bf", contour="#3b2a7a"))
     S.add(zzz(160, 470, 1.0, "#e5dbff"))
+    S.cachette(70, 670, "air")
     return S
 
 

@@ -121,7 +121,7 @@ def p07():
     S.add(perso("lapin", 610, 770, 1.6, expr="rire", bras="ouverts", regard=(-1, 0), **VOISINE))
     S.add(perso("chat", 190, 770, 1.5, expr="fier", bras="bas", regard=(1, 0), **MOKA))
     S.add(bulle(380, 150, 560, 100, "Merci, Moka ! On peut\ntoujours compter sur toi.", 32, pointe=(560, 330)))
-    S.cachette(730, 330, "air")
+    S.cachette(370, 730, "air")
     return S
 
 

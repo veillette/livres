@@ -92,6 +92,7 @@ def p01():
     S.add(porte(680, 590, 140, 300, "#b5835a", ouverte=True))
     S.add(perso("castor", 680, 760, 1.6, expr="surpris", bras="bas", regard=(-1, 0), **MAMAN))
     S.add(bulle(300, 150, 380, 90, "Où est Doudou ?", 42, pointe=(260, 400)))
+    S.cachette(290, 70, "air")
     return S
 
 

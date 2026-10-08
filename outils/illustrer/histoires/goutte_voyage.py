@@ -151,7 +151,6 @@ def p06():
     S.add(goutte_perso(540, 580, 0.7, expr="rire", couleur="#74c0fc"))
     S.add(plic(140, 280, 0.9, expr="sourire", regard=(1, 1)))
     S.add(bulle(560, 90, 280, 80, "Au revoir !", 38, pointe=(560, 520)))
-    S.cachette(70, 350, "air")
     return S
 
 

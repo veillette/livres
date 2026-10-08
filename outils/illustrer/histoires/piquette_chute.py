@@ -118,7 +118,7 @@ def p04():
         x2, y2 = cx + (R + 150) * math.sin(ra + 0.5), cy - (R + 150) * math.cos(ra + 0.5)
         x3, y3 = cx + (R + 60) * math.sin(ra + 0.5), cy - (R + 60) * math.cos(ra + 0.5)
         S.add(fleche(x2, y2, x3, y3, "#ffe066", 5))
-    S.cachette(670, 70, "air")
+    S.cachette(None)  # dans l'espace : la coccinelle reste sur Terre
     return S
 
 
@@ -166,6 +166,7 @@ def p07():
         S.add(g([marteau(gx - 10, yy, 1.0), plume(dx_ + 10, yy, 1.1)], opacity=op))
         S.add(trait(gx - 60, yy, dx_ + 60, yy, "#ffe066", 2, stroke_dasharray="6 8", opacity=0.6))
     S.add(texte(400, 160, "ensemble !", 60, "#ffe066"))
+    S.cachette(None)  # dans l'espace : la coccinelle reste sur Terre
     return S
 
 
@@ -304,7 +305,7 @@ def p15():
     S.add(fleche(mx, my, mx + (cx - mx) * 0.4, my + (cy - my) * 0.4, "#b197fc", 7))
     S.add(boule_eclairee(mx, my, 40, "#e9ecef", "#0b1433", 180))
     S.add(texte(mx - tx * 190 + 40, my - ty * 190, "vitesse", 32, "#ffe066"), texte(mx - 50, my + 130, "gravité", 32, "#b197fc"))
-    S.cachette(670, 70, "air")
+    S.cachette(None)  # dans l'espace : la coccinelle reste sur Terre
     return S
 
 

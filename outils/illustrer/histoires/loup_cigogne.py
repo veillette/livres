@@ -154,7 +154,7 @@ def p13():
     S.add(perso("ours", 470, 760, 1.1, expr="fache", bras="croises"))
     S.add(loup(680, 760, 1.0, expr="triste", bras="bas", regard=(-1, 0)))
     S.add(cigogne(110, 600, 0.5, expr="sourire", flip=True))
-    S.cachette(215, 775)
+    S.cachette(730, 490, "air")
     return S
 
 

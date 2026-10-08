@@ -77,6 +77,7 @@ def p02():
     S.add(lapin(160, 720, 0.75, expr="surpris"), herisson(250, 730, 0.7, expr="surpris"), gribouille(80, 730, 0.8, expr="surpris"))
     S.add(praline(330, 440, 0.8, expr="malin", bras="haut"))
     S.add(texte(620, 200, "Moi d'abord !", 60, "#e64980", contour="#fff"))
+    S.cachette(70, 440, "air")
     return S
 
 

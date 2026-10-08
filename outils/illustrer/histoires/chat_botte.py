@@ -154,6 +154,7 @@ def p08():
     S.add(jean(200, 790, 1.35, beau=True, expr="fier", bras="salut"))
     S.add(princesse_(380, 790, 1.15, expr="timide", bras="joues"))
     S.add(coeur(300, 330, 1.2))
+    S.cachette(730, 410, "air")
     return S
 
 

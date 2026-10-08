@@ -214,6 +214,7 @@ def p09():
     S.add(personne(120, 780, 1.1, expr="rire", bras="porte", objet=pain(0, -76, 0.6), **NINO))
     S.add(personne(680, 780, 1.1, expr="rire", bras="porte", objet=bol_soupe(0, -70, 0.7, fumee_=False), **LUCIE))
     S.add(zaza(400, 580, 0.9, expr="rire", bras="ouverts"))
+    S.cachette(730, 240, "air")
     return S
 
 

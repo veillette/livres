@@ -110,6 +110,7 @@ def couverture():
     savane(S, 600)
     S.add(elephant(330, 740, 1.15, expr="content", trompe="bas"))
     S.add(elephant(560, 760, 0.55, bebe=True, expr="rire", trompe="haut"))
+    S.cachette(90, 200, "air")
     return S
 
 

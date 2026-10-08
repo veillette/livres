@@ -141,30 +141,41 @@ S.dessus(bulle(560, 150, 420, 100, "C'est pour mieux\nte voir !", 32,
 ## 6. La petite bête cachée
 
 Une coccinelle se cache sur chaque page pleine : les petits la cherchent.
-Selon la page, elle est posée (sol, plancher, mur, branche), en vol
-(`"air"` : ciel, mur, schéma), ou remplacée par une étoile de mer sur le
-sable (`"eau"`) et par un petit poisson en pleine eau (`"air"` sous l'eau).
+Selon la page, elle est posée (sol, plancher, mur, branche, herbe d'une
+coupe du sol), en vol (`"air"` : ciel, mur, schéma), une étoile de mer sur
+le sable de la mer (`"eau"`) ou un petit poisson en pleine eau
+(`"poisson"`, et d'office sous l'eau : au fond d'une mare, le « sol »
+devient un poisson qui nage juste au-dessus).
 
-- Les décors qui reçoivent la Scene (`sol`, `interieur`, `piece`, `ocean`)
-  proposent des cachettes au pied des côtés ; à défaut, un sol tracé à la
-  main (aplat ou chemin qui couvre toute la largeur jusqu'en bas, hors eau
-  bleue) en sert. La bête prend la cachette libre la plus proche d'un bord,
-  puis, si tout le bord est pris, une place plus bas, devant les pieds.
-- **Jamais sur un personnage, une bulle ou un texte** : `perso`, `personne`,
-  `oiseau`, `chouette`, `escargot`, `tortue`, `dragon`, `licorne`, `corbeau`,
-  `coq`, `cigogne`, `bulle`, `pensee` et `texte` ajoutent à leur dessin un
-  repère invisible `occuper(x0, y0, x1, y1)`, lu à travers les `place()` et
-  les cadrages. **Un personnage dessiné à la main dans un script doit faire
-  de même** : `return place(m, x, y, s) + occuper(x - 90 * s, y - 200 * s,
-  x + 90 * s, y)` (coordonnées de l'appelant).
+- Les décors qui reçoivent la Scene (`sol`, `interieur`, `piece`, `ocean`,
+  `sous_l_eau`, `coupe_terre`) proposent des cachettes au pied des côtés ;
+  à défaut, un sol tracé à la main (aplat ou chemin qui couvre toute la
+  largeur jusqu'en bas, hors eau bleue claire ou sombre) en sert. La bête
+  prend la cachette libre la plus proche d'un bord, puis, si tout le bord
+  est pris, une place plus bas, devant les pieds.
+- **Jamais sur un personnage, une bulle ou un texte** : `perso` (selon
+  l'espèce et la pose), `personne`, `oiseau`, `chouette`, `escargot`,
+  `tortue`, `dragon`, `licorne`, `corbeau`, `coq`, `cigogne`, cheval, âne et
+  cerf de profil, `pot_parlant`, `bonhomme_pain_epice`, `cygne`, `crabe`,
+  `poulpe`, `pingouin`, `glacon`, `chaudron`, `bulle`, `pensee` et `texte`
+  ajoutent à leur dessin un repère invisible `occuper(x0, y0, x1, y1)`, lu
+  à travers les `place()` et les cadrages. **Un personnage dessiné à la
+  main dans un script doit faire de même**, dans son repère local (mesurer
+  son étendue plutôt que la deviner) : `return place(m + [occuper(-90,
+  -200, 90, 0)], x, y, s, flip=flip)`.
+- Jamais **invisible ni absurde** : pas sur du rouge (camion de pompier,
+  tambour, feu), pas posée dans l'eau, pas en vol dans la terre ni dans
+  l'espace. `retoucher-livre/cachettes.py --verifier` repère les trois
+  premiers cas sur l'image rendue ; les autres se voient sur la planche.
 - C'est **tout ou rien** : s'il manque une page, `generer.py` retire la bête
   du livre et écrit `petite bête absente : pas de cachette sur …`. Compléter
   avec `S.cachette(x, y)` (pieds de la bête, coordonnées de la scène),
-  `S.cachette(x, y, "air")` (centre, en vol) ou `S.cachette(x, y, "eau")` ;
+  `S.cachette(x, y, "air")` (centre, en vol), `"eau"` ou `"poisson"` ;
   l'outil `retoucher-livre/cachettes.py` propose ces places d'après l'image.
-- `CACHE = "souris"` dans un script change d'animal ; `CACHE = None` la
-  retire (seulement si elle n'a aucun sens dans le livre : *Sacha et les
-  planètes* se passe dans l'espace).
+- Une page où une coccinelle n'a rien à faire (dans l'espace) se met hors du
+  jeu avec `S.cachette(None)` et un commentaire ; `CACHE = None` retire la
+  bête d'un livre entier (*Sacha chez les planètes*, tout dans l'espace) ;
+  `CACHE = "souris"` change d'animal.
 
 ## 7. Vérifier
 

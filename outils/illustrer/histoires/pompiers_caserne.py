@@ -138,6 +138,7 @@ def p01():
     S.add(camion_pompiers(420, 700, 1.25))
     S.add(maelle(120, 790, 1.4, expr="concentre", bras="montre", regard=(1, -0.3)))
     S.add(eclat(720, 380, 0.6, "#ffd43b"))
+    S.cachette(70, 390, "air")
     return S
 
 
@@ -177,6 +178,7 @@ def p04():
     S.add(mouvement(150, 640, 1.4), mouvement(130, 690, 1.2))
     S.add(texte(560, 300, "Pin-pon !", 70, ROUGE, contour="#fff", rot=-6))
     S.add(camion(80, 580, 0.9, "#4dabf7"), camion(720, 580, 0.9, "#fab005"))
+    S.cachette(670, 70, "air")
     return S
 
 

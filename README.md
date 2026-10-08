@@ -44,7 +44,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (par exemple `"v24"` → `"v25"`) pour que le nouveau livre et les
+  en haut de `sw.js` (par exemple `"v25"` → `"v26"`) pour que le nouveau livre et les
   nouvelles images soient aussi disponibles hors ligne. Les fichiers inchangés
   sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -233,17 +233,20 @@ générées par un petit outil Python, sans aucune dépendance, dans
   point de la scène ;
 - petite bête cachée : une coccinelle se cache sur chaque page pleine, posée
   sur une cachette libre proposée par le décor (`sol`, `interieur`, `piece`,
-  `ocean`, ou un sol tracé à la main), en vol là où il n'y a pas de sol, une
-  étoile de mer sur le sable et un petit poisson en pleine eau. Elle ne se
-  pose jamais sur un personnage, une bulle ou un texte : ceux-ci ajoutent à
-  leur dessin un repère invisible `occuper()`, lu à travers les `place()` et
-  les cadrages. `S.cachette(x, y[, "air" | "eau"])` impose la place,
-  `CACHE = None` dans un script la retire (seul *Sacha et les planètes*, qui
-  se passe dans l'espace, n'en a pas). Elle n'apparaît que dans les livres où
-  elle est sur toutes les pages : `generer.py` signale les pages qui
-  manquent, `.claude/skills/retoucher-livre/cachettes.py` leur propose une
-  place d'après l'image rendue et `planche_cachettes.py` en fait une planche
-  de revue ;
+  `ocean`, `sous_l_eau`, `coupe_terre`, ou un sol tracé à la main), en vol là
+  où il n'y a pas de sol ; une étoile de mer sur le sable de la mer et un
+  petit poisson en pleine eau la remplacent. Elle ne se pose jamais sur un
+  personnage, une bulle ou un texte : ceux-ci ajoutent à leur dessin un
+  repère invisible `occuper()`, lu à travers les `place()` et les cadrages.
+  `S.cachette(x, y[, "air" | "eau" | "poisson"])` impose la place,
+  `S.cachette(None)` met une page hors du jeu (une page dans l'espace),
+  `CACHE = None` dans un script retire la bête d'un livre (*Sacha chez
+  les planètes*). Elle n'apparaît que dans les livres où elle est sur toutes les
+  pages : `generer.py` signale les pages qui manquent ;
+  `.claude/skills/retoucher-livre/cachettes.py` leur propose une place
+  d'après l'image rendue et, avec `--verifier`, déplace les bêtes posées sur
+  du rouge, dans l'eau ou sur un personnage ; `planche_cachettes.py` en fait
+  une planche de revue ;
 - intérieurs au caractère marqué : `piece(S, style)` (`chaumiere`, `manoir`,
   `chateau`, `chambre`, `cuisine`) ; le papier peint d'`interieur(papier=…)`
   change d'un livre à l'autre (`rayures`, `pois`, `fleurs`, `losanges`,

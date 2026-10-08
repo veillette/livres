@@ -129,6 +129,7 @@ def p07():
     S.add(perso("ours", 380, 740, 1.1, expr="dort"))
     S.add(escargot(170, 770, 1.4, expr="sourire", **LEON))
     S.add(bulle(560, 330, 330, 80, "Tu as tout raté !", 32, pointe=(540, 460)))
+    S.cachette(730, 470, "air")
     return S
 
 

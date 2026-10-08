@@ -70,8 +70,9 @@ La bête n'apparaît dans un livre que si elle est sur **toutes** ses pages
 pleines ; `generer.py` nomme les pages qui manquent. Parcours :
 
 ```sh
-python3 .claude/skills/retoucher-livre/cachettes.py <id>             # propose une place par page
-python3 .claude/skills/retoucher-livre/cachettes.py --ecrire <id>    # l'écrit dans le script
+python3 .claude/skills/retoucher-livre/cachettes.py <id>                       # propose une place par page
+python3 .claude/skills/retoucher-livre/cachettes.py --ecrire <id>              # l'écrit dans le script
+python3 .claude/skills/retoucher-livre/cachettes.py --verifier --ecrire <id>   # contrôle les places prises
 python3 outils/illustrer/generer.py <id>
 python3 .claude/skills/retoucher-livre/planche_cachettes.py /chemin/scratchpad/bete-<id>.html <id>
 ```
@@ -82,13 +83,18 @@ python3 .claude/skills/retoucher-livre/planche_cachettes.py /chemin/scratchpad/b
   `return S` de la fonction de la page (coordonnées de la scène, cadrage
   compris). Une page fabriquée par une fonction partagée ou sans
   `return S`, ou une page toute blanche (schéma), se complète à la main.
+- `--verifier` mesure l'image sous chaque bête déjà placée et la déplace
+  (en remplaçant le `S.cachette` éventuel) si elle est sur du rouge, posée
+  dans l'eau, sur un objet très détaillé ou dans une zone réservée.
 - `planche_cachettes.py` montre un gros plan centré sur la bête de chaque
   page (cercle pointillé), 48 par capture : vérifier qu'elle est posée sur
   un support plausible ou en vol, visible, jamais sur un personnage, une
-  bulle ou un texte.
-- Bête sur un personnage dessiné à la main : ajouter `+ occuper(…)` au
-  dessin du personnage dans le script (corrige toutes ses pages), sinon
-  `S.cachette()` sur la page.
+  bulle ou un texte, ni en vol dans la terre ou dans l'espace.
+- Bête sur un personnage dessiné à la main : ajouter `+ [occuper(…)]` au
+  dessin du personnage dans le script, dans son repère local (corrige
+  toutes ses pages), sinon `S.cachette()` sur la page. Coupe du sol :
+  poser les cachettes sur l'herbe (`_cachettes_sol(S, y_herbe, dy=0)`).
+  Page dans l'espace : `S.cachette(None)` la met hors du jeu.
 
 ## 5. Vérifier que les autres livres n'ont pas changé
 

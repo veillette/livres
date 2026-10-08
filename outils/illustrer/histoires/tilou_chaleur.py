@@ -171,6 +171,7 @@ def p05():
     S.add(assiette(280, 625, 1.3), glacon_cube(280, 630, 1.0))
     S.add(mitaine(510, 590, 1.0, "#e03131"), glacon_cube(510, 560, 0.5))
     S.add(pensee(260, 200, 60, texte(260, 225, "?", 70, "#7048e8"), depuis=(150, 420)))
+    S.cachette(350, 730, "air")
     return S
 
 

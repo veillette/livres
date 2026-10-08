@@ -287,6 +287,7 @@ def p16():
     S.add(cercle(300, 260, 26, "#ffd43b"))
     S.add(boule_eclairee(430, 260, 70, "#1c7ed6", "#141c3a", 180))
     S.add(cercle(410, 240, 22, "#51cf66"), cercle(455, 285, 18, "#51cf66", opacity=0.5))
+    S.cachette(490, 70, "air")
     return S
 
 

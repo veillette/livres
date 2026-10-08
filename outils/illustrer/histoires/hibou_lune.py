@@ -40,6 +40,7 @@ def couverture():
     S.add(lune_phase(430, 360, 190, 1.0))
     branche(S, 640, -20, 700)
     S.add(petit_hibou(400, 640, 1.9, expr="content", ailes="bas"))
+    S.cachette(670, 730, "air")
     return S
 
 
@@ -62,13 +63,16 @@ def page_phase(graine, eclairee, croissante, expr, regard=(0.6, -1), extra=None,
 
 
 def p01():
-    return page_phase(1, 1.0, True, "content", regard=(1, -1))
+    S = page_phase(1, 1.0, True, "content", regard=(1, -1))
+    S.cachette(670, 730, "air")
+    return S
 
 
 def p02():
     # gibbeuse décroissante : il manque un morceau à droite
     S = page_phase(2, 0.8, False, "surpris", regard=(1, -1))
     S.add(texte(250, 150, "?", 110, "#ffe066", contour="#141c3a"))
+    S.cachette(670, 730, "air")
     return S
 
 
@@ -77,12 +81,14 @@ def p03():
     S = page_phase(3, 0.5, False, "inquiet", regard=(1, 0))
     S.add(chauve_souris(620, 470, 1.3, expr="rire", regard=(-1, 0)))
     S.add(bulle(620, 620, 250, 80, "Mais non !", 40, pointe=(620, 520)))
+    S.cachette(670, 730, "air")
     return S
 
 
 def p04():
     # fin croissant décroissant, éclairé à gauche (il se voit à l'aube)
     S = page_phase(4, 0.13, False, "triste", regard=(1, -1))
+    S.cachette(670, 730, "air")
     return S
 
 
@@ -92,6 +98,7 @@ def p05():
     decor(S, 5, "#070b1c", "#1b2348", nb=90)
     branche(S, 610, -20, 620)
     S.add(petit_hibou(360, 610, 1.9, expr="surpris", regard=(0, -1)))
+    S.cachette(670, 730, "air")
     return S
 
 
@@ -118,6 +125,7 @@ def p06():
     branche(S, 700, -20, 760)
     S.add(chouette(580, 700, 1.5, expr="sourire", regard=(-1, 0), ailes="ouvertes", **MAMIE))
     S.add(petit_hibou(260, 700, 1.25, expr="bouche_bee", regard=(1, -1)))
+    S.cachette(70, 660, "air")
     return S
 
 
@@ -138,12 +146,14 @@ def p07():
     S.add(rect(0, 690, 800, 110, "#0c1229"))
     branche(S)
     S.add(petit_hibou(300, 610, 1.7, expr="rire", regard=(1, -0.5)))
+    S.cachette(670, 730, "air")
     return S
 
 
 def p08():
     S = page_phase(8, 1.0, True, "rire", regard=(1, -1), lune_xy=(560, 230), lune_r=130)
     S.add(chouette(120, 612, 1.1, expr="content", **MAMIE))
+    S.cachette(670, 730, "air")
     return S
 
 

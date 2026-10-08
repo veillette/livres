@@ -275,7 +275,7 @@ def p08():
     S.add(panier(160, 790, 1.0, "galette"))
     S.add(nina(330, 780, 1.3, expr="timide", bras="donne", regard=(1, 0), objet=galette(84, -100, 0.9)))
     S.add(bulle(400, 100, 560, 90, "Tu veux partager notre goûter ?", 34, pointe=(360, 400)))
-    S.cachette(730, 410, "air")
+    S.cachette(70, 410, "air")
     return S
 
 

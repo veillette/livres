@@ -262,6 +262,7 @@ def p10():
     S.add(rect(150, 652, 410, 70, "#7048e8", rx=18))
     S.add(g([etoile5(240 + k * 70, 686, 9, "#fff3bf") for k in range(5)]))
     S.add(zzz(330, 480, 1.1, "#e5dbff"))
+    S.cachette(480, 70, "air")
     return S
 
 

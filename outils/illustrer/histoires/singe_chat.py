@@ -84,6 +84,7 @@ def p04():
     S.add(bertrand(170, 780, 1.25, expr="malin", bras="montre", regard=(1, 0)))
     S.add(raton(640, 780, 1.15, expr="surpris", bras="bas", regard=(-1, 0)))
     S.add(bulle(380, 120, 640, 140, "Toi qui as de si belles pattes,\nsi adroites… tire-les du feu !", 32, pointe=(200, 420)))
+    S.cachette(80, 420, "air")  # pas dans le feu
     return S
 
 
@@ -175,6 +176,7 @@ def p13():
     S.add(pince(714, 600, 0.9, rot=-30))
     S.add(bulle(250, 110, 420, 100, "Toi qui as de si\nbelles pattes…", 30, pointe=(190, 400)))
     S.add(bulle(580, 260, 400, 110, "Non merci ! Prenons\nla pince, et partageons.", 28, pointe=(620, 450)))
+    S.cachette(80, 420, "air")  # pas dans le feu
     return S
 
 

@@ -141,6 +141,7 @@ def p12():
         S.add(perso("grenouille", 70 + k * 73, 560 - (k % 2) * 20, 0.38, expr="dort"))
     S.add(nenuphar(400, 700, 3.2, "#ffc9de"))
     S.add(zzz(560, 380, 1.1, "#fff3bf"))
+    S.cachette(70, 660, "air")
     return S
 
 

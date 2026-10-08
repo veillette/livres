@@ -104,6 +104,7 @@ def p03():
     S.add(canard(470, 700, 1.3, expr="rire", **CANARD1))
     S.add(canard(640, 720, 1.2, expr="content", flip=True, **CANARD2))
     S.add(bulle(520, 160, 440, 110, "Nous partons voir\nle vaste monde !", 34, pointe=(520, 520)))
+    S.cachette(740, 330, "air")
     return S
 
 
@@ -114,6 +115,7 @@ def p04():
     S.add(canard(560, 710, 1.1, expr="surpris", flip=True, **CANARD1))
     S.add(canard(700, 730, 1.0, expr="surpris", flip=True, **CANARD2))
     S.add(bulle(330, 150, 460, 110, "Emmenez-moi !\nMais je ne sais pas voler…", 32, pointe=(380, 520)))
+    S.cachette(740, 330, "air")
     return S
 
 
@@ -125,6 +127,7 @@ def p05():
     S.add(canard_(470, 700, 1.1, 0, expr="rire"))
     S.add(canard_(660, 700, 1.1, 1, expr="malin", flip=True))
     S.add(bulle(560, 170, 400, 90, "Nous avons une idée !", 34, pointe=(560, 540)))
+    S.cachette(740, 330, "air")
     return S
 
 

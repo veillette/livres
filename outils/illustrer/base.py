@@ -570,8 +570,8 @@ class Scene:
                 arret = re.search(r'stop-color="(#[0-9a-fA-F]{3,6})"', defn)
                 remp = arret.group(1) if arret else ""
             tsl = _tsl(remp) if remp.startswith("#") else None
-            if tsl and 0.5 <= tsl[0] <= 0.68 and tsl[1] > 0.55 and luminance(remp) > 0.3:
-                continue          # eau bleue (mer, lac) : pas un sol
+            if tsl and 0.5 <= tsl[0] <= 0.68 and tsl[1] > 0.4:
+                continue          # eau bleue, claire ou sombre (mer, lac) : pas un sol
             if e.startswith("<rect"):
                 x, y = float(_valeur(e, "x") or 0), float(_valeur(e, "y") or 0)
                 w, h = float(_valeur(e, "width") or 0), float(_valeur(e, "height") or 0)
@@ -623,6 +623,9 @@ class Scene:
             flip = x > self.w / 2
         if s is None:
             s = 1.0 / (self.cadre[0] if self.cadre else 1.0) ** 0.5
+        if self.moment == "eau" and nature in (None, "sol"):
+            # au fond de l'eau, pas de coccinelle : un petit poisson nage au-dessus
+            nature, y = "poisson", y - 40 * s
         return x, y, nature, s, flip
 
     def _bete(self, nom_fichier):
@@ -774,10 +777,13 @@ def sol(S, y, couleur="#8ce99a", bosse=18, couleur2=None, y2=None, premier=True)
         premier_plan_sol(S, devant, haut + bosse, graine=int(haut) + 3)
 
 
-def _cachettes_sol(S, y, bosse=0, plinthe=False, nature="sol"):
-    """Cachettes de la petite bête : au pied des côtés du sol (ou du mur)."""
+def _cachettes_sol(S, y, bosse=0, plinthe=False, nature="sol", dy=None):
+    """Cachettes de la petite bête : au pied des côtés du sol (ou du mur).
+    dy : distance sous `y` (par défaut un peu en avant, au premier plan ;
+    0 pour poser la bête sur la ligne même, l'herbe d'une coupe du sol)."""
     e = S.w / 800
-    dy = 14 * e if plinthe else min(34 * e, (S.h - y) * 0.45)
+    if dy is None:
+        dy = 14 * e if plinthe else min(34 * e, (S.h - y) * 0.45)
     if S.h - y - dy < 24 * e:
         return
     for x in (64, 736, 150, 650, 250, 550, 340, 460):

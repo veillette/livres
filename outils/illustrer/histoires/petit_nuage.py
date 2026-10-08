@@ -168,6 +168,7 @@ def p08():
     S.add(maison(150, 720, 0.6, "#495057", "#343a40", lumiere=True))
     S.add(nuage_perso(400, 400, 2.0, "#e5dbff", expr="dort", ombre="#b197fc"))
     S.add(zzz(560, 300, 1.3, "#e5dbff"))
+    S.cachette(90, 120, "air")
     return S
 
 

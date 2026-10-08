@@ -199,6 +199,7 @@ def p08():
     S.add(voisine)
     S.add(texte(620, 300, "boum, boum…", 40, "#495057", contour="#fff", poids=600))
     S.add(texte(200, 300, "BOUM !", 60, "#e03131", contour="#fff"))
+    S.cachette(350, 730, "air")
     return S
 
 
@@ -228,7 +229,7 @@ def p10():
     S.add(astronaute(320, 600, 1.0, expr="content", bras="salut"))
     S.add(ding(560, 270, 0.9, expr="triste", ondes_=False, regard=(-1, 1)))
     S.add(texte(400, 90, "… silence …", 50, "#ced4da", poids=600))
-    S.cachette(670, 70, "air")
+    S.cachette(None)  # dans l'espace : la coccinelle reste sur Terre
     return S
 
 

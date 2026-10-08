@@ -84,6 +84,7 @@ def couverture():
     S.add(pipistrelle(380, 430, 2.4, expr="rire"))
     S.add(ondes(500, 420, 30, 3, 30, -10, 60, "#fff3bf", 5))
     S.add(papillon_nuit(690, 330, 1.0, 20))
+    S.cachette(410, 730, "air")
     return S
 
 

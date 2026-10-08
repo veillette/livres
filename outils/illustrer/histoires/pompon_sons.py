@@ -192,6 +192,7 @@ def p09():
     S.add(goutte(460, 630, 1.0, "#a5d8ff"), goutte(490, 620, 0.8, "#a5d8ff"))
     S.add(pompon(120, 700, 1.3, expr="rire", bras="salut", regard=(1, 1)))
     S.add(texte(560, 230, "Plouf !", 80, "#1c7ed6", contour="#fff"))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -285,6 +286,7 @@ def p16():
     S.add(perso("souris", 570, 740, 1.0, expr="rire", bras="haut", **SOURIS))
     S.add(perso("ours", 690, 740, 1.2, expr="chante", bras="ouverts"))
     S.add(notes(300, 200, 1.3, "#ffe066"), notes(520, 260, 1.1, "#ffe066"))
+    S.cachette(240, 330, "air")  # pas sur le tambour rouge
     return S
 
 

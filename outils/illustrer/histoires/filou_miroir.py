@@ -309,6 +309,7 @@ def p15():
     S.add(filou(265, 555, 0.85, expr="content", bras="guidon", flip=True))
     S.add(rect(345, 590, 20, 26, "#fa5252", rx=4), eclat(355, 603, 0.9, "#ffa8a8"))
     S.add(fleche(380, 575, 640, 575, "#ff8787", 5))
+    S.cachette(400, 730, "air")
     return S
 
 

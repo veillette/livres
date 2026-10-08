@@ -263,6 +263,7 @@ def p11():
     S.add(theo(360, 770, 0.95, expr="rire", bras="tient", objet=lampe_poche(68, -146, 0.6, rot=-20)))
     S.add(lili(470, 770, 0.8, expr="rire", bras="bouche"))
     S.add(texte(400, 250, "Ohé !", 64, "#ffe066", contour="#3b2a7a"))
+    S.cachette(480, 70, "air")
     return S
 
 

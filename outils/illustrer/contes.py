@@ -8,6 +8,7 @@ Mêmes conventions que `base.py` : page de 800 × 800, personnages dessinés de
 face, les pieds en (0, 0) et la tête vers y = -150.
 """
 from base import *
+from base import _etendue_pose
 from base import EXPRESSIONS, _assombrir
 from objets import *
 from fantastique import *
@@ -150,7 +151,8 @@ def bonhomme_pain_epice(x, y, s=1.0, expr="rire", bras="haut", flip=False, rot=0
     m.append(ellipse(-26, -136, 8, 5, "#ff8787", opacity=0.7) + ellipse(26, -136, 8, 5, "#ff8787", opacity=0.7))
     m.append(place(oeil(-16, 0, ys, regard) + oeil(16, 0, ys, regard) + sourcils(16, 0, ss), 0, -158))
     m.append(bouche(0, -132, bs, 0.9))
-    return place(m + [occuper(-80, -202, 80, 0)], x, y, s, flip=flip, rot=rot)
+    # place réservée : corps, tête et mains de la pose (bras épais de 34)
+    return place(m + [occuper(*_etendue_pose(-80, 80, -202, (mg, md), 0))], x, y, s, flip=flip, rot=rot)
 
 
 def cygne(x, y, s=1.0, expr="sourire", flip=False, nage=True, couleur="#ffffff", ailes="bas", regard=(1, 0)):
@@ -733,7 +735,8 @@ def carrosse(x, y, s=1.0, cheval_=True, couleur="#ff922b"):
         for a in range(0, 180, 30):
             r = math.radians(a)
             m.append(trait(wx - math.cos(r) * 40, -40 - math.sin(r) * 40, wx + math.cos(r) * 40, -40 + math.sin(r) * 40, OR, 3))
-    return place(m, x, y, s)
+    # place réservée : caisse, roues et cheval (s'il est attelé)
+    return place(m + [occuper(-132, -300, 398 if cheval_ else 140, 2)], x, y, s)
 
 
 def pantoufle_verre(x, y, s=1.0, rot=0, brille=True):

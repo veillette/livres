@@ -153,6 +153,7 @@ def p06():
     S.add(cigale(400, 750, 1.6, expr="triste", bras="calin", larmes=False))
     S.add(texte(620, 300, "Brrr !", 64, "#4263eb", contour="#fff"))
     S.add(rafales(160, 330, 1.0, "#ffffff"))
+    S.cachette(660, 70, "air")
     return S
 
 

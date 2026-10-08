@@ -248,6 +248,7 @@ def p04():
     S.add(dauphin(560, 600, 0.9, expr="surpris", flip=True, rot=-10))
     S.add(ondine(220, 750, 1.1, expr="surpris", bras="bas", regard=(1, -1)))
     S.add(bulle(560, 440, 440, 100, "Une barque est perdue\nlà-haut !", 34, pointe=(600, 540)))
+    S.cachette(510, 730, "air")
     return S
 
 
@@ -283,6 +284,7 @@ def p07():
     vagues_devant(S, 590, "#1d3f6e", amp=44, longueur=200, ecume=ECUME)
     S.add(texte(190, 330, "Trop grand !", 52, "#fff", contour="#1b2559"))
     S.add(texte(190, 395, "Trop fort !", 52, "#fff", contour="#1b2559"))
+    S.cachette(500, 730, "air")
     return S
 
 
@@ -295,6 +297,7 @@ def p08():
     vagues_devant(S, 560, "#1d3f6e", amp=34, longueur=200, decal=40, ecume=ECUME)
     S.add(bulle(220, 170, 320, 90, "Je suis là !", 44, pointe=(190, 380)))
     S.add(bulle(560, 120, 330, 90, "Une sirène !", 44, pointe=(480, 240)))
+    S.cachette(400, 730, "air")
     return S
 
 
@@ -308,6 +311,7 @@ def p09():
     S.add(ondine(170, 740, 1.3, expr="joie", bras="montre", flip=False))
     vagues_devant(S, 620, "#1d3f6e", amp=26, longueur=220, ecume=ECUME, opacity=0.85)
     S.add(bulle(250, 160, 440, 90, "Méduses, allumez-vous !", 36, pointe=(200, 420)))
+    S.cachette(610, 730, "air")
     return S
 
 
@@ -324,6 +328,7 @@ def p10():
     for k, (mx, my) in enumerate([(120, 700), (330, 720), (560, 700)]):
         S.add(meduse(mx, my, 0.5, ["#fcc2d7", "#99e9f2", "#d0bfff"][k], graine=k))
     S.add(texte(400, 170, "Une nageoire après l'autre !", 46, "#fff", contour="#1b2559"))
+    S.cachette(400, 730, "air")
     return S
 
 
