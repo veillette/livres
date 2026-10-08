@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v25`).
+2 492 illustrations SVG** (cache hors ligne `v26`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -505,3 +505,16 @@ dans Chromium ; `cachettes.py --tous --verifier` ne signale plus que trois
 fausses alertes (bête au pied d'un sapin enneigé, *L'étoile de Noël*) ; régénération
 déterministe ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
 cache hors ligne passe à `v25`.
+
+## Retouche du 8 octobre 2026 : lumières de la nuit
+
+Aucun livre ajouté : **185 livres, 2 900 pages et 2 492 SVG**. Deux images
+reprises sans modifier les autres livres :
+
+- *La chouette qui vole sans bruit*, page « La chasse » : trois plans de
+  prairie, épis éclairés par la lune et lueur froide au-dessus de l'herbe.
+- *Le boulanger de la nuit*, page « La nuit » : vitrine avec croisillons,
+  profondeur, reflets et pains visibles derrière la vitre ; la lumière chaude
+  continue sur la façade et le trottoir.
+
+Descriptions des deux pages mises à jour. Le cache hors ligne passe à `v26`.

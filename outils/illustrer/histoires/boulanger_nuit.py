@@ -109,12 +109,22 @@ def p01():
     S.add(rect(260, 300, 280, 300, "#ffe8cc"), poly([(240, 305), (400, 210), (560, 305)], "#e8590c"))
     S.add(rect(240, 300, 320, 50, "#d9480f"), texte(400, 336, "BOULANGERIE", 30, "#fff"))
     S.add(rect(0, 600, 800, 200, "#3b4a7a"))
-    S.add(rect(280, 380, 120, 140, "#ffe066", stroke="#fff", stroke_width=6))
-    # dans la vitrine éclairée, des étagères déjà garnies de pains
+    # La vitrine montre l'intérieur du fournil, avec ses étagères et ses
+    # croisillons ; la lumière déborde sur le mur et le trottoir.
+    S.add(rect(272, 372, 136, 156, "#a0522d", rx=5),
+          rect(280, 380, 120, 140, radial([(0, "#fff4c2"), (1, "#f9c76c")]), rx=2))
+    for yy in (390, 415, 440, 465, 490):
+        S.add(trait(263, yy, 273, yy - 3, "#f7d9a8", 3, opacity=0.5),
+              trait(408, yy - 3, 420, yy, "#f7d9a8", 3, opacity=0.5))
+    # Dans la vitrine éclairée, des étagères déjà garnies de pains.
     for yy in (430, 490):
         S.add(rect(286, yy, 108, 6, "#c68642"))
         for k in range(3):
             S.add(ellipse(306 + k * 34, yy - 9, 14, 9, "#e8a15c"))
+    S.add(rect(334, 380, 7, 140, "#fff4e6"), rect(280, 446, 120, 7, "#fff4e6"),
+          poly([(288, 382), (300, 382), (291, 519), (282, 519)], "#ffffff", opacity=0.28),
+          rect(276, 376, 128, 148, "none", stroke="#fff4e6", stroke_width=6),
+          rect(264, 524, 152, 12, "#f1d3ac", rx=3))
     S.add(rect(430, 400, 80, 200, "#a0522d"))
     S.add(poly([(280, 600), (400, 600), (450, 720), (230, 720)], "#ffe066", opacity=0.3))
     # la seule lumière de la rue : la vitrine éclaire le trottoir

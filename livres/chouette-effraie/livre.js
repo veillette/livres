@@ -47,7 +47,7 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/07-la-chasse.svg",
-      description: "L'effraie descend du ciel, pattes tendues, vers un campagnol dans l'herbe.",
+      description: "Sous la pleine lune, l'effraie descend, pattes tendues, vers un campagnol dans les hautes herbes éclairées d'argent.",
       texte: "Elle descend sans bruit, les pattes en avant, et attrape le campagnol avec ses griffes. Elle l'avale tout entier, d'un coup.",
     },
     {

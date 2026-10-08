@@ -239,13 +239,23 @@ def p07():
     nuit(S, "#1c2a52", "#4c5b9a")
     etoiles(S, 30, 9, (0, 0, 800, 420))
     S.add(lune(300, 230, 95))
-    S.add(rect(0, 600, 800, 200, "#2b3a2f"))
+    # Plusieurs rangs d'herbe conduisent le regard vers le campagnol ; la
+    # pleine lune révèle quelques épis au lieu d'un seul aplat sombre.
+    S.add(chemin("M 0 605 Q 170 575 330 602 Q 520 565 800 600 L 800 800 L 0 800 Z", "#344b43"))
+    S.add(chemin("M 0 675 Q 180 640 380 674 Q 620 625 800 660 L 800 800 L 0 800 Z", "#293f35"))
+    S.add(chemin("M 0 745 Q 240 700 440 738 Q 640 690 800 730 L 800 800 L 0 800 Z", "#20352c"))
+    S.add(ellipse(385, 652, 320, 62, radial([(0, "#b5cbe2", 0.3), (1, "#b5cbe2", 0)])))
     r = random.Random(7)
-    for _ in range(46):
-        x0, y0 = r.uniform(0, 800), r.uniform(612, 800)
-        k = 0.7 + (y0 - 600) / 160
+    for _ in range(78):
+        x0, y0 = r.uniform(0, 800), r.uniform(605, 800)
+        k = 0.55 + (y0 - 600) / 190
+        teinte = "#91ada6" if 175 < x0 < 555 and y0 < 705 else ("#527763" if y0 < 705 else "#365543")
         S.add(chemin(f"M {n(x0)} {n(y0)} l {n(-6 * k)} {n(-30 * k)} M {n(x0)} {n(y0)} l 0 {n(-36 * k)} M {n(x0)} {n(y0)} l {n(6 * k)} {n(-28 * k)}",
-                     stroke="#3d5a40", sw=4))
+                     stroke=teinte, sw=3.5 * k))
+    for x0, y0 in ((115, 680), (235, 718), (485, 663), (735, 702)):
+        S.add(chemin(f"M {x0} {y0 + 65} Q {x0 + 12} {y0 + 25} {x0} {y0}", stroke="#789887", sw=3),
+              ellipse(x0, y0, 8, 16, "#b6c9bb", rot=-15))
+    S.lumiere(370, 640, 330, "#a9c8e5", 0.18, ry=95)
     S.add(effraie_vol(330, 330, 1.25, rot=14, expr="concentre", serres=True))
     S.add(chemin("M 120 120 L 200 200 M 90 180 L 160 250 M 170 80 L 240 150", stroke="#ffffff", sw=4, opacity=0.5))
     S.add(souris_champs(590, 700, 1.7, flip=True))

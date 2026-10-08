@@ -17,7 +17,7 @@ Bibliotheque.ajouter({
 
     {
       image: "images/01-la-nuit.svg",
-      description: "La nuit, sous la lune et les étoiles, toutes les maisons dorment ; seule la boulangerie a sa fenêtre allumée.",
+      description: "La nuit, sous la lune et les étoiles, toutes les maisons dorment ; la vitrine de la boulangerie montre ses pains et éclaire le trottoir.",
       texte: "La nuit, toute la rue dort. Chut !\n\nPourtant, une fenêtre est allumée : c'est la boulangerie de Bastien.",
     },
     {
