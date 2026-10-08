@@ -145,6 +145,7 @@ def p02():
     S.add(etiquette(630, 130, "fourrure", 30, "#1098ad"))
     S.add(etiquette(640, 470, "peau noire", 30, "#343a40"))
     S.add(etiquette(640, 510, "graisse", 30, "#e67700"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -158,6 +159,7 @@ def p03():
     S.add(chemin("M 0 410 q 25 -10 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0",
                  stroke="#d0ebff", sw=6))
     S.add(g([cercle(250 + k * 30, 420, 8, "#ffffff", opacity=0.8) for k in range(4)]))
+    S.cachette(70, 670, "poisson")
     return S
 
 
@@ -202,6 +204,7 @@ def p07():
     S.add(ours_blanc(430, 650, 0.85, expr="concentre", couche=True))
     S.add(g([cercle(700 + k * 16, 300 - k * 20, 10 + k * 2, "#ffffff", stroke="#dee2e6", stroke_width=2) for k in range(4)]))
     S.add(texte(250, 160, "Une maison de neige", 44, "#1098ad", contour="#fff"))
+    S.cachette(280, 730, "air")
     return S
 
 
@@ -213,6 +216,7 @@ def p08():
     S.add(place(g([ellipse(0, 0, 26, 18, "#fffaf0"), cercle(20, -6, 12, "#fffaf0"), oeil(22, -8, "fermes", taille=0.5)]), 500, 640))
     S.add(place(g([ellipse(0, 0, 26, 18, "#fffaf0"), cercle(20, -6, 12, "#fffaf0"), oeil(22, -8, "fermes", taille=0.5)]), 550, 646))
     S.add(coeur(420, 420, 1.3, "#ff8787"))
+    S.cachette(70, 140, "air")
     return S
 
 

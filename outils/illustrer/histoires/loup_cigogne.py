@@ -64,6 +64,7 @@ def p03():
     S.add(loup(380, 760, 1.5, expr="oups", bras="tete", rot=-6))
     S.add(mouvement(250, 580, 1.0), mouvement(560, 580, 1.0, rot=180))
     S.add(texte(600, 270, "Kof ! Kof !", 54, "#e8590c", contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 

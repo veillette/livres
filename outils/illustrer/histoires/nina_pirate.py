@@ -160,6 +160,7 @@ def couverture():
     S.add(bateau(620, 600, 0.6, equipage=g([barnabe(-100, -130, 0.8), biscotte(170, -130, 0.7)])))
     S.add(nina(280, 780, 1.55, expr="rire", bras="tient", objet=carte(112, -150, 0.5, rot=-10)))
     S.add(coco(282, 395, 0.6, expr="rire", flip=True))
+    S.cachette(70, 530, "air")
     return S
 
 
@@ -203,6 +204,7 @@ def p03():
         biscotte(190, -130, 0.75, expr="content")])))
     S.add(coco(150, 220, 0.6, ailes="haut", expr="rire"))
     S.add(bulle(560, 70, 400, 80, "Cap sur le trésor !", 36, pointe=(470, 300)))
+    S.cachette(730, 530, "air")
     return S
 
 
@@ -234,6 +236,7 @@ def p05():
     S.add(coco(520, 300, 0.85, ailes="ouvertes", expr="concentre", regard=(1, -1)))
     S.add(mouvement(430, 300, 1.0, rot=0))
     S.add(texte(220, 120, "Ma carte !", 50, "#fff", contour="#1864ab"))
+    S.cachette(730, 570, "air")
     return S
 
 
@@ -246,6 +249,7 @@ def p06():
     S.add(nina(250, 780, 1.2, expr="surpris", bras="bas", regard=(1, 0)))
     S.add(coco(110, 680, 0.6, expr="sourire"))
     S.add(bulle(560, 160, 320, 90, "Miaou ! C'est ici !", 32, pointe=(580, 450)))
+    S.cachette(70, 580, "air")
     return S
 
 
@@ -258,6 +262,7 @@ def p07():
     S.add(nina(170, 780, 1.25, expr="timide", bras="joues", regard=(1, 0)))
     S.add(coco(150, 470, 0.6, expr="oups"))
     S.add(bulle(400, 100, 640, 120, "Clac ! Clac ! Ce trésor est à moi,\nrien qu'à moi !", 34, pointe=(520, 280)))
+    S.cachette(70, 410, "air")
     return S
 
 
@@ -270,6 +275,7 @@ def p08():
     S.add(panier(160, 790, 1.0, "galette"))
     S.add(nina(330, 780, 1.3, expr="timide", bras="donne", regard=(1, 0), objet=galette(84, -100, 0.9)))
     S.add(bulle(400, 100, 560, 90, "Tu veux partager notre goûter ?", 34, pointe=(360, 400)))
+    S.cachette(730, 410, "air")
     return S
 
 
@@ -282,6 +288,7 @@ def p09():
     S.add(galette(560, 660, 1.4))
     S.add(nina(260, 620, 1.0, expr="rire", bras="haut"))
     S.add(bulle(500, 110, 560, 120, "Personne n'avait jamais\nrien partagé avec moi !", 34, pointe=(560, 420)))
+    S.cachette(70, 590, "air")
     return S
 
 
@@ -296,6 +303,7 @@ def p10():
     S.add(biscotte(290, 790, 0.7, expr="sourire", regard=(1, 0)))
     S.add(coco(140, 470, 0.6, expr="sourire", ailes="haut"))
     S.add(texte(400, 110, "Rien qu'à… ?", 56, "#fff", contour="#e03131"))
+    S.cachette(70, 220, "air")
     return S
 
 
@@ -313,6 +321,7 @@ def p11():
     S.add(coco(620, 300, 0.7, expr="rire", ailes="haut"))
     S.add(couronne_objet(620, 226, 0.5))
     S.add(bulle(330, 100, 420, 90, "À nous ! À nous !", 40, pointe=(560, 230)))
+    S.cachette(730, 410, "air")
     return S
 
 
@@ -327,6 +336,7 @@ def p12():
     S.add(crabe(695, 790, 0.85, CRABE, expr="rire"))
     S.add(coco(400, 360, 0.6, expr="chante", ailes="haut"))
     S.add(notes(480, 330, 1.0, "#fff"), coeur(320, 300, 1.0), coeur(560, 250, 0.8, "#ff8787"))
+    S.cachette(70, 420, "air")
     return S
 
 

@@ -150,7 +150,7 @@ def bonhomme_pain_epice(x, y, s=1.0, expr="rire", bras="haut", flip=False, rot=0
     m.append(ellipse(-26, -136, 8, 5, "#ff8787", opacity=0.7) + ellipse(26, -136, 8, 5, "#ff8787", opacity=0.7))
     m.append(place(oeil(-16, 0, ys, regard) + oeil(16, 0, ys, regard) + sourcils(16, 0, ss), 0, -158))
     m.append(bouche(0, -132, bs, 0.9))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(m + [occuper(-80, -202, 80, 0)], x, y, s, flip=flip, rot=rot)
 
 
 def cygne(x, y, s=1.0, expr="sourire", flip=False, nage=True, couleur="#ffffff", ailes="bas", regard=(1, 0)):
@@ -171,7 +171,7 @@ def cygne(x, y, s=1.0, expr="sourire", flip=False, nage=True, couleur="#ffffff",
         m.append(chemin("M -90 -50 Q -40 -90 30 -40 Q -20 -10 -90 -20 Z", ombre_c))
     if nage:
         m.append(ellipse(-30, 8, 130, 10, "#fff", opacity=0.5))
-    return place(m, x, y, s, flip=flip)
+    return place(m + [occuper(-160, -208, 164, 18)], x, y, s, flip=flip)
 
 
 def poule_rousse(x, y, s=1.0, **k):

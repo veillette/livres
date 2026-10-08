@@ -107,6 +107,7 @@ def p02():
     S.add(g([trait(560 + k * 20, 150 + k * 30, 430, 280, "#fcc419", 4, opacity=0.6) for k in range(3)]))
     S.add(texte(560, 520, "Oh, la lumière !", 40, "#ffffff", contour="#6d4424"))
     S.add(fleche(400, 360, 400, 460, "#ffffff", 6, 22))
+    S.cachette(70, 350, "air")
     return S
 
 
@@ -161,6 +162,7 @@ def p06():
         S.add(goutte(160 + k * 30, 380 + k * 30, 0.7, "#74c0fc"))
     S.add(ver_long("M 380 520 Q 430 560 460 620", (466, 634), 70, "content", ep=22))
     S.add(texte(400, 150, "De l'air et de l'eau !", 46, "#1971c2", contour="#fff"))
+    S.cachette(730, 350, "air")
     return S
 
 
@@ -172,6 +174,7 @@ def p07():
     S.add(galerie("M 200 560 Q 400 480 600 560", 50))
     S.add(ver_long("M 240 550 Q 400 480 560 550", (566, 552), 20, "content", ep=32, anneau=(470, 520)))
     S.add(texte(400, 700, "Ma peau doit rester humide.", 34, "#ffffff", contour="#5c3a1e"))
+    S.cachette(730, 390, "air")
     return S
 
 

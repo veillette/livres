@@ -141,6 +141,7 @@ def p10():
     S.add(chemin("M -40 800 Q 400 520 840 800 Z", "#2b8a3e"))
     S.add(nora(400, 740, 1.2, expr="bouche_bee", bras="porte", regard=(0, -1),
                objet=etoile_perso(0, -58, 30, expr="dort", halo=False, eteinte=True)))
+    S.cachette(70, 600, "air")
     return S
 
 
@@ -154,6 +155,7 @@ def p11():
     S.add(chemin("M -40 800 Q 400 560 840 800 Z", "#2b8a3e"))
     S.add(nora(250, 760, 1.2, expr="content", bras="salut", regard=(1, -1)))
     S.add(bulle(210, 240, 300, 90, "Merci, Nora !", 40, pointe=(420, 380)))
+    S.cachette(70, 600, "air")
     return S
 
 

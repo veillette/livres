@@ -112,6 +112,7 @@ def p03():
     S.add(trait(400, 280, 470, 440, "#495057", 4, stroke_dasharray="10 10"))
     S.add(noe(170, 780, 1.1, expr="bouche_bee", regard=(1, -1)))
     S.add(texte(300, 90, "de l'eau !", 64, "#1c7ed6", contour="#fff"))
+    S.cachette(360, 730, "air")
     return S
 
 
@@ -124,6 +125,7 @@ def p04():
     S.add(fleche(400, 400, 500, 400, "#1c7ed6", 9, 26))
     S.add(goutte_perso(640, 470, 1.3, couleur="#339af0", expr="content"))
     S.add(texte(640, 560, "1 goutte de pluie", 32, "#1c7ed6"))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -148,6 +150,7 @@ def p06():
             S.add(baignoire(110 + col * 145, 200 + ligne * 115, 0.8))
     S.add(texte(400, 100, "des milliers de baignoires !", 46, "#1c7ed6"))
     S.add(texte(400, 770, "… et encore, et encore…", 34, "#495057", poids=600))
+    S.cachette(660, 730, "air")
     return S
 
 
@@ -172,6 +175,7 @@ def p08():
         for col in range(10):
             S.add(elephant(85 + col * 70, 340 + ligne * 47, 0.22, expr="content"))
     S.add(texte(400, 160, "100", 90, "#4c6ef5", contour="#fff"))
+    S.cachette(660, 70, "air")
     return S
 
 

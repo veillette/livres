@@ -33,6 +33,7 @@ def couverture():
     S.add(oiseau(420, 520, 2.0, expr="chante", bec_ouvert=True, ailes="ouvertes", **PINSON))
     S.add(texte(420, 680, "POUÊT !", 80, "#e03131", contour="#fff", rot=-6))
     S.add(oiseau(200, 500, 1.0, expr="rire", **MESANGE), oiseau(660, 690, 1.0, expr="rire", flip=True, **COUCOU))
+    S.cachette(70, 610, "air")
     return S
 
 
@@ -50,6 +51,7 @@ def p01():
     S.add(texte(660, 170, "Cui-cui !", 36, "#2b8a3e", contour="#fff"), texte(160, 380, "Tuit-tuit !", 36, "#2b8a3e", contour="#fff"))
     S.add(oiseau(560, 692, 1.8, expr="chante", bec_ouvert=True, ailes="ouvertes", **PINSON))
     S.add(pouet(600, 400, 64))
+    S.cachette(70, 610, "air")
     return S
 
 
@@ -61,6 +63,7 @@ def p02():
     S.add(oiseau(560, 692, 1.8, expr="timide", **PINSON))
     for x, y in [(560, 160), (230, 380), (720, 170)]:
         S.add(texte(x, y, "Hi hi hi !", 32, "#2b8a3e", contour="#fff"))
+    S.cachette(730, 610, "air")
     return S
 
 
@@ -71,6 +74,7 @@ def p03():
     S.add(texte(220, 300, "Tuu-tuuu…", 40, "#495057", contour="#fff"))
     S.add(oiseau(600, 290, 1.3, expr="chante", bec_ouvert=True, flip=True, **PINSON))
     S.add(pouet(600, 130, 56))
+    S.cachette(730, 610, "air")
     return S
 
 
@@ -83,6 +87,7 @@ def p04():
     S.add(texte(210, 290, "Hou… POUÊT !", 36, "#e03131", contour="#fff"))
     S.add(oiseau(540, 692, 1.7, expr="oups", bec_ouvert=True, **PINSON))
     S.add(texte(560, 430, "Encore raté !", 44, "#495057", contour="#fff"))
+    S.cachette(730, 610, "air")
     return S
 
 
@@ -93,6 +98,7 @@ def p05():
     S.add(chemin("M 440 440 Q 560 560 680 440 Q 700 500 560 530 Q 420 500 440 440 Z", "#a0693a"))
     for k in range(8):
         S.add(trait(450 + k * 30, 460 + (k % 2) * 10, 470 + k * 30, 500, "#6b4226", 3))
+    S.cachette(530, 730, "air")
     return S
 
 
@@ -111,6 +117,7 @@ def p06():
     brouillard(S, 9, 0.5)
     S.add(oiseau(620, 290, 1.1, expr="inquiet", flip=True, **MERLE))
     S.add(texte(620, 150, "Petit Merle ?", 36, "#495057", contour="#fff"))
+    S.cachette(730, 590, "air")
     return S
 
 
@@ -124,6 +131,7 @@ def p07():
     S.add(pouet(600, 400, 66))
     S.add(oiseau(160, 520, 0.8, expr="joie", ailes="haut", **PETIT_MERLE))
     S.add(poly([(250, 520), (230, 505), (230, 535)], "#868e96"))
+    S.cachette(110, 70, "air")
     return S
 
 
@@ -135,6 +143,7 @@ def p08():
     S.add(oiseau(560, 692, 1.8, expr="rire", bec_ouvert=True, ailes="ouvertes", **PINSON))
     S.add(texte(400, 130, "POUÊT ! POUÊT !", 64, "#e03131", contour="#fff", rot=-4))
     S.add(notes(640, 420, 1.0, "#e03131"), notes(150, 360, 0.8, "#e03131"))
+    S.cachette(70, 610, "air")
     return S
 
 

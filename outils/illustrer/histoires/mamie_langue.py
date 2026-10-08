@@ -85,6 +85,7 @@ def couverture():
     S.add(avo(500, 780, 1.75, expr="rire", bras="calin", flip=True))
     S.add(nora(300, 780, 1.45, expr="rire", bras="calin", regard=(1, -1)))
     S.add(coeur(400, 420, 1.3, "#ff6b6b"))
+    S.cachette(730, 400, "air")
     return S
 
 
@@ -113,6 +114,7 @@ def p02():
     S.add(nora(270, 780, 1.05, expr="timide", bras="bouche", regard=(1, 0)))
     S.add(bulle(560, 260, 400, 80, "Olá, minha querida !", 36, pointe=(560, 440)))
     S.add(texte(290, 450, "?", 80, "#e8590c", contour="#fff"))
+    S.cachette(730, 340, "air")
     return S
 
 
@@ -177,6 +179,7 @@ def p07():
     S.add(texte(400, 260, "chat", 56, "#1971c2", contour="#fff"))
     S.add(texte(230, 360, "cat", 48, "#2f9e44", contour="#fff", rot=-6))
     S.add(texte(570, 360, "gato", 48, "#c2255c", contour="#fff", rot=6))
+    S.cachette(250, 70, "air")
     return S
 
 
@@ -189,6 +192,7 @@ def p08():
     S.add(personne(160, 770, 1.1, peau="claire", cheveux="blond", coiffure="courts", habit="#4dabf7", robe=False, expr="content", regard=(1, 0)))
     S.add(personne(650, 770, 1.1, peau="foncee", cheveux="noir", coiffure="tresses", habit="#9775fa", robe=True, expr="content", flip=True, regard=(-1, 0)))
     S.add(notes(560, 470, 0.9, "#e8590c"))
+    S.cachette(70, 260, "air")
     return S
 
 

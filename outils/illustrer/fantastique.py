@@ -10,7 +10,7 @@ face, les pieds en (0, 0) et la tête vers y = -150.
                    acc=("couronne",), expr="rire", bras="haut"))
 """
 from base import *
-from base import POSES, COUDES, DEVANT_VISAGE, EXPRESSIONS, INCLINE, PAS_POSE, PENCHE, _bras, _main, _assombrir, _cachettes_sol
+from base import POSES, COUDES, DEVANT_VISAGE, EXPRESSIONS, INCLINE, PAS_POSE, PENCHE, _bras, _main, _assombrir, _cachettes_sol, _etendue_pose
 
 PEAUX = {
     "claire": "#fbd9bd",
@@ -495,7 +495,10 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     dessin = avec_contour(m, s)
     if (OMBRE_SOL[0] if ombre is None else ombre) and not rot and not sirene:
         dessin = ombre_sol(incline * 0.8, -3, 52 * lx) + dessin
-    occuper(x - 80 * lx * s, y - (112 * ly + 125 * kh) * s * (sy or 1), x + 80 * lx * s, y + 8 * s)
+    # place réservée, dans le repère du personnage (suit miroir, rotation, échelle)
+    large = 110 if (ailes or cape) else 0
+    dessin += occuper(*_etendue_pose(min(-80 * lx, -large), max(88 * lx, large), COU * ly - 125 * kh,
+                                     (main_g, main_d), 30 if robe and not sirene else 16))
     return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
 
 
@@ -645,8 +648,8 @@ def dragon(x=0, y=0, s=1.0, couleur="#69db7c", ventre="#d8f5a2", expr="sourire",
     m.append(bouche(0, -116, bs, 1.1))
     if devant:
         m.append(bras_svg + mains_svg)
-    occuper(x - 110 * s, y - 270 * s, x + 110 * s, y)
-    return place(m, x, y, s, flip=flip, rot=rot)
+    zone = occuper(x - 110 * s, y - 270 * s, x + 110 * s, y)
+    return place(m, x, y, s, flip=flip, rot=rot) + zone
 
 
 def dragon_vol(x, y, s=1.0, couleur="#69db7c", ventre="#d8f5a2", flip=False, expr="sourire"):
@@ -737,8 +740,8 @@ def licorne(x=0, y=0, s=1.0, robe="#ffffff", criniere=ARC_EN_CIEL, expr="sourire
     if larmes:
         m.append(goutte(118, -196, 0.8, "#74c0fc"))
     m.append(place(bouche(0, 0, bs, 0.6), 150, -180))
-    occuper(x - 150 * s, y - 270 * s, x + 150 * s, y + 90 * s)
-    return place(m, x, y, s, flip=flip, rot=rot)
+    zone = occuper(x - 150 * s, y - 270 * s, x + 150 * s, y + 90 * s)
+    return place(m, x, y, s, flip=flip, rot=rot) + zone
 
 
 def etoile_perso(x, y, r=60, couleur=OR, expr="sourire", halo=True, rot=0, larmes=False, eteinte=False):
@@ -781,7 +784,7 @@ def poulpe(x, y, s=1.0, couleur="#f783ac", expr="sourire", regard=(0, 0)):
     m.append(oeil(-24, -86, ys, regard, sclere=True) + oeil(24, -86, ys, regard, sclere=True))
     m.append(sourcils(24, -86, ss))
     m.append(bouche(0, -62, bs))
-    return place(m, x, y, s)
+    return place(m + [occuper(-122, -170, 125, 58)], x, y, s)
 
 
 def crabe(x, y, s=1.0, couleur="#ff6b6b", expr="sourire", pinces_haut=True):
@@ -804,7 +807,7 @@ def crabe(x, y, s=1.0, couleur="#ff6b6b", expr="sourire", pinces_haut=True):
             m.append(cercle(sgn * 20, -92, 6, ENCRE))
     m.append(bouche(0, -26, bs, 0.9))
     m.append(ellipse(-34, -26, 8, 5, ROSE, opacity=0.8) + ellipse(34, -26, 8, 5, ROSE, opacity=0.8))
-    return place(m, x, y, s)
+    return place(m + [occuper(-95, -140, 95, 16)], x, y, s)
 
 
 def pie(x, y, s=1.0, expr="malin", flip=False, ailes="bas", objet=None, regard=(0, 0)):
@@ -956,7 +959,7 @@ def chaudron(x, y, s=1.0, contenu="#8ce99a", fumee=True, feu=True, bulles_=True)
     if bulles_:
         m += [cercle(-40, -156, 9, eclaircir(contenu, 0.4)), cercle(20, -152, 12, eclaircir(contenu, 0.4)), cercle(56, -158, 7, eclaircir(contenu, 0.4))]
     m.append(chemin("M -80 -110 Q -70 -60 -40 -50", stroke="#868e96", sw=5, opacity=0.6))
-    return place(m, x, y, s)
+    return place(m + [occuper(-112, -200, 112, 26)], x, y, s)
 
 
 def echelle(x, y, s=1.0, h=400, rot=0, couleur="#c68642"):

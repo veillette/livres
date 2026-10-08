@@ -60,6 +60,7 @@ def couverture():
     S.add(enfant_("sami", 610, 790, 1.0, expr="rire", bras="tete"))
     S.add(enfant_("jade", 730, 800, 0.85, expr="rire", bras="salut", flip=True))
     S.add(gros_mot(420, 330, "Clap !", "#e64980", 100))
+    S.cachette(730, 470, "air")
     return S
 
 
@@ -83,6 +84,7 @@ def p02():
     S.add(enfant_("malo", 400, 760, 1.55, expr="joie", bras="large"))
     S.add(mouvement(330, 760, 1.0, rot=90), mouvement(480, 760, 1.0, rot=90))
     S.add(gros_mot(170, 600, "Tap !", "#1c7ed6", 76), gros_mot(640, 620, "Tap !", "#1c7ed6", 76, rot=8))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -130,6 +132,7 @@ def p07():
     S.add(enfant_("ines", 330, 790, 1.5, expr="oups", bras="calin"))
     S.add(gros_mot(600, 520, "Glouglou !", "#0c8599", 64, rot=-8))
     S.add(pomme(620, 250, 1.4), pain(690, 330, 1.0))
+    S.cachette(490, 730, "air")
     return S
 
 
@@ -152,6 +155,7 @@ def p09():
     S.add(enfant_("jade", 720, 790, 0.95, expr="rire", bras="salut", rot=10))
     S.add(notes(180, 280, 1.2, "#e64980"), notes(560, 240, 1.2, "#7048e8"))
     S.add(gros_mot(400, 160, "On danse !", "#f08c00", 76))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -165,6 +169,7 @@ def p10():
         S.add(coussin(x, 740, c))
         S.add(enfant_(qui, x, 740, 0.75, expr="dort", bras="calin"))
     S.add(zzz(360, 420, 1.2, "#e5dbff"))
+    S.cachette(70, 140, "air")
     return S
 
 

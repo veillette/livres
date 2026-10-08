@@ -81,6 +81,7 @@ def couverture():
         S.add(coeur(80 + (k * 173) % 640, 300 + (k * 67) % 200, 0.5, "#99e9f2"))
     S.add(adam(270, 780, 1.6, expr="rire", bras="calin"))
     S.add(malo(530, 780, 1.6, expr="content", bras="tient", regard=(-1, 0), objet=carte(68, -146, 0.75, "train")))
+    S.cachette(730, 350, "air")
     return S
 
 
@@ -98,6 +99,7 @@ def p01():
     S.add(personne(600, 790, 1.45, **MAITRESSE, expr="content", bras="montre", flip=True, regard=(-1, 0)))
     S.add(malo(400, 780, 1.2, expr="timide", regard=(0, 1)))
     S.add(adam(160, 780, 1.15, expr="surpris", regard=(1, 0)))
+    S.cachette(70, 260, "air")
     return S
 
 

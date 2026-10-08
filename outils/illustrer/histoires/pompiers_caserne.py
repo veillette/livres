@@ -254,6 +254,7 @@ def p09():
                                                     (470, "foncee", "noir", "courts", "#ffd43b")]):
         S.add(petit(x, 790, 0.9, peau=peau, cheveux=ch, coiffure=coif, habit=hab, expr="bouche_bee" if k % 2 else "sourire",
                     regard=(1, -0.6)))
+    S.cachette(520, 70, "air")
     return S
 
 
@@ -268,6 +269,7 @@ def p10():
     S.add(maelle(650, 790, 1.4, expr="rire", bras="hanches"))
     S.add(karim(100, 790, 1.4, expr="content", bras="salut"))
     S.add(texte(400, 120, "Pin-pon !", 64, ROUGE, contour="#fff"))
+    S.cachette(70, 390, "air")
     return S
 
 

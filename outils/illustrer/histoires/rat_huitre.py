@@ -31,7 +31,7 @@ def huitre(x, y, s=1.0, ouverture=0, rot=0, perle_=False, brille=False, contour=
     haut = chemin("M -80 -26 Q -60 -60 0 -62 Q 70 -64 86 -30 Q 40 -40 0 -36 Q -50 -38 -80 -26 Z", "#b5a896", **({"stroke": contour, "sw": 6} if contour else {}))
     m.append(place([place([haut, g([chemin(f"M {-50 + k * 24} -40 q 8 -8 4 -18", stroke=COQUILLE2, sw=3) for k in range(5)])], 80, 26)],
                    -80, -26, rot=-ouverture))
-    return place(m, x, y, s, rot=rot)
+    return place(m + [occuper(-81, -62, 87, 9)], x, y, s, rot=rot)
 
 
 def huitre_nez(x, y, s=1.0, rot=0):
@@ -195,6 +195,7 @@ def p11():
     S.add(bulles_eau(260, 560, 1.0))
     S.add(place(rat(0, 0, 1.2, expr="rire", bras="haut"), 560, 660, rot=14))
     S.add(texte(560, 230, "Libre !", 84, "#2f9e44", contour="#fff"))
+    S.cachette(430, 730, "air")
     return S
 
 

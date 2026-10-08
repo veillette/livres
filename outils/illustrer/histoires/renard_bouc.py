@@ -34,6 +34,7 @@ def couverture():
     dans_le_puits(S)
     S.add(bouc(400, 790, 1.25, expr="bouche_bee", bras="haut", regard=(0, -1)))
     S.add(renard(400, 790 - 250 * 1.25, 0.75, expr="malin", bras="haut", regard=(0, -1)))
+    S.cachette(220, 730, "air")
     return S
 
 
@@ -76,6 +77,7 @@ def p04():
     S.add(renard(280, 740, 1.3, expr="miam", bras="porte", objet=goutte(0, -80, 1.2, "#74c0fc")))
     S.add(bouc(530, 740, 1.3, expr="miam", bras="porte", objet=goutte(0, -80, 1.2, "#74c0fc")))
     S.add(texte(400, 260, "Glou glou glou !", 50, "#a5d8ff"))
+    S.cachette(120, 730, "air")
     return S
 
 
@@ -85,6 +87,7 @@ def p05():
     S.add(renard(270, 740, 1.3, expr="neutre", bras="bas", regard=(0, -1)))
     S.add(bouc(530, 740, 1.3, expr="inquiet", bras="bas", regard=(0, -1)))
     S.add(bulle(560, 250, 380, 100, "Comment on sort ?", 36, pointe=(540, 430)))
+    S.cachette(120, 730, "air")
     return S
 
 
@@ -94,6 +97,7 @@ def p06():
     S.add(renard(270, 740, 1.35, expr="malin", bras="montre", regard=(1, 0)))
     S.add(bouc(560, 740, 1.3, expr="surpris", bras="bas", regard=(-1, 0)))
     S.add(bulle(300, 230, 420, 110, "J'ai une idée !\nLève tes cornes !", 36, pointe=(270, 450)))
+    S.cachette(110, 730, "air")
     return S
 
 
@@ -104,6 +108,7 @@ def p07():
     S.add(bouc(560, 740, 1.3, expr="surpris", bras="bas", regard=(-1, 0)))
     S.add(bulle(300, 220, 460, 120, "Je grimpe, je sors,\net je te tire dehors !", 34, pointe=(250, 460)))
     S.add(fleche(560, 360, 560, 190, "#fff", 8, 22))
+    S.cachette(100, 730, "air")
     return S
 
 
@@ -113,6 +118,7 @@ def p08():
     S.add(renard(270, 740, 1.3, expr="malin", bras="hanches"))
     S.add(bouc(540, 740, 1.4, expr="rire", bras="joues", regard=(-1, 0)))
     S.add(bulle(520, 220, 420, 100, "Quelle bonne idée !", 38, pointe=(540, 420)))
+    S.cachette(120, 730, "air")
     return S
 
 
@@ -122,6 +128,7 @@ def p09():
     S.add(bouc(400, 760, 1.6, expr="concentre", bras="haut", regard=(0, -1)))
     S.add(renard(400, 760 - 250 * 1.6, 0.95, expr="rire", bras="haut", regard=(0, -1)))
     S.add(texte(620, 200, "Hop !", 60, "#fff3bf"))
+    S.cachette(220, 730, "air")
     return S
 
 
@@ -155,6 +162,7 @@ def p13():
     dans_le_puits(S)
     S.add(bouc(400, 740, 1.6, expr="pleure", bras="haut", regard=(0, -1)))
     S.add(texte(400, 240, "Bêêê ! Au secours !", 52, "#fff3bf"))
+    S.cachette(220, 730, "air")
     return S
 
 
@@ -164,6 +172,7 @@ def p14():
     S.add(echelle(460, 760, 1.0, h=760, rot=0))
     S.add(personne(470, 250, 0.9, expr="content", bras="donne", flip=True, **FERMIER))
     S.add(bouc(360, 740, 1.4, expr="rire", bras="tient", regard=(1, -1)))
+    S.cachette(120, 730, "air")
     return S
 
 

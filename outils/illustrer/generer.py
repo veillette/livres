@@ -58,7 +58,8 @@ def glacis(id_livre, module):
     return GLACIS_RAYON.get(rayon(id_livre))
 
 
-def generer(module):
+def regler(module):
+    """Réglages partagés propres au livre, avant de dessiner ses pages."""
     # numérotation des identifiants SVG propre à chaque livre : le résultat ne
     # dépend pas des autres livres générés en même temps
     base._compteur[0] = 0
@@ -76,6 +77,10 @@ def generer(module):
     base.BETE_CACHEE[0] = getattr(module, "CACHE", "coccinelle")
     # papier peint propre au livre : les intérieurs ne se ressemblent plus tous
     base.MOTIF_PAPIER[0] = getattr(module, "PAPIER_PEINT", MOTIFS_PAPIER[int(hashlib.md5(module.ID.encode()).hexdigest()[:6], 16) % len(MOTIFS_PAPIER)])
+
+
+def generer(module):
+    regler(module)
     dossier = os.path.join(RACINE, "livres", module.ID, "images")
     scenes = [(nom, fabrique()) for nom, fabrique in module.IMAGES]
     note = ""

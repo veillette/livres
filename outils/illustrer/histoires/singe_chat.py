@@ -134,6 +134,7 @@ def p09():
     S.add(bertrand(450, 780, 1.0, expr="oups", bras="course", flip=True))
     S.add(raton(650, 780, 1.0, expr="oups", bras="course", flip=True))
     S.add(bulle(380, 120, 560, 120, "Qui a volé\nles marrons ?", 40, pointe=(180, 380)))
+    S.cachette(70, 370, "air")
     return S
 
 

@@ -200,6 +200,7 @@ def p05():
     S.add(marmotte_dort(cx - 60, cy + 20, 0.8), marmotte(cx + 70, cy + 60, 0.55, expr="content"))
     S.add(marmotte(bx, by + 40, 0.5, expr="sourire", bras="porte", objet=foin(0, -100, 0.3)))
     S.add(marmotte(160, 290, 0.6, expr="sourire"))
+    S.cachette(730, 320, "air")
     return S
 
 
@@ -212,6 +213,7 @@ def p06():
     S.add(marmotte(cx - 40, cy + 50, 0.55, expr="baille"), marmotte(cx + 50, cy + 50, 0.5, expr="baille"))
     for x, c in [(500, "#ffa94d"), (620, "#fab005")]:
         S.add(ellipse(x, 230, 14, 7, c, rot=30))
+    S.cachette(730, 320, "air")
     return S
 
 
@@ -225,6 +227,7 @@ def p07():
     S.add(zzz(600, 300, 1.4, "#e9d3b5"))
     S.add(coeur(200, 220, 1.5, "#ff8787"))
     S.add(texte(200, 330, "boum… boum…", 40, "#ffc9c9"))
+    S.cachette(530, 70, "air")
     return S
 
 

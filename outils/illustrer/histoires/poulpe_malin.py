@@ -201,6 +201,7 @@ def p07():
     S.add(poulpe_(400, 380, 1.4, expr="content"))
     S.add(coeur_schema(340, 290, 0.9), coeur_schema(460, 290, 0.9), coeur_schema(400, 360, 1.1))
     S.add(etiquette(400, 120, "3 cœurs et du sang bleu !", 44, "#1864ab"))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -226,6 +227,7 @@ def p09():
             S.add(ellipse(x + j * 1.3, 280 + j * 18, 6, 9, "#fff9db"))
     S.add(poulpe_(420, 600, 1.0, expr="content", pose="rentre", regard=(0, -1)))
     S.add(g([chemin(f"M {340 + k * 40} 520 q 10 -20 0 -40", stroke="#a5d8ff", sw=4, opacity=0.7) for k in range(4)]))
+    S.cachette(300, 730, "poisson")
     return S
 
 
@@ -238,6 +240,7 @@ def p10():
         S.add(poulpe_(r.uniform(60, 740), r.uniform(120, 720), r.uniform(0.12, 0.18), rot=r.uniform(-20, 20), pose="nage",
                       expr=r.choice(["rire", "content", "sourire"])))
     S.add(fleche(400, 700, 400, 560, "#ffffff", 6, 22))
+    S.cachette(730, 70, "poisson")
     return S
 
 

@@ -80,6 +80,7 @@ def couverture():
     S.add(pomme_flotte(660, 2.4))
     S.add(coin_coin(320, 1.9, expr="rire", regard=(1, 1)))
     eau_devant(S)
+    S.cachette(730, 600, "air")
     return S
 
 
@@ -97,6 +98,7 @@ def p01():
     icones = g([feuille(0, 0, 0.7), caillou_(110, 24, 1.1), pomme(210, 10, 1.6), cle(300, 0, 1.1)])
     S.add(pensee(600, 190, 190, place(icones, 470, 170, 0.85), depuis=(400, 320)), texte(600, 290, "?", 70, "#f76707"))
     eau_devant(S)
+    S.cachette(70, 220, "air")
     return S
 
 
@@ -106,6 +108,7 @@ def p02():
     S.add(feuille(560, SURFACE - 4, 1.9, 4))
     S.add(coin_coin(260, 1.8, expr="content", regard=(1, 0)))
     eau_devant(S)
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -120,6 +123,7 @@ def p03():
     S.add(coin_coin(250, 1.8, expr="surpris", regard=(1, 1)))
     S.add(texte(600, 280, "Plouf !", 64, "#1c7ed6", contour="#fff", rot=-6))
     eau_devant(S)
+    S.cachette(730, 160, "air")
     return S
 
 
@@ -130,6 +134,7 @@ def p04():
     S.add(coin_coin(250, 1.8, expr="bouche_bee", regard=(1, 0)))
     S.add(bulle(560, 180, 320, 80, "Elle flotte !", 40, pointe=(560, 330)))
     eau_devant(S)
+    S.cachette(70, 220, "air")
     return S
 
 
@@ -140,6 +145,7 @@ def p05():
     S.add(cle(560, FOND - 8, 2.0, rot=-15))
     S.add(coin_coin(250, 1.8, expr="oups", regard=(1, 1)))
     eau_devant(S)
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -155,6 +161,7 @@ def p06():
     S.add(fleche(470, SURFACE - 30, 470, SURFACE - 110, "#2f9e44", 7), texte(470, SURFACE - 130, "flotte", 36, "#2f9e44", contour="#fff"))
     S.add(fleche(470, FOND - 170, 470, FOND - 70, "#c92a2a", 7), texte(470, FOND - 190, "coule", 36, "#c92a2a", contour="#fff"))
     eau_devant(S)
+    S.cachette(70, 220, "air")
     return S
 
 
@@ -165,6 +172,7 @@ def p07():
     S.add(coin_coin(220, 1.6, expr="content", regard=(1, 0)))
     S.add(texte(520, 150, "1, 2, 3…", 60, "#1c7ed6", contour="#fff"))
     eau_devant(S)
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -176,6 +184,7 @@ def p08():
     S.add(coin_coin(220, 1.6, expr="rire", regard=(1, 1)))
     S.add(texte(560, 220, "glou glou !", 60, "#1c7ed6", contour="#fff", rot=-5))
     eau_devant(S)
+    S.cachette(70, 220, "air")
     return S
 
 

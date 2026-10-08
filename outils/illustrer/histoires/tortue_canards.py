@@ -150,6 +150,7 @@ def p08():
     vue_du_ciel(S)
     S.add(voyage(353, 280, 0.85, "content", "content"))
     S.add(nuage(120, 110, 0.6))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -179,6 +180,7 @@ def p11():
     ciel_haut(S)
     S.add(voyage(350, 480, 0.9, "fier", "inquiet"))
     S.add(pensee(560, 180, 140, depuis=(530, 380), contenu=g([texte(560, 170, "Oui, c'est moi,", 26, "#0c8599"), texte(560, 205, "la reine !", 30, "#0c8599")])))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -188,6 +190,7 @@ def p12():
     S.add(voyage(350, 400, 0.9, "bouche_bee", "surpris", bouche_ouverte=True))
     S.add(baton(230, 355, 560, 355, ep=11))
     S.add(texte(600, 560, "Oh !", 60, "#0c8599", contour="#fff"))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -198,6 +201,7 @@ def p13():
     S.add(mouvement(400, 250, 1.4, rot=90))
     S.add(canard(170, 190, 0.8, nage=False, ailes="haut", expr="surpris", **CANARD1))
     S.add(canard(620, 170, 0.8, nage=False, ailes="haut", expr="surpris", flip=True, **CANARD2))
+    S.cachette(70, 620, "air")
     return S
 
 

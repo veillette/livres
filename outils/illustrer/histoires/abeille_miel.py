@@ -148,6 +148,7 @@ def p02():
     S.add(reine(400, 420, 2.4, expr="content", regard=(1, 0.5)))
     S.add(abeille(150, 230, 1.3, regard=(1, 0.5)), abeille(650, 640, 1.3, flip=True, regard=(1, 0)),
           abeille(660, 230, 1.2, flip=True, regard=(1, 0.5)))
+    S.cachette(70, 720, "air")
     return S
 
 
@@ -161,6 +162,7 @@ def p03():
     S.add(abeille(560, 520, 1.8, flip=True, expr="concentre", regard=(1, 1)))
     S.add(place([rect(-60, -10, 120, 20, CIRE, rx=6), rect(-50, -30, 40, 20, CIRE, rx=6)], 560, 620))
     S.add(abeille(200, 620, 1.3, regard=(1, 0)))
+    S.cachette(80, 720, "air")
     return S
 
 
@@ -197,6 +199,7 @@ def p05():
     S.add(branche(150, 720, 650, 700))
     S.add(pomme(400, 690, 2.4))
     S.add(feuille(430, 620, 1.0, -40))
+    S.cachette(480, 730, "air")
     return S
 
 
@@ -212,6 +215,7 @@ def p06():
     S.add(mouvement(330, 450, 0.7, ENCRE, rot=45))
     for x, y, flip in [(140, 220, False), (660, 220, True), (130, 600, False), (670, 620, True), (400, 700, False)]:
         S.add(abeille(x, y, 1.2, flip=flip, expr="surpris" if y < 400 else "sourire", regard=(1, 0)))
+    S.cachette(70, 440, "air")
     return S
 
 
@@ -228,6 +232,7 @@ def p07():
         S.add(mouvement(x - 10, y - 90, 0.8, "#ffffff", rot=-90))
         S.add(mouvement(x + 10, y - 90, 0.8, "#ffffff", rot=-90))
     S.add(abeille(420, 230, 1.5, flip=True, expr="content", regard=(1, 0.5)))
+    S.cachette(80, 170, "air")
     return S
 
 

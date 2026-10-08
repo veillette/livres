@@ -125,6 +125,7 @@ def p06():
     S.add(lievre(400, 730, 1.4, expr="oups", bras="course", flip=True, rot=6))
     S.add(mouvement(300, 600, 1.3), mouvement(320, 680, 1.0))
     S.add(texte(560, 260, "Vite ! Vite !", 52, VERT, contour="#fff"))
+    S.cachette(70, 210, "air")
     return S
 
 

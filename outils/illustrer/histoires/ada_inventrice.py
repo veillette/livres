@@ -389,6 +389,7 @@ def p11():
     S.add(reine(690, 780, 1.1, expr="rire", bras="applaudit"))
     S.add(garde(230, 790, 0.95, expr="rire", bras="ouverts"), garde(570, 790, 0.95, expr="rire", bras="ouverts"))
     S.add(ada(400, 790, 1.45, expr="fier", bras="haut"))
+    S.cachette(650, 70, "air")
     return S
 
 

@@ -83,6 +83,7 @@ def couverture():
     S.add(mamie(500, 790, 1.4, expr="content", bras="calin"))
     S.add(lilou(330, 790, 1.15, expr="content", bras="calin", objet=doudou(0, -40, 0.35)))
     S.add(coeur(420, 360, 1.3, "#ff8787"))
+    S.cachette(70, 590, "air")
     return S
 
 

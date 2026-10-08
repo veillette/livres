@@ -221,6 +221,7 @@ def p11():
     S.add(texte(700, 380, "9 h", 50, "#e8590c"), texte(100, 380, "17 h", 50, "#e8590c"), texte(400, 560, "12 h", 50, "#e8590c"))
     S.add(texte(400, 120, "Le tour de l'ombre de Léon", 40, ENCRE))
     S.add(texte(400, 170, "vu d'en haut", 32, "#495057", poids=600))
+    S.cachette(430, 730, "air")
     return S
 
 

@@ -139,6 +139,7 @@ def p07():
     S.add(mot(630, 180, "Merci", "#e8590c", 44, rot=12))
     S.add(mot(160, 560, "Pardon", "#2f9e44", 42, rot=8))
     S.add(mot(640, 560, "S'il te\nplaît", "#ae3ec9", 36, rot=-8))
+    S.cachette(410, 70, "air")
     return S
 
 

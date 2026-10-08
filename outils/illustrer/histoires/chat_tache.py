@@ -125,6 +125,7 @@ def p04():
                 objet=feuille(0, -40, 200, 140, dessin_soleil(-50, -20, 0.6) + tache(20, 20, 44, graine=2), froissee=True)))
     S.add(perso("chat", 200, 770, 1.4, expr="triste", bras="bas", regard=(1, -0.5), **ZOU))
     S.add(bulle(300, 150, 460, 110, "Moi, je vois un nuage.\nEt toi ?", 34, pointe=(480, 300)))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -135,6 +136,7 @@ def p05():
     S.add(perso("chat", 640, 800, 1.3, expr="bouche_bee", bras="donne", flip=True, **ZOU,
                 objet=pinceau(84, -96, 1.0, "#343a40", rot=40)))
     S.add(texte(250, 720, "Une baleine !", 56, "#1c7ed6", contour="#fff"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -146,6 +148,7 @@ def p06():
     S.add(feuille(400, 360, 640, 460, mer, froissee=True))
     S.add(perso("chat", 160, 800, 1.3, expr="rire", bras="haut", **ZOU))
     S.add(texte(520, 720, "Et un poisson !", 50, "#e8590c", contour="#fff"))
+    S.cachette(410, 70, "air")
     return S
 
 

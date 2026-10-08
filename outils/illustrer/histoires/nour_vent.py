@@ -226,6 +226,7 @@ def p10():
     S.add(voilier(430, 600, 1.2))
     S.add(g([trait(230 - k * 50, 640 + k * 8, 180 - k * 50, 640 + k * 8, "#e7f5ff", 5) for k in range(3)]))
     S.add(fleche(600, 720, 740, 720, "#fff", 7))
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -246,6 +247,7 @@ def p11():
     S.add(chemin("M 280 420 Q 250 600 170 700", stroke="#495057", sw=3, stroke_dasharray="6 6"))
     S.add(maison(140, 760, 0.7, lumiere=True), maison(620, 760, 0.6, lumiere=True))
     S.add(eclat(145, 640, 0.8, "#fcc419"))
+    S.cachette(70, 530, "air")
     return S
 
 

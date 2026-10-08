@@ -231,12 +231,19 @@ générées par un petit outil Python, sans aucune dépendance, dans
 - cadrage : `S.camera(zoom, cx, cy)` fait un gros plan sans bord vide,
   `S.dessus()` pose bulles et onomatopées hors zoom, `S.vers_page()` vise un
   point de la scène ;
-- petite bête cachée : une coccinelle (une étoile de mer sous l'eau) se cache
-  sur chaque page pleine, sur une cachette libre proposée par le décor
-  (`sol`, `interieur`, `piece`, `ocean`), jamais sur un personnage
-  (`occuper()`) ; `S.cachette(x, y)` impose la place, `CACHE = None` dans un
-  script la retire. Elle n'apparaît que dans les livres où elle est sur
-  toutes les pages : `generer.py` signale les pages qui la privent d'un livre ;
+- petite bête cachée : une coccinelle se cache sur chaque page pleine, posée
+  sur une cachette libre proposée par le décor (`sol`, `interieur`, `piece`,
+  `ocean`, ou un sol tracé à la main), en vol là où il n'y a pas de sol, une
+  étoile de mer sur le sable et un petit poisson en pleine eau. Elle ne se
+  pose jamais sur un personnage, une bulle ou un texte : ceux-ci ajoutent à
+  leur dessin un repère invisible `occuper()`, lu à travers les `place()` et
+  les cadrages. `S.cachette(x, y[, "air" | "eau"])` impose la place,
+  `CACHE = None` dans un script la retire (seul *Sacha et les planètes*, qui
+  se passe dans l'espace, n'en a pas). Elle n'apparaît que dans les livres où
+  elle est sur toutes les pages : `generer.py` signale les pages qui
+  manquent, `.claude/skills/retoucher-livre/cachettes.py` leur propose une
+  place d'après l'image rendue et `planche_cachettes.py` en fait une planche
+  de revue ;
 - intérieurs au caractère marqué : `piece(S, style)` (`chaumiere`, `manoir`,
   `chateau`, `chambre`, `cuisine`) ; le papier peint d'`interieur(papier=…)`
   change d'un livre à l'autre (`rayures`, `pois`, `fleurs`, `losanges`,

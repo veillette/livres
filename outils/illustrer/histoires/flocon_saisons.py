@@ -265,6 +265,7 @@ def p06():
     S.add(branche(40, 330, 1.3, "geles"))
     S.add(primevere(560, 760, 1.4, expr="triste", bras="porte", objet=ellipse(0, -80, 12, 18, "#a5d8ff", stroke="#ffffff", stroke_width=3)))
     S.add(flocon(230, 760, 1.4, expr="pleure", bras="yeux", baguette_=False, larmes=True))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -311,6 +312,7 @@ def p09():
                              ((1, 1), "été", "#e67700"), ((-1, 1), "automne", "#d9480f")]:
         S.add(texte(cx + sx * d, cy + sy * d + 12, nom, 38, c, contour="#ffffff"))
     S.add(texte(400, 80, "Chacune son tour !", 54, "#5c7cfa", contour="#ffffff"))
+    S.cachette(190, 500, "air")
     return S
 
 
@@ -355,6 +357,7 @@ def p11():
     S.add(flocon(400, 200, 0.9, expr="content", bras="pense", baguette_=False, regard=(0, 1)))
     S.add(nuage(400, 230, 1.5, "#ffffff"))
     S.add(texte(200, 760, "l'été", 50, "#e67700", contour="#ffffff"), texte(600, 760, "l'automne", 50, "#d9480f", contour="#ffffff"))
+    S.cachette(70, 710, "air")
     return S
 
 

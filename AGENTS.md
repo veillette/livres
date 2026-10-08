@@ -98,10 +98,13 @@ L'essentiel :
   `interieur(papier=…)` prend le papier peint du livre.
 - **Échelles cohérentes** d'une page à l'autre (un château domine une
   princesse, un enfant arrive à la taille d'un adulte…).
-- **Petite bête cachée** (coccinelle, ou étoile de mer sous l'eau) : elle
-  doit être sur **toutes** les pages pleines du livre, sinon `generer.py` la
-  retire du livre et l'écrit (`petite bête absente : …`) ; compléter avec
-  `S.cachette(x, y)`.
+- **Petite bête cachée** (coccinelle, posée ou en vol ; étoile de mer ou
+  petit poisson sous l'eau) : elle doit être sur **toutes** les pages pleines
+  du livre, sinon `generer.py` la retire du livre et l'écrit (`petite bête
+  absente : …`) ; compléter avec `S.cachette(x, y)` ou l'outil
+  `retoucher-livre/cachettes.py`. Un personnage dessiné à la main dans un
+  script ajoute `+ occuper(x0, y0, x1, y1)` à son dessin pour que la bête
+  ne s'y pose pas.
 
 Pour revoir et améliorer un livre existant, suivre **`retoucher-livre`**
 ([`.claude/skills/retoucher-livre/SKILL.md`](.claude/skills/retoucher-livre/SKILL.md)).

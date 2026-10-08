@@ -183,6 +183,7 @@ def p06():
     S.add(trait(260, 470, 610, 200, "#fff3bf", 5, stroke_dasharray="16 14"))
     S.add(texte(470, 380, "384 000 km", 54, "#ffd43b", contour="#0b1433", rot=-38))
     S.add(texte(600, 320, "très, très loin !", 34, "#fff", rot=-38, contour="#0b1433"))
+    S.cachette(670, 730, "air")
     return S
 
 
@@ -212,6 +213,7 @@ def p07():
     S.add(texte(400, 620, "La voiture avance…", 40, "#e8590c"))
     S.add(texte(400, 680, "le sapin file, la Lune reste !", 40, "#1c2a52"))
     S.add(texte(400, 80, "Par la vitre de Jade", 38, "#495057", poids=600))
+    S.cachette(400, 730, "air")
     return S
 
 

@@ -139,6 +139,7 @@ def p06():
     S.add(poisson(140, 640, 0.8, "#ffd43b"))
     S.add(texte(620, 200, "Splash !", 64, "#1098ad", contour="#fff", rot=-6))
     S.add(calendrier(5))
+    S.cachette(400, 730, "air")
     return S
 
 

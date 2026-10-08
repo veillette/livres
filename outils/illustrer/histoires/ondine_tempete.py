@@ -195,6 +195,7 @@ def couverture():
     S.add(ondine(300, 820, 1.6, expr="rire", bras="salut"))
     S.add(meduse(110, 700, 0.8, graine=2), meduse(690, 720, 0.7, "#d0bfff", graine=3))
     vagues_devant(S, 720, "#1d3f6e", amp=30, longueur=240, ecume=ECUME, opacity=0.92)
+    S.cachette(560, 730, "air")
     return S
 
 
@@ -269,6 +270,7 @@ def p06():
         S.add(meduse(mx, my, 0.9, c, graine=k, expr="content"))
     S.add(ondine(400, 700, 1.45, expr="concentre", bras="haut", regard=(0, -1)))
     S.add(bulles_eau(300, 700, 0.9, graine=9), bulles_eau(510, 720, 0.8, graine=10))
+    S.cachette(70, 410, "air")
     return S
 
 
@@ -343,6 +345,7 @@ def p11():
     S.add(ondine(640, 720, 1.25, expr="content", bras="salut"))
     vagues_devant(S, 640, "#1d3f6e", amp=12, longueur=200, opacity=0.9)
     S.add(coeur(420, 230, 1.4), coeur(470, 190, 0.9, "#ff8787"))
+    S.cachette(70, 690, "air")
     return S
 
 
@@ -356,6 +359,7 @@ def p12():
     S.add(ondine(260, 700, 1.35, expr="rire", bras="haut"))
     vagues_devant(S, 600, "#1c7ed6", amp=18, longueur=200, ecume="#e7f5ff", opacity=0.9)
     S.add(cercle(120, 520, 10, "#e7f5ff"), cercle(140, 500, 7, "#e7f5ff"), cercle(100, 498, 6, "#e7f5ff"))
+    S.cachette(730, 670, "air")
     return S
 
 

@@ -171,6 +171,7 @@ def p08():
 def p09():
     S = Scene()
     question(S, "yeux", "joues", "C'est pour mieux\nte voir, mon enfant !", cadre=(1.9, 400, 560))
+    S.cachette(311, 734, "air")
     return S
 
 
@@ -222,6 +223,7 @@ def p14():
     S.add(ellipse(400, 604, 70, 22, "#e8a15c"), rect(470, 560, 34, 44, "#a5d8ff", rx=6))
     S.add(mere_grand_(170, 790, 1.0, expr="rire", regard=(1, 0)), bucheron(640, 790, 1.05, expr="rire", regard=(-1, 0)))
     S.add(chaperon(400, 800, 1.0, expr="miam", bras="bouche"))
+    S.cachette(70, 210, "air")
     return S
 
 

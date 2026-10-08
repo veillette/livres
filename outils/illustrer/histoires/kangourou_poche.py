@@ -169,6 +169,7 @@ def p02():
     S.add(haricot(560, 420, 3.2, rot=10))
     S.add(etiquette(320, 640, "le bébé", 36, "#d9480f"), etiquette(560, 640, "un haricot", 36, "#d9480f"))
     S.add(texte(400, 130, "2 centimètres !", 54, "#d9480f", contour="#fff"))
+    S.cachette(400, 730, "air")
     return S
 
 
@@ -185,6 +186,7 @@ def p03():
     S.add(bebe_minuscule(395, 330, 2.2, rot=-10))
     S.add(fleche(400, 300, 400, 250, "#d9480f", 6, 22))
     S.add(texte(600, 560, "Grimpe, grimpe…", 44, "#d9480f", contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -199,6 +201,7 @@ def p04():
     S.add(cercle(486, 418, 8, "#f783ac"))
     S.add(coeur(640, 220, 1.4, "#ff8787"))
     S.add(texte(400, 120, "Bien au chaud…", 50, "#d9480f", contour="#fff"))
+    S.cachette(400, 730, "air")
     return S
 
 

@@ -59,6 +59,7 @@ def couverture():
     S.add(ours_("papa", 150, 780, 1.3, expr="surpris"), ours_("maman", 620, 780, 1.1, expr="surpris"))
     S.add(ours_("bebe", 700, 790, 0.8, expr="surpris", bras="joues"))
     S.add(boucle(400, 790, 1.3, expr="oups", bras="bouche", regard=(-1, 0)))
+    S.cachette(730, 330, "air")
     return S
 
 
@@ -73,6 +74,7 @@ def p01():
     maison_ours(S)
     S.add(ours_("papa", 170, 780, expr="content"), ours_("maman", 610, 780, expr="content", bras="salut"),
           ours_("bebe", 390, 790, expr="rire", bras="haut"))
+    S.cachette(730, 210, "air")
     return S
 
 

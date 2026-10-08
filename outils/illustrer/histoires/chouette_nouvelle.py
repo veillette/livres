@@ -59,6 +59,7 @@ def p01():
     S.add(chouette(470, 620, 1.1, expr="timide", **COLINE))
     for k, (esp, x) in enumerate([("lapin", 150), ("herisson", 310), ("souris", 480), ("renard", 650)]):
         S.add(perso(esp, x, 790, 0.95, expr="surpris", regard=(0.4, -1)))
+    S.cachette(730, 210, "air")
     return S
 
 
@@ -154,6 +155,7 @@ def p08():
         S.add(perso(esp, x, 780, 1.0 if esp != "ours" else 1.2, expr=ex, bras="haut" if k % 2 == 0 else "salut",
                     **(MAITRESSE if esp == "ours" else {})))
     S.add(coeur(260, 300, 1.2), coeur(700, 280, 0.9, "#ff8787"))
+    S.cachette(70, 460, "air")
     return S
 
 

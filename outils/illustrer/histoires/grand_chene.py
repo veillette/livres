@@ -138,6 +138,7 @@ def p02():
     S.add(mesange(610, 250, 1.1, expr="content", ailes="ouvertes", pattes=False, flip=True))
     S.add(chemin("M 520 262 q 10 -12 20 0 q 10 12 20 0", stroke="#82c91e", sw=8))
     S.add(texte(160, 160, "Piou !", 60, "#1c7ed6", contour="#fff", rot=-10), texte(420, 110, "Piou !", 50, "#1c7ed6", contour="#fff", rot=6))
+    S.cachette(490, 730, "air")
     return S
 
 

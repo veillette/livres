@@ -60,7 +60,7 @@ def manchot(x, y, s=1.0, flip=False, expr="sourire", oeuf_=False, poussin_=False
     m.append(joue(30, -200, 0.7))
     if poisson_:
         m.append(poisson_simple(96, -214, 0.7, rot=20))
-    return place(m, x, y, s, flip=flip, rot=penche)
+    return place(m + [occuper(-56, -246, 92, 6)], x, y, s, flip=flip, rot=penche)
 
 
 def manchot_face(x, y, s=1.0, expr="sourire", ailes="bas"):
@@ -84,7 +84,7 @@ def manchot_face(x, y, s=1.0, expr="sourire", ailes="bas"):
         m.append(joue(sgn * 22, -202, 0.6))
     m.append(poly([(-7, -206), (7, -206), (0, -184)], DOS))
     m.append(trait(0, -200, 0, -188, "#ff922b", 3))
-    return place(m, x, y, s)
+    return place(m + [occuper(-77, -246, 77, 3)], x, y, s)
 
 
 def poussin_gris(x, y, s=1.0, flip=False, expr="sourire", bec_ouvert=False):
@@ -106,7 +106,7 @@ def poussin_gris(x, y, s=1.0, flip=False, expr="sourire", bec_ouvert=False):
         m.append(poly([(38, -122), (60, -118), (38, -116)], DOS))
     else:
         m.append(poly([(38, -130), (64, -124), (38, -118)], DOS))
-    return place(m, x, y, s, flip=flip)
+    return place(m + [occuper(-55, -164, 64, 2)], x, y, s, flip=flip)
 
 
 def blizzard(S, nb=70, graine=3):
@@ -202,6 +202,7 @@ def p05():
                                  chemin("M 520 560 Q 640 470 760 560 L 760 380 L 520 380 Z", "#f1f3f5"),
                                  chemin("M 520 560 Q 640 470 760 560", stroke="#ced4da", sw=6)], rot=50))
     S.add(etiquette(640, 340, "au chaud !", 40, "#1971c2"))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -214,6 +215,7 @@ def p06():
             S.add(manchot_face(80 + dx + k * (640 / (nb - 1)), y, sc, expr="dort" if row < 2 else "sourire"))
     blizzard(S, 60)
     S.add(texte(400, 300, "Hou ! Hou !", 54, "#ffffff", contour="#364fc7"))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -259,6 +261,7 @@ def p10():
         S.add(poisson_simple(x, y, 1.0, flip=True))
     S.add(g([cercle(470 + k * 16, 520 - k * 34, 6 + k * 2, "none", stroke="#fff", stroke_width=3) for k in range(3)]))
     S.add(texte(560, 140, "Plouf !", 70, "#1971c2", contour="#fff"))
+    S.cachette(730, 260, "air")
     return S
 
 

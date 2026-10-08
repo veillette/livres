@@ -233,6 +233,7 @@ def p02():
     S.add(place([cercle(0, 0, 48, "#fff3bf", opacity=0.6), chemin("M -40 -10 L -26 -40 L -8 -18 L 6 -46 L 22 -20 L 40 -30 L 46 0 Q 30 46 0 48 Q -40 44 -46 0 Z", "#fff3bf")], 520, 420))
     S.add(chenille(360, 470, 1.25, bebe=True, nb=7, expr="miam", regard=(1, 0)))
     S.add(texte(400, 180, "Miam !", 64, "#2f9e44", contour="#fff"))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -254,6 +255,7 @@ def p04():
     S.add(texte(180, 520, "vieille peau", 30, "#868e96", contour="#fff"))
     S.add(chenille(500, 600, 1.6, bosse=0.15, expr="fier"))
     S.add(eclat(620, 440, 0.8, "#fcc419"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -310,6 +312,7 @@ def p06():
     S.add(loupe(620, 220, 110, [chemin("M 520 200 Q 620 160 720 200", stroke="#ffffff", sw=10),
                                   chemin("M 520 220 Q 620 180 720 220", stroke="#dee2e6", sw=6)], fond="#94d82d"))
     S.add(etiquette(620, 380, "fil de soie", 34, "#1971c2"))
+    S.cachette(500, 70, "air")
     return S
 
 
@@ -322,6 +325,7 @@ def p07():
     S.add(chrysalide(360, 640, 2.6))
     S.add(texte(610, 250, "chut…", 60, "#5c940d", contour="#fff"))
     S.add(zzz(560, 380, 1.0, "#5c940d"))
+    S.cachette(490, 70, "air")
     return S
 
 
@@ -332,6 +336,7 @@ def p08():
     S.add(chrysalide(360, 380, 1.8, ouverte=True))
     S.add(machaon(392, 470, 1.2, fripe=True))
     S.add(texte(620, 240, "Oh !", 70, "#f08c00", contour="#fff"))
+    S.cachette(460, 70, "air")
     return S
 
 
@@ -366,6 +371,7 @@ def p11():
     S.add(disque(150, 400, 105, "#ebfbee"), machaon(150, 410, 0.62))
     S.add(etiquette(400, 290, "l'œuf", 30, "#862e9c"), etiquette(650, 540, "la chenille", 30, "#862e9c"),
           etiquette(400, 790, "la chrysalide", 30, "#862e9c"), etiquette(150, 540, "le papillon", 30, "#862e9c"))
+    S.cachette(630, 730, "air")
     return S
 
 

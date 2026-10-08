@@ -198,6 +198,7 @@ def p05():
     S.add(fleche(250, 400, 280, 400, "#e8590c", 6, 18), fleche(510, 400, 540, 400, "#e8590c", 6, 18))
     S.add(etiquette(140, 600, "le jaune", 32, "#e67700"), etiquette(400, 600, "il grandit", 32, "#e67700"),
           etiquette(660, 600, "il est prêt", 32, "#e67700"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -218,6 +219,7 @@ def p06():
             else:
                 S.add(oeuf(x + 3, y + 48, 0.7, brille=True))
     S.add(poussin(650, 760, 1.0, expr="joie", ailes="haut"))
+    S.cachette(400, 70, "air")
     return S
 
 
@@ -248,6 +250,7 @@ def p08():
                                  cercle(676, 212, 12, "#ffffff", stroke="#adb5bd", stroke_width=2)], rot=130))
     S.add(etiquette(640, 360, "le diamant", 34, "#e67700"))
     S.add(texte(250, 720, "Toc ! Toc !", 60, "#e8590c", contour="#fff", rot=-6))
+    S.cachette(410, 70, "air")
     return S
 
 

@@ -191,6 +191,7 @@ def p05():
     S.add(ressort(580, 380, 220, 70), fleche(680, 160, 680, 260, "#e03131", sw=5, tete=14))
     S.add(ressort(700, 380, 110, 70), texte(620, 440, "Le ressort", 40, ENCRE), texte(620, 485, "s'écrase… et revient !", 32, ENCRE))
     S.add(pirouette(400, 790, 1.1, expr="content", bras="montre", regard=(1, -1)))
+    S.cachette(410, 70, "air")
     return S
 
 

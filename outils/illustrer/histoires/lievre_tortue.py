@@ -63,6 +63,7 @@ def p01():
     S.add(lievre(460, 720, 1.6, expr="rire", bras="course", rot=-10))
     S.add(mouvement(270, 560, 1.5), mouvement(250, 470, 1.2))
     S.add(texte(180, 330, "Zoum !", 70, "#2f9e44", contour="#fff", rot=-8))
+    S.cachette(730, 230, "air")
     return S
 
 
@@ -100,6 +101,7 @@ def p05():
     S.add(lievre(400, 700, 1.6, expr="rire", bras="calin"))
     S.add(texte(400, 220, "Ha ha ha !", 70, "#2f9e44", contour="#fff"))
     spectateurs(S, 780, 0.75)
+    S.cachette(730, 430, "air")
     return S
 
 
@@ -158,6 +160,7 @@ def p11():
     S.add(zzz(200, 510, 1.0))
     S.add(tortue(580, 760, 1.4, expr="timide"))
     S.add(texte(600, 460, "Chut…", 50, "#2f9e44", contour="#fff"))
+    S.cachette(730, 430, "air")
     return S
 
 
@@ -176,6 +179,7 @@ def p13():
     S.add(lievre(430, 720, 1.6, expr="furieux", bras="course", rot=-18))
     S.add(mouvement(230, 560, 1.6), mouvement(210, 460, 1.3), mouvement(250, 650, 1.2))
     S.add(texte(620, 250, "ZOUM !", 76, "#e8590c", contour="#fff"))
+    S.cachette(150, 120, "air")
     return S
 
 
@@ -187,6 +191,7 @@ def p14():
     S.add(tortue(430, 740, 1.4, expr="rire"))
     spectateurs(S, 790, 0.7, xs=(100, 220, 700, 770))
     S.add(paillettes(430, 300, 1.4))
+    S.cachette(730, 380, "air")
     return S
 
 

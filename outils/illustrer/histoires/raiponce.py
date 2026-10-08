@@ -222,6 +222,7 @@ def p14():
     for k, (x, d) in enumerate(((140, dict(coiffure="courts", cheveux="brun", habit="#fa5252", robe=False, peau="brune")),
                                 (660, dict(coiffure="tresses", cheveux="noir", habit="#51cf66", peau="doree")))):
         S.add(personne(x, 790, 0.9, expr="content", bras="joues", **d))
+    S.cachette(730, 420, "air")
     return S
 
 

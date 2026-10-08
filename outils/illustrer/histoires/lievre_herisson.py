@@ -64,6 +64,7 @@ def couverture():
     S.add(lucien(300, 700, 1.25, expr="surpris", bras="course", rot=-10), mouvement(190, 560, 1.2))
     S.add(hortense(640, 720, 1.0, expr="malin", bras="haut"))
     S.add(texte(520, 280, "Je suis déjà là !", 58, "#1c7ed6", contour="#fff", rot=-4))
+    S.cachette(70, 340, "air")
     return S
 
 

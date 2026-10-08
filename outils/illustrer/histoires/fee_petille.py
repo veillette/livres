@@ -114,6 +114,7 @@ def p04():
     S.add(personne(640, 770, 1.1, expr="rire", bras="joues", **AMIES[1]))
     S.add(petille(400, 770, 1.45, expr="timide", bras="bas", baguette_=False))
     S.add(bulle(400, 150, 460, 100, "Je ne serai jamais\nune vraie fée !", 38, pointe=(400, 380)))
+    S.cachette(730, 270, "air")
     return S
 
 
@@ -200,6 +201,7 @@ def p12():
     S.add(personne(530, 780, 0.9, expr="rire", bras="haut", **AMIES[2]))
     S.add(petille(360, 760, 1.4, expr="fier", bras="tient"))
     S.add(etincelles(430, 360, 1.3, graine=21))
+    S.cachette(730, 140, "air")
     return S
 
 

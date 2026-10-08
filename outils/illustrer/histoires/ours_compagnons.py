@@ -130,6 +130,7 @@ def p05():
     S.add(ours(540, 800, 2.5, expr="furieux", bras="haut"))
     S.add(gaspard(150, 790, 0.9, expr="surpris", bras="joues"), mathis(280, 790, 0.9, expr="surpris", bras="joues"))
     S.add(texte(250, 230, "GRRRR !", 90, "#c92a2a", contour="#fff", rot=-8))
+    S.cachette(670, 70, "air")
     return S
 
 
@@ -160,6 +161,7 @@ def p08():
     S.add(mathis(640, 700, 1.2, expr="dort", rot=-90))
     S.add(texte(560, 300, "Snif, snif…", 56, "#7a4f2d", contour="#fff"))
     S.add(grand_arbre(760, 800, 0.7))
+    S.cachette(70, 200, "air")
     return S
 
 

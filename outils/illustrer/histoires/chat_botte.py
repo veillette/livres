@@ -173,6 +173,7 @@ def p10():
     S.add(ogre(560, 830, 2.5, expr="fier", bras="hanches"))
     S.add(chat(170, 800, 1.0, expr="malin", bras="salut"))
     S.add(bulle(260, 150, 420, 110, "On dit que vous pouvez\ndevenir n'importe quoi ?", 28, pointe=(180, 540)))
+    S.cachette(320, 730, "air")
     return S
 
 

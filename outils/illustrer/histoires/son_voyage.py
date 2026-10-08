@@ -106,6 +106,7 @@ def p02():
         particules(S, 120, 720, y, 9, serre)
         S.add(ding(120 + 600 * serre / 8, y - 80, 0.75, regard=(1, 0), ondes_=False))
         S.add(fleche(140, y + 50, 700, y + 50, "#f59f00", 4, 14, opacity=0.5))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -149,6 +150,7 @@ def p05():
     S.add(mouvement(150, 420, 1.2, "#d0ebff"))
     S.add(texte(250, 320, "4 fois plus vite !", 44, "#ffffff", contour="#1864ab"))
     S.add(cercle(120, 680, 10, "#d0ebff", opacity=0.6), cercle(140, 640, 7, "#d0ebff", opacity=0.6))
+    S.cachette(730, 180, "air")
     return S
 
 
@@ -226,6 +228,7 @@ def p10():
     S.add(astronaute(320, 600, 1.0, expr="content", bras="salut"))
     S.add(ding(560, 270, 0.9, expr="triste", ondes_=False, regard=(-1, 1)))
     S.add(texte(400, 90, "… silence …", 50, "#ced4da", poids=600))
+    S.cachette(670, 70, "air")
     return S
 
 

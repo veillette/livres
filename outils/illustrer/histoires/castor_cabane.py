@@ -227,6 +227,7 @@ def p05():
     S.add(texte(590, 440, "En pente douce ?", 40, "#f08c00", contour="#fff"))
     S.add(castor(100, 790, 0.85, expr="inquiet", bras="pense", regard=(1, -1)))
     S.add(brouette(330, 790, 0.6, flip=True))
+    S.cachette(730, 570, "air")
     return S
 
 
@@ -244,6 +245,7 @@ def p06():
     S.add(g(brouette(430, 520, 0.8, flip=True), transform=f"rotate({n(ang)} 430 520)"))
     S.add(castor(560, 600, 0.9, expr="content", bras="tire", flip=True, rot=ang))
     S.add(texte(470, 200, "Plus long…", 56, "#f08c00", contour="#fff"), texte(500, 270, "mais moins dur !", 56, "#f08c00", contour="#fff"))
+    S.cachette(70, 440, "air")
     return S
 
 
@@ -288,6 +290,7 @@ def p09():
     S.add(texte(520, 300, "2 brins", 36, "#2f9e44", anchor="start"))
     S.add(texte(560, 360, "portent", 32, "#2f9e44", anchor="start"), texte(560, 400, "la caisse", 32, "#2f9e44", anchor="start"))
     S.add(texte(400, 70, "Deux poulies : deux fois moins de force", 34, ENCRE))
+    S.cachette(400, 730, "air")
     return S
 
 
@@ -314,6 +317,7 @@ def p11():
     S.add(puits(205, 410, 0.6), texte(205, 160, "le puits", 32, "#1971c2"))
     S.add(grue(560, 410, 0.75), texte(690, 160, "la grue", 32, "#1971c2"))
     S.add(velo(400, 730, 1.0), texte(400, 490, "le vélo", 32, "#1971c2"))
+    S.cachette(610, 730, "air")
     return S
 
 

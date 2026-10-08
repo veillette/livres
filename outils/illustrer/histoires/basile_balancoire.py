@@ -221,6 +221,7 @@ def p07():
         S.add(texte(x, 100, mot, 44, "#495057"))
         S.add(horloge(x, 640, 48, heure=12, minute=10, bord="#f08c00"))
     S.add(texte(400, 760, "presque pareil !", 50, "#e8590c"))
+    S.cachette(430, 70, "air")
     return S
 
 
@@ -232,6 +233,7 @@ def p08():
         S.add(fantomes(lambda a, o, x=x, obj=obj: pendule(x, 160, 380, a, objet=obj, opacity=o), [-15, 15, -8]))
     S.add(texte(220, 690, "lourd", 50, "#495057"), texte(590, 690, "léger", 50, "#e64980"))
     S.add(texte(400, 100, "Même rythme !", 56, "#1c7ed6"))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -244,6 +246,7 @@ def p09():
     S.add(texte(230, 440, "court :", 46, "#e03131"), texte(230, 500, "vite !", 56, "#e03131"))
     S.add(texte(560, 720, "long : lentement", 46, "#1c7ed6"))
     S.add(basile(130, 790, 0.7, expr="surpris", bras="joues"))
+    S.cachette(400, 70, "air")
     return S
 
 
@@ -304,6 +307,7 @@ def p13():
     S.add(basile(600, 640, 0.95, expr="joie", bras="haut", rot=-12))
     S.add(arc_fleche(220, 110, 560, -30, 10, "#f76707", 6))
     S.add(g([herbe(60 + k * 120, 790, 1.4) for k in range(7)]))
+    S.cachette(730, 260, "air")
     return S
 
 

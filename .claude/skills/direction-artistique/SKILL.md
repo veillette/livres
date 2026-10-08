@@ -140,21 +140,31 @@ S.dessus(bulle(560, 150, 420, 100, "C'est pour mieux\nte voir !", 32,
 
 ## 6. La petite bête cachée
 
-Une coccinelle (une étoile de mer sous l'eau) se cache sur chaque page
-pleine : les petits la cherchent.
+Une coccinelle se cache sur chaque page pleine : les petits la cherchent.
+Selon la page, elle est posée (sol, plancher, mur, branche), en vol
+(`"air"` : ciel, mur, schéma), ou remplacée par une étoile de mer sur le
+sable (`"eau"`) et par un petit poisson en pleine eau (`"air"` sous l'eau).
 
 - Les décors qui reçoivent la Scene (`sol`, `interieur`, `piece`, `ocean`)
-  proposent des cachettes au pied des côtés ; la bête prend la cachette libre
-  la plus proche d'un bord, jamais sur un personnage (`perso`, `personne`,
+  proposent des cachettes au pied des côtés ; à défaut, un sol tracé à la
+  main (aplat ou chemin qui couvre toute la largeur jusqu'en bas, hors eau
+  bleue) en sert. La bête prend la cachette libre la plus proche d'un bord,
+  puis, si tout le bord est pris, une place plus bas, devant les pieds.
+- **Jamais sur un personnage, une bulle ou un texte** : `perso`, `personne`,
   `oiseau`, `chouette`, `escargot`, `tortue`, `dragon`, `licorne`, `corbeau`,
-  `coq`, `cigogne` réservent leur place avec `occuper()` ; un personnage
-  dessiné à la main peut appeler `occuper(x0, y0, x1, y1)`).
+  `coq`, `cigogne`, `bulle`, `pensee` et `texte` ajoutent à leur dessin un
+  repère invisible `occuper(x0, y0, x1, y1)`, lu à travers les `place()` et
+  les cadrages. **Un personnage dessiné à la main dans un script doit faire
+  de même** : `return place(m, x, y, s) + occuper(x - 90 * s, y - 200 * s,
+  x + 90 * s, y)` (coordonnées de l'appelant).
 - C'est **tout ou rien** : s'il manque une page, `generer.py` retire la bête
   du livre et écrit `petite bête absente : pas de cachette sur …`. Compléter
-  avec `S.cachette(x, y)` (pieds de la bête, coordonnées de la scène ;
-  `S.cachette(x, y, "eau")` pour l'étoile de mer) en choisissant un endroit
-  libre et visible : sol, rebord de fenêtre, étagère, mur, branche, ballon…
-- `CACHE = "souris"` dans un script change d'animal ; `CACHE = None` la retire.
+  avec `S.cachette(x, y)` (pieds de la bête, coordonnées de la scène),
+  `S.cachette(x, y, "air")` (centre, en vol) ou `S.cachette(x, y, "eau")` ;
+  l'outil `retoucher-livre/cachettes.py` propose ces places d'après l'image.
+- `CACHE = "souris"` dans un script change d'animal ; `CACHE = None` la
+  retire (seulement si elle n'a aucun sens dans le livre : *Sacha et les
+  planètes* se passe dans l'espace).
 
 ## 7. Vérifier
 
@@ -167,6 +177,7 @@ Après génération (`python3 outils/illustrer/generer.py <id>`), regarder
 - [ ] âges et silhouettes lisibles, personnages identiques d'une page à l'autre ;
 - [ ] échelles cohérentes ;
 - [ ] la nuit, les lumières brillent ; le moment de chaque page est le bon ;
-- [ ] la petite bête est sur toutes les pages (sortie de `generer.py`), visible
-      et jamais sur un visage ;
+- [ ] la petite bête est sur toutes les pages (sortie de `generer.py`), visible,
+      plausible et jamais sur un personnage (planche
+      `retoucher-livre/planche_cachettes.py`) ;
 - [ ] les `description` de `livre.js` disent ce que montre le dessin.

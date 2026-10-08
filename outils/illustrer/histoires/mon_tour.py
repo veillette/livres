@@ -89,6 +89,7 @@ def p03():
     S.add(praline(620, 790, 0.95, expr="fache", bras="croises", rot=6))
     S.add(texte(170, 300, "Hé !", 64, "#e03131", contour="#fff", rot=-10), texte(400, 220, "Aïe !", 64, "#e03131", contour="#fff"))
     S.add(eclat(300, 520, 1.2, "#e03131"))
+    S.cachette(70, 420, "air")
     return S
 
 

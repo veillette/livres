@@ -166,6 +166,7 @@ def p12():
     S.add(perso("chien", 380, 740, 1.1, expr="furieux", bras="poing", regard=(-1, 0)))
     S.add(agneau(160, 760, 0.95, expr="oups", bras="course", regard=(1, 0), flip=True))
     S.add(texte(380, 300, "OUAF ! OUAF !", 54, "#1971c2", contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 

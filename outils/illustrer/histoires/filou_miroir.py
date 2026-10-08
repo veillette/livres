@@ -132,6 +132,7 @@ def p05():
     S.add(g(paysage_lac(0), transform="translate(0 940) scale(1 -1)", opacity=0.55))
     S.add(rect(0, 470, 800, 330, "#1c7ed6", opacity=0.2))
     S.add(g([trait(100 + k * 130, 520 + (k % 3) * 80, 160 + k * 130, 520 + (k % 3) * 80, "#e7f5ff", 3, opacity=0.6) for k in range(5)]))
+    S.cachette(620, 730, "air")
     return S
 
 
@@ -153,6 +154,7 @@ def p06():
     fond(S, "#fff9db")
     S.add(cuillere_reflet(220, 330, 1.4, True), cuillere_reflet(580, 330, 1.4, False))
     S.add(texte(220, 110, "le creux", 48, "#e8590c"), texte(580, 110, "le dos", 48, "#e8590c"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -182,6 +184,7 @@ def p08():
     ang = math.degrees(math.atan2(py - 200, px - 140))
     S.add(chemin(f"M {px} {py - 110} A 110 110 0 0 0 {px - 110 * math.cos(math.radians(ang))} {py - 110 * math.sin(math.radians(ang))}", stroke="#e64980", sw=5))
     S.add(chemin(f"M {px} {py - 110} A 110 110 0 0 1 {px + 110 * math.cos(math.radians(ang))} {py - 110 * math.sin(math.radians(ang))}", stroke="#e64980", sw=5))
+    S.cachette(570, 70, "air")
     return S
 
 
@@ -244,6 +247,7 @@ def p11():
         S.add(g(wedge, transform=t))
     for k in range(3):
         S.add(place(trait(-300, 0, 300, 0, "#fff", 2, opacity=0.25), 400, 400, rot=k * 60))
+    S.cachette(550, 70, "air")
     return S
 
 
@@ -287,6 +291,7 @@ def p14():
     for k, c in enumerate(cols):
         S.add(poly([(px - 60, py - 10), (px + 60, py + 8 + k * 3), (780, 300 + k * 60), (780, 300 + (k + 1) * 60 - 6), (px + 60, py + 12 + k * 3)], c, opacity=0.85))
     S.add(filou(160, 790, 1.1, expr="bouche_bee", regard=(1, -1)))
+    S.cachette(400, 70, "air")
     return S
 
 
@@ -320,6 +325,7 @@ def p16():
     S.defs.append(el("clipPath", ellipse(mx, 360, 86, 126, "#000"), id=cid))
     S.add(g(filou(mx, 480, 0.85, expr="rire", flip=True, bras="salut"), clip_path=f"url(#{cid})", opacity=0.9))
     S.add(filou(290, 780, 1.6, expr="rire", bras="salut", regard=(1, -1)))
+    S.cachette(570, 730, "air")
     return S
 
 

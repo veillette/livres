@@ -130,8 +130,10 @@ def p04():
 
 
 def p05():
-    return page_couleur(2, O, perso("renard", 620, 780, 1.15, expr="rire", bras="tient", flip=True),
-                        feuille_automne(540, 590, 1.3, rot=-20), "ORANGE !")
+    S = page_couleur(2, O, perso("renard", 620, 780, 1.15, expr="rire", bras="tient", flip=True),
+                     feuille_automne(540, 590, 1.3, rot=-20), "ORANGE !")
+    S.cachette(730, 270, "air")
+    return S
 
 
 def p06():
@@ -140,8 +142,10 @@ def p06():
 
 
 def p07():
-    return page_couleur(4, V, perso("grenouille", 620, 780, 1.2, expr="rire", bras="haut"),
-                        g([herbe(520, 780, 1.6), herbe(720, 790, 1.4)]), "VERT !")
+    S = page_couleur(4, V, perso("grenouille", 620, 780, 1.2, expr="rire", bras="haut"),
+                     g([herbe(520, 780, 1.6), herbe(720, 790, 1.4)]), "VERT !")
+    S.cachette(730, 270, "air")
+    return S
 
 
 def p08():
@@ -195,6 +199,7 @@ def p12():
     S.add(lili(400, 560, 1.3, expr="rire", galop=True, rot=-12))
     S.add(etincelles(180, 520, 1.0, graine=2), etincelles(620, 300, 1.0, graine=9))
     S.add(lune(660, 120, 40))
+    S.cachette(410, 730, "air")
     return S
 
 

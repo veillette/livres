@@ -92,6 +92,7 @@ def p05():
     S.add(perso("souris", 400, 460, 0.8, expr="rire", bras="haut", **SOURIS))
     for x, y in [(160, 460), (660, 520), (280, 610), (520, 600)]:
         S.add(goutte(x, y, 1.4, "#4dabf7"))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -130,6 +131,7 @@ def p08():
     S.add(perso("herisson", 280, 760, 0.95, expr="sourire", regard=(1, 0)))
     S.add(perso("souris", 380, 760, 0.95, expr="timide", bras="bas", **SOURIS))
     S.add(coeur(380, 520, 1.3))
+    S.cachette(70, 420, "air")
     return S
 
 

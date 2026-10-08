@@ -220,6 +220,7 @@ def p14():
         x = 110 + i * 95 if i < 3 else 330 + i * 65
         S.add(chevreau(i, x, 790 - (i % 2) * 30, 0.55, expr="rire", bras=("haut", "danse")[i % 2], rot=(-8 if i % 2 else 8)))
     S.add(notes(250, 420, 0.9, "#e64980"), notes(560, 400, 0.9, "#1c7ed6"))
+    S.cachette(730, 240, "air")
     return S
 
 

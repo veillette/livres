@@ -182,6 +182,7 @@ def p02():
     S.add(effraie(400, 770, 2.3, expr="sourire"))
     S.add(texte(160, 170, "Chhhh !", 54, "#c08a52", contour="#fff", rot=-8))
     S.add(etiquette(640, 150, "un visage", 34, "#e67700"), etiquette(640, 190, "en cœur", 34, "#e67700"))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -227,6 +228,7 @@ def p06():
     S.add(effraie(560, 760, 1.5, expr="malin", dos=True))
     S.add(fleche_courbe("M 470 330 A 110 50 0 1 0 650 320", (650, 320), 20, "#e67700", 6, 22))
     S.add(texte(400, 120, "Coucou, je suis là !", 44, "#e67700", contour="#fff"))
+    S.cachette(400, 730, "air")
     return S
 
 

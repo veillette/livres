@@ -206,6 +206,7 @@ def p08():
     S.add(ines(620, 790, 1.5, expr="content", bras="hanches"))
     S.add(coeur(220, 300, 1.0), coeur(500, 260, 0.8))
     S.add(texte(400, 140, "Léon !", 64, "#e8590c", contour="#fff"))
+    S.cachette(730, 160, "air")
     return S
 
 

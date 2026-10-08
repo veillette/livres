@@ -63,6 +63,7 @@ def p03():
     S.add(texte(400, 150, "GRRRR !", 100, "#c92a2a", contour="#fff"))
     for sgn in (-1, 1):
         S.add(g([trait(400 + sgn * 70, 770, 400 + sgn * 110, 790, "#c92a2a", 6), trait(400 + sgn * 80, 750, 400 + sgn * 130, 755, "#c92a2a", 6)]))
+    S.cachette(660, 730, "air")
     return S
 
 
@@ -73,6 +74,7 @@ def p04():
     S.add(nuage_orage(400, 210, 1.5))
     S.add(nuage(160, 140, 0.7, "#343a40"), nuage(650, 130, 0.8, "#343a40"))
     S.add(perso("herisson", 400, 760, 1.8, expr="furieux", bras="poing", **ROUGE))
+    S.cachette(70, 640, "air")
     return S
 
 
@@ -97,6 +99,7 @@ def p06():
           texte(600, 330, "la bougie.", 38, "#0ca678"))
     for k in range(3):
         S.add(chemin(f"M {560 + k * 40} {430 - k * 10} q 20 -20 40 0", stroke="#63e6be", sw=5))
+    S.cachette(430, 70, "air")
     return S
 
 

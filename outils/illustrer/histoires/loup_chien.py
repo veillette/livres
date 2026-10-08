@@ -222,6 +222,7 @@ def p14():
     S.add(loup(260, 740, 1.4, expr="rire", bras="course", flip=True, rot=12))
     S.add(mouvement(430, 580, 1.4, rot=180), mouvement(450, 480, 1.1, rot=180))
     S.add(chien(640, 760, 0.9, expr="surpris", bras="joues"))
+    S.cachette(730, 430, "air")
     return S
 
 

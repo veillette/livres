@@ -169,6 +169,7 @@ def p10():
     for k in range(10):
         S.add(place(chemin("M 0 0 q 20 -20 40 0 q 20 20 40 0", stroke=ROUGE, sw=7), r.uniform(80, 700), r.uniform(200, 600), rot=r.uniform(0, 180)))
     S.add(texte(400, 160, "CRAC !", 110, "#c92a2a", contour="#fff"))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -195,6 +196,7 @@ def p12():
     S.add(chemin("M 40 650 Q 200 690 380 650 Q 560 610 760 660", stroke=ROUGE, sw=30))
     S.add(g([trait(60 + k * 40, 640, 60 + k * 40, 668, "#fff", 4, opacity=0.6) for k in range(18)]))
     S.add(coccinelle(380, 620, 1.2))
+    S.cachette(70, 150, "air")
     return S
 
 

@@ -48,6 +48,7 @@ def couverture():
     pont_tronc(S, y=560)
     S.add(blanchette(300, 560, 1.25, expr="fache", bras="poing", regard=(1, 0)))
     S.add(biquette(500, 560, 1.25, expr="fache", bras="poing", regard=(-1, 0)))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -83,6 +84,7 @@ def p03():
     S.add(blanchette(90, 506, 0.9, expr="surpris", regard=(1, 0)))
     S.add(biquette(710, 506, 0.9, expr="surpris", regard=(-1, 0)))
     S.add(texte(400, 360, "Un seul passage…", 46, BLEU, contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -92,6 +94,7 @@ def p04():
     S.add(blanchette(230, 520, 0.9, expr="fier", bras="bas", regard=(1, 0)))
     S.add(biquette(570, 520, 0.9, expr="fier", bras="bas", regard=(-1, 0)))
     S.add(texte(400, 200, "Un pas… puis un autre…", 40, BLEU, contour="#fff"))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -102,6 +105,7 @@ def p05():
     S.add(biquette(470, 520, 0.95, expr="fache", bras="hanches", regard=(-1, 0)))
     S.add(bulle(210, 130, 300, 90, "Recule !", 40, pointe=(300, 250)))
     S.add(bulle(590, 130, 360, 90, "Non, toi !", 40, pointe=(500, 250)))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -111,6 +115,7 @@ def p06():
     S.add(blanchette(330, 520, 0.95, expr="fier", bras="montre", regard=(1, 0)))
     S.add(biquette(470, 520, 0.95, expr="fache", bras="croises", regard=(-1, 0)))
     S.add(bulle(400, 110, 620, 120, "Ma grand-mère était la chèvre\nla plus célèbre du pays !", 32, pointe=(320, 250)))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -120,6 +125,7 @@ def p07():
     S.add(blanchette(330, 520, 0.95, expr="fache", bras="croises", regard=(1, 0)))
     S.add(biquette(470, 520, 0.95, expr="fier", bras="montre", regard=(-1, 0), flip=True))
     S.add(bulle(400, 110, 620, 120, "Et la mienne était\nla plus belle du royaume !", 32, pointe=(480, 250)))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -132,6 +138,7 @@ def p08():
     S.add(texte(160, 330, "Pousse !", 44, BLEU, contour="#fff"))
     S.add(texte(650, 330, "Pousse !", 44, BLEU, contour="#fff"))
     S.add(mouvement(400, 548, 0.8, rot=90), mouvement(240, 548, 0.8, rot=90))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -142,6 +149,7 @@ def p09():
     S.add(mouvement(310, 500, 1.0, rot=-90), mouvement(500, 500, 1.0, rot=-90))
     S.add(biquette(490, 556, 0.8, expr="oups", bras="haut", rot=165))
     S.add(texte(400, 200, "Patatras !", 60, "#c92a2a", contour="#fff"))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -150,6 +158,7 @@ def p10():
     pont_tronc(S)
     S.add(gerbe(400, 690, 1.3))
     S.add(texte(400, 320, "PLOUF !", 72, "#1971c2", contour="#fff"))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -192,6 +201,7 @@ def p14():
     S.add(biquette(90, 506, 0.9, expr="sourire", bras="donne", regard=(1, 0)))
     S.add(bulle(250, 130, 380, 100, "Passe la première !", 34, pointe=(110, 260)))
     S.add(bulle(560, 260, 240, 80, "Merci !", 34, pointe=(560, 300)))
+    S.cachette(730, 480, "air")
     return S
 
 

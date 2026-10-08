@@ -155,6 +155,7 @@ def p09():
     for k, x in enumerate((90, 210, 590, 710)):
         S.add(personne(x, 790, 0.95, expr="rire" if k % 2 else "timide", bras="joues" if k % 2 else "haut", **FOULE[k]))
     S.add(texte(400, 150, "Oh, que c'est beau !", 56, "#7048e8", contour="#fff"))
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -174,6 +175,7 @@ def p11():
     for k, x in enumerate((90, 210, 590, 710)):
         S.add(personne(x, 790, 0.95, expr="rire", bras="haut" if k % 2 else "joues", **FOULE[k]))
     S.add(texte(400, 150, "Ha ha ha ha !", 64, "#c92a2a", contour="#fff"))
+    S.cachette(680, 70, "air")
     return S
 
 
@@ -192,6 +194,7 @@ def p13():
     S.add(empereur(470, 790, 1.3, expr="rire", bras="ouverts"))
     S.add(personne(260, 790, 1.0, expr="rire", bras="haut", acc=("couronne",), **GARCON))
     S.add(chevalier(90, 790, 0.9, expr="neutre"), chevalier(700, 790, 0.9, expr="neutre"))
+    S.cachette(260, 70, "air")
     return S
 
 

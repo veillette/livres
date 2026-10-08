@@ -189,6 +189,7 @@ def p04():
     S.add(chemin("M 800 380 Q 680 360 560 390", stroke="#7c4a1e", sw=22))
     S.add(chemin("M 220 440 Q 400 230 560 340", stroke="#868e96", sw=4, stroke_dasharray="14 12"))
     S.add(ecureuil_profil(400, 330, 1.4, saut=True, queue_haut=False, rot=-8, expr="rire"))
+    S.cachette(730, 620, "air")
     return S
 
 
@@ -201,6 +202,7 @@ def p05():
                 [chemin(f"M {600 + k * 24} 620 q 14 10 6 30", stroke="#f8f9fa", sw=6) for k in range(4)] +
                 [ellipse(640, 600, 60, 30, ROUX)], fond="#8d5524", rot=40))
     S.add(etiquette(650, 500, "griffes", 36, "#e8590c"))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -229,6 +231,7 @@ def p07():
     S.add(nid(400, 380, 2.6, coupe=True, dedans=dedans))
     S.add(chemin("M 190 250 Q 400 150 610 250", stroke="#ffffff", sw=18))
     S.add(zzz(560, 200, 1.0))
+    S.cachette(400, 70, "air")
     return S
 
 

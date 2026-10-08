@@ -182,6 +182,7 @@ def p04():
     S.add(timeo(380, 630, 1.25, expr="bouche_bee", bras="bas", rot=-90))
     S.add(clara(610, 790, 1.7, masque=True, expr="sourire", bras="donne", flip=True, regard=(-1, 0.5)))
     S.add(miroir_dentaire(610 - 84 * 1.7, 790 - 92 * 1.7, 1.2, rot=-70))
+    S.cachette(490, 70, "air")
     return S
 
 
@@ -218,6 +219,7 @@ def p07():
         S.add(goutte(330 + k * 22, 420 - (k % 2) * 20, 0.4, "#74c0fc"))
     S.add(texte(220, 300, "Pschitt !", 50, "#1c7ed6", contour="#fff", rot=-10))
     S.add(texte(600, 300, "Slurp !", 50, "#0ca678", contour="#fff", rot=8))
+    S.cachette(490, 70, "air")
     return S
 
 

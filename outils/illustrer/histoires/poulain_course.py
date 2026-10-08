@@ -134,6 +134,7 @@ def p02():
     S.add(jo(700, 790, 1.2, expr="rire", bras="victoire", flip=True))
     S.add(bulle(420, 160, 420, 80, "Un futur champion !", 38, pointe=(640, 430)))
     S.add(g([etoile5(150 + k * 60, 330, 14, "#fab005") for k in range(3)]))
+    S.cachette(70, 220, "air")
     return S
 
 
@@ -158,6 +159,7 @@ def p04():
     S.add(caramel(480, 760, 0.85, expr="oups", rot=10))
     S.add(texte(250, 330, "Plus vite, Caramel !", 42, "#2f9e44", contour="#fff"))
     S.add(eclat(620, 760, 1.0, "#ffd43b"))
+    S.cachette(730, 220, "air")
     return S
 
 
@@ -212,6 +214,7 @@ def p09():
         S.add(cheval_profil(x, 700 + dy, 0.75, couleur=c, criniere="#212529", expr="rire", rot=-6, charge=jockey(cas, "#ffd43b")))
         S.add(mouvement(x - 140, 620 + dy, 0.9))
     S.add(texte(560, 400, "Tagada, tagada !", 44, "#c92a2a", contour="#fff"))
+    S.cachette(70, 370, "air")
     return S
 
 

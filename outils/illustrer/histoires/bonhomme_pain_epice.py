@@ -181,6 +181,7 @@ def p12():
     S.add(mamie(170, 790, 1.2, expr="inquiet"), papi(320, 790, 1.2, expr="inquiet"), vache(700, 790, 0.9, expr="triste"))
     S.add(bonhomme(520, 780, 1.0, expr="triste", bras="croises"))
     S.add(bulle(420, 170, 480, 110, "Je ne veux pas\nêtre mangé !", 36, pointe=(520, 560)))
+    S.cachette(730, 410, "air")
     return S
 
 

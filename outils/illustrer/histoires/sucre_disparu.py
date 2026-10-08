@@ -322,6 +322,7 @@ def p12():
     S.add(ami(420, 800, 0.95, expr="rire", bras="tient", objet=verre(68, -130, 60, 80, niveau=0.7, couleur_contenu="#fff3bf")))
     S.add(papi(650, 800, 1.05, expr="rire", bras="tient", flip=True, objet=verre(68, -130, 60, 80, niveau=0.7, couleur_contenu="#fff3bf")))
     S.add(texte(400, 300, "Santé !", 80, "#20c997", contour="#fff"))
+    S.cachette(300, 730, "air")
     return S
 
 

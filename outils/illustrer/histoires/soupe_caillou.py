@@ -49,6 +49,7 @@ def couverture():
     S.add(feu_marmite(430, 760, 1.0, "#ffd43b"))
     S.add(voyageur(200, 790, 1.35, expr="rire", bras="tient", objet=place(caillou_rond(0, 0, 0.8), 68, -146)))
     S.add(villageois(0, 640, 790, 1.0, expr="bouche_bee", bras="joues"))
+    S.cachette(70, 370, "air")
     return S
 
 
@@ -122,6 +123,7 @@ def p07():
     S.add(voyageur(170, 790, 1.3, expr="content", bras="salut"))
     S.add(villageois(1, 620, 790, 1.15, expr="content", bras="porte", objet=g([pomme_terre(-20, -70, 0.8), pomme_terre(20, -64, 0.8), pomme_terre(0, -86, 0.8)])))
     S.add(bulle(420, 150, 520, 110, "Avec des pommes de terre,\nce serait encore meilleur !", 30, pointe=(200, 460)))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -132,6 +134,7 @@ def p08():
     S.add(villageois(2, 140, 790, 1.05, expr="rire", bras="porte", objet=chou(0, -80, 0.6)))
     S.add(villageois(3, 620, 790, 0.95, expr="rire", bras="porte", objet=g([oignon(-16, -64, 0.6), oignon(20, -60, 0.6)])))
     S.add(villageois(4, 740, 790, 1.0, expr="content", bras="porte", objet=pain(0, -60, 0.6)))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -142,6 +145,7 @@ def p09():
     for k, x in enumerate((90, 220, 580, 710)):
         S.add(villageois(k, x, 790, 0.95, expr="miam", bras="joues"))
     S.add(texte(400, 150, "Mmm ! Quelle bonne odeur !", 48, "#e8590c", contour="#fff"))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -167,6 +171,7 @@ def p11():
         S.add(villageois(k, x, 800, 0.85, expr="chante" if k % 2 else "miam", bras="haut" if k % 2 else "bouche"))
     S.add(notes(250, 330, 0.9, "#fff"), notes(520, 310, 0.9, "#fff"))
     S.add(texte(400, 170, "À table !", 64, "#fff", contour="#e8590c"))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -176,6 +181,7 @@ def p12():
     S.add(voyageur(400, 790, 1.4, expr="malin", bras="donne", objet=place(caillou_rond(0, 0, 0.5), 84, -92)))
     S.add(villageois(0, 150, 790, 1.0, expr="bouche_bee", bras="joues"), villageois(1, 650, 790, 1.1, expr="rire", bras="joues"))
     S.add(bulle(400, 150, 480, 110, "Tout ça avec\nun caillou ?!", 36, pointe=(180, 480)))
+    S.cachette(730, 250, "air")
     return S
 
 

@@ -27,7 +27,8 @@ diagnostic :
 | Intérieur générique | mur rayé rose, cadre et fenêtre identiques à d'autres livres | `piece(S, style)` adapté au lieu du récit |
 | Nuit sans lumière | fenêtre jaune plate, rue sans reflet | `S.lumiere()` sur chaque source, flaque au sol, `S.ambiance("nuit")` |
 | Échelle fausse | château à hauteur de princesse | agrandir le décor, éloigner ou réduire le personnage |
-| Petite bête absente | `generer.py` affiche `petite bête absente : …` | `S.cachette(x, y)` sur les pages listées |
+| Petite bête absente | `generer.py` affiche `petite bête absente : …` | `cachettes.py` (section 4), ou `S.cachette(x, y)` à la main |
+| Bête sur un personnage | planche `planche_cachettes.py` | `+ occuper(…)` sur le personnage maison, ou `S.cachette()` |
 | Raideur | tout le monde face au lecteur, bras le long du corps | `regard=`, poses d'échange (`main`, `epaule`, `tend`…), `pas=` |
 
 Pour placer des cachettes ou des gros plans au bon endroit, superposer une
@@ -63,7 +64,33 @@ donnée en troisième argument) à côté de la nouvelle. Vérifier sur la captu
 
 Écrire planches et captures dans le scratchpad, jamais dans le dépôt.
 
-## 4. Vérifier que les autres livres n'ont pas changé
+## 4. Compléter la petite bête cachée
+
+La bête n'apparaît dans un livre que si elle est sur **toutes** ses pages
+pleines ; `generer.py` nomme les pages qui manquent. Parcours :
+
+```sh
+python3 .claude/skills/retoucher-livre/cachettes.py <id>             # propose une place par page
+python3 .claude/skills/retoucher-livre/cachettes.py --ecrire <id>    # l'écrit dans le script
+python3 outils/illustrer/generer.py <id>
+python3 .claude/skills/retoucher-livre/planche_cachettes.py /chemin/scratchpad/bete-<id>.html <id>
+```
+
+- `cachettes.py` rend chaque page sans cachette et choisit la zone calme
+  (peu de détails, ni blanche ni rouge) la plus proche d'un bord, hors des
+  zones réservées ; il ajoute `S.cachette(x, y, "air")` avant le
+  `return S` de la fonction de la page (coordonnées de la scène, cadrage
+  compris). Une page fabriquée par une fonction partagée ou sans
+  `return S`, ou une page toute blanche (schéma), se complète à la main.
+- `planche_cachettes.py` montre un gros plan centré sur la bête de chaque
+  page (cercle pointillé), 48 par capture : vérifier qu'elle est posée sur
+  un support plausible ou en vol, visible, jamais sur un personnage, une
+  bulle ou un texte.
+- Bête sur un personnage dessiné à la main : ajouter `+ occuper(…)` au
+  dessin du personnage dans le script (corrige toutes ses pages), sinon
+  `S.cachette()` sur la page.
+
+## 5. Vérifier que les autres livres n'ont pas changé
 
 ```sh
 python3 outils/illustrer/generer.py > /dev/null && git status --short -- livres
@@ -73,7 +100,7 @@ node --test
 
 Seuls les SVG (et le `livre.js`) des livres retouchés doivent apparaître.
 
-## 5. Documenter et committer
+## 6. Documenter et committer
 
 - `sw.js` : augmenter `VERSION` d'un cran (une fois par lot).
 - `outils/REVUE-IMAGES.md` : section « Retouche du <date> » — livres repris,

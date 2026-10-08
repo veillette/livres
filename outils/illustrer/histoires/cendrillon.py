@@ -96,6 +96,7 @@ def p01():
     S.add(cendrillon(400, 790, 1.15, expr="triste", bras="tient", objet=balai(*ancre(68, -30, "tient", "ado"), 0.8, rot=15)))
     S.add(belle_mere(160, 790, 1.15, expr="fache", bras="montre", regard=(1, 0)))
     S.add(soeur(0, 600, 790, 1.05, expr="malin", bras="croises", regard=(-1, 0)), soeur(1, 715, 790, 1.0, expr="rire", bras="bouche"))
+    S.cachette(190, 70, "air")
     return S
 
 
@@ -106,6 +107,7 @@ def p02():
     S.add(place(g([rect(-50, -34, 100, 68, "#fff", stroke="#e9ecef", stroke_width=3), poly([(-50, -34), (0, 6), (50, -34)], "#f1f3f5"), cercle(0, 6, 10, "#c92a2a")]), 290, 330))
     S.add(cendrillon(620, 790, 1.1, expr="inquiet", bras="pense"))
     S.add(bulle(560, 140, 300, 90, "Et moi ?", 40, pointe=(610, 460)))
+    S.cachette(190, 70, "air")
     return S
 
 
@@ -177,6 +179,7 @@ def p08():
     S.add(pantoufle_verre(330, 652, 0.55, rot=-15))
     S.add(texte(100, 110, "Dong !", 52, "#ffd43b", contour="#5f3dc4"), texte(110, 180, "Dong !", 52, "#ffd43b", contour="#5f3dc4"))
     S.ambiance("nuit")
+    S.cachette(70, 590, "air")
     return S
 
 
@@ -222,6 +225,7 @@ def p12():
     S.add(pantoufle_verre(420, 790, 0.7))
     S.add(prince(650, 790, 1.1, expr="bouche_bee", bras="ouverts", regard=(-1, 0)))
     S.add(etincelles(420, 740, 0.8))
+    S.cachette(190, 70, "air")
     return S
 
 
@@ -232,6 +236,7 @@ def p13():
     S.add(cendrillon(480, 790, 1.2, bal=True, habit="#f8f9fa", motif_robe="#e7f5ff", expr="rire", bras="main", flip=True, regard=(-1, 0)))
     S.add(soeur(0, 90, 790, 0.85, expr="timide"), soeur(1, 710, 790, 0.85, expr="timide"))
     S.add(coeur(400, 260, 1.6), etincelles(400, 320, 1.4, graine=13))
+    S.cachette(730, 420, "air")
     return S
 
 

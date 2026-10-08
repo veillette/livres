@@ -80,6 +80,7 @@ def couverture():
     S.add(ali(560, 790, 1.8, expr="rire", bras="salut"))
     S.add(enfant_n(0, 160, 790, 1.15, expr="rire", bras="haut"))
     S.add(enfant_n(1, 330, 790, 1.15, expr="content", bras="salut", regard=(1, 0)))
+    S.cachette(70, 460, "air")
     return S
 
 
@@ -125,6 +126,7 @@ def p03():
     for k, x in enumerate((150, 280, 520, 650)):
         S.add(assis(k, x, 740, 0.95, expr="content" if k % 2 else "sourire", regard=(0, -1)))
     S.add(ali(400, 720, 1.25, expr="content", bras="montre", regard=(0, -1)))
+    S.cachette(70, 230, "air")
     return S
 
 
@@ -153,6 +155,7 @@ def p05():
     S.add(enfant_n(1, 460, 790, 1.15, expr="rire", bras="salut", regard=(-1, -0.5)))
     S.add(texte(560, 450, "5 doigts !", 40, "#e8590c", contour="#fff"))
     S.add(enfant_n(3, 640, 790, 1.05, expr="content", bras="haut"))
+    S.cachette(70, 230, "air")
     return S
 
 
@@ -211,6 +214,7 @@ def p09():
     for i, x in enumerate((130, 260, 540, 670)):
         S.add(assis(i, x, 770, 0.9, expr="bouche_bee" if i % 2 else "content", regard=(0, -1)))
     S.add(etoile5(250, 180, 24, "#ffd43b"), etoile5(560, 160, 18, "#ffd43b"), lune(400, 130, 30))
+    S.cachette(240, 70, "air")
     return S
 
 
@@ -225,6 +229,7 @@ def p10():
     S.add(enfant_n(0, 300, 790, 1.05, expr="content", bras="salut", regard=(-1, 0)))
     S.add(ali(130, 790, 1.5, expr="content", bras="coucou"))
     S.add(bulle(340, 120, 400, 90, "Au revoir, maître !", 34, pointe=(320, 520)))
+    S.cachette(580, 70, "air")
     return S
 
 

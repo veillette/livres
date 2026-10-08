@@ -67,6 +67,7 @@ def couverture():
     S.add(ane(160, 790, 1.35, expr="chante", bras="ouverts"), chien(360, 790, 1.05, expr="rire", bras="porte", objet=tambour(0, -70, 0.6)))
     S.add(chat(530, 790, 0.95, expr="chante", bras="ouverts"), coq_(680, 790, 1.0, expr="chante", bec_ouvert=True, ailes="haut"))
     S.add(notes(250, 440, 1.0, "#e64980"), notes(560, 420, 0.9, "#1c7ed6"))
+    S.cachette(730, 410, "air")
     return S
 
 
@@ -207,6 +208,7 @@ def p14():
     S.add(ane(170, 790, 1.2, expr="chante", bras="ouverts"), chien(340, 790, 0.9, expr="rire", objet=tambour(0, -70, 0.6), bras="porte"))
     S.add(chat(500, 790, 0.8, expr="chante", bras="ouverts"), coq_(650, 790, 0.85, expr="chante", bec_ouvert=True, ailes="haut"))
     S.add(notes(260, 380, 1.0, "#e64980"), notes(520, 360, 1.0, "#1c7ed6"))
+    S.cachette(310, 70, "air")
     return S
 
 

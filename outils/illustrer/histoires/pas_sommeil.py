@@ -126,6 +126,7 @@ def p03():
     S.add(bao(420, 760, 1.4, expr="baille", bras="etire", rot=-8))
     S.add(mouvement(270, 520, 1.1, rot=-20), mouvement(570, 520, 1.1, rot=20))
     S.add(baille_txt(640, 280, 50, 3))
+    S.cachette(380, 70, "air")
     return S
 
 

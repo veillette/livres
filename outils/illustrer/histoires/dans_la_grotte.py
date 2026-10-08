@@ -172,6 +172,7 @@ def p04():
         S.add(goutte(370 + (k % 2) * 16, 300 + k * 40, 0.9, "#4dabf7"))
     S.add(texte(560, 360, "le calcaire", 38, "#7c4a1e", contour="#fff"))
     S.add(texte(410, 740, "des millions d'années !", 44, "#5f3dc4", contour="#fff"))
+    S.cachette(730, 630, "air")
     return S
 
 
@@ -231,6 +232,7 @@ def p09():
     S.add(rect(0, 0, 800, 800, "#0b0a10", opacity=0.93))
     S.add(texte(400, 300, "Tout noir !", 64, "#495057"))
     S.add(texte(400, 380, "Je ne vois même pas ma main…", 34, "#495057", poids=600))
+    S.cachette(710, 70, "air")
     return S
 
 

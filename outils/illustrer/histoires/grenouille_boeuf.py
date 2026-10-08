@@ -34,7 +34,7 @@ def grenouille_ronde(x, y, r=120, expr="souffle", rouge=0.0, rot=0):
     for sgn in (-1, 1):
         m.append(ellipse(sgn * 52 * k, -40 * k, 16 * k, 10 * k, "#ff6b6b", opacity=0.6))
     m.append(place(bouche(0, 0, bs, 1.6), 0, -36 * k, k))
-    return place(m, x, y, 1.0, rot=rot)
+    return place(m + [occuper(-r * 1.1, -r, r * 1.1, r)], x, y, 1.0, rot=rot)
 
 
 def mare(S, ciel_haut="#a5d8ff", ciel_bas="#e7f5ff", y=560):

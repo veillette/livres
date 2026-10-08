@@ -122,6 +122,7 @@ def p05():
     S.add(paul(580, 770, 1.05, expr="concentre", regard=(-1, 0)))
     S.add(lucas(710, 770, 1.05, expr="concentre", regard=(-1, 0)))
     S.add(bulle(380, 110, 560, 130, "Creusez, bêchez, retournez\nla terre partout !", 34, pointe=(220, 460)))
+    S.cachette(70, 270, "air")
     return S
 
 

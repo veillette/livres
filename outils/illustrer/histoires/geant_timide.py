@@ -70,6 +70,7 @@ def p02():
     S.add(personne(130, 780, 1.0, expr="oups", bras="course", **GENS[0]))
     S.add(personne(280, 790, 0.95, expr="surpris", bras="joues", **GENS[1]))
     S.add(texte(250, 200, "BOUM ! BOUM !", 60, "#e8590c", contour="#fff", rot=-6))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -81,6 +82,7 @@ def p03():
     S.add(bartolo(540, 780, 2.6, expr="concentre", bras="large", regard=(0, 1)))
     S.add(personne(160, 790, 1.2, expr="surpris", bras="bouche", regard=(1, -1), **ZOE))
     S.add(fontaine(160, 800, 0.9))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -105,6 +107,7 @@ def p05():
     S.add(bartolo(520, 830, 2.7, expr="timide", bras="yeux"))
     S.add(personne(160, 780, 1.3, expr="rire", bras="salut", regard=(1, -1), **ZOE))
     S.add(bulle(210, 200, 330, 90, "Bonjour !", 48, pointe=(190, 470)))
+    S.cachette(70, 420, "air")
     return S
 
 
@@ -116,6 +119,7 @@ def p06():
     S.add(personne(280, 790, 1.2, expr="rire", **ZOE))
     S.add(chapeau_vole(130, 300, 1.0, "#fa5252", rot=-30), chapeau_vole(300, 230, 0.8, "#4dabf7", rot=40), chapeau_vole(90, 150, 0.7, "#fab005", rot=15))
     S.add(mouvement(400, 330, 1.4), mouvement(420, 420, 1.2))
+    S.cachette(730, 150, "air")
     return S
 
 
@@ -125,6 +129,7 @@ def p07():
     S.add(bartolo(560, 840, 2.7, expr="triste", bras="pense", regard=(-1, 1)))
     S.add(personne(170, 780, 1.3, expr="inquiet", bras="large", regard=(1, -1), **ZOE))
     S.add(bulle(400, 110, 520, 110, "Je voulais me faire des amis…\nmais je suis trop timide.", 30, pointe=(470, 250)))
+    S.cachette(70, 420, "air")
     return S
 
 
@@ -135,6 +140,7 @@ def p08():
     S.add(personne(190, 780, 1.35, expr="joie", bras="montre", regard=(1, -1), **ZOE))
     S.add(eclat(250, 380, 1.3, "#fab005"))
     S.add(bulle(260, 150, 440, 110, "Viens à la fête !\nJe serai à côté de toi.", 34, pointe=(220, 370)))
+    S.cachette(70, 420, "air")
     return S
 
 
@@ -146,6 +152,7 @@ def p09():
     S.add(personne(100, 790, 0.95, expr="inquiet", bras="joues", **GENS[2]))
     S.add(personne(200, 800, 0.9, expr="surpris", **GENS[0]))
     S.add(coeur(420, 520, 1.1))
+    S.cachette(70, 420, "air")
     return S
 
 
@@ -167,6 +174,7 @@ def p11():
     for k, (x, gg) in enumerate([(100, GENS[3]), (220, GENS[1]), (330, ZOE)]):
         S.add(personne(x, 790, 0.95 if k < 2 else 1.1, expr="rire", bras=("applaudit", "haut", "coucou")[k], **gg))
     S.add(texte(280, 330, "Merci, géant !", 52, "#4c6ef5", contour="#fff"))
+    S.cachette(70, 420, "air")
     return S
 
 

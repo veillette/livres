@@ -88,6 +88,7 @@ def p04():
     S.add(chapeau(400, 590, 1.9, ROUGE, rot=180, fleur_=False))
     S.add(ellipse(400, 642, 150, 16, "#74c0fc", opacity=0.8))
     S.add(bulle(400, 160, 380, 90, "Quel joli bateau !", 38, pointe=(400, 300)))
+    S.cachette(220, 730, "air")
     return S
 
 
@@ -111,6 +112,7 @@ def p06():
     S.add(nid_chapeau(560, 405, 1.3, oeufs=3))
     S.add(oiseau(700, 410, 1.0, "#4dabf7", expr="content", ailes="ouvertes", regard=(-1, 0), flip=True))
     S.add(bulle(600, 640, 360, 90, "Le nid parfait !", 40, pointe=(690, 440)))
+    S.cachette(70, 600, "air")
     return S
 
 

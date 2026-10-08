@@ -10,6 +10,8 @@ from objets import *
 from sciences import *
 
 ID = "sacha-planetes"
+# pas de petite bête cachée : le livre se passe dans l'espace
+CACHE = None
 SACHA = dict(peau="brune", cheveux="noir", coiffure="courts")
 ESPACE = "#0b1433"
 
