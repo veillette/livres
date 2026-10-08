@@ -45,7 +45,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v26"`, donc `"v26"` → `"v27"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v27"`, donc `"v27"` → `"v28"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -179,8 +179,8 @@ AGENTS.md           consignes pour les agents de code (non publiées)
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (185 livres, 2 900 pages,
-2 492 SVG) sont
+Les illustrations de tous les livres du catalogue (185 livres, 2 952 pages,
+2 544 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 
@@ -304,9 +304,11 @@ générées par un petit outil Python, sans aucune dépendance, dans
   avec ses variables `ID` et `IMAGES`. Les personnages et schémas propres à un
   seul livre y sont aussi dessinés : circuit de Zoé, poulies de Castor,
   balançoire de Basile, thermomètres de Tilou…
-- `livres_fetes.py` : textes et scènes des dix livres de fêtes ;
-  `fetes.py` dessine leurs illustrations et `creer_livres_fetes.py` recrée leurs
-  fichiers `livre.js` et modules d'illustration.
+- `fetes.py` : accessoires partagés par les livres du rayon « Fêtes »
+  (lanternes, guirlandes lumineuses et fanions, cadeaux, sapin décoré, étoile
+  en papier, œufs peints et cloches de Pâques, citrouilles creusées, confettis,
+  serpentins, feux d'artifice, cerf-volant, crêpes, petit chien de profil…) ;
+  chaque fête a, comme les autres livres, son propre script dans `histoires/`.
 
 ```sh
 python3 outils/illustrer/generer.py               # tous les livres

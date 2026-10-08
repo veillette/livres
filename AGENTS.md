@@ -59,7 +59,7 @@ relancer `generer.py` et valider les SVG produits dans le même commit.
   change des SVG existants, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (aujourd'hui `"v26"`, donc `"v26"` → `"v27"`) et
+  `VERSION` dans `sw.js` (aujourd'hui `"v27"`, donc `"v27"` → `"v28"`) et
   mettre à jour les totaux (livres, pages, SVG) du README (section
   « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
   qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche

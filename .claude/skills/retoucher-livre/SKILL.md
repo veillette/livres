@@ -39,10 +39,8 @@ en 800 × 800.
 
 - Tout se passe dans `outils/illustrer/histoires/<id_souligne>.py` (et
   `livres/<id>/livre.js` pour les descriptions).
-- Un livre de fêtes : `histoires/<id>.py` ne fait qu'appeler `images_pour`.
-  Les dessins sont dans `fetes.py`, les textes dans `livres_fetes.py`.
-  `creer_livres_fetes.py` réécrit les dix livres : ne pas le lancer pour
-  une retouche.
+- Un livre de fêtes se retouche comme les autres, dans son script ; ses
+  accessoires communs (lanternes, guirlandes, cadeaux…) sont dans `fetes.py`.
 - Un module partagé (`base.py`, `fantastique.py`…) ne change que par **ajout**
   (nouvelle fonction, nouveau paramètre avec valeur par défaut). Si un outil
   partagé doit changer pour tout le monde, c'est une **retouche globale** : la
@@ -113,7 +111,7 @@ Seuls les SVG (et le `livre.js`) des livres retouchés doivent apparaître.
 ## 6. Documenter et committer
 
 - `sw.js` : augmenter `VERSION` d'un cran (une fois par lot ; aujourd'hui
-  `"v26"`, donc `"v26"` → `"v27"`).
+  `"v27"`, donc `"v27"` → `"v28"`).
 - Aligner les exemples de `VERSION` du README, d'`AGENTS.md`, de
   `nouveau-livre` et de cette compétence sur la nouvelle constante.
 - `outils/REVUE-IMAGES.md` : section « Retouche du <date> » — livres repris,
