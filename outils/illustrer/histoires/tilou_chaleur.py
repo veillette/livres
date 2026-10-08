@@ -144,6 +144,7 @@ def p03():
     S.add(texte(620, 240, "bois", 50, "#a0693a"), fleche(610, 260, 470, 330, "#a0693a", 6, 20))
     S.add(texte(160, 420, "Aïe !", 70, "#e03131", contour="#fff", rot=-8))
     S.add(texte(650, 420, "tiède", 44, "#a0693a"))
+    S.cachette(400, 70, "air")
     return S
 
 
@@ -170,6 +171,7 @@ def p05():
     S.add(assiette(280, 625, 1.3), glacon_cube(280, 630, 1.0))
     S.add(mitaine(510, 590, 1.0, "#e03131"), glacon_cube(510, 560, 0.5))
     S.add(pensee(260, 200, 60, texte(260, 225, "?", 70, "#7048e8"), depuis=(150, 420)))
+    S.cachette(350, 730, "air")
     return S
 
 
@@ -221,6 +223,7 @@ def p09():
     S.add(maman(300, 510, 0.75, expr="content"), tilou_maison(410, 510, 0.6, expr="rire", bras="haut"), mimi(490, 510, 0.45, expr="content"))
     S.add(texte(130, 160, "Il gèle !", 44, "#1c7ed6", anchor="start"))
     S.add(texte(400, 300, "Bien au chaud", 34, CHAUD))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -244,6 +247,7 @@ def p11():
     S.add(soleil(200, 120, 45, visage=True), g([flocons_un(600 + dx, 110 + dy) for dx, dy in [(-40, 0), (30, -20), (10, 30)]]))
     S.add(texte(200, 760, "chaud", 52, "#e03131"), texte(600, 760, "froid", 52, "#1c7ed6"))
     S.add(fleche(300, 500, 300, 330, "#e03131", 7, 22), fleche(700, 330, 700, 500, "#1c7ed6", 7, 22))
+    S.cachette(470, 160, "air")
     return S
 
 

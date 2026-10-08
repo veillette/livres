@@ -129,6 +129,7 @@ def couverture():
     S.add(maison(170, 760, 0.9, mur="#dbe4ff", toit="#1c7ed6", lumiere=False))
     S.add(mila(400, 660, 1.7, expr="content", bras="tient", objet=dent(86, -180, 0.85, rot=12)))
     S.add(etincelles(650, 560, 1.0, graine=5), etincelles(170, 300, 0.8, graine=9, couleur="#d0ebff"))
+    S.cachette(690, 770)
     return S
 
 
@@ -181,6 +182,7 @@ def p03():
     S.add(rect(400 - 4, 372, 8, 236, "#e9ecef"))
     S.add(mila(320, 590, 0.75, expr="inquiet", bras="porte", regard=(-1, 0)))
     S.add(bulle(400, 730, 740, 84, "Les fées n'ont pas peur… enfin, presque pas.", 30))
+    S.cachette(70, 140, "air")
     return S
 
 

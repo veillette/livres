@@ -82,6 +82,7 @@ def p01():
     S.add(personne(80, 790, 1.2, **PAPA, expr="content"), personne(720, 790, 1.15, **MAMAN, expr="content"))
     freres(S, 790, "rire", x0=190, dx=78)
     S.add(poucet(660, 790, 0.5, expr="rire", bras="haut"))
+    S.cachette(470, 585)
     return S
 
 

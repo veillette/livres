@@ -65,6 +65,7 @@ def couverture():
     S.add(lune_phase(640, 170, 60, 0.25, True, sombre="#3b3d8a"))
     S.add(chemin("M 0 640 Q 200 610 400 640 L 400 800 L 0 800 Z", "#8ce99a"), chemin("M 400 640 Q 600 610 800 640 L 800 800 L 400 800 Z", "#364fc7"))
     S.add(petit_ours(400, 770, 1.8, pyjama=True, expr="baille", bras="haut"))
+    S.cachette(70, 710, "air")
     return S
 
 
@@ -127,16 +128,22 @@ def page_orange(angle, texte_=None, fleche_=False, couleur_t="#ffe066"):
 
 def p04():
     # maison face à la lampe : il fait jour chez nous
-    return page_orange(200, "le jour")
+    S = page_orange(200, "le jour")
+    S.cachette(280, 730, "air")
+    return S
 
 
 def p05():
     # l'orange tourne : la face avant va de gauche à droite, l'autocollant s'en va vers l'ombre
-    return page_orange(262, fleche_=True)
+    S = page_orange(262, fleche_=True)
+    S.cachette(510, 70, "air")
+    return S
 
 
 def p06():
-    return page_orange(330, "la nuit", couleur_t="#b197fc")
+    S = page_orange(330, "la nuit", couleur_t="#b197fc")
+    S.cachette(510, 70, "air")
+    return S
 
 
 def p07():
@@ -153,6 +160,7 @@ def p07():
     S.add(table(610, 800, 330, 150, "#c68642", nappe="#ffc9c9"))
     S.add(tasse(540, 630, 1.1), assiette(670, 645, 1.0))
     S.add(rect(396, 0, 8, 800, "#fff"))
+    S.cachette(490, 70, "air")
     return S
 
 
@@ -229,6 +237,7 @@ def p13():
     S.add(boule_eclairee(680, 260, 50, "#e9ecef", "#1b1f3b", 170, opacity=0.8))
     S.add(g([trait(190, 360 + k * 30, 620, 250 + k * 18, "#ffe066", 3, stroke_dasharray="12 10", opacity=0.7) for k in range(3)]))
     S.add(texte(680, 180, "la Lune", 44, "#e9ecef"))
+    S.cachette(510, 70, "air")
     return S
 
 
@@ -249,6 +258,7 @@ def p14():
     S.add(texte(700, 110, "hiver", 56, "#e5dbff"))
     S.add(petit_ours(600, 760, 1.2, expr="surpris", acc=("bonnet", "echarpe"), couleur_acc="#fa5252", habit="#4dabf7"))
     S.add(rect(396, 0, 8, 800, "#fff"))
+    S.cachette(70, 600, "air")
     return S
 
 
@@ -277,6 +287,7 @@ def p16():
     S.add(cercle(300, 260, 26, "#ffd43b"))
     S.add(boule_eclairee(430, 260, 70, "#1c7ed6", "#141c3a", 180))
     S.add(cercle(410, 240, 22, "#51cf66"), cercle(455, 285, 18, "#51cf66", opacity=0.5))
+    S.cachette(490, 70, "air")
     return S
 
 

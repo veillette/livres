@@ -145,6 +145,7 @@ def p02():
                  stroke="#d0ebff", sw=6))
     S.add(texte(620, 170, "Pfff !", 60, "#1864ab", contour="#fff"))
     S.add(bulles_eau(260, 560, 1.4))
+    S.cachette(730, 380, "poisson")
     return S
 
 
@@ -166,6 +167,7 @@ def p04():
     S.add(tas_oeufs(400, 500, 28, 1, 0.9))
     S.add(tortue_dessus(400, 230, 0.85, rot=0, expr="concentre"))
     S.add(etiquette(640, 520, "une centaine", 32, "#fff3bf", fond="#6d6044"), etiquette(640, 560, "d'œufs !", 32, "#fff3bf", fond="#6d6044"))
+    S.cachette(730, 290, "air")
     return S
 
 
@@ -189,6 +191,7 @@ def p06():
     S.add(loupe(170, 640, 90, [rect(80, 550, 180, 180, "#fff9f0"), cercle(170, 640, 70, "#fff9f0"),
                                 place(tortue_dessus(0, 0, 0.5, bebe=True, expr="dort"), 170, 650, 1.0, rot=120)],
                 fond="#fff9f0", rot=-130))
+    S.cachette(730, 180, "air")
     return S
 
 
@@ -223,6 +226,7 @@ def p09():
     for x, y, r in [(200, 250, -10), (420, 380, 5), (620, 220, -15), (330, 560, 10), (560, 620, -5)]:
         S.add(tortue_nage(x, y, 0.45, rot=r, expr="rire", couleur="#495057", peau="#6c757d"))
     S.add(bulles_eau(700, 450, 1.0))
+    S.cachette(730, 100, "poisson")
     return S
 
 

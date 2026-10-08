@@ -142,6 +142,7 @@ def p07():
     S.add(brin_herbe(250, 660, 1.2, rot=-10))
     S.add(fourmi(600, 740, 1.3, expr="rire", bras="saute", pieds_haut=True))
     S.add(texte(560, 330, "Sauvée !", 64, "#2b8a3e", contour="#fff"))
+    S.cachette(230, 730, "air")
     return S
 
 
@@ -197,6 +198,7 @@ def p12():
     S.add(fourmi(430, 720, 1.6, expr="furieux", bras="course", rot=-12))
     S.add(mouvement(230, 560, 1.4), mouvement(220, 460, 1.1))
     S.add(herbe(700, 760, 1.4), herbe(90, 760, 1.2))
+    S.cachette(730, 150, "air")
     return S
 
 
@@ -236,6 +238,7 @@ def p15():
     S.add(colombe(420, 342, 1.3, expr="rire", regard=(-1, 0)))
     S.add(fourmi(300, 344, 0.55, expr="rire", bras="haut"))
     S.add(coeur(360, 170, 1.0))
+    S.cachette(380, 730, "air")
     return S
 
 

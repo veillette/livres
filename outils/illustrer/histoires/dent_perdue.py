@@ -85,6 +85,7 @@ def couverture():
     S.add(sofia(330, 780, 2.0, dents="trou", expr="rire", bras="montre", regard=(1, 0)))
     S.add(petite_souris(620, 760, 0.8, expr="content", bras="salut"))
     S.add(piece(640, 520, 1.3))
+    S.cachette(730, 650, "air")
     return S
 
 
@@ -134,6 +135,7 @@ def p03():
     S.add(texte(cx, 120, "la dent de lait", 40, "#c2255c"))
     S.add(texte(340, 690, "la grande dent pousse !", 40, "#0ca678"))
     S.add(maman(700, 790, 0.95, expr="content", bras="montre", flip=True, regard=(-1, -1)))
+    S.cachette(610, 70, "air")
     return S
 
 
@@ -146,6 +148,7 @@ def p04():
     S.add(sofia(400, 780, 1.3, dents="bouge", expr="rire", bras="bouche"))
     S.add(personne(660, 770, 1.15, peau="doree", cheveux="noir", coiffure="queue", habit="#7048e8", robe=True, expr="surpris", flip=True, regard=(-1, 0)))
     S.add(bulle(560, 380, 260, 70, "Elle bouge !", 34, pointe=(470, 520)))
+    S.cachette(70, 140, "air")
     return S
 
 
@@ -204,6 +207,7 @@ def p09():
     S.add(rect(214, 578, 10, 13, "#ffffff", rx=3, stroke="#adb5bd", stroke_width=2))
     S.add(texte(500, 470, "chut…", 44, "#fff3bf", contour="#3b2a7a"))
     S.add(zzz(160, 470, 1.0, "#e5dbff"))
+    S.cachette(70, 670, "air")
     return S
 
 

@@ -222,6 +222,7 @@ def p14():
     S.add(loup(260, 740, 1.4, expr="rire", bras="course", flip=True, rot=12))
     S.add(mouvement(430, 580, 1.4, rot=180), mouvement(450, 480, 1.1, rot=180))
     S.add(chien(640, 760, 0.9, expr="surpris", bras="joues"))
+    S.cachette(730, 430, "air")
     return S
 
 
@@ -233,6 +234,7 @@ def p15():
     S.add(chemin("M 0 800 L 0 640 Q 300 520 520 600 Q 680 650 800 700 L 800 800 Z", "#2b8a3e"))
     S.add(loup(330, 610, 1.3, expr="chante", bras="bas", regard=(1, -1)))
     S.add(texte(560, 360, "Aouuuu !", 56, "#fff3bf"))
+    S.cachette(620, 740)
     return S
 
 

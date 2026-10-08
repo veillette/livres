@@ -138,6 +138,7 @@ def p01():
     S.add(camion_pompiers(420, 700, 1.25))
     S.add(maelle(120, 790, 1.4, expr="concentre", bras="montre", regard=(1, -0.3)))
     S.add(eclat(720, 380, 0.6, "#ffd43b"))
+    S.cachette(70, 390, "air")
     return S
 
 
@@ -177,6 +178,7 @@ def p04():
     S.add(mouvement(150, 640, 1.4), mouvement(130, 690, 1.2))
     S.add(texte(560, 300, "Pin-pon !", 70, ROUGE, contour="#fff", rot=-6))
     S.add(camion(80, 580, 0.9, "#4dabf7"), camion(720, 580, 0.9, "#fab005"))
+    S.cachette(670, 70, "air")
     return S
 
 
@@ -254,6 +256,7 @@ def p09():
                                                     (470, "foncee", "noir", "courts", "#ffd43b")]):
         S.add(petit(x, 790, 0.9, peau=peau, cheveux=ch, coiffure=coif, habit=hab, expr="bouche_bee" if k % 2 else "sourire",
                     regard=(1, -0.6)))
+    S.cachette(520, 70, "air")
     return S
 
 
@@ -268,6 +271,7 @@ def p10():
     S.add(maelle(650, 790, 1.4, expr="rire", bras="hanches"))
     S.add(karim(100, 790, 1.4, expr="content", bras="salut"))
     S.add(texte(400, 120, "Pin-pon !", 64, ROUGE, contour="#fff"))
+    S.cachette(70, 390, "air")
     return S
 
 

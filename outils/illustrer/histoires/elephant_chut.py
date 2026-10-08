@@ -118,6 +118,7 @@ def p08():
     S.add(perso("elephant", 300, 760, 1.9, expr="content", bras="calin", objet=bebe, **BABOU))
     S.add(perso("elephant", 620, 770, 1.8, expr="sourire", bras="bouche", regard=(-1, 0), **MAMAN))
     S.add(zzz(320, 330, 1.0), coeur(470, 360, 1.2))
+    S.cachette(320, 70, "air")
     return S
 
 

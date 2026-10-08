@@ -65,6 +65,7 @@ def couverture():
           expr="oups")
     S.add(passant(120, 790, 0.9, 0, expr="rire", bras="montre"))
     S.add(passant(700, 790, 0.9, 1, expr="fache", bras="croises"))
+    S.cachette(70, 410, "air")
     return S
 
 
@@ -115,6 +116,7 @@ def p05():
     S.add(passant(620, 790, 1.0, 4, expr="fache", bras="montre", flip=True))
     S.add(passant(730, 790, 0.95, 0, expr="fache", bras="croises"))
     S.add(bulle(520, 130, 480, 110, "Le jeune est assis et le\nvieux père marche ?", 32, pointe=(620, 540)))
+    S.cachette(240, 70, "air")
     return S
 
 
@@ -134,6 +136,7 @@ def p07():
     S.add(passant(620, 790, 1.0, 1, expr="fache", bras="montre", flip=True))
     S.add(passant(730, 790, 0.95, 5, expr="fache", bras="hanches"))
     S.add(bulle(520, 130, 480, 110, "Quel père sans cœur !\nSon fils marche à pied !", 32, pointe=(620, 540)))
+    S.cachette(240, 70, "air")
     return S
 
 
@@ -164,6 +167,7 @@ def p10():
     S.add(fils(330, 780, 1.0, expr="sourire"))
     S.add(ane_profil(560, 760, 1.2, expr="rire"))
     S.add(notes(560, 450, 0.9))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -175,6 +179,7 @@ def p11():
     S.add(ane_profil(430, 760, 1.0, expr="content"))
     S.add(passant(700, 790, 1.0, 2, expr="rire", bras="montre", flip=True))
     S.add(bulle(560, 130, 440, 110, "Ils ont un âne\net ils vont à pied !", 34, pointe=(690, 540)))
+    S.cachette(280, 70, "air")
     return S
 
 

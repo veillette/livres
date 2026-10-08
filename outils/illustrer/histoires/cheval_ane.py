@@ -43,6 +43,7 @@ def couverture():
     route(S)
     cheval(S, 520, 760, 1.25, expr="fier", regard=(1, -1))
     ane(S, 190, 770, 1.0, nb=3, ploie=True, expr="pleure")
+    S.cachette(70, 410, "air")
     return S
 
 
@@ -59,6 +60,7 @@ def p01():
     S.add(marchand(620, 760, 1.25, expr="content", bras="salut"))
     cheval(S, 380, 760, 0.95, expr="sourire")
     ane(S, 140, 770, 0.8, nb=2, expr="sourire")
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -69,6 +71,7 @@ def p02():
     ane(S, 190, 770, 1.0, nb=4, expr="inquiet")
     S.add(texte(560, 230, "Rien sur le dos !", 40, PRUNE, contour="#fff"))
     S.add(texte(200, 420, "Tous les sacs !", 40, PRUNE, contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -78,6 +81,7 @@ def p03():
     S.add(g([ane_profil(250, 740, 0.95, ploie=True, expr="triste")], transform="rotate(-12 250 740)"))
     S.add(g([bat(250, 740 - 94 * 0.95, 0.95, nb=4)], transform="rotate(-12 250 740)"))
     S.add(texte(250, 320, "Pff… pff…", 48, PRUNE, contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -96,6 +100,7 @@ def p05():
     ane(S, 190, 770, 1.0, nb=4, ploie=True, expr="surpris")
     cheval(S, 560, 760, 1.05, expr="fier", regard=(1, -1))
     S.add(bulle(500, 140, 560, 140, "Ce n'est pas mon travail !\nJe suis un cheval, moi !", 32, pointe=(700, 420)))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -134,6 +139,7 @@ def p09():
     S.add(marchand(170, 760, 1.2, expr="concentre", bras="haut"))
     cheval(S, 480, 760, 1.1, nb=5, expr="surpris")
     S.add(texte(480, 220, "Tous les sacs ?!", 48, PRUNE, contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -143,6 +149,7 @@ def p10():
     S.add(g([cheval_profil(380, 740, 1.05, expr="oups", ploie=True, charge=bat(0, -160, 1.0, nb=5))], transform="rotate(-12 380 740)"))
     S.add(ane_profil(110, 800, 0.6, expr="sourire"))
     S.add(texte(330, 220, "Ouf ! Que c'est lourd !", 46, PRUNE, contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 

@@ -50,6 +50,7 @@ def p01():
     S.add(lion(400, 760, 2.0, expr="fier", bras="hanches"))
     S.add(perso("lievre", 110, 780, 0.8, expr="oups", bras="joues"))
     S.add(perso("rat", 700, 790, 0.7, expr="oups", bras="joues"))
+    S.cachette(70, 160, "air")
     return S
 
 
@@ -115,6 +116,7 @@ def p08():
     S.add(moucheron(640, 300, 1.8, expr="rire", flip=True))
     S.add(chemin("M 150 400 Q 400 250 650 400", stroke="#495057", sw=4, stroke_dasharray="6 12"))
     S.add(texte(160, 250, "ROAR !", 64, "#c46210", contour="#fff"))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -125,6 +127,7 @@ def p09():
     S.add(lion(400, 760, 1.7, expr="furieux", bras="poing", rot=15))
     S.add(poussiere(380, 760, 1.2, graine=5))
     S.add(moucheron(640, 240, 1.6, expr="rire", flip=True))
+    S.cachette(70, 160, "air")
     return S
 
 

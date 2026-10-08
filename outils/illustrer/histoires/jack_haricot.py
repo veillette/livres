@@ -135,6 +135,7 @@ def p06():
     S.add(oiseau(640, 460, 0.6, "#4dabf7", expr="surpris", ailes="haut"), oiseau(160, 380, 0.5, "#ff922b", expr="surpris", ailes="haut"))
     S.add(jack(400, 520, 1.0, expr="concentre", bras="haut"))
     S.add(texte(400, 80, "Plus haut que les nuages !", 44, "#1864ab", contour="#fff"))
+    S.cachette(370, 730, "air")
     return S
 
 
@@ -197,6 +198,7 @@ def p12():
     S.add(poule_(470, 560, 0.5, expr="surpris", ailes="haut"))
     for k in range(3):
         S.add(mouvement(300 - k * 10, 400 + k * 120, 1.0, rot=90))
+    S.cachette(160, 70, "air")
     return S
 
 

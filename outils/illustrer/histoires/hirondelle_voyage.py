@@ -116,6 +116,7 @@ def couverture():
     S.add(nuage(160, 470, 0.9), nuage(640, 560, 0.7))
     S.add(hirondelle_vol(400, 520, 1.9, rot=-10, expr="content"))
     S.add(hirondelle_vol(160, 650, 0.7, rot=-20), hirondelle_vol(660, 700, 0.6, rot=-5))
+    S.cachette(490, 730, "air")
     return S
 
 
@@ -157,6 +158,7 @@ def p03():
                                                                      ellipse(28, 30, 14, 18, "#ffffff"), ellipse(-12, 50, 13, 16, "#fff9f0")])),
                                        620, 500, 1.0)], fond="#e9d8c4", rot=130))
     S.add(hirondelle_posee(460, 150, 0.9, flip=True))
+    S.cachette(670, 70, "air")
     return S
 
 
@@ -168,6 +170,7 @@ def p04():
         S.add(poussin_hirondelle(x, 230, 1.0, rot=(k - 1.5) * 12))
     S.add(hirondelle_vol(600, 360, 1.1, flip=True, rot=10, insecte=True))
     S.add(texte(250, 620, "Piou ! Piou !", 56, "#e8590c", contour="#fff"))
+    S.cachette(670, 70, "air")
     return S
 
 
@@ -207,6 +210,7 @@ def p07():
                 yy = y + 40 * (1 - ((x - 400) / 400) ** 2) - 2
                 S.add(hirondelle_posee(x, yy, 0.55, flip=r.random() < 0.3, expr=r.choice(["sourire", "content", "chante"])))
     S.add(texte(400, 160, "On part bientôt ?", 50, "#1c3d6e", contour="#fff"))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -221,6 +225,7 @@ def p08():
     S.add(fleche_courbe("M 330 150 Q 260 400 360 690", (360, 690), 70, "#1c3d6e", 6, 22, stroke_dasharray="18 12"))
     for k, (x, y) in enumerate([(300, 250), (290, 330), (300, 450), (320, 560)]):
         S.add(hirondelle_vol(x, y, 0.35, rot=80))
+    S.cachette(730, 380, "air")
     return S
 
 
@@ -244,6 +249,7 @@ def p10():
     S.add(hirondelle_vol(620, 420, 1.0, flip=True, rot=10, expr="content"))
     S.add(coeur(250, 360, 1.2, "#ff8787"))
     S.add(texte(400, 640, "Le même nid !", 56, "#1c3d6e", contour="#fff"))
+    S.cachette(670, 70, "air")
     return S
 
 

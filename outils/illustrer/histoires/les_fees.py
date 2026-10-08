@@ -230,6 +230,7 @@ def p13():
     S.add(cruche(480, 650, 0.7, rot=-55))
     S.add(rose(110, 780, 1.0, expr="rire", bras="haut"))
     S.add(jaillit(330, 780 - 118 * 1.2, [fleur(0, 0, 0.8, "#fff", tige=0), fleur(0, 0, 0.7, "#fff", tige=0)], 1.0))
+    S.cachette(490, 730, "air")
     return S
 
 

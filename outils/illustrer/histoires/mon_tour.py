@@ -77,6 +77,7 @@ def p02():
     S.add(lapin(160, 720, 0.75, expr="surpris"), herisson(250, 730, 0.7, expr="surpris"), gribouille(80, 730, 0.8, expr="surpris"))
     S.add(praline(330, 440, 0.8, expr="malin", bras="haut"))
     S.add(texte(620, 200, "Moi d'abord !", 60, "#e64980", contour="#fff"))
+    S.cachette(70, 440, "air")
     return S
 
 
@@ -89,6 +90,7 @@ def p03():
     S.add(praline(620, 790, 0.95, expr="fache", bras="croises", rot=6))
     S.add(texte(170, 300, "Hé !", 64, "#e03131", contour="#fff", rot=-10), texte(400, 220, "Aïe !", 64, "#e03131", contour="#fff"))
     S.add(eclat(300, 520, 1.2, "#e03131"))
+    S.cachette(70, 420, "air")
     return S
 
 

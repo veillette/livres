@@ -134,6 +134,7 @@ def p08():
     S.add(la_sorciere(400, 800, 1.3, expr="malin", bras="ouverts"))
     S.add(hansel(140, 790, 1.1, expr="surpris"), gretel(660, 790, 1.1, expr="inquiet"))
     S.add(bulle(420, 150, 380, 90, "Entrez, mes petits !", 34, pointe=(420, 460)))
+    S.cachette(250, 770)
     return S
 
 

@@ -265,6 +265,7 @@ def p06():
     S.add(branche(40, 330, 1.3, "geles"))
     S.add(primevere(560, 760, 1.4, expr="triste", bras="porte", objet=ellipse(0, -80, 12, 18, "#a5d8ff", stroke="#ffffff", stroke_width=3)))
     S.add(flocon(230, 760, 1.4, expr="pleure", bras="yeux", baguette_=False, larmes=True))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -292,6 +293,7 @@ def p08():
         S.add(feuille(x, y, 1.0, c, rot=rr))
     S.add(soleil(140, 260, 40, "#ffd43b"))
     S.add(bulle(400, 110, 600, 110, "Nous aussi, nous attendons\nnotre tour !", 38, pointe=(560, 370)))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -311,6 +313,7 @@ def p09():
                              ((1, 1), "été", "#e67700"), ((-1, 1), "automne", "#d9480f")]:
         S.add(texte(cx + sx * d, cy + sy * d + 12, nom, 38, c, contour="#ffffff"))
     S.add(texte(400, 80, "Chacune son tour !", 54, "#5c7cfa", contour="#ffffff"))
+    S.cachette(190, 500, "air")
     return S
 
 
@@ -333,6 +336,7 @@ def p10():
         S.add(chemin(f"M {400 + dx * 0.6} 600 Q {400 + dx} 640 {400 + dx * 1.4} 680", stroke="#e9d8c4", sw=4))
     S.add(zzz(470, 520, 0.9), zzz(250, 470, 0.8))
     S.add(texte(400, 760, "Sous la neige, les graines dorment au chaud.", 32, "#ffffff"))
+    S.cachette(730, 368)  # sur la neige, pas dans la terre
     return S
 
 
@@ -355,6 +359,7 @@ def p11():
     S.add(flocon(400, 200, 0.9, expr="content", bras="pense", baguette_=False, regard=(0, 1)))
     S.add(nuage(400, 230, 1.5, "#ffffff"))
     S.add(texte(200, 760, "l'été", 50, "#e67700", contour="#ffffff"), texte(600, 760, "l'automne", 50, "#d9480f", contour="#ffffff"))
+    S.cachette(70, 710, "air")
     return S
 
 
@@ -370,6 +375,7 @@ def p12():
     S.add(perce_neige(420, 740, 2.0))
     S.add(coeur(400, 330, 1.4, "#f783ac"), etincelles(400, 450, 1.0, graine=6, couleur="#ffd43b"))
     S.add(bulle(400, 130, 520, 110, "C'est un perce-neige.\nJe l'ai gardé pour toi !", 36, pointe=(560, 400)))
+    S.cachette(730, 220, "air")
     return S
 
 

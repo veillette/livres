@@ -84,6 +84,7 @@ def couverture():
     S.add(pipistrelle(380, 430, 2.4, expr="rire"))
     S.add(ondes(500, 420, 30, 3, 30, -10, 60, "#fff3bf", 5))
     S.add(papillon_nuit(690, 330, 1.0, 20))
+    S.cachette(410, 730, "air")
     return S
 
 
@@ -133,6 +134,7 @@ def p02():
     S.add(etiquette(250, 200, "le pouce", 32, "#5f3dc4"), etiquette(520, 520, "les doigts", 32, "#5f3dc4"))
     S.add(main_enfant(640, 640, 1.0))
     S.add(etiquette(640, 760, "ta main", 32, "#e8590c"))
+    S.cachette(570, 70, "air")
     return S
 
 
@@ -153,6 +155,7 @@ def p04():
     S.add(pipistrelle(260, 400, 2.2, expr="chante", regard=(1, 0)))
     S.add(ondes(380, 400, 50, 4, 50, 0, 70, "#ffd43b", 7))
     S.add(texte(560, 650, "« Iiiiii ! »", 48, "#ffd43b"))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -166,6 +169,7 @@ def p05():
     S.add(ondes(570, 410, 40, 3, 50, 180, 60, "#74c0fc", 6))
     S.add(etiquette(420, 600, "le cri part…", 34, "#ffd43b", fond="#1c2a52"))
     S.add(etiquette(420, 660, "… l'écho revient !", 34, "#74c0fc", fond="#1c2a52"))
+    S.cachette(730, 230, "air")
     return S
 
 
@@ -181,6 +185,7 @@ def p06():
     S.add(papillon_nuit(560, 300, 1.2, -20))
     S.add(pipistrelle(330, 380, 1.9, expr="miam", regard=(1, 0)))
     S.add(texte(250, 650, "Miam !", 56, "#ffd43b"))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -209,6 +214,7 @@ def p08():
     S.add(pipistrelle(560, 230, 0.9, expr="baille"))
     S.add(fleche(620, 260, 640, 360, "#5c4636", 5, 18))
     S.add(texte(250, 170, "Bonne nuit !", 50, "#5f3dc4", contour="#fff"))
+    S.cachette(200, 730, "air")
     return S
 
 

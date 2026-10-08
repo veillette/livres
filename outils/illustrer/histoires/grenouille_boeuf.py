@@ -34,7 +34,7 @@ def grenouille_ronde(x, y, r=120, expr="souffle", rouge=0.0, rot=0):
     for sgn in (-1, 1):
         m.append(ellipse(sgn * 52 * k, -40 * k, 16 * k, 10 * k, "#ff6b6b", opacity=0.6))
     m.append(place(bouche(0, 0, bs, 1.6), 0, -36 * k, k))
-    return place(m, x, y, 1.0, rot=rot)
+    return place(m + [occuper(-r * 1.1, -r, r * 1.1, r)], x, y, 1.0, rot=rot)
 
 
 def mare(S, ciel_haut="#a5d8ff", ciel_bas="#e7f5ff", y=560):
@@ -116,6 +116,7 @@ def p05():
     S.add(grenouille_ronde(330, 600, 90, "souffle"))
     soeurs(S, xs=((120, 700),))
     S.add(bulle(330, 150, 420, 100, "Est-ce assez ?", 40, pointe=(330, 480)))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -137,6 +138,7 @@ def p07():
     S.add(grenouille_ronde(400, 540, 150, "souffle", rouge=0.05))
     soeurs(S, xs=((110, 700), (690, 710)), expr="surpris")
     S.add(bulle(400, 110, 400, 90, "M'y voici donc ?", 38, pointe=(400, 370)))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -146,6 +148,7 @@ def p08():
     S.add(grenouille_ronde(400, 470, 220, "souffle", rouge=0.12))
     soeurs(S, xs=((100, 700), (700, 710)), expr="oups", bras="joues")
     S.add(texte(400, 760, "Pfffff !", 50, "#2b8a3e", contour="#fff"))
+    S.cachette(650, 70, "air")
     return S
 
 

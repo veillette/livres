@@ -111,6 +111,7 @@ def couverture():
     foret(S)
     branche(S, 600)
     S.add(cameleon(380, 590, 1.6, corps="#4dabf7", bandes="#ff922b", ventre="#ffe066", expr="content"))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -127,6 +128,7 @@ def p01():
     branche(S, 560)
     S.add(cameleon(380, 552, 1.5, expr="sourire"))
     S.add(texte(400, 160, "Madagascar", 50, "#2b8a3e", contour="#fff"))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -138,6 +140,7 @@ def p02():
     S.add(fleche(560, 360, 720, 330, "#e8590c", 6, 22), fleche(100, 360, 40, 330, "#e8590c", 6, 22))
     S.add(coccinelle_(720, 260))
     S.add(mouche(60, 260, 1.4))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -154,6 +157,7 @@ def p03():
     S.add(texte(560, 260, "Doucement…", 50, "#2b8a3e", contour="#fff"))
     S.add(loupe(640, 680, 90, [rect(550, 590, 180, 180, "#7c4a1e"), chemin("M 620 640 L 640 680 L 620 720", stroke=VERT, sw=26),
                                 chemin("M 600 730 Q 640 700 680 730", stroke=VERT, sw=14)], fond="#c3fae8", rot=-140))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -164,6 +168,7 @@ def p04():
     S.add(cameleon(220, 552, 1.2, yeux=((1, 0), (1, 0)), expr="concentre"))
     S.add(grillon(620, 450, 1.6))
     S.add(chemin("M 450 470 L 520 460", stroke="#868e96", sw=3, stroke_dasharray="8 8"))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -174,6 +179,7 @@ def p05():
     S.add(cameleon(160, 552, 1.0, expr="concentre", langue=380))
     S.add(grillon(560, 450, 1.4))
     S.add(texte(420, 300, "Flip !", 80, "#e64980", contour="#fff", rot=-6))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -184,6 +190,7 @@ def p06():
     S.add(cameleon(560, 330, 0.8, corps="#4dabf7", bandes="#ff922b", ventre="#ffe066"))
     S.add(cameleon(220, 680, 0.8, corps="#ff6b6b", bandes="#ffd43b", ventre="#ffe3e3"))
     S.add(cameleon(560, 680, 0.8, corps="#845ef7", bandes="#20c997", ventre="#e5dbff"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -194,6 +201,7 @@ def p07():
     branche(S, 600)
     S.add(cameleon(320, 592, 1.4, corps="#2b8a3e", bandes="#1b5e20", ventre="#69db7c", expr="content"))
     S.add(texte(280, 200, "Brrr… le soleil !", 44, "#e8590c", contour="#fff"))
+    S.cachette(420, 730, "air")
     return S
 
 
@@ -204,6 +212,7 @@ def p08():
     S.add(cameleon(220, 592, 1.0, corps="#fa5252", bandes="#ffd43b", ventre="#ffe066", expr="fache", gonfle=True))
     S.add(cameleon(590, 592, 1.0, flip=True, corps="#4dabf7", bandes="#ff922b", ventre="#ffe066", expr="surpris"))
     S.add(texte(400, 200, "C'est ma branche !", 46, "#c92a2a", contour="#fff"))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -213,6 +222,7 @@ def p09():
     branche(S, 600)
     S.add(cameleon(360, 592, 1.4, corps="#e9fac8", bandes="#f4fce3", ventre="#ffffff", dort=True))
     S.add(zzz(600, 330, 1.2, "#ffe066"))
+    S.cachette(520, 70, "air")
     return S
 
 

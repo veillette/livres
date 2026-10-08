@@ -53,12 +53,12 @@ Bibliotheque.ajouter({
     },
     {
       image: "images/08-grandes-oreilles.svg",
-      description: "Le Petit Chaperon rouge regarde les grandes oreilles de la « mère-grand ».",
+      description: "Plus près du lit : le Petit Chaperon rouge regarde les grandes oreilles de la « mère-grand ».",
       texte: "Le Petit Chaperon rouge arrive.\n\n« Mère-grand, que vous avez de grandes oreilles ! »\n\n« C'est pour mieux t'écouter, mon enfant. »",
     },
     {
       image: "images/09-grands-yeux.svg",
-      description: "Le Petit Chaperon rouge regarde les grands yeux de la « mère-grand ».",
+      description: "Gros plan sur les grands yeux de la « mère-grand », que le Petit Chaperon rouge, au bord de l'image, regarde.",
       texte: "« Mère-grand, que vous avez de grands yeux ! »\n\n« C'est pour mieux te voir, mon enfant. »",
     },
     {

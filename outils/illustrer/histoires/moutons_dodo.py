@@ -90,6 +90,7 @@ def p02():
     S.add(perso("mouton", 650, 770, 1.0, expr="inquiet", bras="croises", regard=(-1, 0)))
     S.add(numero(650, 450, 3))
     S.add(bulle(620, 180, 300, 100, "J'ai le\nvertige !", 34, pointe=(640, 400)))
+    S.cachette(70, 490, "air")
     return S
 
 
@@ -131,6 +132,7 @@ def p05():
     S.add(mouton_saute(620, 470, 0.7, "chante"))
     S.add(perso("souris", 400, 780, 1.4, expr="oups", bras="tete", **LILI))
     S.add(texte(400, 200, "Oh là là !", 76, "#fff3bf", contour="#3b5bdb"))
+    S.cachette(70, 250, "air")
     return S
 
 
@@ -146,6 +148,7 @@ def p06():
         S.add(perso("mouton", x, 770, 1.0, expr="dort"))
     S.add(texte(400, 240, "On respire…", 56, "#fff3bf"))
     S.add(texte(400, 310, "tout doucement…", 44, "#fff3bf"))
+    S.cachette(90, 120, "air")
     return S
 
 
@@ -157,6 +160,7 @@ def p07():
     S.add(mouton_dort(560, 760, 1.4))
     S.add(numero(560, 500, 9))
     S.add(zzz(640, 520, 1.0, "#fff3bf"))
+    S.cachette(90, 120, "air")
     return S
 
 

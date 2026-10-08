@@ -176,6 +176,7 @@ def p07():
     S.add(abeille(600, 250, 1.4, expr="rire", flip=True))
     S.add(chemin("M 760 120 q -40 40 -80 20 q -40 -20 -80 30", stroke="#495057", sw=3, stroke_dasharray="8 10"))
     S.add(bulle(560, 420, 380, 90, "Bzzz ! Merci !", 44, pointe=(610, 300)))
+    S.cachette(730, 620, "air")
     return S
 
 

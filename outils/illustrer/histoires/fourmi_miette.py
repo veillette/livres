@@ -151,6 +151,7 @@ def p08():
     S.add(perso("fourmi", 400, 780, 1.05, expr="fier", bras="victoire", **FOURMI))
     S.add(perso("fourmi", 640, 470, 0.7, expr="content", bras="salut", acc=("couronne",)))
     S.add(texte(400, 150, "Bravo, Fourmi !", 60, "#e8590c", contour="#fff"))
+    S.cachette(730, 530, "air")
     return S
 
 

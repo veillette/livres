@@ -221,6 +221,7 @@ def p03():
     S.add(capu(250, 760, 1.3, robe=True, expr="oups", bras="equilibre", rot=-22))
     S.add(mouvement(150, 520, 1.0, rot=-30), mouvement(380, 540, 1.0, rot=200))
     S.add(texte(250, 400, "Oh là là…", 56, "#c2255c", contour="#fff"))
+    S.cachette(280, 70, "air")
     return S
 
 
@@ -344,6 +345,7 @@ def p12():
     S.add(capu(310, 780, 1.3, robe=True, expr="rire", bras="haut", chaussures="#fbd9bd"))
     S.add(taches(310, 780, 1.3))
     S.add(coeur(400, 150, 1.6), coeur(460, 100, 1.0, "#ff8787"), coeur(340, 110, 0.9, "#f783ac"))
+    S.cachette(730, 240, "air")
     return S
 
 

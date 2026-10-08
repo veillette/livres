@@ -80,6 +80,7 @@ def p04():
     S.add(perso("renard", 280, 760, 1.25, expr="inquiet", bras="bas", regard=(-1, 0), **PETIT))
     S.add(perso("chat", 110, 770, 0.95, expr="surpris", regard=(1, 0), **MINOU))
     S.add(bulle(520, 150, 470, 90, "Qui a cassé mon pot ?", 38, pointe=(600, 260)))
+    S.cachette(320, 70, "air")
     return S
 
 
@@ -90,6 +91,7 @@ def p05():
     S.add(nuage_orage(610, 170, 0.8))
     S.add(perso("renard", 400, 720, 1.8, expr="triste", bras="bas", regard=(0, 1), **PETIT,
                 derriere=sac_cailloux(-10, -140, 1.15)))
+    S.cachette(440, 70, "air")
     return S
 
 

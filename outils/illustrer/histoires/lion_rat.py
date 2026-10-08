@@ -166,6 +166,7 @@ def p10():
     S.add(lion(400, 760, 1.6, expr="furieux", bras="poing", rot=8))
     S.add(filet_dome(400, 780, 440, 520))
     S.add(mouvement(130, 500, 1.0, rot=180), mouvement(670, 500, 1.0))
+    S.cachette(730, 170, "air")
     return S
 
 
@@ -185,6 +186,7 @@ def p12():
     S.add(rat(420, 760, 1.4, expr="fier", bras="course", rot=-10))
     S.add(mouvement(260, 620, 1.2))
     S.add(bulle(420, 180, 420, 100, "J'arrive, Majesté !", 38, pointe=(420, 440)))
+    S.cachette(730, 170, "air")
     return S
 
 

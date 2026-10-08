@@ -190,6 +190,7 @@ def p11():
     S.add(rect(0, 500, 800, 30, "#d9a066"))
     S.add(trou_mur(250, 520, 1.6, dedans=g([rat_champs(-30, 0, 0.3, expr="oups"), rat_ville(30, 0, 0.3, expr="oups")])))
     S.add(perso("chat", 580, 800, 1.9, expr="malin", bras="bas", couleur="#868e96", regard=(-1, 0)))
+    S.cachette(120, 660)
     return S
 
 

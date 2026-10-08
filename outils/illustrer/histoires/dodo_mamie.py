@@ -83,6 +83,7 @@ def couverture():
     S.add(mamie(500, 790, 1.4, expr="content", bras="calin"))
     S.add(lilou(330, 790, 1.15, expr="content", bras="calin", objet=doudou(0, -40, 0.35)))
     S.add(coeur(420, 360, 1.3, "#ff8787"))
+    S.cachette(70, 590, "air")
     return S
 
 
@@ -137,6 +138,7 @@ def p04():
     S.add(horloge(140, 160, 44, heure=9))
     dans_lit(S, 330, 780, 420, "#ffd43b", lilou(230, 725, 0.75, expr="surpris", regard=(1, -1)))
     S.add(texte(140, 260, "Tic-tac", 38, "#fff3bf"), texte(640, 300, "Hou-hou !", 38, "#fff3bf"), texte(620, 560, "Crac…", 38, "#fff3bf"))
+    S.cachette(70, 670, "air")
     return S
 
 

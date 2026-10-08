@@ -227,6 +227,7 @@ def p10():
               tenue=autocollant(10, -80, 0.55)))
     S.add(pensee(400, 170, 140, doc(400, 300, 0.7, peau="claire", cheveux="roux", coiffure="tresses"),
                  depuis=(390, 430)))
+    S.cachette(90, 330)
     return S
 
 

@@ -97,6 +97,7 @@ def p03():
     pluie(S, 80, graine=9, zone=(0, 0, 800, 800), couleur="#d0ebff")
     S.add(princesse_(260, 780, 1.5, mouillee=True, expr="triste", bras="montre", regard=(1, 0), habit="#862e9c"))
     S.add(texte(560, 160, "Toc, toc, toc !", 56, "#fff", contour="#343a40"))
+    S.cachette(620, 740)
     return S
 
 

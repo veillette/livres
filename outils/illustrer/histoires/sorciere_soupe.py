@@ -157,6 +157,7 @@ def p04():
     S.add(zaza(180, 780, 1.35, expr="malin", bras="hanches", regard=(1, 0)))
     S.add(personne(650, 780, 1.2, expr="surpris", bras="bas", regard=(-1, 0), **TOM))
     S.add(bulle(560, 150, 420, 110, "Une soupe au caillou !\nLa meilleure du monde.", 32, pointe=(260, 420)))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -179,6 +180,7 @@ def p06():
     S.add(personne(640, 780, 1.3, expr="content", bras="porte",
                    objet=g([patate(-18, -58, 1.0), patate(18, -56, 1.0), patate(0, -70, 0.9),
                             chemin("M -44 -60 L 44 -60 L 34 -20 L -34 -20 Z", "#d9a066")]), **PAUL))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -189,6 +191,7 @@ def p07():
     S.add(personne(160, 780, 1.15, expr="rire", bras="porte", objet=oignon(0, -80, 1.6), **NINO))
     S.add(personne(640, 780, 1.25, expr="content", bras="large",
                    objet=g([sel(-50, -70, 0.9), persil(56, -72, 1.0)]), **JO))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -211,6 +214,7 @@ def p09():
     S.add(personne(120, 780, 1.1, expr="rire", bras="porte", objet=pain(0, -76, 0.6), **NINO))
     S.add(personne(680, 780, 1.1, expr="rire", bras="porte", objet=bol_soupe(0, -70, 0.7, fumee_=False), **LUCIE))
     S.add(zaza(400, 580, 0.9, expr="rire", bras="ouverts"))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -224,6 +228,7 @@ def p10():
     S.add(longue_table(400, 790, 760))
     for k in range(5):
         S.add(bol_soupe(110 + k * 145, 694, 0.8))
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -246,6 +251,7 @@ def p12():
     S.add(zaza(400, 560, 0.9, expr="rire", bras="haut"))
     S.add(minuit(300, 790, 0.7, expr="rire", bras="haut"))
     S.add(coeur(520, 330, 1.2), coeur(270, 360, 1.0, "#ffd43b"))
+    S.cachette(730, 240, "air")
     return S
 
 

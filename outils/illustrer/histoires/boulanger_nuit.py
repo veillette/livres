@@ -108,11 +108,20 @@ def p01():
     # la boulangerie, seule allumée
     S.add(rect(260, 300, 280, 300, "#ffe8cc"), poly([(240, 305), (400, 210), (560, 305)], "#e8590c"))
     S.add(rect(240, 300, 320, 50, "#d9480f"), texte(400, 336, "BOULANGERIE", 30, "#fff"))
-    S.add(rect(280, 380, 120, 140, "#ffe066", stroke="#fff", stroke_width=6))
-    S.add(rect(430, 400, 80, 200, "#a0522d"))
-    S.add(poly([(280, 520), (400, 520), (440, 700), (220, 700)], "#ffe066", opacity=0.25))
     S.add(rect(0, 600, 800, 200, "#3b4a7a"))
+    S.add(rect(280, 380, 120, 140, "#ffe066", stroke="#fff", stroke_width=6))
+    # dans la vitrine éclairée, des étagères déjà garnies de pains
+    for yy in (430, 490):
+        S.add(rect(286, yy, 108, 6, "#c68642"))
+        for k in range(3):
+            S.add(ellipse(306 + k * 34, yy - 9, 14, 9, "#e8a15c"))
+    S.add(rect(430, 400, 80, 200, "#a0522d"))
+    S.add(poly([(280, 600), (400, 600), (450, 720), (230, 720)], "#ffe066", opacity=0.3))
+    # la seule lumière de la rue : la vitrine éclaire le trottoir
+    S.lumiere(340, 450, 210, "#ffd43b", 0.7)
+    S.lumiere(340, 650, 200, "#ffd43b", 0.45, ry=60)
     S.add(zzz(160, 340, 0.9, "#a5d8ff"), zzz(700, 340, 0.9, "#a5d8ff"))
+    S.cachette(690, 700)
     return S
 
 

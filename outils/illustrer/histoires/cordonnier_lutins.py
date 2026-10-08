@@ -122,6 +122,7 @@ def p06():
                                 (640, dict(coiffure="chauve_cote", cheveux="blanc", barbe="#f1f3f5", peau="doree", habit="#e8590c", robe=False, jambes="#343a40")))):
         S.add(personne(x, 790, 1.05, expr="rire", bras="porte", objet=chaussure(0, -60, 0.7, ["#c92a2a", "#1c7ed6", "#2f9e44", "#fcc419"][k]), **d))
     S.add(texte(400, 300, "Quelle boutique !", 56, "#e8590c", contour="#fff"))
+    S.cachette(640, 254)
     return S
 
 

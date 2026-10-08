@@ -88,6 +88,7 @@ def couverture():
     eau_devant(S, 650)
     grisou(S, 170, 640, 0.9, nb=3, expr="rire")
     S.add(eclat(580, 640, 1.2, "#a5d8ff"))
+    S.cachette(200, 730, "air")
     return S
 
 
@@ -104,6 +105,7 @@ def p01():
     S.add(firmin(640, 760, 1.15, expr="content", bras="salut"))
     grisou(S, 160, 770, 0.85, expr="sourire")
     cadichon(S, 410, 770, 0.85, expr="sourire")
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -125,6 +127,7 @@ def p03():
     grisou(S, 330, 560, 0.7, expr="surpris")
     cadichon(S, 520, 560, 0.7, expr="surpris")
     S.add(texte(560, 200, "Pas de pont !", 52, "#1971c2", contour="#fff"))
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -134,6 +137,7 @@ def p04():
     grisou(S, 380, 720, 1.1, ploie=True, expr="oups", rot=-8)
     eau_devant(S, 620)
     S.add(eclat(380, 610, 1.5, "#d0ebff"), texte(380, 230, "Plouf !", 84, "#1971c2", contour="#fff", rot=-6))
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -146,6 +150,7 @@ def p05():
     eau_devant(S, 650)
     S.add(g([cercle(280 + k * 30, 640 - (k % 2) * 16, 7, "#fff", opacity=0.8) for k in range(6)]))
     S.add(texte(400, 230, "Tout léger !", 64, "#f08c00", contour="#fff"))
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -157,6 +162,7 @@ def p06():
     S.add(pensee(560, 220, 150, g([ane_profil(560, 290, 0.45, expr="rire", couleur=CADICHON)]), depuis=(260, 400)))
     grisou(S, 620, 700, 0.8, charge=False, expr="content", flip=True)
     eau_devant(S, 660)
+    S.cachette(630, 730, "air")
     return S
 
 
@@ -166,6 +172,7 @@ def p07():
     cadichon(S, 400, 720, 1.1, expr="rire", rot=-10)
     eau_devant(S, 630)
     S.add(eclat(400, 620, 1.5, "#d0ebff"), texte(400, 230, "Plouf !", 84, "#1971c2", contour="#fff", rot=6))
+    S.cachette(630, 730, "air")
     return S
 
 
@@ -176,6 +183,7 @@ def p08():
     eau_devant(S, 640)
     S.add(texte(560, 230, "Glouglouglou…", 54, "#1971c2", contour="#fff"))
     S.add(fleche(620, 380, 620, 480, "#e03131"))
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -188,6 +196,7 @@ def p09():
     S.add(firmin(170, 640, 0.95, expr="inquiet", bras="tire", rot=-10))
     S.add(chemin("M 250 560 Q 330 600 420 600", stroke="#c68642", sw=6))
     S.add(bulle(560, 200, 340, 90, "Au secours !", 44, pointe=(520, 520)))
+    S.cachette(730, 500, "air")
     return S
 
 
@@ -201,6 +210,7 @@ def p10():
     cadichon(S, 540, 740, 1.0, mouillees=True, expr="inquiet", rot=-8)
     eau_devant(S, 630)
     S.add(texte(400, 200, "Ho hisse !", 64, "#2f9e44", contour="#fff"))
+    S.cachette(260, 730, "air")
     return S
 
 
@@ -216,6 +226,7 @@ def p11():
     grisou(S, 150, 760, 0.85, charge=False, expr="rire")
     cadichon(S, 640, 760, 0.85, expr="oups", flip=True)
     S.add(g([goutte(600 + k * 30, 600 + (k % 2) * 30, 0.7, "#74c0fc") for k in range(4)]))
+    S.cachette(140, 70, "air")
     return S
 
 

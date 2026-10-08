@@ -114,6 +114,7 @@ def couverture():
     glace(S, 600)
     S.add(ours_blanc(340, 750, 1.2, expr="content"))
     S.add(ourson(610, 760, 0.8, expr="rire", bras="salut"))
+    S.cachette(730, 640, "air")
     return S
 
 
@@ -129,6 +130,7 @@ def p01():
     glace(S, 560)
     S.add(ours_blanc(360, 740, 1.15, expr="sourire"))
     S.add(texte(400, 150, "L'Arctique", 56, "#1098ad", contour="#fff"))
+    S.cachette(730, 640, "air")
     return S
 
 
@@ -145,6 +147,7 @@ def p02():
     S.add(etiquette(630, 130, "fourrure", 30, "#1098ad"))
     S.add(etiquette(640, 470, "peau noire", 30, "#343a40"))
     S.add(etiquette(640, 510, "graisse", 30, "#e67700"))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -158,6 +161,7 @@ def p03():
     S.add(chemin("M 0 410 q 25 -10 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0",
                  stroke="#d0ebff", sw=6))
     S.add(g([cercle(250 + k * 30, 420, 8, "#ffffff", opacity=0.8) for k in range(4)]))
+    S.cachette(70, 670, "poisson")
     return S
 
 
@@ -167,6 +171,7 @@ def p04():
     S.add(ours_blanc(260, 740, 1.05, expr="concentre", flaire=True))
     S.add(phoque(660, 560, 0.45))
     S.add(chemin("M 460 470 Q 560 440 640 520", stroke="#868e96", sw=4, stroke_dasharray="10 10"))
+    S.cachette(730, 630, "air")
     return S
 
 
@@ -178,6 +183,7 @@ def p05():
     S.add(chemin("M 450 700 Q 560 744 670 700 Q 676 730 640 742 Q 560 756 480 742 Q 444 730 450 700 Z", "#e4eef9"))
     S.add(ours_blanc(230, 740, 1.0, expr="concentre", couche=True, regard=(1, 0.3)))
     S.add(texte(560, 230, "Chut…", 60, "#1098ad", contour="#fff"))
+    S.cachette(730, 630, "air")
     return S
 
 
@@ -193,6 +199,7 @@ def p06():
         sole.append(trait(520 + (k * 37) % 200, 540 + (k * 23) % 100, 528 + (k * 37) % 200, 560 + (k * 23) % 100, BLANC_O, 4))
     S.add(loupe(620, 550, 110, sole, fond="#343a40", rot=-140))
     S.add(etiquette(620, 400, "anti-glisse !", 34, "#1098ad"))
+    S.cachette(70, 630, "air")
     return S
 
 
@@ -202,6 +209,7 @@ def p07():
     S.add(ours_blanc(430, 650, 0.85, expr="concentre", couche=True))
     S.add(g([cercle(700 + k * 16, 300 - k * 20, 10 + k * 2, "#ffffff", stroke="#dee2e6", stroke_width=2) for k in range(4)]))
     S.add(texte(250, 160, "Une maison de neige", 44, "#1098ad", contour="#fff"))
+    S.cachette(280, 730, "air")
     return S
 
 
@@ -213,6 +221,7 @@ def p08():
     S.add(place(g([ellipse(0, 0, 26, 18, "#fffaf0"), cercle(20, -6, 12, "#fffaf0"), oeil(22, -8, "fermes", taille=0.5)]), 500, 640))
     S.add(place(g([ellipse(0, 0, 26, 18, "#fffaf0"), cercle(20, -6, 12, "#fffaf0"), oeil(22, -8, "fermes", taille=0.5)]), 550, 646))
     S.add(coeur(420, 420, 1.3, "#ff8787"))
+    S.cachette(70, 140, "air")
     return S
 
 
@@ -224,6 +233,7 @@ def p09():
     S.add(ourson(200, 760, 0.9, expr="rire", bras="haut"))
     S.add(place(ourson(0, 0, 0.9, expr="rire", bras="haut"), 360, 700, 1.0, rot=-30))
     S.add(g([cercle(300 + k * 30, 640 - k * 10, 6, "#ffffff", stroke="#d0ebff", stroke_width=2) for k in range(5)]))
+    S.cachette(730, 590, "air")
     return S
 
 
@@ -234,6 +244,7 @@ def p10():
     S.add(ours_blanc(260, 740, 1.0, expr="sourire"))
     S.add(ourson(500, 760, 0.7, expr="content"), ourson(430, 770, 0.65, expr="sourire"))
     S.add(texte(400, 170, "Prenons soin de la banquise !", 40, "#1098ad", contour="#fff"))
+    S.cachette(70, 650, "air")
     return S
 
 

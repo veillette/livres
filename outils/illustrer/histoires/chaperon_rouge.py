@@ -2,8 +2,10 @@
 from contes import *
 
 ID = "chaperon-rouge"
-MAMAN = dict(coiffure="chignon", cheveux="chatain", peau="claire", habit="#ffa94d")
-BUCHERON = dict(coiffure="courts", cheveux="roux", barbe="#d9480f", peau="rosee", habit="#2f9e44", robe=False, jambes="#5c3a1e")
+MAMAN = dict(coiffure="chignon", cheveux="chatain", peau="claire", habit="#ffa94d", stature="adulte", nez="pointu")
+BUCHERON = dict(coiffure="courts", cheveux="roux", barbe="#d9480f", peau="rosee", habit="#2f9e44", robe=False, jambes="#5c3a1e",
+                stature="adulte", carrure="ronde", nez="rond")
+MERE_GRAND = dict(stature="ancien", nez="long")
 
 
 def loup(x, y, s=1.0, **k):
@@ -25,10 +27,15 @@ def bois(S, graine=3):
     S.add(chemin("M 0 760 Q 400 650 800 720 L 800 800 L 0 800 Z", "#f3d9a4"))
 
 
+def mere_grand_(x, y, s=1.0, **k):
+    return mere_grand(x, y, s, **{**MERE_GRAND, **k})
+
+
 def chambre(S):
-    interieur(S, "#fff0f6", "#c9a27e", 560, papier="#fcc2d7")
-    S.add(fenetre(560, 90, 170, 150, dehors="#b2f2bb", rideaux="#e64980"))
-    S.add(cadre_mur(90, 110))
+    """La chaumière de la mère-grand : murs chaulés, poutres, larges planches."""
+    piece(S, "chaumiere", 560)
+    S.add(fenetre(560, 100, 170, 150, dehors="#b2f2bb", rideaux="#e64980"))
+    S.add(cadre_mur(110, 120))
 
 
 def armoire(x, y, s=1.0, ouverte=False, dedans=""):
@@ -80,9 +87,10 @@ def p01():
 
 def p02():
     S = Scene()
-    interieur(S, "#fff4e6", "#d9a066", 580, papier="#ffe8cc")
+    piece(S, "cuisine", 580)
     S.add(fenetre(80, 110, 160, 150, dehors="#b2f2bb", rideaux="#fa5252"))
-    S.add(personne(260, 790, 1.35, expr="sourire", bras="donne", objet=panier(84, -60, 0.7), **MAMAN))
+    hx, hy = mains_personne(0, 0, 1, "donne", stature="adulte")[1]
+    S.add(personne(250, 790, 1.2, expr="sourire", bras="donne", regard=(1, 0), objet=panier(hx, hy + 32, 0.7), **MAMAN))
     S.add(chaperon(520, 790, 1.25, expr="content"))
     S.add(bulle(460, 150, 420, 100, "Porte cette galette\nà ta mère-grand !", 32, pointe=(300, 470)))
     return S
@@ -124,7 +132,7 @@ def p06():
     S = Scene()
     chambre(S)
     S.add(fenetre(560, 90, 170, 150, dehors="#b2f2bb", rideaux="#e64980", contenu=place(loup(0, 0, 0.6, expr="malin"), 640, 260)))
-    S.add(armoire(250, 790, 1.1, ouverte=True, dedans=mere_grand(0, -40, 1.3, expr="surpris", bras="bouche", acc=("lunettes", "bonnet_nuit"), couleur_acc="#fcc2d7")))
+    S.add(armoire(250, 790, 1.1, ouverte=True, dedans=mere_grand_(0, -40, 1.05, expr="surpris", bras="bouche", acc=("lunettes", "bonnet_nuit"), couleur_acc="#fcc2d7")))
     S.add(texte(560, 330, "Vite !", 60, "#c2255c", contour="#fff"))
     return S
 
@@ -137,7 +145,9 @@ def p07():
     return S
 
 
-def question(S, partie, pose="bas", rep=""):
+def question(S, partie, pose="bas", rep="", cadre=None):
+    """Chaperon devant le lit du loup ; cadre = (zoom, cx, cy) pour se
+    rapprocher à chaque question, jusqu'au gros plan sur les yeux."""
     chambre(S)
     S.add(lit_loup(560, 790, 1.2, dormeur=loup_mere_grand(-100, -60, 0.9, expr="malin" if partie != "dents" else "rire", bras="bas", regard=(-1, 0))))
     S.add(chaperon(170, 790, 1.2, expr="surpris", bras=pose, regard=(1, 0)))
@@ -145,19 +155,23 @@ def question(S, partie, pose="bas", rep=""):
         S.add(eclat(386, 470, 0.8, "#fa5252"), eclat(494, 470, 0.8, "#fa5252"))
     elif partie == "yeux":
         S.add(eclat(420, 554, 0.6, "#fcc419"), eclat(460, 554, 0.6, "#fcc419"))
+    if cadre:
+        S.camera(*cadre)
     if rep:
-        S.add(bulle(560, 150, 420, 100, rep, 32, pointe=(460, 420)))
+        # la pointe de la bulle vise la bouche du loup, même en gros plan
+        S.dessus(bulle(560, 150, 420, 100, rep, 32, pointe=S.vers_page(440, 590)))
 
 
 def p08():
     S = Scene()
-    question(S, "oreilles", "porte", "C'est pour mieux\nt'écouter, mon enfant !")
+    question(S, "oreilles", "porte", "C'est pour mieux\nt'écouter, mon enfant !", cadre=(1.3, 380, 560))
     return S
 
 
 def p09():
     S = Scene()
-    question(S, "yeux", "joues", "C'est pour mieux\nte voir, mon enfant !")
+    question(S, "yeux", "joues", "C'est pour mieux\nte voir, mon enfant !", cadre=(1.9, 400, 560))
+    S.cachette(311, 734, "air")
     return S
 
 
@@ -176,7 +190,8 @@ def p11():
     bois(S, graine=12)
     S.add(maison(160, 620, 0.8, mur="#fff0f6", toit="#c2255c"))
     S.add(bulle(180, 180, 280, 90, "Au secours !", 38, pointe=(150, 460)))
-    S.add(bucheron(560, 790, 1.4, expr="surpris", bras="tient", objet=hache(68, -146, 0.9, rot=10), regard=(-1, 0)))
+    hx, hy = mains_personne(0, 0, 1, "tient", stature="adulte", carrure="ronde")[1]
+    S.add(bucheron(560, 790, 1.2, expr="surpris", bras="tient", objet=hache(hx, hy, 0.9, rot=10), regard=(-1, 0)))
     return S
 
 
@@ -184,7 +199,8 @@ def p12():
     S = Scene()
     chambre(S)
     S.add(loup(620, 420, 1.0, expr="oups", bras="haut", rot=20))
-    S.add(bucheron(250, 790, 1.4, expr="furieux", bras="tient", objet=hache(68, -146, 0.9, rot=10)))
+    hx, hy = mains_personne(0, 0, 1, "tient", stature="adulte", carrure="ronde")[1]
+    S.add(bucheron(250, 790, 1.2, expr="furieux", bras="tient", objet=hache(hx, hy, 0.9, rot=10)))
     S.add(chaperon(460, 790, 1.0, expr="surpris", bras="joues"))
     S.add(mouvement(560, 360, 1.3))
     return S
@@ -194,7 +210,7 @@ def p13():
     S = Scene()
     chambre(S)
     S.add(armoire(150, 790, 0.9, ouverte=True))
-    S.add(mere_grand(340, 790, 1.3, expr="rire", bras="ouverts"))
+    S.add(mere_grand_(340, 790, 1.1, expr="rire", bras="ouverts"))
     S.add(chaperon(560, 790, 1.2, expr="rire", bras="haut"))
     S.add(texte(450, 360, "Merci !", 56, "#c2255c", contour="#fff"))
     return S
@@ -205,8 +221,9 @@ def p14():
     chambre(S)
     S.add(table(400, 760, 360, 140, nappe="#fff"))
     S.add(ellipse(400, 604, 70, 22, "#e8a15c"), rect(470, 560, 34, 44, "#a5d8ff", rx=6))
-    S.add(mere_grand(170, 790, 1.15, expr="rire"), bucheron(640, 790, 1.2, expr="rire"))
+    S.add(mere_grand_(170, 790, 1.0, expr="rire", regard=(1, 0)), bucheron(640, 790, 1.05, expr="rire", regard=(-1, 0)))
     S.add(chaperon(400, 800, 1.0, expr="miam", bras="bouche"))
+    S.cachette(70, 210, "air")
     return S
 
 

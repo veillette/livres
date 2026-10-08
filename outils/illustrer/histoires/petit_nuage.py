@@ -101,6 +101,7 @@ def p04():
     S.add(nuage_perso(540, 200, 1.6, expr="rire", regard=(-1, 1)))
     S.add(place([chemin("M -60 0 L 60 0 L 44 30 L -44 30 Z", "#e8590c"), trait(0, 0, 0, -110, "#495057", 5),
                  poly([(4, -108), (4, -10), (60, -10)], "#fff")], 660, 520, 0.8))
+    S.cachette(730, 470, "air")
     return S
 
 
@@ -120,6 +121,7 @@ def p05():
     rayons = [trait(170, 170, 330, 470, "#fcc419", 5, stroke_dasharray="16 12"), trait(150, 190, 220, 480, "#fcc419", 5, stroke_dasharray="16 12")]
     S.add(g(rayons, opacity=0.8))
     S.add(nuage_perso(470, 220, 1.9, GRIS_N, expr="surpris", ombre=OMBRE_G))
+    S.cachette(730, 530, "air")
     return S
 
 
@@ -166,6 +168,7 @@ def p08():
     S.add(maison(150, 720, 0.6, "#495057", "#343a40", lumiere=True))
     S.add(nuage_perso(400, 400, 2.0, "#e5dbff", expr="dort", ombre="#b197fc"))
     S.add(zzz(560, 300, 1.3, "#e5dbff"))
+    S.cachette(90, 120, "air")
     return S
 
 

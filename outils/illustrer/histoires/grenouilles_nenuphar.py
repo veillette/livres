@@ -87,6 +87,7 @@ def couverture():
     S.add(nenuphar(400, 650, 4.2))
     for k in range(1, 11):
         S.add(grenouille(k, 0.62, expr="rire"))
+    S.cachette(70, 350, "air")
     return S
 
 
@@ -104,6 +105,8 @@ def p(nb):
             S.add(bulle(560, 280, 220, 80, "Bla-bla-bla !", 34, pointe=(PLACES[5][0] + 20, 560)))
         if nb == 10:
             S.add(texte(560, 330, "Gare !", 80, "#e03131", contour="#fff", rot=-8))
+        # petite bête : sur la berge à gauche, sauf quand les grenouilles l'occupent
+        S.cachette(*{9: (720, 730), 10: (70, 340)}.get(nb, (70, 580)), "air")
         return S
     f.__name__ = f"p{nb:02d}"
     return f
@@ -121,6 +124,7 @@ def p11():
     for k in range(14):
         S.add(goutte(100 + k * 46, 520 - (k % 4) * 50, 1.0, "#a5d8ff"))
     S.add(texte(400, 250, "PLOUF !", 110, "#1c7ed6", contour="#fff"))
+    S.cachette(630, 730, "air")
     return S
 
 
@@ -137,6 +141,7 @@ def p12():
         S.add(perso("grenouille", 70 + k * 73, 560 - (k % 2) * 20, 0.38, expr="dort"))
     S.add(nenuphar(400, 700, 3.2, "#ffc9de"))
     S.add(zzz(560, 380, 1.1, "#fff3bf"))
+    S.cachette(70, 660, "air")
     return S
 
 

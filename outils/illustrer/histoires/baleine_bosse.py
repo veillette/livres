@@ -181,6 +181,7 @@ def couverture():
     S.add(baleine(410, 540, 0.9, expr="content"))
     S.add(baleine(230, 690, 0.36, expr="rire", couleur="#5c7a99"))
     S.add(bulles_eau(700, 500, 1.4))
+    S.cachette(730, 710, "poisson")
     return S
 
 
@@ -198,6 +199,7 @@ def p01():
     for x, y in [(120, 720), (180, 760), (90, 680)]:
         S.add(poisson_simple(x, y, 0.7))
     S.add(bulles_eau(560, 340, 1.0))
+    S.cachette(730, 570, "poisson")
     return S
 
 
@@ -209,6 +211,7 @@ def p02():
     sous_l_eau_couvre(S, 470)
     S.add(souffle(530, 455, 1.4))
     S.add(texte(250, 230, "Pffffff !", 70, "#1864ab", contour="#fff"))
+    S.cachette(70, 710, "poisson")
     return S
 
 
@@ -220,6 +223,7 @@ def p03():
     S.add(g([cercle(330 + k * 40 - 100, 540 + (k % 2) * 6, 10, "#ffffff", opacity=0.8) for k in range(6)]))
     S.add(place(queue_levee(0, 0, 1.0, motif=7), 640, 600, 0.45))
     S.add(texte(620, 380, "chacune la sienne !", 30, "#1864ab", contour="#fff"))
+    S.cachette(70, 160, "air")
     return S
 
 
@@ -231,6 +235,7 @@ def p04():
     S.add(baleine(300, 470, 0.9, gueule=True, expr="miam"))
     S.add(loupe(640, 650, 100, [rect(530, 540, 220, 220, "#1864ab"), krill(640, 650, 3.2)], fond="#1864ab", rot=40))
     S.add(etiquette(640, 520, "le krill", 34, "#c92a2a"))
+    S.cachette(340, 730, "poisson")
     return S
 
 
@@ -246,6 +251,7 @@ def p05():
         S.add(poisson_simple(x, y, 0.6, flip=x < 400))
     S.add(baleine(150, 640, 0.42, rot=-70, expr="concentre"))
     S.add(baleine(650, 650, 0.42, rot=-110, flip=True, expr="concentre"))
+    S.cachette(730, 500, "poisson")
     return S
 
 
@@ -261,6 +267,7 @@ def p06():
     S.add(fleche_courbe("M 220 300 Q 300 600 520 620", (520, 620), 5, "#ffffff", 8, 26, stroke_dasharray="20 14"))
     S.add(baleine(320, 470, 0.32, rot=50, expr="content"))
     S.add(baleine(400, 560, 0.2, rot=40, couleur="#5c7a99"))
+    S.cachette(730, 70, "poisson")
     return S
 
 
@@ -270,6 +277,7 @@ def p07():
     S.add(baleine(400, 400, 0.86, expr="content"))
     S.add(baleine(470, 620, 0.38, expr="miam", couleur="#5c7a99"))
     S.add(coeur(640, 300, 1.2, "#ff8787"))
+    S.cachette(730, 550, "poisson")
     return S
 
 
@@ -281,6 +289,7 @@ def p08():
     from sciences import ondes
     S.add(ondes(640, 420, 40, 4, 40, 0, 80, "#ffffff", 5))
     S.add(baleine(660, 700, 0.28, flip=True, expr="surpris"))
+    S.cachette(730, 540, "poisson")
     return S
 
 
@@ -294,6 +303,7 @@ def p09():
         a = math.radians(-160 + k * 18)
         S.add(goutte(420 + math.cos(a) * 280, 560 + math.sin(a) * 120, 1.6, "#d0ebff"))
     S.add(texte(650, 160, "Splash !", 70, "#1864ab", contour="#fff", rot=8))
+    S.cachette(70, 380, "poisson")
     return S
 
 
@@ -305,6 +315,7 @@ def p10():
     from sciences import enfant
     S.add(enfant(730, 770, 0.6, expr="bouche_bee", habit="#fa5252", jambes="#364fc7"))
     S.add(texte(400, 110, "15 mètres !", 60, "#1864ab", contour="#fff"))
+    S.cachette(330, 730, "poisson")
     return S
 
 

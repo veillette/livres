@@ -23,6 +23,7 @@ outils/verifier-images.py              vérification des livres et images
 outils/imposition.test.js              tests de l'ordre des pages du livret
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
 sw.js                                  service worker (VERSION du cache)
+.claude/skills/                        compétences : nouveau-livre, direction-artistique, retoucher-livre
 ```
 
 ## Commandes
@@ -66,14 +67,56 @@ relancer `generer.py` et valider les SVG produits dans le même commit.
   gratuite, sans peur excessive ; les livres de sciences doivent être
   **physiquement exacts** (ombres opposées au Soleil, phases de la Lune,
   arc-en-ciel à l'opposé du Soleil, etc. : voir les outils de `sciences.py`).
+- **Finition partagée** : `Scene.svg()` pose sur chaque page la lumière de son
+  moment (`AMBIANCES` de `base.py` : nuit bleutée, soir doré, intérieur,
+  sous l'eau…), les halos des sources de lumière et la petite bête cachée ;
+  `generer.py` règle la patine des fables et des contes, et coupe teinte et
+  halo en sciences. Le grain du papier est dans `css/pages.css`, pas dans les
+  SVG. Toucher à cette finition change **tous** les SVG : le faire exprès,
+  l'annoncer dans le commit et `outils/REVUE-IMAGES.md`, revoir des planches
+  de tous les rayons.
+
+## Direction artistique
+
+Toute illustration, nouvelle ou reprise, suit la compétence
+**`direction-artistique`**
+([`.claude/skills/direction-artistique/SKILL.md`](.claude/skills/direction-artistique/SKILL.md)).
+L'essentiel :
+
+- **Cadrage varié** : pas plus de deux pages de suite au même plan ; un gros
+  plan (`S.camera(zoom, cx, cy)`) aux moments forts, les bulles posées hors
+  zoom avec `S.dessus()` ; pas de page presque vide.
+- **Personnages crédibles** : adultes `stature="adulte"`, grands-parents
+  `"ancien"`, tout-petits `"petit"` ; varier `carrure`, `nez`, coiffures ;
+  objets tenus recalés avec `ancre()` ou `mains_personne()`. Les personnages
+  se regardent (`regard=`) et interagissent (poses `main`, `epaule`, `tend`…).
+- **Lumière** : la nuit, chaque fenêtre éclairée, lampe ou feu a son halo
+  (`S.lumiere()`, automatique pour la lune, `maison(lumiere=True)`, `lampe`,
+  `luciole`) ; `S.ambiance()` si le décor ne dit pas le bon moment.
+- **Décors propres à chaque livre** : `piece(S, "chaumiere" | "manoir" |
+  "chateau" | "chambre" | "cuisine")` plutôt que toujours le même mur ;
+  `interieur(papier=…)` prend le papier peint du livre.
+- **Échelles cohérentes** d'une page à l'autre (un château domine une
+  princesse, un enfant arrive à la taille d'un adulte…).
+- **Petite bête cachée** (coccinelle, posée ou en vol ; étoile de mer ou
+  petit poisson sous l'eau) : elle doit être sur **toutes** les pages pleines
+  du livre, sinon `generer.py` la retire du livre et l'écrit (`petite bête
+  absente : …`) ; compléter avec `S.cachette(x, y)` ou l'outil
+  `retoucher-livre/cachettes.py` (`--verifier` pour contrôler les places).
+  Un personnage dessiné à la main dans un script ajoute `occuper(x0, y0, x1,
+  y1)` à son dessin (repère local) pour que la bête ne s'y pose pas ; une
+  page dans l'espace se met hors du jeu avec `S.cachette(None)`.
+
+Pour revoir et améliorer un livre existant, suivre **`retoucher-livre`**
+([`.claude/skills/retoucher-livre/SKILL.md`](.claude/skills/retoucher-livre/SKILL.md)).
 
 ## Créer un nouveau livre
 
 Suivre la compétence **`nouveau-livre`** :
 [`.claude/skills/nouveau-livre/SKILL.md`](.claude/skills/nouveau-livre/SKILL.md).
 Elle décrit tout le parcours : choix du rayon et de l'identifiant, écriture du
-texte, script d'illustration, `livre.js`, catalogue, cache, vérifications et
-revue visuelle des planches.
+texte, script d'illustration (selon `direction-artistique`), `livre.js`,
+catalogue, cache, vérifications et revue visuelle des planches.
 
 ## Git
 

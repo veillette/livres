@@ -65,6 +65,7 @@ def couverture():
     S.add(coq(210, 760, 1.6, expr="fier", ailes="haut", bec_ouvert=True))
     S.add(chat(640, 760, 1.3, expr="malin", bras="calin", regard=(-1, 0)))
     S.add(souriceau(410, 760, 0.85, expr="surpris", bras="joues", regard=(-1, -1)))
+    S.cachette(730, 390, "air")
     return S
 
 

@@ -56,6 +56,7 @@ def couverture():
     S.add(flocon(640, 420, 70))
     S.add(glacon(360, 620, 2.4, expr="rire"))
     S.add(goutte_perso(620, 640, 1.2, expr="content"))
+    S.cachette(730, 620, "air")
     return S
 
 
@@ -89,6 +90,7 @@ def p01():
     S.add(thermometre(700, 330, 160, 0.15, "-18 °C", couleur=FROID))
     S.add(bac(360, 560, 1.05, 6, gaston=2, exprs={0: "dort", 1: "content", 3: "rire", 4: "dort", 5: "content"}))
     S.add(texte(360, 160, "Brrr, qu'il fait bon !", 48, FROID, contour="#fff"))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -103,6 +105,7 @@ def p02():
     S.add(glacon(600, 500, 2.0, expr="rire"))
     S.add(texte(600, 560, "glace solide", 38, "#1971c2"))
     S.add(thermometre(400, 700, 120, 0.3, "0 °C", couleur=FROID))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -144,7 +147,7 @@ def flaque_perso(x, y, s=1.0, expr="oups", r=1.0):
     m = [chemin(f"M {-150 * r} 0 Q {-160 * r} -40 {-80 * r} -44 Q 0 -60 {90 * r} -40 Q {170 * r} -30 {150 * r} 0 Q 0 22 {-150 * r} 0 Z", "#74c0fc", opacity=0.9),
          ellipse(-60 * r, -30, 30, 6, "#fff", opacity=0.6),
          oeil(-18, -22, ys, taille=0.9), oeil(18, -22, ys, taille=0.9), place(bouche(0, 0, bs, 0.7), 0, -8)]
-    return place(m, x, y, s)
+    return place(m + [occuper(-151, -51, 154, 11)], x, y, s)
 
 
 def p05():
@@ -241,6 +244,7 @@ def p10():
     S.add(fleche(220, 420, 260, 320, "#1971c2", 6))
     S.add(thermometre(700, 300, 140, 0.2, "froid", couleur=FROID))
     S.add(rect(0, 740, 800, 60, "#8ce99a"))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -265,6 +269,7 @@ def p12():
     for k in range(6):
         a = math.radians(k * 60 - 90)
         S.add(texte(400 + math.cos(a) * 280, 400 + math.sin(a) * 280 + 16, str(k + 1), 44, "#364fc7", contour="#fff"))
+    S.cachette(730, 620, "air")
     return S
 
 
@@ -299,11 +304,12 @@ def p14():
     S.add(chemin("M 0 760 Q 400 740 800 760 L 800 800 L 0 800 Z", "#495057"))
     S.add(texte(680, 730, "4 °C", 38, "#fff"))
     S.add(texte(560, 420, "eau", 40, "#e7f5ff"))
+    S.cachette(650, 70, "air")
     return S
 
 
 def vapeur_perso(x, y, s=1.0):
-    return place(g([nuage_perso(0, 0, 0.7, "#f1f3f5", expr="content", ombre=None), vapeur(-40, -40, 80, 1.0, 0.8, "#adb5bd"), vapeur(40, -40, 80, 1.0, 0.8, "#adb5bd")]), x, y, s)
+    return place(g([nuage_perso(0, 0, 0.7, "#f1f3f5", expr="content", ombre=None), vapeur(-40, -40, 80, 1.0, 0.8, "#adb5bd"), vapeur(40, -40, 80, 1.0, 0.8, "#adb5bd"), occuper(-66, -120, 76, 39)]), x, y, s)
 
 
 def p15():
@@ -318,6 +324,7 @@ def p15():
     S.add(fleche(590, 520, 460, 330, CHAUD, 7), texte(430, 450, "s'évapore", 30, CHAUD))
     S.add(fleche(530, 250, 700, 500, FROID, 7), texte(700, 340, "se condense", 30, FROID))
     S.add(fleche(540, 680, 250, 680, FROID, 7), texte(395, 720, "gèle", 32, FROID))
+    S.cachette(110, 110, "air")
     return S
 
 
@@ -326,6 +333,7 @@ def p16():
     congelateur(S)
     S.add(bac(400, 620, 1.15, 6, gaston=2, exprs={0: "rire", 1: "content", 2: "rire", 3: "rire", 4: "content", 5: "rire"}))
     S.add(bulle(400, 200, 520, 100, "Bonjour, les frères !", 48, pointe=(350, 460)))
+    S.cachette(380, 70, "air")
     return S
 
 

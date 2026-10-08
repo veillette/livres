@@ -277,6 +277,7 @@ def p10():
     S.add(grenouille(580, 630, 1.0, expr="chante", sacs=True, flip=True))
     S.add(texte(300, 330, "Coâ !", 64, "#fff", contour="#5f3dc4", rot=-8))
     S.add(texte(520, 240, "Coâ !", 50, "#fff", contour="#5f3dc4", rot=8))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -290,6 +291,7 @@ def p11():
     S.add(disque(150, 400, 105, "#d3f9d8"), grenouille(146, 468, 0.95, expr="content"))
     S.add(etiquette(400, 290, "les œufs", 30, "#2b8a3e"), etiquette(650, 540, "le têtard", 30, "#2b8a3e"),
           etiquette(400, 790, "les pattes", 30, "#2b8a3e"), etiquette(150, 540, "la grenouille", 30, "#2b8a3e"))
+    S.cachette(570, 730, "air")
     return S
 
 

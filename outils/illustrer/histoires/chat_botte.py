@@ -154,6 +154,7 @@ def p08():
     S.add(jean(200, 790, 1.35, beau=True, expr="fier", bras="salut"))
     S.add(princesse_(380, 790, 1.15, expr="timide", bras="joues"))
     S.add(coeur(300, 330, 1.2))
+    S.cachette(730, 410, "air")
     return S
 
 
@@ -173,6 +174,7 @@ def p10():
     S.add(ogre(560, 830, 2.5, expr="fier", bras="hanches"))
     S.add(chat(170, 800, 1.0, expr="malin", bras="salut"))
     S.add(bulle(260, 150, 420, 110, "On dit que vous pouvez\ndevenir n'importe quoi ?", 28, pointe=(180, 540)))
+    S.cachette(320, 730, "air")
     return S
 
 

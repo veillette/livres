@@ -61,6 +61,7 @@ def couverture():
     fond(S, "#fff5f5")
     S.add(orage(400, 300, 2.0))
     S.add(zoe(400, 780, 1.8, expr="furieux", bras="poing"))
+    S.cachette(130, 640, "air")
     return S
 
 
@@ -99,6 +100,7 @@ def p03():
     for x, y in ((290, 520), (510, 520)):
         S.add(g([chemin(f"M {x + k * 14} {y} q 8 -12 0 -24 q -8 -12 0 -24", stroke="#fa5252", sw=4) for k in range(3)]))
     S.add(texte(150, 420, "grrr…", 50, "#c92a2a", contour="#fff", rot=-10))
+    S.cachette(460, 70, "air")
     return S
 
 
@@ -132,6 +134,7 @@ def p06():
     S.add(texte(260, 330, "Je sens la fleur…", 34, "#0ca678", contour="#fff"))
     S.add(zoe(580, 780, 1.4, expr="souffle", bras="tient", flip=True, objet=bougie(70, -130, 0.8)))
     S.add(texte(580, 330, "je souffle la bougie !", 34, "#0ca678", contour="#fff"))
+    S.cachette(450, 70, "air")
     return S
 
 
@@ -153,6 +156,7 @@ def p08():
     S.add(nuage(380, 190, 0.6, "#dee2e6", ombre="#ced4da"))
     S.add(zoe(400, 780, 1.6, expr="sourire", bras="bas"))
     S.add(texte(400, 380, "ouf…", 56, "#1971c2", contour="#fff"))
+    S.cachette(380, 70, "air")
     return S
 
 

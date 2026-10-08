@@ -113,7 +113,11 @@ def texte(x, y, contenu, taille=48, fill=ENCRE, anchor="middle", poids=700, cont
         a.update(stroke=contour, stroke_width=taille / 7, stroke_linejoin="round", paint_order="stroke")
     if rot:
         a["transform"] = f"rotate({n(rot)} {n(x)} {n(y)})"
-    return el("text", contenu, **a)
+    # place réservée (la petite bête ne se pose pas sur un texte)
+    lt = len(str(contenu)) * taille * 0.56
+    x0 = x - lt / 2 if anchor == "middle" else (x - lt if anchor == "end" else x)
+    zone = occuper(x0, y - taille * 0.9, x0 + lt, y + taille * 0.3)
+    return el("text", contenu, **a) + zone
 
 
 # --- Dégradés partagés -------------------------------------------------------
@@ -250,13 +254,413 @@ def _couleurs_fond(scene):
     return fonds
 
 
+# --- Finition de la page -------------------------------------------------------
+# À l'écriture, chaque page reçoit par-dessus le dessin (hors cadrage) :
+#   - un glacis éventuel : aplat très pâle en mode « produit » (multiply), une
+#     patine de vieux papier pour les fables et les contes ; il désature les
+#     couleurs complémentaires (un glacis chaud grise le bleu du ciel) : le
+#     garder presque blanc ;
+#   - la lumière de son moment (AMBIANCES) : teinte en mode « produit » (nuit
+#     bleutée, soir doré) sous les halos des sources de lumière, halo coloré
+#     en « lumière douce » et vignettage qui ramène le regard vers le centre ;
+#     le jour n'a qu'un vignettage très léger.
+# Le grain du papier n'est pas dans les SVG : css/pages.css le pose sur
+# chaque page à l'échelle de l'écran (un bruit dessiné dans le SVG devient
+# du « bruit de télévision » sur les petites couvertures).
+# generer.py règle ces valeurs livre par livre (rayon et variables GLACIS,
+# LUMIERE et CACHE du script).
+GLACIS_PAGE = [None]        # couleur pâle du glacis, None = aucun
+LUMIERE_PAGE = [True]       # halo et teinte d'ambiance ; False pour les livres de sciences
+BETE_CACHEE = [None]        # petite bête cachée sur chaque page (CACHETTES), None = aucune
+MOTIF_PAPIER = ["rayures"]  # papier peint des intérieurs (interieur(papier=…))
+
+# Lumière de chaque moment : halo (couleur, force, centre x, centre y, rayon)
+# fondu en « lumière douce » (soft-light), vignette (couleur, force).
+AMBIANCES = {
+    "jour": dict(halo=None, vignette=("#1c2a52", 0.08)),
+    "soir": dict(halo=("#ffb35c", 0.7, 0.2, 0.25, 1.0), vignette=("#5f3dc4", 0.22), teinte="#fff0dc"),
+    "nuit": dict(halo=("#91a7ff", 0.35, 0.75, 0.1, 0.8), vignette=("#060b24", 0.42), teinte="#cdd5f4"),
+    "interieur": dict(halo=("#ffe2a8", 0.6, 0.3, 0.15, 0.9), vignette=("#3b2414", 0.24)),
+    "eau": dict(halo=("#c5f6fa", 0.6, 0.5, -0.1, 0.9), vignette=("#04263d", 0.34)),
+    "neutre": dict(halo=None, vignette=("#1c2a52", 0.05)),
+    # fond uni sombre (salle noire d'une expérience, espace) : pas de teinte,
+    # les couleurs d'un schéma restent justes
+    "sombre": dict(halo=None, vignette=("#000000", 0.25)),
+}
+
+
+def _teinte(scene):
+    """Teinte du moment (nuit bleutée, soir doré) et glacis du livre, en mode
+    « produit » : posés avant les lumières de la scène, qui restent vives."""
+    m = []
+    amb = AMBIANCES.get(scene.moment or "neutre", AMBIANCES["neutre"])
+    if amb.get("teinte") and LUMIERE_PAGE[0]:
+        m.append(rect(0, 0, scene.w, scene.h, amb["teinte"], style="mix-blend-mode:multiply"))
+    if GLACIS_PAGE[0]:
+        m.append(rect(0, 0, scene.w, scene.h, GLACIS_PAGE[0], style="mix-blend-mode:multiply"))
+    return m
+
+
+def _finition(scene):
+    """Halo et vignette du moment, posés sur la page : (définitions, éléments)."""
+    w, h = scene.w, scene.h
+    defs, m = [], []
+    amb = AMBIANCES.get(scene.moment or "neutre", AMBIANCES["neutre"])
+    if amb.get("halo") and LUMIERE_PAGE[0]:
+        c, force, cx, cy, r = amb["halo"]
+        m.append(rect(0, 0, w, h, radial([(0, c, force), (0.55, c, force * 0.45), (1, c, 0)], cx=cx, cy=cy, r=r),
+                      style="mix-blend-mode:soft-light"))
+    if amb.get("vignette"):
+        c, force = amb["vignette"]
+        m.append(rect(0, 0, w, h, radial([(0.5, c, 0), (0.8, c, force * 0.45), (1, c, force)], cx=0.5, cy=0.46, r=0.74)))
+    return defs, m
+
+
+# --- Petite bête cachée ----------------------------------------------------------
+# Les enfants aiment chercher un petit personnage qui revient à chaque page.
+# Les décors qui reçoivent la Scene (sol, interieur, ocean…) proposent des
+# cachettes ; à l'écriture, une cachette visible est choisie d'après le nom
+# du fichier (toujours la même pour une page donnée). Une page peut imposer
+# la sienne avec S.cachette(x, y) ou n'en vouloir aucune avec S.cachette(None).
+
+def coccinelle_cachee(x, y, s=1.0, flip=False):
+    """Coccinelle de profil, (x, y) = sous ses pattes ; environ 30 de large."""
+    m = [ellipse(1, 1, 15, 3, "#000", opacity=0.18)]
+    for dx in (-7, 0, 7):
+        m.append(trait(dx, -4, dx + 2, 1, ENCRE, 1.8))
+    m.append(cercle(11, -9, 6.5, ENCRE))
+    m.append(cercle(13.2, -10.6, 1.6, "#fff"))
+    m.append(chemin("M 9 -14 Q 12 -21 16 -21 M 12 -14 Q 17 -19 20 -17", stroke=ENCRE, sw=1.4))
+    m.append(chemin("M -13 -2 A 13 12 0 0 1 13 -2 Z", radial([(0, "#ff8787"), (0.6, "#f03e3e"), (1, "#a61e1e")], cx=0.4, cy=0.3, r=0.75)))
+    m.append(trait(0, -14, 1, -2, ENCRE, 1.4))
+    for px, py, pr in ((-6, -7, 2.6), (6, -9, 2.4), (-2, -11.5, 1.8), (8, -4, 1.8), (-9, -3.5, 1.6)):
+        m.append(cercle(px, py, pr, ENCRE))
+    m.append(ellipse(-5, -10, 3.5, 1.6, "#fff", rot=-25, opacity=0.55))
+    return place(sans_relief(m), x, y, s, flip=flip)
+
+
+def etoile_mer_cachee(x, y, s=1.0, flip=False):
+    """Petite étoile de mer posée sur le sable, avec deux yeux."""
+    m = [ellipse(0, 1, 16, 3.5, "#000", opacity=0.18),
+         place(etoile5(0, 0, 15, "#ff922b", rot=8), 0, -9, sy=0.85),
+         cercle(-3.5, -11, 2, ENCRE), cercle(3.5, -11, 2, ENCRE),
+         cercle(-3, -11.6, 0.7, "#fff"), cercle(4, -11.6, 0.7, "#fff")]
+    for px, py in ((-8, -4), (8, -5), (0, -18), (-1, -2), (5, -14)):
+        m.append(cercle(px, py, 1.2, "#ffe8cc"))
+    return place(sans_relief(m), x, y, s, flip=flip)
+
+
+def souris_cachee(x, y, s=1.0, flip=False):
+    """Petite souris grise vue de profil, (x, y) = sous ses pattes."""
+    m = [ellipse(1, 1, 15, 3, "#000", opacity=0.18),
+         chemin("M -12 -5 Q -24 -4 -26 -14", stroke="#ffa8a8", sw=1.8),
+         ellipse(-1, -7, 12, 8, volume("#ced4da", 0.3, 0.8)),
+         cercle(9, -11, 6.5, volume("#ced4da", 0.3, 0.8)),
+         cercle(6, -18, 4.5, "#ced4da"), cercle(6, -18, 2.6, "#ffc9c9"),
+         cercle(11.5, -12, 1.6, ENCRE), cercle(15.5, -10, 1.6, "#ff8787"),
+         trait(-6, -1, -6, 1, "#ffa8a8", 1.6), trait(4, -1, 4, 1, "#ffa8a8", 1.6)]
+    return place(sans_relief(m), x, y, s, flip=flip)
+
+
+def coccinelle_vol(x, y, s=1.0, flip=False):
+    """Coccinelle en vol, élytres ouverts et ailes battantes ; (x, y) = centre.
+    Pour une page sans sol : ciel, mur, schéma."""
+    m = [ellipse(-12, -8, 13, 5, "#e7f5ff", rot=-35, opacity=0.85, stroke="#a5b4c8", stroke_width=1),
+         ellipse(12, -8, 13, 5, "#e7f5ff", rot=35, opacity=0.85, stroke="#a5b4c8", stroke_width=1),
+         ellipse(0, 2, 7, 10, ENCRE),
+         cercle(0, -9, 5.5, ENCRE), cercle(-2, -10.5, 1.4, "#fff"), cercle(2, -10.5, 1.4, "#fff"),
+         chemin("M -2 -13 Q -6 -20 -9 -20 M 2 -13 Q 6 -20 9 -20", stroke=ENCRE, sw=1.4)]
+    for sgn in (-1, 1):
+        aile = f"M 0 -3 Q {sgn * 14} -6 {sgn * 15} 6 Q {sgn * 12} 14 {sgn * 3} 10 Z"
+        m.append(chemin(aile, radial([(0, "#ff8787"), (0.6, "#f03e3e"), (1, "#a61e1e")], cx=0.4, cy=0.3, r=0.75)))
+        m.append(cercle(sgn * 9, 1, 2.4, ENCRE))
+        m.append(cercle(sgn * 6, 7, 1.8, ENCRE))
+    m.append(chemin("M -26 10 q 4 -3 8 0 M -30 2 q 4 -3 8 0", stroke="#868e96", sw=1.5, opacity=0.7))
+    return place(sans_relief(m), x, y, s, flip=flip, rot=-12 if flip else 12)
+
+
+def poisson_cache(x, y, s=1.0, flip=False):
+    """Petit poisson jaune rayé, pour les pages en pleine eau ; (x, y) = centre."""
+    m = [poly([(-14, 0), (-24, -8), (-24, 8)], "#f59f00"),
+         ellipse(0, 0, 16, 10, radial([(0, "#ffe066"), (0.7, "#fcc419"), (1, "#e67700")], cx=0.4, cy=0.35)),
+         chemin("M -4 -9 Q -1 0 -4 9 M 4 -9 Q 7 0 4 9", stroke="#4263eb", sw=2.5),
+         cercle(9, -2, 3, "#fff"), cercle(10, -2, 1.8, ENCRE),
+         chemin("M 12 4 q 2 1 4 0", stroke=ENCRE, sw=1.2)]
+    return place(sans_relief(m), x, y, s, flip=flip)
+
+
+CACHETTES = {"coccinelle": coccinelle_cachee, "souris": souris_cachee, "etoile_mer": etoile_mer_cachee,
+             "coccinelle_vol": coccinelle_vol, "poisson": poisson_cache}
+
+# Les sources de lumière courantes (lune, maison éclairée, lampe, luciole…)
+# inscrivent leur halo dans une liste d'attente : le prochain S.add() les
+# attribue à sa scène (un dessin passé en argument est créé avant la Scene de
+# sa page). Elles sont presque toujours placées en coordonnées de la page ; un
+# halo mal placé (source dessinée dans un repère local) se corrige avec
+# halo=False sur la source et S.lumiere().
+_EN_ATTENTE = {"lumieres": []}
+
+
+def lumiere_auto(x, y, r, couleur="#ffd43b", force=0.6):
+    """Halo d'une source courante, dessiné au-dessus de la teinte de la nuit
+    ou du soir seulement."""
+    _EN_ATTENTE["lumieres"].append(lueur(x, y, r, couleur, force))
+
+
+def occuper(x0, y0, x1, y1):
+    """Repère invisible de la zone prise par un personnage, une bulle ou un
+    texte, à ajouter à son dessin : il suit les place() et les cadrages qui
+    l'entourent, et la petite bête n'y va pas (jamais sur un visage). Scene
+    le lit puis le retire de l'image."""
+    return f'<g data-occupe="{n(min(x0, x1))} {n(min(y0, y1))} {n(max(x0, x1))} {n(max(y0, y1))}"/>'
+
+
+_REPERE = re.compile(r'<g data-occupe="[^"]*"/>')
+_FONCTION_TRANSFORM = re.compile(r"(matrix|translate|scale|rotate|skewX|skewY)\s*\(([^)]*)\)")
+
+
+def _matrice(transform):
+    """Attribut transform SVG → matrice (a, b, c, d, e, f)."""
+    m = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
+    for nom, args in _FONCTION_TRANSFORM.findall(transform):
+        v = [float(t) for t in re.split(r"[\s,]+", args.strip()) if t]
+        if nom == "matrix":
+            t = tuple(v)
+        elif nom == "translate":
+            t = (1, 0, 0, 1, v[0], v[1] if len(v) > 1 else 0)
+        elif nom == "scale":
+            t = (v[0], 0, 0, v[1] if len(v) > 1 else v[0], 0, 0)
+        elif nom == "rotate":
+            a = math.radians(v[0])
+            cx, cy = (v[1], v[2]) if len(v) > 2 else (0, 0)
+            co, si = math.cos(a), math.sin(a)
+            t = (co, si, -si, co, cx - co * cx + si * cy, cy - si * cx - co * cy)
+        elif nom == "skewX":
+            t = (1, 0, math.tan(math.radians(v[0])), 1, 0, 0)
+        else:
+            t = (1, math.tan(math.radians(v[0])), 0, 1, 0, 0)
+        m = _composer(m, t)
+    return m
+
+
+def _composer(m, t):
+    a, b, c, d, e, f = m
+    a2, b2, c2, d2, e2, f2 = t
+    return (a * a2 + c * b2, b * a2 + d * b2, a * c2 + c * d2, b * c2 + d * d2, a * e2 + c * f2 + e, b * e2 + d * f2 + f)
+
+
+def zones_reperes(texte_svg):
+    """Zones (x0, y0, x1, y1) des repères d'occupation d'un fragment SVG, dans
+    le repère du fragment, à travers ses transformations."""
+    if "data-occupe" not in texte_svg:
+        return []
+    pile, m, out = [], (1.0, 0.0, 0.0, 1.0, 0.0, 0.0), []
+    for b in _BALISE.finditer(texte_svg):
+        ferme, tag, attrs, auto = b.groups()
+        if ferme:
+            if pile:
+                m = pile.pop()
+            continue
+        t = _valeur(attrs, "transform")
+        local = _composer(m, _matrice(t)) if t else m
+        z = _valeur(attrs, "data-occupe")
+        if z:
+            x0, y0, x1, y1 = (float(v) for v in z.split())
+            a, bb, c, d, e, f = local
+            coins = [(a * x + c * y + e, bb * x + d * y + f) for x in (x0, x1) for y in (y0, y1)]
+            out.append((min(p[0] for p in coins), min(p[1] for p in coins), max(p[0] for p in coins), max(p[1] for p in coins)))
+        if not auto:
+            pile.append(m)
+            m = local
+    return out
+
+
 class Scene:
     def __init__(self, w=800, h=800):
         self.w, self.h = w, h
         self.defs = []
         self.els = []
+        self.moment = None          # clé de AMBIANCES : jour, soir, nuit, interieur, eau, neutre, sombre
+        self._moment_impose = False
+        self.cadre = None           # (zoom, cx, cy) : voir camera()
+        self.cachettes = []         # (x, y, nature) proposés par les décors
+        self._cachette = None       # cachette imposée, ou False pour aucune
+        self.lumieres = []          # halos posés par-dessus la teinte du moment
+        self.lumieres_auto = []     # halos des sources courantes (nuit et soir)
+        self.hors_cadre = []        # bulles et textes posés sur la page, sans zoom
+        self.occupe = []            # zones réservées à la main (x0, y0, x1, y1)
+
+    def ambiance(self, moment):
+        """Impose la lumière de la page (clé de AMBIANCES)."""
+        self.moment, self._moment_impose = moment, True
+        return self
+
+    def _decor(self, moment):
+        """Moment suggéré par un décor ; le dernier décor posé l'emporte."""
+        if not self._moment_impose:
+            self.moment = moment
+
+    def camera(self, zoom, cx=None, cy=None):
+        """Cadre la page : gros plan (zoom > 1) centré sur (cx, cy), en
+        coordonnées de la scène. Le cadre reste dans la scène : aucun bord vide."""
+        cx = self.w / 2 if cx is None else cx
+        cy = self.h / 2 if cy is None else cy
+        dw, dh = self.w / (2 * zoom), self.h / (2 * zoom)
+        self.cadre = (zoom, min(max(cx, dw), self.w - dw), min(max(cy, dh), self.h - dh))
+        return self
+
+    def vers_page(self, x, y):
+        """Point de la scène → point de la page, une fois le cadrage appliqué
+        (pour viser un personnage avec la pointe d'une bulle)."""
+        if not self.cadre:
+            return x, y
+        z, cx, cy = self.cadre
+        return self.w / 2 + (x - cx) * z, self.h / 2 + (y - cy) * z
+
+    def dessus(self, *morceaux):
+        """Ajoute des éléments en coordonnées de la page, au-dessus du dessin et
+        hors cadrage : bulles, onomatopées, titres restent à leur taille."""
+        self._recevoir()
+        for m in morceaux:
+            if isinstance(m, (list, tuple)):
+                self.dessus(*m)
+            elif m:
+                self.hors_cadre.append(m)
+        return self
+
+    def visible(self, x, y, marge=30):
+        """Le point (x, y) de la scène est-il dans le cadre (à `marge` près) ?"""
+        if not self.cadre:
+            return marge <= x <= self.w - marge and marge <= y <= self.h - marge
+        z, cx, cy = self.cadre
+        X, Y = self.w / 2 + (x - cx) * z, self.h / 2 + (y - cy) * z
+        return marge <= X <= self.w - marge and marge <= Y <= self.h - marge
+
+    def lumiere(self, x, y, r=120, couleur="#ffd43b", force=0.7, ry=None):
+        """Halo d'une source de lumière (fenêtre éclairée, lampe, feu, lune),
+        posé après la teinte de la nuit ou du soir : la lumière reste chaude et
+        vive dans une scène assombrie. Coordonnées de la scène."""
+        self.lumieres.append(lueur(x, y, r, couleur, force, ry))
+        return self
+
+    def cachette(self, x, y=None, nature=None, s=None, flip=None):
+        """Impose la cachette de la page ; S.cachette(None) : aucune.
+        nature : None (posée, (x, y) sous les pattes), "eau" (étoile de mer
+        sur le sable), "air" (en vol, (x, y) au centre ; petit poisson sous
+        l'eau) ou "poisson" (petit poisson, (x, y) au centre)."""
+        self._cachette = False if x is None else (x, y, nature, s, flip)
+        return self
+
+    def proposer_cachette(self, x, y, nature="sol"):
+        self.cachettes.append((x, y, nature))
+
+    def _sols_dessines(self):
+        """Sols tracés à la main (sans sol() ni interieur()) : un aplat ou un
+        chemin qui couvre toute la largeur jusqu'au bas de la page. Renvoie
+        (hauteur du bord à gauche, à droite) pour chacun, du fond vers l'avant.
+        Les eaux claires (lac, rivière vus de côté) sont écartées."""
+        W, H = n(self.w), n(self.h)
+        sols = []
+        for e in self.els:
+            remp = _valeur(e, "fill") or ""
+            ref = re.match(r"url\(#([^)]+)\)", remp)
+            if ref:
+                # dégradé : sa première couleur
+                defn = _DEGRADES.get(ref.group(1)) or next((d for d in self.defs if f'id="{ref.group(1)}"' in d), "")
+                arret = re.search(r'stop-color="(#[0-9a-fA-F]{3,6})"', defn)
+                remp = arret.group(1) if arret else ""
+            tsl = _tsl(remp) if remp.startswith("#") else None
+            if tsl and 0.5 <= tsl[0] <= 0.68 and tsl[1] > 0.4:
+                continue          # eau bleue, claire ou sombre (mer, lac) : pas un sol
+            if e.startswith("<rect"):
+                x, y = float(_valeur(e, "x") or 0), float(_valeur(e, "y") or 0)
+                w, h = float(_valeur(e, "width") or 0), float(_valeur(e, "height") or 0)
+                if x <= 1 and w >= 0.95 * self.w and y + h >= self.h - 2:
+                    sols.append((y, y))
+            elif e.startswith("<path"):
+                d = _valeur(e, "d") or ""
+                debut = re.match(r"M\s*(-?[\d.]+)\s+(-?[\d.]+)", d)
+                fin = re.search(rf"(-?[\d.]+)\s+(-?[\d.]+)\s+L\s*{W}\s+{H}\s+L\s*0\s+{H}", d)
+                if debut and fin and float(debut.group(1)) <= 1:
+                    sols.append((float(debut.group(2)), float(fin.group(2))))
+        return [(a, b) for a, b in sols if 0.4 * self.h <= min(a, b) and max(a, b) <= 0.9 * self.h]
+
+    def place_bete(self, nom_fichier):
+        """Place de la petite bête sur la page : (x, y, nature, échelle, miroir)
+        en coordonnées de la scène, ou None (pas de bête, pas de cachette)."""
+        if not BETE_CACHEE[0] or self._cachette is False or self.w < 600:
+            return None
+        if self._cachette:
+            x, y, nature, s, flip = self._cachette
+        else:
+            cachettes = list(self.cachettes)
+            if not cachettes:
+                # décor maison : cachettes au pied des côtés du sol le plus en avant
+                for gauche, droite in self._sols_dessines()[-1:]:
+                    for x in (64, 736, 150, 650, 250, 550, 340, 460):
+                        yc = gauche + (droite - gauche) * x / 800
+                        cachettes.append((x * self.w / 800, yc + min(34, (self.h - yc) * 0.45), "sol"))
+
+            zones = self.zones()
+
+            def libre(c):
+                x, y = c[0], c[1]
+                return not any(x0 - 24 < x < x1 + 24 and y0 - 30 < y < y1 + 10 for x0, y0, x1, y1 in zones)
+            places = [c for c in cachettes if self.visible(c[0], c[1] - 20, 40) and libre(c)]
+            if not places:
+                # tout le bord du sol est pris : plus bas, devant les pieds
+                devant = [(x, y + (self.h - y) * 0.6, nat) for x, y, nat in cachettes if self.h - y > 70]
+                places = [c for c in devant if self.visible(c[0], c[1] - 20, 40) and libre(c)]
+            if not places:
+                return None
+            # au plus près d'un bord (gauche ou droite selon la page) : les
+            # personnages s'y tiennent rarement, et les petits savent où chercher
+            graine = int(hashlib.md5(os.path.basename(nom_fichier).encode()).hexdigest()[:8], 16)
+            cote = 1 if graine % 2 else -1
+            x, y, nature = min(places, key=lambda c: (round(min(c[0], self.w - c[0])), cote * c[0], c[1]))
+            s, flip = None, None
+        if flip is None:
+            flip = x > self.w / 2
+        if s is None:
+            s = 1.0 / (self.cadre[0] if self.cadre else 1.0) ** 0.5
+        if self.moment == "eau" and nature in (None, "sol"):
+            # au fond de l'eau, pas de coccinelle : un petit poisson nage au-dessus
+            nature, y = "poisson", y - 40 * s
+        return x, y, nature, s, flip
+
+    def _bete(self, nom_fichier):
+        place = self.place_bete(nom_fichier)
+        if not place:
+            return ""
+        x, y, nature, s, flip = place
+        if nature == "eau":
+            bete = CACHETTES["etoile_mer"]          # posée sur le sable
+        elif nature == "poisson":
+            bete = CACHETTES["poisson"]             # en pleine eau
+        elif nature == "air":
+            # sans support : en vol, ou un petit poisson en pleine eau
+            bete = CACHETTES["poisson" if self.moment == "eau" else "coccinelle_vol"]
+        else:
+            bete = CACHETTES[BETE_CACHEE[0]]
+        return bete(x, y, s, flip=flip)
+
+    def _recevoir(self):
+        """Prend les halos des dessins qu'on lui ajoute."""
+        self.lumieres_auto += _EN_ATTENTE["lumieres"]
+        _EN_ATTENTE["lumieres"] = []
+
+    def zones(self):
+        """Zones prises par les personnages, bulles et textes, en coordonnées
+        de la scène (repères occuper() lus à travers les transformations)."""
+        out = list(self.occupe) + zones_reperes("\n".join(self.els))
+        if self.hors_cadre:
+            z, cx, cy = self.cadre or (1, self.w / 2, self.h / 2)
+            for x0, y0, x1, y1 in zones_reperes("\n".join(self.hors_cadre)):
+                out.append((cx + (x0 - self.w / 2) / z, cy + (y0 - self.h / 2) / z, cx + (x1 - self.w / 2) / z, cy + (y1 - self.h / 2) / z))
+        return out
 
     def add(self, *morceaux):
+        self._recevoir()
         for m in morceaux:
             if isinstance(m, (list, tuple)):
                 self.add(*m)
@@ -277,11 +681,45 @@ class Scene:
             self.defs.append(el("linearGradient", stops, id=i, x1=0, y1=0, x2=1, y2=0))
         return f"url(#{i})"
 
-    def svg(self):
+    def _a_un_fond(self):
+        """Un décor plein (ciel, intérieur, océan…) ou un premier aplat qui
+        couvre la page."""
+        if self.moment is not None:
+            return True
+        if not self.els or not self.els[0].startswith("<rect"):
+            return False
+        return (float(_valeur(self.els[0], "width") or 0) >= 0.9 * self.w
+                and float(_valeur(self.els[0], "height") or 0) >= 0.9 * self.h)
+
+    def svg(self, nom_fichier=""):
         corps = "\n".join(self.els)
         if RELIEF_AUTO[0]:
             corps = _relief_auto(corps, self.w, self.h, _couleurs_fond(self))
-        propres = "".join(self.defs)
+        bete = self._bete(nom_fichier) if nom_fichier else ""
+        corps = _REPERE.sub("", corps)
+        if bete:
+            corps += "\n" + bete
+        auto = self.lumieres_auto if self.moment in ("nuit", "soir") else []
+        lumieres = "\n".join(auto + self.lumieres)
+        if self.cadre:
+            z, cx, cy = self.cadre
+            cadrage = f"translate({n(self.w / 2 - cx * z, 2)} {n(self.h / 2 - cy * z, 2)}) scale({n(z, 3)})"
+            corps = g(corps, cadrage)
+            lumieres = g(lumieres, cadrage) if lumieres else ""
+        # les calques de finition ne vont que sur une scène qui a un fond : sur
+        # une vignette transparente, ils dessineraient un rectangle visible
+        fini = self._a_un_fond()
+        teinte = _teinte(self) if fini else []
+        if teinte:
+            corps += "\n" + g(teinte, data_finition="teinte")
+        if lumieres:
+            corps += "\n" + lumieres
+        if self.hors_cadre:
+            corps += "\n" + _REPERE.sub("", "\n".join(self.hors_cadre))
+        defs_fin, finition = _finition(self) if fini else ([], [])
+        if finition:
+            corps += "\n" + g(finition, data_finition="oui")
+        propres = "".join(self.defs) + "".join(defs_fin)
         partages = sorted(set(re.findall(r"url\(#(vol[0-9a-f]{7})\)", propres + corps)))
         tous = propres + "".join(_DEGRADES[i] for i in partages)
         defs = f"<defs>{tous}</defs>" if tous else ""
@@ -293,20 +731,32 @@ class Scene:
     def enregistrer(self, chemin_fichier):
         os.makedirs(os.path.dirname(chemin_fichier), exist_ok=True)
         with open(chemin_fichier, "w", encoding="utf-8") as fh:
-            fh.write(self.svg())
+            fh.write(self.svg(chemin_fichier))
 
 
 # ---------------------------------------------------------------------------
 # Décors
 # ---------------------------------------------------------------------------
 
+def _moment_ciel(haut, bas):
+    """Moment de la journée d'après les couleurs du ciel."""
+    if luminance(haut) < 0.3:
+        return "nuit"
+    # couchant : une teinte chaude (orange, rose, rouge) franche, pas un
+    # simple voile crème ou rosé à l'horizon (très clair, donc exclu)
+    chaud = [t for t in (_tsl(haut), _tsl(bas)) if t and t[1] > 0.5 and t[2] < 0.82 and (t[0] < 0.12 or t[0] > 0.88)]
+    return "soir" if chaud else "jour"
+
+
 def ciel(S, haut="#74c0fc", bas="#e7f5ff"):
+    S._decor(_moment_ciel(haut, bas))
     S.add(rect(0, 0, S.w, S.h, S.degrade([haut, melange(haut, bas, 0.6), bas])))
     # brume claire vers l'horizon : les lointains se fondent dans le ciel
     S.add(rect(0, 0, S.w, S.h, lineaire([(0.35, eclaircir(bas, 0.4), 0), (0.75, eclaircir(bas, 0.4), 0.35), (1, eclaircir(bas, 0.4), 0.1)])))
 
 
 def fond(S, couleur):
+    S._decor("sombre" if luminance(couleur) < 0.25 else "neutre")
     S.add(rect(0, 0, S.w, S.h, couleur))
 
 
@@ -322,8 +772,22 @@ def sol(S, y, couleur="#8ce99a", bosse=18, couleur2=None, y2=None, premier=True)
         S.add(chemin(f"M 0 {y2} Q {w * 0.4} {y2 - bosse} {w * 0.7} {y2} T {w + 200} {y2} L {w} {S.h} L 0 {S.h} Z", terrain(couleur2)))
         relief_sol(S, f"M 0 {y2} Q {w * 0.4} {y2 - bosse} {w * 0.7} {y2} T {w + 200} {y2}", couleur2, y2 + bosse + 12, S.h - 6, graine=int(y2) + 1)
         devant, haut = couleur2, y2
+    _cachettes_sol(S, haut, bosse)
     if premier:
         premier_plan_sol(S, devant, haut + bosse, graine=int(haut) + 3)
+
+
+def _cachettes_sol(S, y, bosse=0, plinthe=False, nature="sol", dy=None):
+    """Cachettes de la petite bête : au pied des côtés du sol (ou du mur).
+    dy : distance sous `y` (par défaut un peu en avant, au premier plan ;
+    0 pour poser la bête sur la ligne même, l'herbe d'une coupe du sol)."""
+    e = S.w / 800
+    if dy is None:
+        dy = 14 * e if plinthe else min(34 * e, (S.h - y) * 0.45)
+    if S.h - y - dy < 24 * e:
+        return
+    for x in (64, 736, 150, 650, 250, 550, 340, 460):
+        S.proposer_cachette(x * e, y + dy + (0 if plinthe else bosse * 0.15), nature)
 
 
 # --- Teintes -------------------------------------------------------------------
@@ -576,7 +1040,9 @@ def yeux_simples(x, y, ecart, r, couleur=ENCRE):
     return cercle(x - ecart, y, r, couleur) + cercle(x + ecart, y, r, couleur)
 
 
-def lune(x, y, r=45, couleur="#fff3bf", fond_ciel=None, croissant=False, visage=False):
+def lune(x, y, r=45, couleur="#fff3bf", fond_ciel=None, croissant=False, visage=False, halo=True):
+    if halo:
+        lumiere_auto(x, y, r * 2.6, "#e7f5ff", 0.4)
     m = [cercle(x, y, r * 1.9, radial([(0.45, couleur, 0.22), (1, couleur, 0)])), cercle(x, y, r * 1.5, couleur, opacity=0.15),
          cercle(x, y, r, volume(couleur, 0.6, 0.88))]
     if croissant and fond_ciel:
@@ -616,6 +1082,7 @@ def etoiles(S, nb=30, graine=3, zone=(0, 0, 800, 450), couleur="#fff3bf"):
 
 def nuit(S, haut="#1c2a52", bas="#4c5b9a"):
     ciel(S, haut, bas)
+    S._decor("nuit")
 
 
 def nuage(x, y, s=1.0, couleur="#ffffff", ombre=None, opacity=None):
@@ -812,7 +1279,7 @@ def cote_batiment(x, y, h, mur, toit_haut=None, fuite=FUITE, textures=True):
 
 
 def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre="#a5d8ff", lumiere=False,
-           cote=True, volets=None, cheminee=True):
+           cote=True, volets=None, cheminee=True, halo=True):
     """Maison vue de trois quarts ; (x, y) = milieu du pied de la façade.
     cote : mur latéral et pan de toit en perspective ; volets : couleur des
     volets ouverts de part et d'autre des fenêtres."""
@@ -879,6 +1346,8 @@ def maison(x, y, s=1.0, mur="#ffe8cc", toit="#e8590c", porte="#a0522d", fenetre=
         m.append(fenetre_facade(fx, -120, 36 if volets else 40, 40, mur, vitre, volets=volets))
         if lumiere:
             m.append(ellipse(fx + 20, -100, 44, 40, radial([(0, "#ffe066", 0.45), (1, "#ffe066", 0)])))
+            if halo:
+                lumiere_auto(x + (fx + 20) * s, y - 100 * s, 95 * s, "#ffd43b", 0.55)
     return place(m, x, y, s)
 
 
@@ -1154,7 +1623,8 @@ def bulle(x, y, w, h, contenu, taille=36, pointe=None, fill="#ffffff", couleur=E
     for k, ligne in enumerate(lignes):
         yy = y + taille * 0.35 + (k - (len(lignes) - 1) / 2) * taille * 1.15
         m.append(texte(x, yy, ligne, taille, couleur))
-    return g(m)
+    zone = occuper(x - w / 2, y - h / 2, x + w / 2, y + h / 2)
+    return g(m) + zone
 
 
 def pensee(x, y, r, contenu="", fill="#ffffff", depuis=None):
@@ -1169,16 +1639,20 @@ def pensee(x, y, r, contenu="", fill="#ffffff", depuis=None):
         m.append(cercle(x + math.cos(math.radians(a)) * r * 0.8, y + math.sin(math.radians(a)) * r * 0.62, r * 0.35, fill))
     m.append(ellipse(x, y, r * 0.95, r * 0.75, fill))
     m.append(contenu)
-    return g(m)
+    zone = occuper(x - r * 1.15, y - r * 0.95, x + r * 1.15, y + r * 0.95)
+    return g(m) + zone
 
 
 # --- Intérieurs -------------------------------------------------------------
 
 def interieur(S, mur="#fff4e6", plancher="#e8c39e", y=560, papier=None, plinthe="#d9a066"):
+    S._decor("interieur")
+    _cachettes_sol(S, y, 0, plinthe=True)
     S.add(rect(0, 0, S.w, y, mur))
     if papier:
-        for k in range(0, S.w, 60):
-            S.add(rect(k, 0, 24, y, papier, opacity=0.35))
+        # chaque livre a son papier peint (MOTIF_PAPIER, choisi par generer.py)
+        motif = MOTIF_PAPIER[0]
+        motif_mural(S, y, motif, papier, 0.35 if motif == "rayures" else 0.75)
     # pénombre vers le plafond et dans les coins : la pièce a du volume
     S.add(rect(0, 0, S.w, y, lineaire([(0, "#000", 0.09), (0.35, "#000", 0)])))
     S.add(rect(0, 0, S.w, y, lineaire([(0, "#000", 0.08), (0.18, "#000", 0), (0.82, "#000", 0), (1, "#000", 0.08)], 0, 0, 1, 0)))
@@ -1196,6 +1670,109 @@ def interieur(S, mur="#fff4e6", plancher="#e8c39e", y=560, papier=None, plinthe=
     S.add(rect(0, y, S.w, 18 * e + 6, lineaire([(0, "#000", 0.16), (1, "#000", 0)])))
     S.add(rect(0, y - 14, S.w, 16, plinthe))
     S.add(rect(0, y - 14, S.w, 3, eclaircir(plinthe, 0.4), opacity=0.8))
+
+
+def motif_mural(S, y, motif="pois", couleur="#ffc9c9", opacite=0.5):
+    """Papier peint à motif sur le mur (de 0 à y) : "pois", "etoiles",
+    "fleurs", "losanges" ou "rayures"."""
+    e = S.w / 800
+    m = []
+    pas_ = 64 * e
+    for k, yy in enumerate(range(int(pas_ * 0.6), int(y - 20 * e), int(pas_))):
+        for xx in range(int(-pas_ / 2 + (k % 2) * pas_ / 2), int(S.w + pas_), int(pas_)):
+            if motif == "pois":
+                m.append(cercle(xx, yy, 6 * e, couleur))
+            elif motif == "etoiles":
+                m.append(etoile5(xx, yy, 9 * e, couleur, rot=(k * 17 + xx) % 36))
+            elif motif == "fleurs":
+                for a in range(5):
+                    ang = math.radians(a * 72)
+                    m.append(cercle(xx + math.cos(ang) * 7 * e, yy + math.sin(ang) * 7 * e, 5 * e, couleur))
+                m.append(cercle(xx, yy, 3.5 * e, _assombrir(couleur, 0.8)))
+            elif motif == "losanges":
+                m.append(poly([(xx, yy - 14 * e), (xx + 9 * e, yy), (xx, yy + 14 * e), (xx - 9 * e, yy)], couleur))
+                m.append(cercle(xx + pas_ / 2, yy + pas_ / 2 - pas_ / 2, 2.5 * e, couleur))
+    if motif == "rayures":
+        m = [rect(k, 0, 24 * e, y, couleur) for k in range(0, S.w, int(60 * e))]
+    S.add(g(sans_relief(m), opacity=opacite))
+
+
+def piece(S, style="chaumiere", y=560):
+    """Pièce complète au caractère marqué, pour ne pas reprendre partout le même
+    mur rayé : "chaumiere" (murs chaulés, poutres, larges planches), "manoir"
+    (boiseries, papier peint damassé, corniche), "chateau" (pierre de taille,
+    tentures), "chambre" (papier peint étoilé) ou "cuisine" (carrelage)."""
+    e = S.w / 800
+    if style == "chaumiere":
+        interieur(S, "#f4e6cc", "#b98552", y, plinthe="#8d5a35")
+        r = random.Random(7)
+        for _ in range(7):
+            px, py = r.uniform(60, S.w - 60), r.uniform(90 * e, y - 80 * e)
+            pierre = ellipse(px, py, r.uniform(30, 50) * e, r.uniform(16, 26) * e, "#e3cfac")
+            S.add(sans_relief([pierre, pierres(px - 50 * e, py - 26 * e, 100 * e, 52 * e, "#e3cfac", forme=pierre, pas_=int(13 * e) or 1, larg=24 * e, opacite=0.5)]))
+        S.add(planches(0, y + 4, S.w, S.h - y, "#b98552", larg=46 * e, vertical=False))
+        bois = "#6b4226"
+        # poutre du plafond, poteaux d'angle et jambes de force
+        S.add(rect(0, 0, S.w, 48 * e, lineaire([(0, _assombrir(bois, 0.8)), (0.5, bois), (1, _assombrir(bois, 0.75))])))
+        S.add(planches(0, 0, S.w, 48 * e, bois, larg=24 * e, vertical=False))
+        S.add(rect(0, 48 * e, S.w, 14 * e, lineaire([(0, "#000", 0.22), (1, "#000", 0)])))
+        for x0, sgn in ((0, 1), (S.w, -1)):
+            S.add(rect(x0 - (34 * e if sgn < 0 else 0), 0, 34 * e, y - 12, cylindre(bois, 0.2, 0.7)))
+            S.add(poly([(x0 + sgn * 34 * e, 150 * e), (x0 + sgn * 34 * e, 120 * e), (x0 + sgn * 150 * e, 48 * e), (x0 + sgn * 190 * e, 48 * e)], bois))
+    elif style == "manoir":
+        interieur(S, "#f6e9da", "#a8754a", y, plinthe="#6d4424")
+        motif_mural(S, y - 190 * e, "losanges", "#e2c9ad", 0.6)
+        bois = "#b07a4f"
+        haut = y - 190 * e
+        S.add(rect(0, haut, S.w, 190 * e - 14, cylindre(bois, 0.1, 0.85, vertical=True)))
+        for k in range(int(S.w / (130 * e)) + 1):
+            px = 18 * e + k * 130 * e
+            S.add(rect(px, haut + 24 * e, 100 * e, 190 * e - 66 * e, _assombrir(bois, 0.9), rx=4 * e,
+                       stroke=_assombrir(bois, 0.7), stroke_width=3 * e))
+            S.add(trait(px + 4 * e, haut + 28 * e, px + 96 * e, haut + 28 * e, eclaircir(bois, 0.35), 2 * e, opacity=0.7))
+        S.add(rect(0, haut - 10 * e, S.w, 14 * e, eclaircir(bois, 0.15)))
+        S.add(rect(0, haut + 4 * e, S.w, 8 * e, lineaire([(0, "#000", 0.2), (1, "#000", 0)])))
+        S.add(rect(0, 0, S.w, 26 * e, lineaire([(0, "#fff8f0"), (1, "#e9d5bd")])))
+        S.add(rect(0, 26 * e, S.w, 12 * e, lineaire([(0, "#000", 0.14), (1, "#000", 0)])))
+    elif style == "chateau":
+        interieur(S, "#ddd3c6", "#a39486", y, plinthe="#7d7064")
+        S.add(pierres(0, 0, S.w, y - 14, "#ddd3c6", pas_=int(38 * e), larg=66 * e, opacite=0.45))
+        S.add(pierres(0, y + 4, S.w, S.h - y, "#a39486", pas_=int(30 * e), larg=90 * e, opacite=0.3))
+        for x0 in (40 * e, S.w - 130 * e):
+            tenture = chemin(f"M {n(x0)} {n(30 * e)} H {n(x0 + 90 * e)} V {n(y - 190 * e)} L {n(x0 + 45 * e)} {n(y - 160 * e)} L {n(x0)} {n(y - 190 * e)} Z",
+                             cylindre("#c92a2a", 0.2, 0.75))
+            S.add(rect(x0 - 12 * e, 22 * e, 114 * e, 10 * e, "#8d5524", rx=5 * e))
+            S.add(tenture)
+            S.add(chemin(f"M {n(x0 + 8 * e)} {n(34 * e)} V {n(y - 196 * e)} L {n(x0 + 45 * e)} {n(y - 170 * e)} L {n(x0 + 82 * e)} {n(y - 196 * e)} V {n(34 * e)}",
+                         stroke="#fcc419", sw=4 * e))
+            S.add(couronne_simple(x0 + 45 * e, 150 * e, 1.1 * e))
+    elif style == "chambre":
+        interieur(S, "#e7f5ff", "#d9a066", y, plinthe="#c08552")
+        motif_mural(S, y, "etoiles", "#a5d8ff", 0.7)
+    elif style == "cuisine":
+        interieur(S, "#fff9db", "#ced4da", y, plinthe="#868e96")
+        haut = y - 200 * e
+        S.add(rect(0, haut, S.w, 200 * e - 14, "#f8f9fa"))
+        pas_ = 40 * e
+        d = " ".join(f"M 0 {n(haut + k * pas_)} H {S.w}" for k in range(int(200 * e / pas_) + 1))
+        d += " " + " ".join(f"M {n(k * pas_)} {n(haut)} V {n(y - 14)}" for k in range(int(S.w / pas_) + 1))
+        S.add(chemin(d, stroke="#a5d8ff", sw=2.5 * e))
+        S.add(rect(0, haut - 8 * e, S.w, 10 * e, "#74c0fc"))
+    else:
+        raise ValueError(f"style de pièce inconnu : {style}")
+
+
+def couronne_simple(x, y, s=1.0, couleur="#fcc419"):
+    """Petite couronne brodée (blason d'une tenture)."""
+    return place([poly([(-20, 10), (-22, -12), (-10, 0), (0, -16), (10, 0), (22, -12), (20, 10)], couleur),
+                  cercle(0, -16, 3.5, couleur), cercle(-22, -12, 3, couleur), cercle(22, -12, 3, couleur)], x, y, s)
+
+
+def lueur(x, y, r, couleur="#ffd43b", force=0.55, ry=None):
+    """Halo d'une source de lumière (lampe, bougie, fenêtre éclairée) fondu en
+    « superposition » (screen) : il éclaire ce qui l'entoure sans le cacher."""
+    return ellipse(x, y, r, ry or r, radial([(0, couleur, force), (0.4, couleur, force * 0.5), (1, couleur, 0)]),
+                   style="mix-blend-mode:screen")
 
 
 def fenetre(x, y, w=160, h=150, dehors="#a5d8ff", cadre="#ffffff", nuit_=False, rideaux=None, contenu=""):
@@ -1263,7 +1840,9 @@ def lit(x, y, w=360, couleur="#74c0fc", couverture="#4dabf7", bois="#c68642", mo
     return g(m)
 
 
-def lampe(x, y, s=1.0, abat="#ffd8a8", allumee=True):
+def lampe(x, y, s=1.0, abat="#ffd8a8", allumee=True, halo=True):
+    if allumee and halo:
+        lumiere_auto(x, y - 120 * s, 190 * s, "#ffd43b", 0.6)
     m = []
     if allumee:
         m.append(cercle(0, -130, 120, radial([(0, "#fff3bf", 0.55), (1, "#fff3bf", 0)])))
@@ -1486,6 +2065,14 @@ POSES = {
     "designe": ((-40, -50), (106, -122)),
     "pousse": ((60, -100), (90, -114)),
     "equilibre": ((-104, -124), (102, -100)),
+    # poses d'échange : tenir la main du voisin, l'entourer de son bras, tendre
+    # les bras vers lui, joindre les mains, ramasser, lever le doigt
+    "main": ((-52, -40), (88, -58)),
+    "epaule": ((-52, -40), (116, -116)),
+    "tend": ((40, -94), (96, -104)),
+    "mains_jointes": ((-7, -94), (7, -94)),
+    "ramasse": ((-30, -22), (36, -18)),
+    "leve_doigt": ((-52, -40), (52, -216)),
 }
 COUDES = {
     "haut": ((-84, -124), (84, -124)),
@@ -1507,6 +2094,12 @@ COUDES = {
     "designe": ((-66, -74), None),
     "pousse": ((14, -76), (58, -80)),
     "equilibre": ((-70, -108), (70, -96)),
+    "main": (None, (62, -74)),
+    "epaule": (None, (72, -128)),
+    "tend": ((2, -76), (62, -98)),
+    "mains_jointes": ((-50, -66), (50, -66)),
+    "ramasse": ((-60, -58), (62, -56)),
+    "leve_doigt": (None, (68, -150)),
 }
 DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete", "chut"}
 # Pas des pieds associé par défaut à une pose de bras.
@@ -1516,7 +2109,8 @@ PAS_POSE = {"course": "court", "marche": "marche", "danse": "pointe", "victoire"
 # Inclinaison du corps (en degrés) selon la pose : on se penche en avant pour
 # courir, en arrière pour tirer, vers le bras levé pour danser.
 INCLINE = {"course": 11, "marche": 3, "danse": -5, "victoire": -3, "tire": -6, "montre": 2, "salut": -2,
-           "court": 13, "lance": -7, "designe": 3, "pousse": 11, "equilibre": -6}
+           "court": 13, "lance": -7, "designe": 3, "pousse": 11, "equilibre": -6,
+           "main": 3, "epaule": 6, "tend": 7, "ramasse": 8, "leve_doigt": -2}
 PENCHE = {"timide": -7, "triste": 6, "pleure": 6, "inquiet": -5, "malin": 6, "content": 4,
           "chante": -5, "miam": 4, "oups": -6, "degoute": -6, "fier": -3, "dort": 7}
 
@@ -1806,6 +2400,26 @@ def _pieds(pas, pieds, bord, haut=False):
     return m
 
 
+# Étendue de chaque espèce dans son repère, bras le long du corps (mesurée dans
+# Chromium) : (gauche, droite, haut). La queue est à droite (côté x > 0).
+ETENDUE = {
+    "ours": (-63, 85, -215), "lapin": (-63, 85, -278), "souris": (-79, 98, -223), "renard": (-64, 119, -228),
+    "chat": (-64, 92, -228), "chien": (-77, 85, -215), "cochon": (-63, 85, -214), "mouton": (-76, 76, -219),
+    "herisson": (-84, 85, -234), "grenouille": (-63, 85, -215), "fourmi": (-70, 92, -254), "elephant": (-117, 117, -208),
+    "castor": (-63, 98, -215), "panda": (-63, 85, -215), "ecureuil": (-64, 118, -246), "loup": (-64, 119, -228),
+    "lion": (-90, 95, -232), "lievre": (-63, 85, -308), "rat": (-71, 98, -215), "ane": (-70, 95, -275),
+    "chevre": (-90, 90, -239), "boeuf": (-93, 95, -240), "cigale": (-98, 98, -232), "cerf": (-92, 92, -324),
+    "singe": (-80, 92, -215),
+}
+
+
+def _etendue_pose(gauche, droite, haut, mains, bas=16):
+    """Zone (x0, y0, x1, y1) d'un personnage, élargie aux mains de sa pose."""
+    xs = [hx for hx, hy in mains]
+    ys = [hy for hx, hy in mains]
+    return (min(gauche, min(xs) - 16), min(haut, min(ys) - 16), max(droite, max(xs) + 16), bas)
+
+
 def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regard=(0, 0),
           couleur=None, habit=None, motif=None, couleur_motif="#ffffff", acc=(), objet=None,
           derriere=None, rot=0, larmes=False, joues=True, couleur_acc=None, tache=False,
@@ -1994,6 +2608,9 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     dessin = avec_contour(m, s)
     if (OMBRE_SOL[0] if ombre is None else ombre) and not rot and not pieds_haut:
         dessin = ombre_sol(incline * 0.8, -3 if pas != "saute" else 4, 54 if pas != "saute" else 40) + dessin
+    # place réservée, dans le repère du personnage (suit miroir, rotation, échelle)
+    gauche, droite, haut = ETENDUE.get(espece, (-90, 95, -240))
+    dessin += occuper(*_etendue_pose(gauche, droite, haut, POSES[bras]))
     return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
 
 
@@ -2401,7 +3018,8 @@ def oiseau(x, y, s=1.0, couleur="#4dabf7", ventre="#e7f5ff", expr="sourire", ail
         m.append(trait(-2, -68, 2, -68, "#fff", 1.5, opacity=0.6))
     if "noeud" in acc:
         m.append(g([poly([(20, -108), (6, -118), (6, -98)], "#fa5252"), poly([(20, -108), (34, -118), (34, -98)], "#fa5252"), cercle(20, -108, 5, "#c92a2a")]))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
+    zone = occuper(x - 60 * s, y - 120 * s, x + 60 * s, y)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot) + zone
 
 
 def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", ailes="bas",
@@ -2456,7 +3074,8 @@ def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", a
         m.append(g([cercle(-ex, ey, 20, "none", stroke=ENCRE, stroke_width=3.5), cercle(ex, ey, 20, "none", stroke=ENCRE, stroke_width=3.5)]))
     if "echarpe" in acc:
         m.append(g([rect(-46, -100, 92, 16, cylindre("#fa5252", 0.3, 0.75, vertical=True), rx=8), chemin("M 18 -90 L 30 -48 L 14 -48 L 8 -90 Z", cylindre("#fa5252", 0.3, 0.75))]))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
+    zone = occuper(x - 75 * s, y - 210 * s, x + 75 * s, y)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip) + zone
 
 
 def escargot(x, y, s=1.0, coquille="#f59f00", corps="#b2f2bb", expr="sourire", flip=False, regard=(1, 0), acc=()):
@@ -2493,7 +3112,8 @@ def escargot(x, y, s=1.0, coquille="#f59f00", corps="#b2f2bb", expr="sourire", f
     m.append(chemin("M -56 -96 A 50 50 0 0 1 -20 -124", stroke="#fff", sw=6, opacity=0.4))
     if "chapeau" in acc:
         m.append(chapeau(92, -100, 0.6, "#4dabf7"))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
+    zone = occuper(x - 90 * s, y - 120 * s, x + 90 * s, y)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip) + zone
 
 
 def poisson(x, y, s=1.0, couleur="#ff922b", expr="sourire", flip=False, rot=0, bulles=False):
@@ -2549,7 +3169,8 @@ def tortue(x, y, s=1.0, carapace="#40c057", peau="#b2f2bb", expr="sourire", flip
     m.append(oeil(114, -70, ys, regard, taille=0.9))
     m.append(ellipse(124, -52, 7, 4.5, ROSE, opacity=0.7))
     m.append(bouche(126, -46, bs, 0.7))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
+    zone = occuper(x - 110 * s, y - 110 * s, x + 110 * s, y)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip) + zone
 
 
 def faisceau(x0, y0, x1, y1, r, fill="#000", **a):

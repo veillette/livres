@@ -220,6 +220,7 @@ def p03():
     S.add(texte(620, 210, "plus", 56, ROUGE), fleche(620, 230, 620, 320, ROUGE, 7, 22))
     S.add(texte(160, 210, "moins", 56, NOIR), fleche(160, 230, 150, 320, NOIR, 7, 22))
     S.add(zoe(400, 790, 0.95, expr="joie", bras="montre", regard=(1, -1)))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -232,6 +233,7 @@ def p04():
     S.add(cercle(340, 330, 10, "#868e96"))
     S.add(texte(130, 230, "?", 120, "#7048e8"), texte(700, 200, "?", 90, "#7048e8"))
     S.add(zoe(150, 800, 0.8, expr="inquiet", bras="pense", regard=(1, -1)))
+    S.cachette(560, 760, "air")
     return S
 
 
@@ -240,6 +242,7 @@ def p05():
     fond(S, "#fff9db")
     S.add(circuit(True))
     S.add(texte(400, 110, "Ça s'allume !", 70, "#e8590c", contour="#fff"))
+    S.cachette(400, 730, "air")
     return S
 
 
@@ -259,6 +262,7 @@ def p06():
         expr = "surpris" if k in (2, 3) else "rire"
         S.add(personne(x, 720 - (30 if k in (0, 5) else 0), 0.95, expr=expr, bras="large", **e))
     S.add(texte(400, 470, "!", 110, ROUGE, contour="#fff"))
+    S.cachette(730, 210, "air")
     return S
 
 
@@ -270,6 +274,7 @@ def p07():
     S.add(place(circuit(True, inter="ferme", fleches=False), 400, 110, 0.5))
     S.add(texte(200, 560, "Clic !", 64, "#495057"), texte(200, 630, "éteint", 50, "#868e96"))
     S.add(texte(600, 560, "Clac !", 64, "#e8590c"), texte(600, 630, "allumé", 50, "#f08c00"))
+    S.cachette(200, 730, "air")
     return S
 
 
@@ -281,6 +286,7 @@ def p08():
     S.add(circuit(True, trou="ouvert", objet=obj, fleches=False))
     S.add(cle(560, 740, 1.3, rot=-20), cuillere(700, 760, 1.0, rot=30), trombone(440, 760, 1.4))
     S.add(coche(70, 470), texte(400, 110, "Le métal laisse passer !", 50, "#2b8a3e", contour="#fff"))
+    S.cachette(370, 730, "air")
     return S
 
 
@@ -294,6 +300,7 @@ def p09():
     S.add(place([rect(-60, -20, 120, 40, ROUGE, rx=18), ellipse(60, 0, 10, 20, "#c92a2a"),
                  ellipse(60, 0, 6, 10, "#e67700")], 660, 130, 1.2))
     S.add(texte(480, 230, "plastique", 36, ROUGE, anchor="start"), texte(480, 270, "autour du fil", 36, ROUGE, anchor="start"))
+    S.cachette(650, 70, "air")
     return S
 
 
@@ -305,6 +312,7 @@ def p10():
     S.add(place(circuit(True, ampoules=2, fleches=False, halo=0.55), 160, 390, 0.5))
     S.add(texte(140, 220, "1", 90, "#e8590c"), texte(140, 610, "2", 90, "#e8590c"))
     S.add(texte(660, 220, "très fort", 40, "#e8590c"), texte(660, 610, "moins fort", 40, "#f08c00"))
+    S.cachette(440, 70, "air")
     return S
 
 

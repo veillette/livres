@@ -104,6 +104,7 @@ def p03():
     S.add(canard(470, 700, 1.3, expr="rire", **CANARD1))
     S.add(canard(640, 720, 1.2, expr="content", flip=True, **CANARD2))
     S.add(bulle(520, 160, 440, 110, "Nous partons voir\nle vaste monde !", 34, pointe=(520, 520)))
+    S.cachette(740, 330, "air")
     return S
 
 
@@ -114,6 +115,7 @@ def p04():
     S.add(canard(560, 710, 1.1, expr="surpris", flip=True, **CANARD1))
     S.add(canard(700, 730, 1.0, expr="surpris", flip=True, **CANARD2))
     S.add(bulle(330, 150, 460, 110, "Emmenez-moi !\nMais je ne sais pas voler…", 32, pointe=(380, 520)))
+    S.cachette(740, 330, "air")
     return S
 
 
@@ -125,6 +127,7 @@ def p05():
     S.add(canard_(470, 700, 1.1, 0, expr="rire"))
     S.add(canard_(660, 700, 1.1, 1, expr="malin", flip=True))
     S.add(bulle(560, 170, 400, 90, "Nous avons une idée !", 34, pointe=(560, 540)))
+    S.cachette(740, 330, "air")
     return S
 
 
@@ -150,6 +153,7 @@ def p08():
     vue_du_ciel(S)
     S.add(voyage(353, 280, 0.85, "content", "content"))
     S.add(nuage(120, 110, 0.6))
+    S.cachette(730, 140, "air")
     return S
 
 
@@ -179,6 +183,7 @@ def p11():
     ciel_haut(S)
     S.add(voyage(350, 480, 0.9, "fier", "inquiet"))
     S.add(pensee(560, 180, 140, depuis=(530, 380), contenu=g([texte(560, 170, "Oui, c'est moi,", 26, "#0c8599"), texte(560, 205, "la reine !", 30, "#0c8599")])))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -188,6 +193,7 @@ def p12():
     S.add(voyage(350, 400, 0.9, "bouche_bee", "surpris", bouche_ouverte=True))
     S.add(baton(230, 355, 560, 355, ep=11))
     S.add(texte(600, 560, "Oh !", 60, "#0c8599", contour="#fff"))
+    S.cachette(70, 620, "air")
     return S
 
 
@@ -198,6 +204,7 @@ def p13():
     S.add(mouvement(400, 250, 1.4, rot=90))
     S.add(canard(170, 190, 0.8, nage=False, ailes="haut", expr="surpris", **CANARD1))
     S.add(canard(620, 170, 0.8, nage=False, ailes="haut", expr="surpris", flip=True, **CANARD2))
+    S.cachette(70, 620, "air")
     return S
 
 

@@ -183,6 +183,7 @@ def p03():
         S.add(trait(x0, 170 + k * -6, x0 + 6, 130 + k * -6, "#f8f9fa", 4))
         S.add(ellipse(x0 + 20, 205 - k * 4, 26, 12, "#74b816"))
     S.add(place(girafe(0, 0, 1.0, expr="miam", langue=True), -40, 1310, 2.0))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -198,6 +199,7 @@ def p04():
     for k in range(7):
         S.add(rect(612, 642 - k * 4.5, 16, 3.5, "#e67700", rx=1.5))
     S.add(etiquette(620, 520, "7 os", 40, "#e67700"), etiquette(600, 150, "7 os !", 40, "#e67700"))
+    S.cachette(400, 730, "air")
     return S
 
 
@@ -238,6 +240,7 @@ def p08():
         S.add(el("clipPath", cercle(x, 380, 105, "#000"), id=cid))
         S.add(g(_taches(gr, (x - 120, 260, x + 120, 500), couleur=t), clip_path=f"url(#{cid})"))
     S.add(texte(400, 640, "Toutes différentes !", 48, "#e67700", contour="#fff"))
+    S.cachette(410, 70, "air")
     return S
 
 

@@ -157,6 +157,7 @@ def p07():
     S.add(b.dessin())
     S.add(fleche(120, 250, 120, 400, "#c92a2a", 8), fleche(680, 250, 680, 400, "#c92a2a", 8))
     S.add(texte(400, 330, "levier", 60, PLANCHE), texte(400, 640, "pivot", 60, PIVOT))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -283,6 +284,7 @@ def p14():
         S.add(ellipse(x + sgn * 330, y + 100, 20, 40, "#8d5524", rot=-sgn * 55))
         S.add(cercle(x + sgn * 180, y - 36, 10, PIVOT))
     S.add(g([trait(x - 330 - k * 40, y + 150, x - 290 - k * 40, y + 150, "#e7f5ff", 4) for k in range(3)]))
+    S.cachette(730, 300, "air")
     return S
 
 

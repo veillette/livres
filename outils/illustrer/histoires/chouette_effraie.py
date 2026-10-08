@@ -182,6 +182,7 @@ def p02():
     S.add(effraie(400, 770, 2.3, expr="sourire"))
     S.add(texte(160, 170, "Chhhh !", 54, "#c08a52", contour="#fff", rot=-8))
     S.add(etiquette(640, 150, "un visage", 34, "#e67700"), etiquette(640, 190, "en cœur", 34, "#e67700"))
+    S.cachette(570, 730, "air")
     return S
 
 
@@ -227,15 +228,30 @@ def p06():
     S.add(effraie(560, 760, 1.5, expr="malin", dos=True))
     S.add(fleche_courbe("M 470 330 A 110 50 0 1 0 650 320", (650, 320), 20, "#e67700", 6, 22))
     S.add(texte(400, 120, "Coucou, je suis là !", 44, "#e67700", contour="#fff"))
+    S.cachette(400, 730, "air")
     return S
 
 
 def p07():
     S = Scene()
-    champ_nuit(S, 560)
-    S.add(effraie_vol(420, 400, 1.0, expr="concentre", serres=True))
-    S.add(souris_champs(430, 700, 1.3, flip=True))
-    S.add(mouvement(430, 230, 1.2, "#ffffff", rot=-90))
+    # vue basse, depuis l'herbe : l'effraie plonge en diagonale, la pleine
+    # lune derrière elle ; le campagnol est tout près, au premier plan
+    nuit(S, "#1c2a52", "#4c5b9a")
+    etoiles(S, 30, 9, (0, 0, 800, 420))
+    S.add(lune(300, 230, 95))
+    S.add(rect(0, 600, 800, 200, "#2b3a2f"))
+    r = random.Random(7)
+    for _ in range(46):
+        x0, y0 = r.uniform(0, 800), r.uniform(612, 800)
+        k = 0.7 + (y0 - 600) / 160
+        S.add(chemin(f"M {n(x0)} {n(y0)} l {n(-6 * k)} {n(-30 * k)} M {n(x0)} {n(y0)} l 0 {n(-36 * k)} M {n(x0)} {n(y0)} l {n(6 * k)} {n(-28 * k)}",
+                     stroke="#3d5a40", sw=4))
+    S.add(effraie_vol(330, 330, 1.25, rot=14, expr="concentre", serres=True))
+    S.add(chemin("M 120 120 L 200 200 M 90 180 L 160 250 M 170 80 L 240 150", stroke="#ffffff", sw=4, opacity=0.5))
+    S.add(souris_champs(590, 700, 1.7, flip=True))
+    # herbes hautes au tout premier plan, qui cadrent la scène
+    for xx, hh, sgn in ((30, 260, 1), (70, 200, 1), (750, 240, -1), (790, 300, -1)):
+        S.add(chemin(f"M {xx} 810 Q {xx + sgn * 20} {810 - hh * 0.6} {xx + sgn * 50} {810 - hh}", stroke="#1f3324", sw=12))
     return S
 
 

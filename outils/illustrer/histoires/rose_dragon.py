@@ -75,6 +75,7 @@ def p03():
         S.add(chevalier(x, 770, 1.35, plumet=pl, expr="oups" if k != 1 else "inquiet", bras="joues"))
         S.add(mouvement(x - 90, 600, 0.9), mouvement(x + 130, 620, 0.9, rot=180))
     S.add(texte(400, 150, "Gling, gling, gling !", 58, "#495057", contour="#fff"))
+    S.cachette(730, 260, "air")
     return S
 
 
@@ -151,6 +152,7 @@ def p10():
     S.add(chevalier(320, 780, 1.1, plumet="#4dabf7", expr="bouche_bee", bras="joues"))
     S.add(personne(520, 780, 1.1, expr="surpris", regard=(0, -1), **ROSE_P))
     S.add(dragon(660, 780, 1.0, expr="joie", bras="haut", regard=(0, -1), **PISTACHE))
+    S.cachette(730, 220, "air")
     return S
 
 

@@ -147,6 +147,7 @@ def p06():
     S.add(texte(210, 360, "grave", 40, "#1c7ed6"), texte(590, 360, "aigu", 40, "#e64980"))
     S.add(boite_elastique(210, 620, 0.85, 16, couleur="#1c7ed6"), boite_elastique(590, 620, 0.85, 4, couleur="#e64980"))
     S.add(pompon(400, 790, 1.2, expr="content", bras="ouverts"))
+    S.cachette(70, 330, "air")
     return S
 
 
@@ -178,6 +179,7 @@ def p08():
     S.add(ondes(560, 470, 90, 4, 50, -90, 110, ONDE, 10))
     S.add(texte(560, 150, "OUAAAH !", 80, ONDE, contour="#fff"))
     S.add(pompon(330, 770, 1.1, expr="oups", bras="tete", regard=(1, 0)))
+    S.cachette(730, 250, "air")
     return S
 
 
@@ -190,6 +192,7 @@ def p09():
     S.add(goutte(460, 630, 1.0, "#a5d8ff"), goutte(490, 620, 0.8, "#a5d8ff"))
     S.add(pompon(120, 700, 1.3, expr="rire", bras="salut", regard=(1, 1)))
     S.add(texte(560, 230, "Plouf !", 80, "#1c7ed6", contour="#fff"))
+    S.cachette(70, 260, "air")
     return S
 
 
@@ -252,6 +255,7 @@ def p14():
     S.add(ondes(250, 380, 60, 4, 40, 0, 50, "#ffe066", 4))
     S.add(ondes(580, 380, 40, 3, 40, 180, 40, "#ffa94d", 3, 0.7))
     S.add(papillon(600, 380, 1.0, "#a0693a", "#e8c39e"))
+    S.cachette(520, 730, "air")
     return S
 
 
@@ -282,6 +286,7 @@ def p16():
     S.add(perso("souris", 570, 740, 1.0, expr="rire", bras="haut", **SOURIS))
     S.add(perso("ours", 690, 740, 1.2, expr="chante", bras="ouverts"))
     S.add(notes(300, 200, 1.3, "#ffe066"), notes(520, 260, 1.1, "#ffe066"))
+    S.cachette(240, 330, "air")  # pas sur le tambour rouge
     return S
 
 

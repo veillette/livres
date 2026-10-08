@@ -59,6 +59,7 @@ def p02():
     S.add(perso("chat", 400, 930, 3.4, expr="miam", regard=(0, 0.3), **MOKA))
     S.add(bocal(400, 800, 1.6, contenu=poisson(0, -80, 1.0, expr="surpris")))
     S.add(texte(400, 110, "Miam… euh, NON !", 56, "#1c7ed6", contour="#fff"))
+    S.cachette(730, 350, "air")
     return S
 
 
@@ -120,6 +121,7 @@ def p07():
     S.add(perso("lapin", 610, 770, 1.6, expr="rire", bras="ouverts", regard=(-1, 0), **VOISINE))
     S.add(perso("chat", 190, 770, 1.5, expr="fier", bras="bas", regard=(1, 0), **MOKA))
     S.add(bulle(380, 150, 560, 100, "Merci, Moka ! On peut\ntoujours compter sur toi.", 32, pointe=(560, 330)))
+    S.cachette(370, 730, "air")
     return S
 
 

@@ -50,7 +50,7 @@ def marmite(x, y, s=1.0, cuit=False, deborde=False):
     if deborde:
         m.append(chemin("M -84 -100 Q -110 -60 -100 -20 Q -96 0 -120 4 L -60 4 Q -84 -40 -60 -96 Z", BOUILLIE))
         m.append(chemin("M 84 -100 Q 116 -50 104 -10 Q 100 4 130 4 L 60 4 Q 84 -50 60 -96 Z", BOUILLIE))
-    return place(m, x, y, s)
+    return place(m + [occuper(-105, -100, 105, 12)], x, y, s)
 
 
 def flot(S, y, couleur=BOUILLIE, graine=1, vagues=True):
@@ -203,6 +203,7 @@ def p09():
     for k, x in enumerate((110, 320, 520, 700)):
         S.add(villageois(x, 790 - (k % 2) * 20, 0.85, k, expr="surpris", bras="joues" if k % 2 else "haut"))
     flot(S, 740, graine=6, vagues=False)
+    S.cachette(730, 240, "air")
     return S
 
 
@@ -226,6 +227,7 @@ def p11():
     S.add(villageois(580, 790, 0.9, 2, expr="miam", bras="tient", objet=cuillere(68, -146, 0.8)))
     S.add(maman(720, 800, 1.0, expr="rire", bras="tient", flip=True, objet=cuillere(68, -146, 0.8)))
     S.add(texte(400, 200, "Miam !", 80, "#e8590c", contour="#fff"))
+    S.cachette(730, 240, "air")
     return S
 
 

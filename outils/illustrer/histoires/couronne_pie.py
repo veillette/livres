@@ -174,6 +174,7 @@ def p08():
     S.add(pie(540, 330, 1.0, expr="malin", flip=True, ailes="ouvertes", objet=couronne_objet(-40, 0, 0.45, brille=True)))
     S.add(fenetre(40, 460, 260, 300, "#e7f5ff", cadre="#c68642"))
     S.add(mia(170, 800, 1.3, expr="surpris", bras="montre", regard=(1, -1)))
+    S.cachette(730, 600, "air")
     return S
 
 

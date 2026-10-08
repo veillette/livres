@@ -33,7 +33,7 @@ def vache(x, y, s=1.0, flip=False, expr="content", broute=False):
           chemin(f"M 140 {hy - 50} q -4 -20 10 -26", stroke="#e9d8c4", sw=7),
           chemin(f"M 166 {hy - 52} q 4 -20 18 -22", stroke="#e9d8c4", sw=7),
           oeil(166, hy - 10, ys)]
-    return place(m, x, y, s, flip=flip)
+    return place(m + [occuper(-176, -256, 220, 0)], x, y, s, flip=flip)
 
 
 def tracteur(x, y, s=1.0, semoir=False, flip=False):
@@ -104,6 +104,7 @@ def couverture():
     S.add(vache(190, 720, 0.85, flip=True))
     S.add(jeanne(450, 790, 1.85, expr="rire", bras="salut"))
     S.add(coq(660, 790, 0.9, flip=True))
+    S.cachette(70, 420, "air")
     return S
 
 
@@ -135,6 +136,7 @@ def p02():
     S.add(bidon(545, 770, 1.1))
     S.add(jeanne(680, 790, 1.5, expr="sourire", bras="bas", regard=(-1, 0)))
     S.add(texte(420, 200, "Meuh !", 60, "#495057", contour="#fff"))
+    S.cachette(390, 70, "air")
     return S
 
 
@@ -178,6 +180,7 @@ def p05():
     pluie(S, 12, 4, (460, 190, 600, 330))
     S.add(rect(396, 0, 8, 800, "#fff"))
     S.add(texte(200, 720, "hiver", 56, "#1c7ed6", contour="#fff"), texte(600, 720, "printemps", 56, "#2f9e44", contour="#fff"))
+    S.cachette(70, 70, "air")
     return S
 
 

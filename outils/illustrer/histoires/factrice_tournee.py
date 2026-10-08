@@ -147,6 +147,7 @@ def p06():
     S.add(perso("chien", 600, 760, 1.15, expr="joie", bras="saute", regard=(-1, 0)))
     S.add(texte(620, 330, "Wouf !", 60, "#a0693a", contour="#fff"))
     S.add(rosa(200, 790, 1.6, expr="rire", bras="salut", regard=(1, 0)))
+    S.cachette(400, 730, "air")
     return S
 
 

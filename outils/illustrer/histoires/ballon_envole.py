@@ -102,6 +102,7 @@ def p05():
     reve(S, fond_)
     S.add(ballon_air(420, 380, 1.2, ROUGE, fil=110))
     S.add(aigle(230, 240, 1.0), aigle(620, 190, 0.8, flip=True))
+    S.cachette(550, 70, "air")
     return S
 
 
@@ -112,6 +113,7 @@ def p06():
     S.add(lune(460, 300, 140, visage=True))
     S.add(ballon_air(270, 520, 1.0, ROUGE, fil=110))
     S.add(texte(560, 610, "Coucou, la Lune !", 44, "#fff3bf"))
+    S.cachette(300, 730, "air")
     return S
 
 
@@ -124,6 +126,7 @@ def p07():
              ellipse(210, 380, 70, 20, "#40c057", rot=20), ellipse(170, 360, 20, 70, "#40c057")]))
     S.add(ballon_air(520, 300, 0.7, ROUGE, fil=100))
     S.add(perso("souris", 420, 720, 1.4, expr="rire", bras="salut", regard=(1, -1), couleur="#d9a57b", habit="#20c997"))
+    S.cachette(520, 70, "air")
     return S
 
 

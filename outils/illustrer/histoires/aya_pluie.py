@@ -328,6 +328,7 @@ def p09():
     S.add(aya(620, 330, 0.9, expr="fier", bras="haut"))
     S.add(oiseau(700, 120, 0.45, "#f76707", "#ffe8cc", expr="rire", ailes="ouvertes", pattes=False))
     S.add(texte(250, 160, "Un pas, puis un autre…", 44, "#fff", contour="#8f5f5a"))
+    S.cachette(490, 730, "air")
     return S
 
 
@@ -338,6 +339,7 @@ def p10():
     S.add(gros_nuage(430, 380, 2.4, expr="triste"))
     S.add(aya(180, 790, 1.25, expr="inquiet", regard=(1, -1)))
     S.add(bulle(400, 100, 600, 110, "Laisse-moi dormir…\nPlus personne ne pense à moi.", 34, pointe=(440, 240)))
+    S.cachette(730, 590, "air")
     return S
 
 
@@ -351,6 +353,7 @@ def p11():
     S.add(oiseau(110, 580, 0.4, "#f76707", "#ffe8cc", expr="chante"))
     S.add(aya(220, 790, 1.3, expr="chante", bras="ouverts"))
     S.add(bulle(400, 95, 640, 120, "Grand Nuage, Grand Nuage,\nviens danser sur nos maisons !", 36, pointe=(260, 300)))
+    S.cachette(730, 590, "air")
     return S
 
 
@@ -367,6 +370,7 @@ def p12():
     S.add(personne(690, 790, 1.2, expr="rire", bras="ouverts", **MAMIE))
     S.add(chevre(560, 790, 0.45, expr="rire"))
     S.add(aya(220, 790, 1.4, expr="rire", bras="danse"))
+    S.cachette(730, 430, "air")
     return S
 
 

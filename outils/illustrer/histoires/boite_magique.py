@@ -39,6 +39,7 @@ def couverture():
     S.add(dans_boite(400, 700, 1.3, "rire", bras="haut", w=200, h=160, acc=("casque",), couleur_acc="#4dabf7",
                      dessin=cercle(0, -80, 30, "#a5d8ff", stroke="#fff", stroke_width=6)))
     S.add(lune(640, 180, 50), paillettes(180, 420))
+    S.cachette(70, 590, "air")
     return S
 
 
@@ -87,6 +88,7 @@ def p03():
     S.add(mat)
     S.add(dans_boite(400, 680, 1.4, "malin", bras="montre", w=260, h=120, acc=("chapeau",), couleur_acc="#343a40"))
     S.add(texte(210, 260, "À l'abordage !", 50, "#343a40", contour="#fff", rot=-6))
+    S.cachette(730, 510, "air")
     return S
 
 
@@ -100,6 +102,7 @@ def p04():
     S.add(dans_boite(560, 700, 1.3, "rire", bras="haut", w=180, h=200, acc=("casque",), couleur_acc="#4dabf7",
                      dessin=cercle(0, -110, 34, "#a5d8ff", stroke="#fff", stroke_width=6)))
     S.add(texte(250, 560, "3, 2, 1…", 60, "#ffe066"), texte(250, 640, "Décollage !", 56, "#ffe066"))
+    S.cachette(430, 730, "air")
     return S
 
 

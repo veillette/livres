@@ -136,6 +136,7 @@ def p08():
     S.add(personne(640, 600, 1.0, expr="rire", bras="applaudit", **CONSEILLERS[1]))
     S.add(roi(380, 600, 1.4, expr="concentre", bras="tete"))
     S.add(texte(400, 150, "Hum… elle a raison !", 50, "#c92a2a", contour="#fff"))
+    S.cachette(270, 730, "air")
     return S
 
 

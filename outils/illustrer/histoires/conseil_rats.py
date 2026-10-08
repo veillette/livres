@@ -85,6 +85,7 @@ def p03():
         S.add(chemin(f"M 0 {600 + k * 30} L 400 {400 + k * 30} L 800 {600 + k * 30}", stroke="#6b2323", sw=3))
     S.add(rect(560, 330, 50, 120, "#5c3a1e"))
     S.add(rodilard(400, 470, 1.0, expr="content", bras="bas", regard=(1, -1)))
+    S.cachette(440, 730, "air")
     return S
 
 
@@ -94,6 +95,7 @@ def p04():
     for k, (sx, sy_) in enumerate([(120, 740), (230, 770), (340, 750), (460, 770), (570, 745), (680, 770)]):
         S.add(souris(sx, sy_, 0.75, n_=k, expr="content" if k % 2 else "sourire", bras="bas", regard=(0, -1)))
     S.add(texte(400, 380, "Réunion !", 60, "#ffe066", contour="#3b2412"))
+    S.cachette(690, 70, "air")
     return S
 
 
@@ -133,6 +135,7 @@ def p08():
         S.add(souris(sx, sy_, 0.85, n_=k, expr="rire", bras=("haut", "danse", "applaudit")[k % 3]))
     S.add(texte(400, 380, "Hourra !", 72, "#845ef7", contour="#fff"))
     S.add(paillettes(200, 400, 1.0), paillettes(600, 420, 1.0))
+    S.cachette(260, 70, "air")
     return S
 
 

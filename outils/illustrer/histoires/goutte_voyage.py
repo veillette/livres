@@ -56,6 +56,7 @@ def couverture():
     eau(S, 640, "#1c7ed6", "#4dabf7")
     S.add(plic(260, 600, 2.2, expr="rire"))
     S.add(soleil(110, 300, 45))
+    S.cachette(70, 520, "air")
     return S
 
 
@@ -72,6 +73,7 @@ def p01():
     gouttelettes(S, (120, 260, 680, 520), 70, 1, "#a5d8ff", (4, 7))
     S.add(plic(400, 470, 0.9, expr="content", regard=(-1, 0)))
     S.add(texte(400, 120, "des milliards de gouttelettes", 36, "#1c7ed6", contour="#fff"))
+    S.cachette(490, 730, "air")
     return S
 
 
@@ -86,6 +88,7 @@ def p02():
         S.add(fleche(400 + dx * 0.8, 500 + dy * 0.8, 400 + dx * 0.45, 500 + dy * 0.45, "#1c7ed6", 4, 12))
     S.add(plic(400, 590, 1.6, expr="surpris"))
     S.add(texte(400, 740, "lourde, lourde…", 48, "#1c7ed6", contour="#fff"))
+    S.cachette(70, 330, "air")
     return S
 
 
@@ -99,6 +102,7 @@ def p03():
     S.add(plic(400, 520, 1.5, expr="rire", regard=(0, 1)))
     S.add(mouvement(400, 300, 1.4, "#1c7ed6", rot=90))
     S.add(texte(560, 380, "Ploc !", 70, "#1c7ed6", contour="#fff", rot=8))
+    S.cachette(70, 90, "air")
     return S
 
 
@@ -134,6 +138,7 @@ def p05():
     S.add(poisson(560, 690, 0.8, "#ff922b", flip=True))
     S.add(canard(650, 560, 0.9, flip=True, regard=(-1, 0)))
     S.add(bulle(150, 140, 230, 80, "Bonjour !", 40, pointe=(260, 580)))
+    S.cachette(730, 470, "air")
     return S
 
 
@@ -176,6 +181,7 @@ def p08():
     S.add(texte(420, 740, "le sel reste dans la mer", 38, "#ffffff", contour="#1c7ed6"))
     for x in (120, 250, 690):
         S.add(cercle(x, 640, 6, "#fff"), cercle(x + 20, 660, 4, "#fff"))
+    S.cachette(730, 530, "air")
     return S
 
 
@@ -190,6 +196,7 @@ def p09():
     S.add(fleche(300, 560, 360, 480, "#ffffff", 5, 16))
     S.add(plic(450, 420, 0.7, expr="content"))
     S.add(texte(620, 120, "Brrr !", 70, "#ffffff", contour="#1c7ed6"))
+    S.cachette(290, 730, "air")
     return S
 
 
@@ -209,6 +216,7 @@ def p10():
     S.add(etiquette(cx, cy - r - 100, "nuage", 32), etiquette(cx + r, cy + 120, "pluie", 32),
           etiquette(cx, cy + r + 120, "rivière", 32), etiquette(cx - r, cy + 120, "mer et vapeur", 32))
     S.add(plic(cx, cy + 60, 1.1, expr="rire"))
+    S.cachette(550, 70, "air")
     return S
 
 

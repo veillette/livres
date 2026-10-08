@@ -58,7 +58,7 @@ def cardinal(x, y, s=1.0, sexe="male", flip=False, bec_ouvert=False, expr="souri
     m.append(place(oeil(0, 0, ys, regard, taille=0.65), 44, -88))
     if ss:
         m.append(place(sourcils(0, 0, ss), 42, -88, 0.5))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(m + [occuper(-110, -140, 88, 14)], x, y, s, flip=flip, rot=rot)
 
 
 def _sombre(c):
@@ -206,6 +206,7 @@ def p04():
     S.add(cardinal(490, 545, 1.6, "femelle", flip=True, bec_ouvert=True, expr="content"))
     S.add(ellipse(440, 412, 6, 4, "#343a40"))
     S.add(coeur(400, 260, 1.2, "#ff8787"))
+    S.cachette(70, 390, "air")
     return S
 
 
@@ -248,6 +249,7 @@ def p07():
     S.add(chenille_verte(330, 380, 1.4))
     S.add(cardinal(620, 470, 1.4, "femelle", flip=True, expr="content", bec_ouvert=True))
     S.add(texte(400, 160, "Cui ! Cui !", 60, "#e8590c", contour="#fff"))
+    S.cachette(730, 590, "air")
     return S
 
 

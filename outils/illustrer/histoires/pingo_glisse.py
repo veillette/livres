@@ -35,6 +35,7 @@ def couverture():
     S.add(trainee(330, 700, 300))
     S.add(pingouin_glisse(480, 710, 1.8, expr="rire"))
     S.add(texte(260, 250, "Ziiiip !", 90, "#1c7ed6", contour="#fff", rot=-6))
+    S.cachette(730, 490, "air")
     return S
 
 
@@ -51,6 +52,7 @@ def p01():
     S.add(trainee(370, 700, 360))
     S.add(pingouin_glisse(500, 710, 1.6, expr="rire"))
     S.add(texte(250, 300, "Ziiiip !", 80, "#1c7ed6", contour="#fff"))
+    S.cachette(730, 490, "air")
     return S
 
 
@@ -103,6 +105,7 @@ def p04():
     S.defs.append(el("clipPath", cercle(600, 600, 86, "#000"), id=cid))
     S.add(g([rect(510, 520, 180, 80, "#fcc419"), chemin("M 510 600 " + " ".join(f"L {510 + k * 18} {600 + (12 if k % 2 else 0)}" for k in range(11)) + " L 690 700 L 510 700 Z", "#c68642"),
              chemin("M 510 600 " + " ".join(f"L {510 + k * 18} {600 - (12 if k % 2 == 0 else 0)}" for k in range(11)), stroke="#e67700", sw=3)], clip_path=f"url(#{cid})"))
+    S.cachette(90, 330, "air")
     return S
 
 
@@ -113,6 +116,7 @@ def p05():
     for dx in (-110, 110):
         S.add(g([chemin(f"M {400 + dx + k * 16} 420 q -10 -20 0 -40 q 10 -20 0 -40", stroke="#fa5252", sw=5, opacity=0.8) for k in range(-1, 2)]))
     S.add(texte(400, 180, "Ça chauffe !", 76, "#e03131", contour="#fff"))
+    S.cachette(730, 490, "air")
     return S
 
 
@@ -142,6 +146,7 @@ def p07():
     S.add(g([rect(160 + k * 36, 520, 22, 22, "#495057", rx=4) for k in range(7)]))
     S.add(place(g([rect(-110, -200, 220, 400, "#495057", rx=90)] + [rect(-90, -170 + k * 50, 180, 24, "#343a40", rx=10) for k in range(7)]), 600, 380, rot=18))
     S.add(texte(400, 720, "des creux et des bosses", 44, "#1971c2"))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -231,6 +236,7 @@ def p13():
     S.add(place(g([rect(-12, -150, 24, 150, "#fcc419"), poly([(-12, 0), (12, 0), (0, 36)], "#f1c27d"), poly([(-4, 24), (4, 24), (0, 36)], "#495057")]), 640, 300, rot=30))
     S.add(place(g([rect(-50, -22, 70, 44, "#f783ac", rx=6), rect(20, -22, 40, 44, "#4dabf7", rx=6)]), 300, 600, rot=-20))
     S.add(g([ellipse(380 + k * 20, 620 - k * 6, 8, 3, "#ced4da") for k in range(4)]))
+    S.cachette(650, 540, "air")
     return S
 
 
@@ -247,6 +253,7 @@ def p14():
     S.add(paillettes(560, 360, 1.5, "#fff3bf"), paillettes(280, 420, 1.1, "#fff3bf"))
     for sgn in (-1, 1):
         S.add(trait(420 + sgn * 30, 712, 420 + sgn * 60, 712, "#adb5bd", 5))
+    S.cachette(660, 70, "air")
     return S
 
 
@@ -263,6 +270,7 @@ def p15():
     for x, y, r in [(200, 440, 30), (280, 420, 22), (560, 430, 26), (500, 400, 18)]:
         S.add(cercle(x, y, r, "#fff", stroke="#a5d8ff", stroke_width=3))
     S.add(texte(300, 200, "Oups !", 76, "#1c7ed6", contour="#fff"))
+    S.cachette(450, 730, "air")
     return S
 
 
@@ -275,6 +283,7 @@ def p16():
         S.add(pingouin_glisse(300 + k * 80, 610 + k * 70, 0.9, expr="rire", echarpe=c))
     S.add(pingouin_glisse(560, 720, 1.1, expr="rire"))
     S.add(texte(250, 250, "Partez !", 76, "#e03131", contour="#fff"))
+    S.cachette(730, 490, "air")
     return S
 
 

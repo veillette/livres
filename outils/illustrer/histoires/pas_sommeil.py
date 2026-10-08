@@ -87,6 +87,7 @@ def couverture():
     S.add(lit(400, 780, 520, "#e5dbff", "#7048e8"))
     S.add(bao(400, 700, 1.45, expr="fache", bras="croises"))
     S.add(doudou(560, 690, 0.4))
+    S.cachette(70, 670, "air")
     return S
 
 
@@ -126,6 +127,7 @@ def p03():
     S.add(bao(420, 760, 1.4, expr="baille", bras="etire", rot=-8))
     S.add(mouvement(270, 520, 1.1, rot=-20), mouvement(570, 520, 1.1, rot=20))
     S.add(baille_txt(640, 280, 50, 3))
+    S.cachette(380, 70, "air")
     return S
 
 
@@ -146,6 +148,7 @@ def p05():
     S.add(papa(250, 780, 1.7, expr="sourire", bras="porte", objet=livre_ouvert(0, -40, 0.65), regard=(1, 1)))
     S.add(bao(510, 770, 1.15, expr="baille", bras="joues"))
     S.add(baille_txt(530, 330, 60, 5))
+    S.cachette(70, 670, "air")
     return S
 
 
@@ -156,6 +159,7 @@ def p06():
                                                                      rect(-22, -6, 44, 30, "#74c0fc", rx=6)], 68, -146)))
     S.add(bulle(250, 150, 220, 70, "Soif !", 36, pointe=(320, 380)))
     S.add(baille_txt(600, 300, 64, 6))
+    S.cachette(70, 670, "air")
     return S
 
 
@@ -166,6 +170,7 @@ def p07():
     S.add(doudou(640, 790, 0.38, expr="sourire"))
     S.add(bao(250, 790, 1.2, expr="surpris", bras="montre", regard=(1, 1)))
     S.add(bulle(420, 230, 360, 80, "Doudou, te voilà !", 36, pointe=(280, 470)))
+    S.cachette(70, 670, "air")
     return S
 
 
@@ -188,6 +193,7 @@ def p09():
     S.add(bao(240, 770, 1.3, expr="dort", bras="montre"))
     S.add(texte(560, 470, "1, 2, 3…", 50, "#fff3bf", contour="#3b2a7a"))
     S.add(baille_txt(560, 560, 60, 9))
+    S.cachette(70, 670, "air")
     return S
 
 

@@ -102,6 +102,7 @@ def p03():
     S.add(papa(400, 820, 1.6, expr="sourire", bras="calin", regard=(0, 1)))
     S.add(bambou(360, 790, 1.0, expr="pleure", bras="calin", sac=True, larmes=True))
     S.add(maitre(680, 790, 1.0, expr="sourire", bras="salut", regard=(-1, 0)))
+    S.cachette(70, 150, "air")
     return S
 
 
@@ -168,6 +169,7 @@ def p08():
     S.add(bambou(480, 790, 1.1, expr="rire", bras="court", regard=(1, 0), flip=True))
     S.add(capucine(660, 790, 0.95, expr="rire", bras="coucou"))
     S.add(coeur(380, 330, 1.0, "#ff8787"), coeur(560, 300, 0.7, "#ff8787"))
+    S.cachette(70, 150, "air")
     return S
 
 

@@ -67,6 +67,7 @@ def couverture():
     for k, obj in enumerate([trombone(0, 0, 1.4, 20, ACIER), clou(0, 0, 1.2, 160), cle_acier(0, 0, 1.2, 70), vis(0, 0, 1.3, 200), trombone(0, 0, 1.4, -30, ACIER)]):
         S.add(place(obj, 620 + (k % 3) * 40, 330 + k * 34))
     S.add(eclat(560, 240, 1.0, "#fab005"))
+    S.cachette(730, 590, "air")
     return S
 
 
@@ -216,6 +217,7 @@ def p09():
     S.add(aimant_u(470, 612, 0.25, rot=180))
     S.add(poisson_papier(470, 640, 1.0, "#ff6b6b", rot=-70))
     S.add(tom(680, 700, 1.2, expr="rire", bras="applaudit", regard=(-1, 0), flip=True))
+    S.cachette(70, 90, "air")
     return S
 
 
@@ -227,6 +229,7 @@ def p10():
     S.add(fleche(250, 400, 360, 400, "#2f9e44", 7), fleche(550, 400, 440, 400, "#2f9e44", 7))
     S.add(eclat(401, 520, 1.1, "#fab005"))
     S.add(texte(400, 250, "Clac !", 90, "#e8590c", contour="#fff", rot=-4))
+    S.cachette(410, 70, "air")
     return S
 
 
@@ -240,6 +243,7 @@ def p11():
         S.add(chemin(f"M {428 - k * 28} 460 q 16 60 0 120", stroke="#fa5252", sw=5, opacity=0.8 - k * 0.2) if k else "")
     S.add(fleche(340, 400, 200, 400, "#c92a2a", 7), fleche(460, 400, 600, 400, "#c92a2a", 7))
     S.add(texte(400, 250, "Pousse !", 90, "#c92a2a", contour="#fff", rot=3))
+    S.cachette(690, 670, "air")
     return S
 
 
@@ -274,6 +278,7 @@ def p13():
     traits = [trace(l, "#495057", 3.5, stroke_dasharray="5 7") for l in lignes_dipole(cx, cy, demi, 0, nb=20, r0=22)]
     S.add(g(traits, clip_path=f"url(#{cid})", opacity=0.9))
     S.add(barreau(cx, cy, 260, 70, nord_a_droite=True))
+    S.cachette(570, 720, "air")
     return S
 
 
@@ -312,6 +317,7 @@ def p15():
                 S.add(boussole(x, y, 24, angle=direction_champ(l, i) + 90, cadran=False))
                 break
     S.add(texte(cx, 60, "Nord", 44, "#fff3bf"))
+    S.cachette(670, 70, "air")
     return S
 
 

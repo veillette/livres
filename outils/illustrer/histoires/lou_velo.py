@@ -102,6 +102,7 @@ def p05():
         S.add(g(inner, clip_path=f"url(#{cid})"))
         S.add(rect(x0, 120, 240, 560, "none", rx=20, stroke="#fff", stroke_width=8))
         S.add(texte(x0 + 120, 740, jour, 42, "#e03131"))
+    S.cachette(410, 70, "air")
     return S
 
 

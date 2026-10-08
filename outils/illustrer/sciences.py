@@ -197,7 +197,7 @@ def pingouin(x, y, s=1.0, expr="sourire", ailes="bas", regard=(0, 0), flip=False
     if ailes == "devant":
         for ax, ay, ar in pos:
             m.append(ellipse(ax, ay, 13, 36, noir, rot=ar))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(m + [occuper(-80, -166, 80, 3)], x, y, s, flip=flip, rot=rot)
 
 
 def pingouin_glisse(x, y, s=1.0, expr="rire", flip=False, echarpe="#fa5252", vitesse=True):
@@ -282,7 +282,7 @@ def glacon(x, y, s=1.0, expr="sourire", regard=(0, 0), taille=1.0, fondu=0.0, ro
     m.append(bouche(0, fy + 18 * k, bs, k))
     if gouttes:
         m.append(goutte(w / 2 + 8, -h * 0.3, 0.7, "#74c0fc") + goutte(-w / 2 - 6, -h * 0.55, 0.6, "#74c0fc"))
-    return place(m, x, y, s, rot=rot)
+    return place(m + [occuper(-60, -116, 60, 0)], x, y, s, rot=rot)
 
 
 def goutte_perso(x, y, s=1.0, expr="sourire", couleur="#4dabf7", regard=(0, 0)):
@@ -618,7 +618,7 @@ def cheval(x, y, s=1.0, couleur="#8d5524", flip=False):
          cercle(90, -124, 3, ENCRE)]
     for x0, x1 in [(-40, -70), (-30, -10), (30, 60), (40, 20)]:
         m.append(trait(x0, -56, x1, -4, couleur, 9))
-    return place(m, x, y, s, flip=flip)
+    return place(m + [occuper(-94, -137, 113, 0)], x, y, s, flip=flip)
 
 
 def astronaute(x=0, y=0, s=1.0, peau="doree", cheveux="brun", coiffure="courts", expr="content", bras="bas",

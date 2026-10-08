@@ -262,6 +262,7 @@ def p09():
         S.add(pro(x, 760, 0.95, **perso_, jambes="#495057", chaussures="#5c3a1e", coiffe=casque_chantier(),
                   bras="porte", expr="content", objet=place(outil, 0, -80, 0.9)))
         S.add(texte(x, 795, mot, 26, "#495057", contour="#fff"))
+    S.cachette(730, 410, "air")
     return S
 
 

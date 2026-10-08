@@ -9,6 +9,7 @@ Elles se réveillent un peu de temps en temps. Au printemps, elles sortent
 maigres ; les marmottons naissent dans le terrier et sortent au début de l'été.
 """
 from base import *
+from base import _cachettes_sol
 from base import _assombrir
 from animaux import *
 from objets import aigle
@@ -111,6 +112,8 @@ def terrier(S, y=300, saison="ete", neige=0):
     S.add(rect(0, y, 800, 800 - y, S.degrade(["#a0693a", "#6d4424"])))
     S.add(chemin(f"M 0 {y - 8} Q 200 {y - 24} 400 {y - 8} T 800 {y - 14} L 800 {y + 12} L 0 {y + 12} Z",
                  "#8ce99a" if saison != "hiver" else "#f8f9fa"))
+    # la petite bête se pose sur l'herbe (ou la neige), jamais dans la terre
+    _cachettes_sol(S, y - 4 - neige, dy=0)
     if neige:
         S.add(rect(0, y - neige, 800, neige + 10, "#f8f9fa"))
         S.add(chemin(f"M 0 {y - neige} Q 200 {y - neige - 20} 400 {y - neige} T 800 {y - neige - 10}", stroke="#dee2e6", sw=4))
@@ -212,6 +215,7 @@ def p06():
     S.add(marmotte(cx - 40, cy + 50, 0.55, expr="baille"), marmotte(cx + 50, cy + 50, 0.5, expr="baille"))
     for x, c in [(500, "#ffa94d"), (620, "#fab005")]:
         S.add(ellipse(x, 230, 14, 7, c, rot=30))
+    S.cachette(700, 288)  # sur l'herbe, au-dessus du terrier
     return S
 
 
@@ -225,6 +229,8 @@ def p07():
     S.add(zzz(600, 300, 1.4, "#e9d3b5"))
     S.add(coeur(200, 220, 1.5, "#ff8787"))
     S.add(texte(200, 330, "boum… boum…", 40, "#ffc9c9"))
+    # elle aussi hiberne : dans la chambre, près du foin
+    S.cachette(640, 640)
     return S
 
 

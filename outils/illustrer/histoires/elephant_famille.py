@@ -83,7 +83,7 @@ def elephant(x, y, s=1.0, flip=False, expr="sourire", trompe="bas", bebe=False, 
     if bebe:
         T.append(chemin("M 120 -334 q 10 -14 20 0 q 10 -14 20 0", stroke=fonce, sw=3))
     m.append(g(T, transform=f"translate({n(150 * (1 - tete))} {n(-260 * (1 - tete) + (40 if bebe else 0))}) scale({tete})" if bebe else None))
-    return place(m, x, y, s, flip=flip)
+    return place(m + [occuper(-166, -338, 250, 4)], x, y, s, flip=flip)
 
 
 def savane_soir(S, y=560):
@@ -110,6 +110,7 @@ def couverture():
     savane(S, 600)
     S.add(elephant(330, 740, 1.15, expr="content", trompe="bas"))
     S.add(elephant(560, 760, 0.55, bebe=True, expr="rire", trompe="haut"))
+    S.cachette(90, 200, "air")
     return S
 
 
@@ -219,6 +220,7 @@ def p10():
     S.add(elephant(620, 740, 0.75, expr="fier", flip=True))
     S.add(elephant(400, 760, 0.42, bebe=True, expr="content"))
     S.add(elephant(400, 640, 0.6, expr="sourire", trompe="haut"))
+    S.cachette(130, 380, "air")
     return S
 
 

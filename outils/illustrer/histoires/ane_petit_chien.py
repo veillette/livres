@@ -135,6 +135,7 @@ def p07():
     S.add(ane(200, 760, 1.2, expr="joie", bras="ouverts", regard=(1, 0)))
     S.add(maitre(560, 760, 1.4, expr="surpris", bras="bas", regard=(-1, 0)))
     S.add(bijou(700, 760, 0.7, expr="surpris"))
+    S.cachette(370, 730, "air")
     return S
 
 

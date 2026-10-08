@@ -152,6 +152,7 @@ def p11():
     S.add(ellipse(400, 760, 500, 130, "#3b5b8a"))
     roseaux(S, 240, 700, 1.3, penche=96, expr="concentre", regard=(1, 1))
     S.add(rafales(80, 250, 1.3, "#dee2e6"), rafales(120, 450, 1.0, "#dee2e6"))
+    S.cachette(480, 712)
     return S
 
 

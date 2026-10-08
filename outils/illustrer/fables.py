@@ -46,7 +46,8 @@ def corbeau(x, y, s=1.0, expr="fier", ailes="bas", bec_ouvert=False, flip=False,
         m.append(trait(-6, -66, 6, -66, "#495057", 2))
     if fromage_bec:
         m.append(fromage(4, -42, 0.9, rot=-8))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    zone = occuper(x - 75 * s, y - 180 * s, x + 75 * s, y)
+    return place(m, x, y, s, flip=flip, rot=rot) + zone
 
 
 def colombe(x, y, s=1.0, **k):
@@ -94,7 +95,8 @@ def coq(x, y, s=1.0, poule=False, expr="fier", ailes="bas", bec_ouvert=False, fl
     else:
         m += [cercle(-14, -114, 11, crete), cercle(0, -122, 13, crete), cercle(14, -116, 11, crete)]
         m.append(ellipse(-4, -50, 6, 10, crete) + ellipse(5, -48, 6, 9, crete))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    zone = occuper(x - 85 * s, y - 210 * s, x + 85 * s, y)
+    return place(m, x, y, s, flip=flip, rot=rot) + zone
 
 
 def oeuf(x, y, s=1.0, couleur="#fff9f0", brille=False, rot=0):
@@ -162,7 +164,8 @@ def cigogne(x, y, s=1.0, expr="sourire", flip=False, bec_ouvert=False, regard=(1
     m.append(ellipse(hx - 6, hy + 10, 6, 3.5, ROSE, opacity=0.8))
     if OMBRE_SOL[0]:
         m.insert(0, ombre_sol(4, 0, 40, 7, 0.13))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip)
+    zone = occuper(x - 90 * s, y - 320 * s, x + 90 * s, y)
+    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip) + zone
 
 
 def moucheron(x, y, s=1.0, expr="malin", flip=False, rot=0, regard=(1, 0), trompette=False):
@@ -674,7 +677,7 @@ def pot_parlant(x, y, s=1.0, fer=False, expr="sourire", regard=(0, 0), bras="bas
     if eclats:
         m.append(poly([(54, -168), (78, -168), (76, -140)], "#fff4e6"))
     m.append(visage(0, -110, 1.1, expr, regard, joues=not fer))
-    return place(m, x, y, s, flip=flip, rot=rot)
+    return place(m + [occuper(-115, -206, 115, 0)], x, y, s, flip=flip, rot=rot)
 
 
 def cerf_profil(x, y, s=1.0, expr="fier", flip=False, regard=(1, 0), rot=0, course=False, tete_basse=False):
@@ -722,7 +725,7 @@ def cerf_profil(x, y, s=1.0, expr="fier", flip=False, regard=(1, 0), rot=0, cour
     m.append(place(tete, hx, hy, 1.0, rot=ang - 24))
     if OMBRE_SOL[0] and not rot:
         m.insert(0, ombre_sol(6, 0, 100, 11, 0.13))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
+    return place(avec_contour(m, s, 0.35) + occuper(-138, -334, 186, 14), x, y, s, flip=flip, rot=rot)
 
 
 GRIS_ANE = "#9aa1a8"
@@ -765,7 +768,7 @@ def ane_profil(x, y, s=1.0, expr="sourire", flip=False, regard=(1, 0), ploie=Fal
     m.append(place(bouche(0, 0, bs, 0.6), hx + 24, hy + 26))
     if OMBRE_SOL[0] and not rot:
         m.insert(0, ombre_sol(6, 0, 100, 11, 0.13))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
+    return place(avec_contour(m, s, 0.35) + occuper(-113, -243, 186, 14), x, y, s, flip=flip, rot=rot)
 
 
 
@@ -804,7 +807,7 @@ def cheval_profil(x, y, s=1.0, couleur="#a0522d", criniere="#4a2c17", expr="fier
     m.append(place(bouche(0, 0, bs, 0.6), hx + 32, hy + 48))
     if charge:
         m.append(place(charge, 0, dy))
-    return place(avec_contour(m, s, 0.35), x, y, s, flip=flip, rot=rot)
+    return place(avec_contour(m, s, 0.35) + occuper(-142, -303, 244, 16), x, y, s, flip=flip, rot=rot)
 
 
 def bat(x=0, y=-110, s=1.0, nb=2, couleur="#e9d8c4"):

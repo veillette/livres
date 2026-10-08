@@ -125,6 +125,7 @@ def p01():
     S.add(coccinelle(620, 400, 3.0))
     S.add(etiquette(280, 660, "8 pattes", 44, "#7048e8"), etiquette(620, 660, "6 pattes", 44, "#e03131"))
     S.add(etiquette(280, 80, "l'araignée", 40, "#7048e8"), etiquette(620, 80, "un insecte", 40, "#e03131"))
+    S.cachette(430, 70, "air")
     return S
 
 
@@ -201,6 +202,7 @@ def p08():
     S.add(epeire(580, 420, 1.1, rot=90, expr="fier"))
     S.add(etiquette(600, 520, "pas collant", 34, "#7048e8"), etiquette(250, 250, "collant", 34, "#c2255c"))
     S.add(fleche(270, 270, 300, 330, "#c2255c", 5, 16))
+    S.cachette(570, 70, "air")
     return S
 
 
