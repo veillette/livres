@@ -116,7 +116,7 @@ doivent y changer ; on committe ce fichier avec le script et le `livre.js`.
 ## 6. Documenter et committer
 
 - `sw.js` : augmenter `VERSION` d'un cran (une fois par lot ; aujourd'hui
-  `"v27"`, donc `"v27"` → `"v28"`).
+  `"v28"`, donc `"v28"` → `"v29"`).
 - Aligner les exemples de `VERSION` du README, d'`AGENTS.md`, de
   `nouveau-livre` et de cette compétence sur la nouvelle constante.
 - `outils/REVUE-IMAGES.md` : section « Retouche du <date> » — livres repris,
@@ -129,5 +129,5 @@ Retoucher les illustrations du Petit Chaperon rouge
 
 Chaumière de la mère-grand, adultes à leur taille, gros plans de plus en
 plus serrés sur « grandes oreilles » et « grands yeux ». Le cache hors ligne
-passe à v27.
+passe à v28.
 ```

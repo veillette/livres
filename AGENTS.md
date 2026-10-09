@@ -66,7 +66,7 @@ lance `generer.py` : les images sont déjà là.
   change des lignes d'autres livres dans `empreintes.txt`, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (aujourd'hui `"v27"`, donc `"v27"` → `"v28"`) et
+  `VERSION` dans `sw.js` (aujourd'hui `"v28"`, donc `"v28"` → `"v29"`) et
   mettre à jour les totaux (livres, pages, SVG) du README (section
   « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
   qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche
