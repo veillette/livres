@@ -4,6 +4,7 @@
 
 Python et Node suffisent ; aucune dépendance à installer.
 """
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -13,6 +14,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 RACINE = Path(__file__).resolve().parents[1]
+EMPREINTES = RACINE / "outils" / "illustrer" / "empreintes.txt"
+GENERER = "lancer python3 outils/illustrer/generer.py"
 INVENTAIRE = r"""
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const root = process.argv[1];
@@ -94,6 +97,19 @@ def erreurs_contenu(livre):
     return erreurs
 
 
+def lire_empreintes():
+    """{chemin de l'image: empreinte} des SVG générés (voir generer.py)."""
+    if not EMPREINTES.is_file():
+        return {}
+    empreintes = {}
+    for ligne in EMPREINTES.read_text(encoding="utf-8").splitlines():
+        if ligne.strip():
+            valeur, chemin = ligne.split()
+            id_livre, nom = chemin.split("/")
+            empreintes[(RACINE / "livres" / id_livre / "images" / nom).resolve()] = valeur
+    return empreintes
+
+
 def verifier():
     resultat = subprocess.run(
         ["node", "-e", INVENTAIRE, str(RACINE)],
@@ -121,6 +137,10 @@ def verifier():
         elif rayon not in rayons:
             erreurs.append(f"{livre['folder']} : rayon inconnu « {rayon} » (choisir parmi {', '.join(rayons)}).")
 
+    empreintes = lire_empreintes()
+    if empreintes and not any(image.is_file() for image in empreintes):
+        print(f"Aucune illustration générée : {GENERER} avant de vérifier.", file=sys.stderr)
+        return True
     images = set()
     for livre in livres:
         dossier = RACINE / "livres" / livre["folder"]
@@ -136,7 +156,8 @@ def verifier():
             if not image.is_relative_to(dossier):
                 erreurs.append(f"{livre['id']} : image extérieure au dossier ({source}).")
             elif not image.is_file():
-                erreurs.append(f"{livre['id']} : image manquante ({source}).")
+                conseil = f" ; {GENERER}" if image in empreintes else ""
+                erreurs.append(f"{livre['id']} : image manquante ({source}){conseil}.")
             else:
                 images.add(image)
 
@@ -144,6 +165,13 @@ def verifier():
     for image in sorted((RACINE / "livres").glob("*/images/*")):
         if image.is_file() and image.resolve() not in images:
             erreurs.append(f"{image.relative_to(RACINE)} : image utilisée par aucune page.")
+
+    # Les SVG générés sont ceux que décrit empreintes.txt (sinon : périmés).
+    for image, valeur in sorted(empreintes.items()):
+        if image.is_file():
+            texte = image.read_text(encoding="utf-8")
+            if hashlib.sha256(texte.encode("utf-8")).hexdigest()[:16] != valeur:
+                erreurs.append(f"{image.relative_to(RACINE)} : image périmée (différente de empreintes.txt) ; {GENERER}.")
 
     # Vérifier aussi la forme des SVG présents, même non référencés.
     svgs = sorted((RACINE / "livres").glob("*/images/*.svg"))

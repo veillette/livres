@@ -23,20 +23,23 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - name: Dessiner les illustrations
+        run: python3 outils/illustrer/generer.py > /dev/null
+
+      - name: Vérifier que les illustrations ont les empreintes validées
+        run: |
+          if [ -n "$(git status --porcelain -- outils/illustrer/empreintes.txt livres)" ]; then
+            echo "Des images diffèrent de outils/illustrer/empreintes.txt : relancer generer.py et valider le résultat."
+            git status --short -- outils/illustrer/empreintes.txt livres
+            git diff -- outils/illustrer/empreintes.txt | head -50
+            exit 1
+          fi
+
       - name: Vérifier les livres et les images
         run: python3 outils/verifier-images.py
 
       - name: Tester l'ordre des pages du livret
         run: node --test
-
-      - name: Vérifier que les images sont à jour avec le générateur
-        run: |
-          python3 outils/illustrer/generer.py > /dev/null
-          if [ -n "$(git status --porcelain -- livres)" ]; then
-            echo "Des images diffèrent de outils/illustrer : relancer generer.py et valider le résultat."
-            git status --short -- livres
-            exit 1
-          fi
 
       - name: Préparer le site (sans les outils de dessin)
         run: |

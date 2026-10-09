@@ -57,8 +57,10 @@ python3 outils/illustrer/generer.py <id>
 NODE_PATH="$(npm root -g)" node .claude/skills/retoucher-livre/avant-apres.js <id> /chemin/scratchpad/avant-apres-<id>.html
 ```
 
-`avant-apres.js` met chaque image du dernier commit (ou d'une référence
-donnée en troisième argument) à côté de la nouvelle. Vérifier sur la capture :
+`avant-apres.js` redessine chaque image avec les scripts du dernier commit
+(ou d'une référence donnée en troisième argument, dans un `git worktree`
+temporaire, car les SVG ne sont pas suivis par git) et la met à côté de la
+nouvelle. Vérifier sur la capture :
 
 - chaque retouche améliore la page (sinon revenir en arrière) ;
 - rien n'a bougé sans raison sur les pages non retouchées ;
@@ -101,12 +103,15 @@ python3 .claude/skills/retoucher-livre/planche_cachettes.py /chemin/scratchpad/b
 ## 5. Vérifier que les autres livres n'ont pas changé
 
 ```sh
-python3 outils/illustrer/generer.py > /dev/null && git status --short -- livres
+python3 outils/illustrer/generer.py > /dev/null && git diff --stat -- outils/illustrer/empreintes.txt
+git diff -- outils/illustrer/empreintes.txt   # les images changées, une par ligne
 python3 outils/verifier-images.py      # doit finir par « 0 erreur(s). »
 node --test
 ```
 
-Seuls les SVG (et le `livre.js`) des livres retouchés doivent apparaître.
+Les SVG ne sont pas suivis par git : `generer.py` réécrit
+`outils/illustrer/empreintes.txt`. Seules les lignes des livres retouchés
+doivent y changer ; on committe ce fichier avec le script et le `livre.js`.
 
 ## 6. Documenter et committer
 

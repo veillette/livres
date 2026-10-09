@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 _site/
 _build/
+# illustrations produites par outils/illustrer/generer.py (suivies par
+# outils/illustrer/empreintes.txt) ; un SVG fait à la main : git add -f
+livres/*/images/*.svg

@@ -246,14 +246,17 @@ Toute image de `images/` doit être utilisée par une page.
 ## 7. Vérifier
 
 ```sh
-python3 outils/illustrer/generer.py > /dev/null && git status --short -- livres
+python3 outils/illustrer/generer.py > /dev/null && git diff --stat -- outils/illustrer/empreintes.txt
+git diff -U0 -- outils/illustrer/empreintes.txt | grep '^-[0-9a-f]'   # doit être vide
 python3 outils/verifier-images.py      # doit finir par « 0 erreur(s). »
 node --test
 ```
 
-Après `generer.py` complet, seuls les fichiers du ou des nouveaux livres
-doivent apparaître dans `git status -- livres`. Un SVG existant modifié
-signale qu'un module partagé a changé : corriger avant de continuer.
+Les SVG ne sont pas suivis par git ; `generer.py` réécrit
+`outils/illustrer/empreintes.txt` (une ligne par image). Après `generer.py`
+complet, ce fichier ne doit gagner que les lignes du ou des nouveaux livres :
+une ligne existante retirée ou modifiée signale qu'un module partagé a
+changé les images d'un autre livre. Corriger avant de continuer.
 
 ## 8. Revoir les illustrations
 
@@ -295,6 +298,7 @@ Le cache hors ligne passe à v27. Totaux après ajout, copiés de
 verifier-images.py : N livres, M pages, P SVG.
 ```
 
-Le commit contient : `livres/<id>/` (livre.js et images), le script de
-dessin, `livres/catalogue.js`, `sw.js`, `README.md` et
-`outils/REVUE-IMAGES.md`.
+Le commit contient : `livres/<id>/livre.js`, le script de dessin,
+`outils/illustrer/empreintes.txt`, `livres/catalogue.js`, `sw.js`,
+`README.md` et `outils/REVUE-IMAGES.md`. Pas les SVG : ils sont ignorés par
+git et redessinés à la publication.

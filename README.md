@@ -18,6 +18,15 @@ Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
 
 ## Voir le site
 
+Les illustrations ne sont pas dans le dépôt : elles se dessinent à partir des
+scripts Python (une trentaine de secondes, Python 3 suffit). Après un
+`git clone`, et après chaque `git pull` qui touche aux illustrations, lancer
+d'abord :
+
+```sh
+python3 outils/illustrer/generer.py
+```
+
 - **Sur l'ordinateur** : ouvrir `index.html` dans le navigateur, tout simplement.
 - **Avec un petit serveur** (recommandé) : `python3 -m http.server`, puis
   <http://localhost:8000>.
@@ -116,7 +125,11 @@ trouver le bon sens).
 5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
 6. Lancer `python3 outils/verifier-images.py` (la publication échoue si cette
    vérification trouve une erreur). Si les images viennent du générateur,
-   relancer aussi `generer.py` et valider les SVG produits.
+   relancer aussi `generer.py` et valider le script de dessin avec
+   `outils/illustrer/empreintes.txt` (les SVG, eux, ne sont pas suivis par
+   git). Des images faites à la main (PNG, JPG ou SVG) se valident avec le
+   livre ; un SVG fait à la main s'ajoute avec `git add -f`, car
+   `.gitignore` écarte les SVG de `livres/*/images/`.
 
 ### Types de pages
 
@@ -169,12 +182,14 @@ manifest.webmanifest, icones/   description de l'application et icônes
 polices/            polices Andika et Fredoka (licence OFL), hébergées avec le site
 livres/             un dossier par livre + catalogue.js (liste et rayons)
 outils/illustrer/   générateur des illustrations SVG (Python, non publié)
+outils/illustrer/empreintes.txt   empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py   vérification des livres et des images (non publiée)
 outils/imposition.test.js   tests de l'ordre des pages du livret (non publiés)
 outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 AGENTS.md           consignes pour les agents de code (non publiées)
 .claude/skills/     compétences nouveau-livre, direction-artistique, retoucher-livre (non publiées)
+.claude/hooks/      dessin des SVG au démarrage d'une session Claude Code dans le cloud
 ```
 
 ## Dessiner les illustrations
@@ -318,6 +333,22 @@ python3 outils/illustrer/generer.py ours-gateau   # un seul livre
 Les images sont écrites dans `livres/<id>/images/`. Il reste à écrire le texte
 dans `livres/<id>/livre.js`.
 
+Les SVG ne sont **pas** suivis par git : la publication les redessine. À leur
+place, `generer.py` réécrit `outils/illustrer/empreintes.txt`, une ligne par
+image (empreinte SHA-256 abrégée, puis `<id>/<nom>`), que l'on valide avec le
+script de dessin. Son diff montre exactement quelles images un changement a
+modifiées :
+
+```sh
+python3 outils/illustrer/generer.py > /dev/null && git diff --stat -- outils/illustrer/empreintes.txt
+git diff -- outils/illustrer/empreintes.txt   # les images changées, une par ligne
+```
+
+Une ligne changée dans un livre qu'on ne voulait pas toucher signale une
+régression d'un module partagé. Pour voir les images elles-mêmes, la
+planche avant/après de `retoucher-livre` redessine l'ancienne version à
+partir des scripts d'un commit donné.
+
 Les règles de composition (plans variés, gros plans, lumière, âges des
 personnages, décors, échelles, petite bête) sont réunies dans la compétence
 [`direction-artistique`](.claude/skills/direction-artistique/SKILL.md) ; la
@@ -344,7 +375,9 @@ Elle inclut aussi les livres hors catalogue : champs requis
 (`id`, `titre`, au moins une page, `rayon` connu pour les livres du
 catalogue), types et dispositions de page inconnus,
 images manquantes ou en chemin absolu, images que plus aucune page n'utilise,
-SVG mal formés, dimensions invalides et références internes absentes.
+SVG mal formés, dimensions invalides et références internes absentes, SVG
+générés périmés (différents de `empreintes.txt` : relancer `generer.py`).
+Elle se lance donc après `generer.py`.
 Elle signale aussi les oublis qui laisseraient une page vide ou bancale :
 `couleur`, `age` ou `resume` absents, page `illustration` ou `texte` sans
 texte, et quelques fautes de typographie (espaces répétées ou en trop, espace
@@ -358,8 +391,9 @@ pour toutes les longueurs de livre de 1 à 40 pages :
 node --test
 ```
 
-Avant chaque publication, GitHub Actions lance cette vérification et ces
-tests, puis `generer.py` : si les images produites diffèrent de celles du
-dépôt, la publication s'arrête. Le site est publié sans `outils/illustrer/`,
+Avant chaque publication, GitHub Actions dessine toutes les illustrations
+avec `generer.py` : si leurs empreintes diffèrent de
+`outils/illustrer/empreintes.txt`, la publication s'arrête. Puis elle lance
+cette vérification et ces tests. Le site est publié sans `outils/illustrer/`,
 les scripts Python ni les tests ; la revue des images
 (`outils/revue-images.html`) reste en ligne.

@@ -7,6 +7,12 @@ Génère les illustrations SVG des livres.
 Chaque livre est décrit dans `histoires/<id_avec_soulignés>.py` : une
 variable ID et une liste IMAGES de couples (nom de fichier, fonction qui
 renvoie une Scene). Les images sont écrites dans `livres/<id>/images/`.
+
+Les SVG ne sont pas suivis par git : la publication les régénère. Le fichier
+`empreintes.txt`, lui, est suivi : une ligne par image (empreinte SHA-256
+abrégée, puis `<id>/<nom>`), réécrite à chaque génération. Son diff montre
+quelles images ont changé ; un changement inattendu dans un autre livre est
+une régression.
 """
 import hashlib
 import importlib
@@ -19,6 +25,26 @@ RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
 
 import base  # noqa: E402
+
+EMPREINTES = os.path.join(ICI, "empreintes.txt")
+
+
+def empreinte(texte):
+    return hashlib.sha256(texte.encode("utf-8")).hexdigest()[:16]
+
+
+def lire_empreintes():
+    """{"<id>/<nom>": empreinte} du fichier suivi par git (vide s'il manque)."""
+    if not os.path.exists(EMPREINTES):
+        return {}
+    with open(EMPREINTES, encoding="utf-8") as fh:
+        return {chemin: valeur for valeur, chemin in (ligne.split() for ligne in fh if ligne.strip())}
+
+
+def ecrire_empreintes(empreintes):
+    with open(EMPREINTES, "w", encoding="utf-8", newline="\n") as fh:
+        for chemin in sorted(empreintes):
+            fh.write(f"{empreintes[chemin]}  {chemin}\n")
 
 
 def modules():
@@ -95,13 +121,22 @@ def generer(module):
         if sans:
             base.BETE_CACHEE[0] = None
             note = f" (petite bête absente : pas de cachette sur {', '.join(sans)})"
+    empreintes = {}
     for nom, S in scenes:
-        S.enregistrer(os.path.join(dossier, nom))
+        empreintes[f"{module.ID}/{nom}"] = empreinte(S.enregistrer(os.path.join(dossier, nom)))
     print(f"{module.ID} : {len(module.IMAGES)} images{note}")
+    return empreintes
 
 
 if __name__ == "__main__":
     voulus = set(sys.argv[1:])
+    # tous les livres : le fichier est réécrit en entier (un livre retiré en
+    # disparaît) ; quelques livres : seules leurs lignes sont remplacées
+    empreintes = {} if not voulus else {
+        chemin: valeur for chemin, valeur in lire_empreintes().items()
+        if chemin.split("/")[0] not in voulus
+    }
     for m in modules():
         if not voulus or m.ID in voulus:
-            generer(m)
+            empreintes.update(generer(m))
+    ecrire_empreintes(empreintes)
