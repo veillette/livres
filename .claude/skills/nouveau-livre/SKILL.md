@@ -157,10 +157,10 @@ IMAGES = [
   - `metiers.py` : tenues et coiffes du rayon « Les métiers », passées à
     `personne()` par `tenue=` et `coiffe=` ; `pro()` pose un adulte au
     travail ;
-  - fêtes déjà au catalogue : les textes sont dans `livres_fetes.py`, les
-    dessins dans `fetes.py`, et `creer_livres_fetes.py` réécrit les dix
-    `livre.js` et leurs modules `histoires/`. Une **nouvelle** fête suit le
-    parcours habituel de ce fichier ; ne pas relancer ce script pour elle.
+  - `fetes.py` : accessoires des fêtes (lanternes, guirlandes, cadeaux,
+    sapin décoré, œufs et cloches de Pâques, citrouilles creusées,
+    confettis, feux d'artifice, cerf-volant, crêpes, `chien_profil`…) ;
+    chaque livre du rayon a son propre script, comme les autres.
 - Ce qui ne sert qu'à ce livre se dessine dans son propre script. Ne modifier
   un module partagé que par **ajout** (nouvelle fonction ou nouveau paramètre
   avec valeur par défaut) pour ne changer aucun SVG existant.
@@ -230,8 +230,8 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v26"`, donc
-  `"v26"` → `"v27"`), une seule fois par lot de livres.
+- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v27"`, donc
+  `"v27"` → `"v28"`), une seule fois par lot de livres.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux
   (livres, pages, SVG) :
   - README, section « Dessiner les illustrations » (`N livres, M pages, P SVG`) ;

@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 900 pages et
-2 492 illustrations SVG** (cache hors ligne `v26`).
+Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 952 pages et
+2 544 illustrations SVG** (cache hors ligne `v27`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -518,3 +518,47 @@ reprises sans modifier les autres livres :
   continue sur la façade et le trottoir.
 
 Descriptions des deux pages mises à jour. Le cache hors ligne passe à `v26`.
+
+## Réécriture du 8 octobre 2026 : les dix livres de fêtes
+
+Aucun livre ajouté : **185 livres, 2 952 pages et 2 544 SVG**. Les dix livres
+du rayon « Fêtes » sortaient d'un même gabarit (six pages, un objet au centre
+entre deux personnages, des images qui ne montraient pas ce que disait le
+texte). Ils sont réécrits et redessinés, chacun avec son propre script dans
+`histoires/` ; `livres_fetes.py` et `creer_livres_fetes.py` sont supprimés et
+`fetes.py` ne garde que des accessoires partagés. Chaque livre a maintenant
+11 ou 12 scènes, une vraie intrigue (attente, fausse piste, retournement),
+des répétitions et onomatopées, et des traditions exactes :
+
+- *L'étoile de Noël* : quête de l'étoile la plus brillante, voisins
+  qu'on emmène, étoile « plus loin que la Lune », étoile fabriquée ensemble.
+- *Le panier de Pâques* : cloches revenues de leur voyage, chasse aux œufs
+  comptée, « tu chauffes, tu brûles », friture en chocolat.
+- *La citrouille d'Halloween* : citrouille creusée, « des bonbons ou un
+  sort », chaque frayeur cache un ami.
+- *Le vœu de minuit* : l'horloge avance de page en page, compte à rebours,
+  vœu lu à voix haute.
+- *Le masque du carnaval* : Mardi gras et crêpes, trois déguisements ratés,
+  la Lionne-Pirate-Volante, Monsieur Carnaval et la fanfare.
+- *Des cartes pour les amis* : un cœur par personne aimée, puis la carte pour
+  l'enfant qui joue seul.
+- *Le tambour de la fête* : 21 juin, jour le plus long, charivari remis en
+  rythme par un tambour de casserole.
+- *Le bouquet de maman* : surprise secrète, bouquet volé par le chien,
+  fleur mâchouillée et dessin de famille.
+- *Le cerf-volant de papa* : pas de vent, puis la vrille ; une queue (cravate,
+  foulard, chaussette) rend le cerf-volant stable.
+- *Le gâteau d'anniversaire* : la journée où tout le monde semble avoir
+  oublié, fête surprise, cinq bougies et vœu secret.
+
+Familles humaines (Pâques, Nouvel An, carnaval, musique, fêtes des mères et
+des pères) avec adultes, grands-parents et tout-petits à leur taille ;
+plans variés (gros plans aux moments forts, contre-plongées, plans larges),
+halos des lanternes, citrouilles, réverbères et fenêtres la nuit.
+
+Contrôles : planches de toutes les pages des dix livres revues dans Chromium
+et corrigées ; coccinelle présente sur toutes les pages pleines, vérifiée par
+`cachettes.py --verifier` et en gros plans (`planche_cachettes.py`) ;
+régénération complète sans changement des autres livres ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
+passe à `v27`.
