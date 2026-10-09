@@ -54,7 +54,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v27"`, donc `"v27"` → `"v28"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v28"`, donc `"v28"` → `"v29"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -194,8 +194,8 @@ AGENTS.md           consignes pour les agents de code (non publiées)
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (185 livres, 2 952 pages,
-2 544 SVG) sont
+Les illustrations de tous les livres du catalogue (189 livres, 3 012 pages,
+2 596 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 

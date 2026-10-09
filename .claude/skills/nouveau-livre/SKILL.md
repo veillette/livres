@@ -230,8 +230,8 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v27"`, donc
-  `"v27"` → `"v28"`), une seule fois par lot de livres.
+- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v28"`, donc
+  `"v28"` → `"v29"`), une seule fois par lot de livres.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux
   (livres, pages, SVG) :
   - README, section « Dessiner les illustrations » (`N livres, M pages, P SVG`) ;
@@ -294,7 +294,7 @@ Un commit par lot, message en français à l'infinitif, par exemple :
 Ajouter « Mon beau livre » au rayon Petites histoires
 
 Nouveau livre de 15 pages (illustrations générées par outils/illustrer).
-Le cache hors ligne passe à v27. Totaux après ajout, copiés de
+Le cache hors ligne passe à v28. Totaux après ajout, copiés de
 verifier-images.py : N livres, M pages, P SVG.
 ```
 

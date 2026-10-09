@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **185 livres, 2 952 pages et
-2 544 illustrations SVG** (cache hors ligne `v27`).
+Catalogue actuel, après les ajouts d'octobre : **189 livres, 3 012 pages et
+2 596 illustrations SVG** (cache hors ligne `v28`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -576,3 +576,40 @@ redessine l'« avant » à partir des scripts du commit de référence.
 Aucune image ne change : régénération complète identique aux SVG suivis
 jusqu'ici ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
 hors ligne reste à `v27`.
+
+## Ajout du 9 octobre 2026 : quatre nouveaux livres de fêtes
+
+Le rayon « Fêtes » passe de dix à quatorze livres (15 pages et 13 SVG
+chacun), chacun avec son propre script dans `outils/illustrer/histoires/` :
+
+- *Boubou cherche un costume* (`fantome-costume`, Halloween) : un petit
+  fantôme de grenier essaie un chapeau trop grand, une citrouille trop
+  lourde, une cape qui l'emmêle, puis sort comme il est ; quand le vent
+  souffle la lanterne, c'est lui qui brille pour ramener les enfants.
+- *L'arbre aux mercis* (`arbre-mercis`, Action de grâce) : verger, courges,
+  tarte aux pommes chez Grand-maman ; une branche dans un pot se couvre de
+  feuilles d'érable en papier, une par merci, jusqu'au grand repas.
+- *Des biscuits pour le père Noël* (`noel-biscuits`, Noël) : biscuits
+  découpés, cuits et décorés, neuf carottes pour les rennes ; Caramel le
+  chat pris sur le fait la nuit, un traîneau devant la Lune, un petit mot au
+  matin.
+- *Bonne année, grosse santé !* (`jour-de-l-an`, jour de l'An) : chez les
+  grands-parents, Léon apprend ce qu'est un souhait et en offre un à chacun
+  (tourtière, glissade, violon, chien) ; le soir, la petite Lili fait ses
+  trois premiers pas jusque dans ses bras.
+
+Personnages humains d'âges variés (tout-petits, enfants, parents,
+grands-parents), chat, chien et petit fantôme dessiné à la main avec son
+`occuper()` ; plans variés (gros plans aux moments forts, plans larges en
+extérieur), halos des lanternes, fenêtres et cheminées la nuit, Boubou qui
+éclaire la rue dans le noir. Les objets propres à ces livres (fenêtre ronde,
+malle, feuille d'érable, dinde, tourtière, biscuits et emporte-pièces,
+traîne sauvage, bonhomme de neige…) sont dans leurs scripts : aucun module
+partagé n'a changé.
+
+Contrôles : planches de toutes les pages des quatre livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 52 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
+passe à `v28`.
