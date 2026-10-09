@@ -1,7 +1,9 @@
 /*
- * Planche avant / après d'un livre : chaque illustration telle qu'elle est
- * dans un commit de référence (par défaut HEAD) à côté de la version de
- * l'arbre de travail, avec la description de la page.
+ * Planche avant / après d'un livre : chaque illustration telle que la
+ * dessinent les scripts d'un commit de référence (par défaut HEAD) à côté de
+ * la version de l'arbre de travail, avec la description de la page. Les SVG
+ * n'étant pas suivis par git, l'« avant » est régénéré dans un arbre de
+ * travail temporaire (git worktree) extrait à la référence.
  *
  *     node .claude/skills/retoucher-livre/avant-apres.js <id> [sortie.html] [référence]
  *
@@ -31,6 +33,23 @@ const sortie = path.resolve(sortieArg || `avant-apres-${id}.html`);
 const avant = sortie.replace(/\.html$/, "") + "-avant";
 fs.mkdirSync(avant, { recursive: true });
 
+// dessiner l'« avant » : generer.py du commit de référence, dans une copie jetable
+const copie = fs.mkdtempSync(path.join(require("os").tmpdir(), "avant-apres-"));
+const git = (...args) => execFileSync("git", args, { cwd: RACINE, stdio: ["ignore", "pipe", "ignore"] });
+let imagesAvant = null;
+try {
+  git("worktree", "add", "--detach", copie, reference);
+  try {
+    execFileSync("python3", ["outils/illustrer/generer.py", id], { cwd: copie, stdio: "ignore" });
+  } catch {
+    // livre absent du commit de référence : toutes ses images sont nouvelles
+  }
+  imagesAvant = path.join(copie, "livres", id);
+} catch {
+  console.error(`Référence introuvable : ${reference}`);
+  process.exit(1);
+}
+
 const echapper = (s) =>
   String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
@@ -43,12 +62,10 @@ for (const page of livre.pages) {
   const actuel = path.join(dossier, page.image);
   const ancien = path.join(avant, path.basename(page.image));
   let image_avant = `<div class="nouveau">nouvelle image</div>`;
-  try {
-    const contenu = execFileSync("git", ["show", `${reference}:livres/${id}/${page.image}`], { cwd: RACINE, stdio: ["ignore", "pipe", "ignore"] });
-    fs.writeFileSync(ancien, contenu);
+  const dessinee = path.join(imagesAvant, page.image);
+  if (fs.existsSync(dessinee)) {
+    fs.copyFileSync(dessinee, ancien);
     image_avant = `<img src="${echapper(ancien)}" alt="">`;
-  } catch {
-    // image absente du commit de référence
   }
   cases.push(`<figure>
   <div class="paire">${image_avant}<img src="${echapper(actuel)}" alt=""></div>
@@ -79,6 +96,7 @@ ${cases.join("\n")}
 `;
 fs.writeFileSync(sortie, html);
 console.log(sortie);
+git("worktree", "remove", "--force", copie);
 
 let playwright;
 try {

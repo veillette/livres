@@ -15,10 +15,11 @@ générateur Python sans dépendance (`outils/illustrer/`).
 index.html, lire.html, imprimer.html   bibliothèque, lecteur, impression
 css/, js/                              interface (aucun framework)
 livres/<id>/livre.js                   texte et pages d'un livre
-livres/<id>/images/                    illustrations (SVG générés)
+livres/<id>/images/                    illustrations (SVG générés, non suivis par git)
 livres/catalogue.js                    ordre d'affichage + rayons (RAYONS)
 outils/illustrer/                      générateur des SVG (non publié)
 outils/illustrer/histoires/<id>.py     dessins d'un livre (tirets → soulignés)
+outils/illustrer/empreintes.txt        empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py              vérification des livres et images
 outils/imposition.test.js              tests de l'ordre des pages du livret
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
@@ -29,18 +30,20 @@ sw.js                                  service worker (VERSION du cache)
 ## Commandes
 
 ```sh
+python3 outils/illustrer/generer.py           # dessiner toutes les images (à faire après un clone)
 python3 -m http.server                        # voir le site : http://localhost:8000
-python3 outils/illustrer/generer.py           # régénérer toutes les images
 python3 outils/illustrer/generer.py <id>      # régénérer un seul livre
 python3 outils/verifier-images.py             # vérifier livres et images (doit dire 0 erreur)
 node --test                                   # tests de l'imposition du livret
 ```
 
-La publication (`.github/workflows/pages.yml`) lance ces trois vérifications :
-`verifier-images.py`, `node --test`, puis `generer.py` suivi de
-`git status -- livres`. **Les SVG du dépôt doivent être exactement ceux que
-produit le générateur** : après toute modification d'un script de dessin,
-relancer `generer.py` et valider les SVG produits dans le même commit.
+**Les SVG ne sont pas suivis par git** (`.gitignore`) : la publication
+(`.github/workflows/pages.yml`) les dessine avec `generer.py`, vérifie que
+`outils/illustrer/empreintes.txt` n'a pas changé (`git status`), puis lance
+`verifier-images.py` et `node --test`. `generer.py` réécrit ce fichier
+d'empreintes (une ligne par image) : après toute modification d'un script de
+dessin, relancer `generer.py` et valider `empreintes.txt` dans le même commit.
+`git diff -- outils/illustrer/empreintes.txt` liste les images modifiées.
 
 ## Règles
 
@@ -56,7 +59,7 @@ relancer `generer.py` et valider les SVG produits dans le même commit.
   `outils/illustrer/` puis on régénère.
 - **Ne pas toucher aux autres livres** en en ajoutant un : `generer.py` est
   déterministe livre par livre ; si un ajout dans `base.py`, `objets.py`, etc.
-  change des SVG existants, c'est une régression à corriger (sauf correction
+  change des lignes d'autres livres dans `empreintes.txt`, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
   `VERSION` dans `sw.js` (aujourd'hui `"v27"`, donc `"v27"` → `"v28"`) et
@@ -131,5 +134,6 @@ catalogue, cache, vérifications et revue visuelle des planches.
 
 - Messages de commit en français, à l'infinitif (« Ajouter… », « Corriger… »),
   avec un corps qui résume les livres ajoutés et les nouveaux totaux.
-- Ne pas committer `__pycache__/`, `_site/` ni les planches de revue
-  temporaires.
+- Ne pas committer `__pycache__/`, `_site/`, les SVG générés (ignorés par
+  git ; `git add -f` seulement pour un SVG fait à la main) ni les planches de
+  revue temporaires.

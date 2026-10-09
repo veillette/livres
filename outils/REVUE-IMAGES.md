@@ -562,3 +562,17 @@ et corrigées ; coccinelle présente sur toutes les pages pleines, vérifiée pa
 régénération complète sans changement des autres livres ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
 passe à `v27`.
+
+## Changement du 9 octobre 2026 : les SVG ne sont plus dans le dépôt
+
+Les 2 544 SVG de `livres/*/images/` sont retirés du suivi git
+(`.gitignore`) : la publication les dessine elle-même avec `generer.py`. À
+leur place, `generer.py` écrit `outils/illustrer/empreintes.txt`, une ligne
+par image (empreinte SHA-256 abrégée, puis `<id>/<nom>`). La publication
+échoue si les images qu'elle dessine n'ont pas les empreintes validées ;
+`verifier-images.py` signale aussi un SVG local périmé. `avant-apres.js`
+redessine l'« avant » à partir des scripts du commit de référence.
+
+Aucune image ne change : régénération complète identique aux SVG suivis
+jusqu'ici ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
+hors ligne reste à `v27`.

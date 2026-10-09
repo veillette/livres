@@ -730,8 +730,10 @@ class Scene:
 
     def enregistrer(self, chemin_fichier):
         os.makedirs(os.path.dirname(chemin_fichier), exist_ok=True)
+        texte = self.svg(chemin_fichier)
         with open(chemin_fichier, "w", encoding="utf-8") as fh:
-            fh.write(self.svg(chemin_fichier))
+            fh.write(texte)
+        return texte
 
 
 # ---------------------------------------------------------------------------
