@@ -189,6 +189,7 @@ outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 AGENTS.md           consignes pour les agents de code (non publiées)
 .claude/skills/     compétences nouveau-livre, direction-artistique, retoucher-livre (non publiées)
+.claude/hooks/      dessin des SVG au démarrage d'une session Claude Code dans le cloud
 ```
 
 ## Dessiner les illustrations

@@ -25,6 +25,7 @@ outils/imposition.test.js              tests de l'ordre des pages du livret
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
 sw.js                                  service worker (VERSION du cache)
 .claude/skills/                        compétences : nouveau-livre, direction-artistique, retoucher-livre
+.claude/hooks/session-start.sh         dessine les SVG au démarrage d'une session cloud
 ```
 
 ## Commandes
@@ -44,6 +45,9 @@ node --test                                   # tests de l'imposition du livret
 d'empreintes (une ligne par image) : après toute modification d'un script de
 dessin, relancer `generer.py` et valider `empreintes.txt` dans le même commit.
 `git diff -- outils/illustrer/empreintes.txt` liste les images modifiées.
+Dans une session Claude Code dans le cloud, le hook de démarrage
+(`.claude/hooks/session-start.sh`, déclaré dans `.claude/settings.json`)
+lance `generer.py` : les images sont déjà là.
 
 ## Règles
 
