@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **207 livres, 3 285 pages et
-2 832 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **214 livres, 3 386 pages et
+2 919 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -729,4 +729,44 @@ pleines hors espace, vérifiée par `cachettes.py --verifier` ; régénération
 complète sans changement des autres livres (`empreintes.txt` ne gagne que
 88 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
 cache hors ligne reste à `v30` (même lot de publication que les comptines).
+
+## Ajout du 10 octobre 2026 : sept fêtes
+
+Le rayon Fêtes passe de quatorze à vingt et un livres, 87 nouvelles
+illustrations (description du rayon mise à jour dans `catalogue.js`) :
+
+- *Le temps des sucres* (`temps-sucres`) : érablière sans feuilles sur la
+  neige, entaille, chalumeau et chaudière, traîneau à baril, cabane à
+  lanterneau fumant, évaporateur (40 litres d'eau d'érable pour un litre
+  de sirop), tire sur la neige, violon et danse ; tuques et ceinture
+  fléchée dessinées dans le script.
+- *Le dragon du Nouvel An* (`nouvel-an-lunaire`) : grand ménage, papiers
+  découpés, raviolis, réveillon, enveloppe rouge, légende de Nian, danse du
+  dragon et du lion, fête des lanternes à la pleine lune.
+- *Les lumières de Diwali* (`diwali`) : rangoli, diyas, Rama et Sita,
+  douceurs ; la nuit de la fête est sans lune (nouvelle lune).
+- *Les huit lumières de Hanoukka* (`hanoukka`) : hanoukkia à huit branches
+  et chamach surélevé, bougies placées de droite à gauche, chandelier du
+  Temple à sept branches, latkes et beignets, toupie aux lettres
+  hébraïques dessinées en tracés (pas de police nécessaire).
+- *La lune de l'Aïd* (`aid-lune`) : jeûne des grands, datte et eau au
+  coucher du soleil, premier croissant bas à l'ouest juste après le
+  coucher, côté éclairé tourné vers la lueur du Soleil couché ; henné,
+  don à la banque alimentaire, mosquée, douceurs ; le lendemain soir, le
+  croissant est plus épais et plus haut.
+- *Le Jour de la Terre* (`jour-terre`) : nettoyage du parc, tri, sac de
+  plastique repêché, arbre planté, robinet fermé, vélo.
+- *Les feux de la Saint-Jean* (`saint-jean`) : drapeaux bleus et blancs à
+  fleurs de lys, défilé, violon et accordéon, horloge à 20 h 30 en plein
+  jour (jours les plus longs), feu de joie derrière une barrière, feux
+  d'artifice.
+
+Contrôles : planches de toutes les pages des sept livres revues dans
+Chromium et corrigées (dragon recadré, visages dégagés des bulles, objets
+tenus) ; orientation des croissants vérifiée en grand ; coccinelle présente
+sur toutes les pages pleines, vérifiée par `cachettes.py --verifier` (en
+vol sur les pages de neige, que l'outil prend pour de l'eau) ; régénération
+complète sans changement des autres livres (`empreintes.txt` ne gagne que
+87 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
+cache hors ligne reste à `v30` (même lot de publication).
 
