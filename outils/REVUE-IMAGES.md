@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **194 livres, 3 096 pages et
-2 669 illustrations SVG** (cache hors ligne `v29`).
+Catalogue actuel, après les ajouts d'octobre : **240 livres, 3 780 pages et
+3 257 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -655,3 +655,263 @@ vérifiée par `cachettes.py --verifier` ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 73 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
 passe à `v29`.
+
+## Ajout du 10 octobre 2026 : six comptines
+
+Le rayon Comptines passe de quatre à dix livres, 75 nouvelles illustrations :
+
+- *Alouette, gentille alouette* (`alouette`) : la chanson, version
+  chatouilles : Margot chatouille l'alouette avec un épi de blé, de la tête
+  à la queue, puis l'alouette la chatouille à son tour. Alouette dessinée
+  dans le script (huppe, sourcil clair, dos rayé) ; l'épi va de la main de
+  Margot à la partie chantée, calculée sur le dessin.
+- *Une souris verte* (`souris-verte`) : la comptine, version douce (un bain
+  moussant, « un escargot tout chaud » en serviette roulée), puis sa suite :
+  le tiroir trop noir, le chapeau trop chaud, la poche à brioche et le lit.
+- *Promenons-nous dans les bois* (`promenons-nous`) : le loup s'habille
+  pièce par pièce (culotte, chemise, chaussettes, écharpe, chapeau,
+  lunettes), puis ne veut que jouer au loup et goûter.
+- *Cinq petits singes* (`cinq-singes`) : compte à rebours de cinq à zéro,
+  le docteur en médaillon au téléphone, pansements en croix, trampoline au
+  jardin pour finir.
+- *Grand, petit !* (`contraires`) : dix couples de contraires avec Panda et
+  Noisette l'écureuil, chaque mot écrit près de qui le porte.
+- *Rond, carré, triangle* (`formes-couleurs`) : formes et couleurs avec
+  Pinceau le lapin ; mélanges de peinture exacts (jaune et bleu font du
+  vert, rouge et jaune de l'orange, rouge et bleu du violet).
+
+Plans variés (gros plans aux refrains, cadres resserrés dans les
+répétitions), bulles hors zoom, objets tenus recalés sur les mains.
+
+Contrôles : planches de toutes les pages des six livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 75 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
+passe à `v30`.
+
+## Ajout du 10 octobre 2026 : sept métiers
+
+Le rayon Les métiers passe de dix à dix-sept livres, 88 nouvelles
+illustrations :
+
+- *Le camion de vidanges* (`camion-vidanges`) : Sami, éboueur ; camion à
+  chargement arrière dont le lève-bac renverse le bac dans la trémie,
+  compacteur en coupe, tri des bacs bleu, brun et noir, centre de tri,
+  compost, travail à l'aube sous la neige.
+- *Une journée à la bibliothèque* (`bibliothecaire`) : Monsieur Ali ; carte
+  d'abonnée, cote au dos des livres, escabeau, heure du conte, lecteur de
+  cartes, hôpital des livres, chute à livres éclairée le soir.
+- *Maya, astronaute* (`astronaute-maya`) : piscine d'entraînement,
+  décollage, station à 400 km qui fait le tour de la Terre en une heure et
+  demie, apesanteur (boule d'eau, tortillas sans miettes, sac de couchage au
+  mur, tapis à élastiques), sortie attachée, station vue de la Terre comme
+  un point qui ne clignote pas, retour sous parachutes. Les pages dans
+  l'espace et la piscine sont hors du jeu de la coccinelle.
+- *La cheffe Rosalie* (`cheffe-cuisine`) : marché à l'aube, lavage des
+  mains, brigade derrière le plan de travail, oignon qui pique les yeux,
+  tarte, « Service ! », plonge.
+- *L'autobus de Madame Nadia* (`autobus-nadia`) : vérifications au garage,
+  borne de paiement, miroirs, autobus qui s'abaisse et rampe pour un
+  passager en fauteuil roulant, place cédée, feu rouge sous la pluie,
+  doudou rendu, lavage du soir.
+- *Hugo, infirmier* (`infirmier-hugo`) : bras cassé ; bracelet,
+  thermomètre et brassard, radio de l'avant-bras (un os fendu), plâtre
+  violet, ronde de nuit, scie à plâtre qui vibre sans couper.
+- *Le garage de Sofia* (`garage-sofia`) : crevaison, dépanneuse à
+  plateau, pont élévateur, cric et clé, vidange, phares et clignotant, mur à
+  outils, chaîne de vélo remise.
+
+Contrôles : planches de toutes les pages des sept livres revues dans
+Chromium et corrigées (personnages derrière les comptoirs, objets tenus,
+bulles qui masquaient un visage) ; coccinelle présente sur toutes les pages
+pleines hors espace, vérifiée par `cachettes.py --verifier` ; régénération
+complète sans changement des autres livres (`empreintes.txt` ne gagne que
+88 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
+cache hors ligne reste à `v30` (même lot de publication que les comptines).
+
+## Ajout du 10 octobre 2026 : sept fêtes
+
+Le rayon Fêtes passe de quatorze à vingt et un livres, 87 nouvelles
+illustrations (description du rayon mise à jour dans `catalogue.js`) :
+
+- *Le temps des sucres* (`temps-sucres`) : érablière sans feuilles sur la
+  neige, entaille, chalumeau et chaudière, traîneau à baril, cabane à
+  lanterneau fumant, évaporateur (40 litres d'eau d'érable pour un litre
+  de sirop), tire sur la neige, violon et danse ; tuques et ceinture
+  fléchée dessinées dans le script.
+- *Le dragon du Nouvel An* (`nouvel-an-lunaire`) : grand ménage, papiers
+  découpés, raviolis, réveillon, enveloppe rouge, légende de Nian, danse du
+  dragon et du lion, fête des lanternes à la pleine lune.
+- *Les lumières de Diwali* (`diwali`) : rangoli, diyas, Rama et Sita,
+  douceurs ; la nuit de la fête est sans lune (nouvelle lune).
+- *Les huit lumières de Hanoukka* (`hanoukka`) : hanoukkia à huit branches
+  et chamach surélevé, bougies placées de droite à gauche, chandelier du
+  Temple à sept branches, latkes et beignets, toupie aux lettres
+  hébraïques dessinées en tracés (pas de police nécessaire).
+- *La lune de l'Aïd* (`aid-lune`) : jeûne des grands, datte et eau au
+  coucher du soleil, premier croissant bas à l'ouest juste après le
+  coucher, côté éclairé tourné vers la lueur du Soleil couché ; henné,
+  don à la banque alimentaire, mosquée, douceurs ; le lendemain soir, le
+  croissant est plus épais et plus haut.
+- *Le Jour de la Terre* (`jour-terre`) : nettoyage du parc, tri, sac de
+  plastique repêché, arbre planté, robinet fermé, vélo.
+- *Les feux de la Saint-Jean* (`saint-jean`) : drapeaux bleus et blancs à
+  fleurs de lys, défilé, violon et accordéon, horloge à 20 h 30 en plein
+  jour (jours les plus longs), feu de joie derrière une barrière, feux
+  d'artifice.
+
+Contrôles : planches de toutes les pages des sept livres revues dans
+Chromium et corrigées (dragon recadré, visages dégagés des bulles, objets
+tenus) ; orientation des croissants vérifiée en grand ; coccinelle présente
+sur toutes les pages pleines, vérifiée par `cachettes.py --verifier` (en
+vol sur les pages de neige, que l'outil prend pour de l'eau) ; régénération
+complète sans changement des autres livres (`empreintes.txt` ne gagne que
+87 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
+cache hors ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : six documentaires animaliers
+
+Six livres au rayon « Les animaux », tous à quatre pattes (ou nageoires,
+ou élytres) dessinées dans leur script, sans personnage habillé :
+
+- *Le grand voyage du monarque* (`monarque`) : œuf sous la feuille
+  d'asclépiade, chenille rayée, chrysalide verte à points dorés, couleurs
+  d'avertissement, migration jusqu'aux forêts du Mexique, retour en
+  plusieurs générations.
+- *Le castor bâtisseur* (`castor-batisseur`) : dents orange (le fer),
+  arbre rongé en sablier, barrage, hutte en coupe avec l'entrée sous l'eau,
+  coup de queue d'alerte, réserve de branches et étang gelé en surface.
+- *L'orignal du marais* (`orignal`) : plantes aquatiques, jumeaux roux,
+  bois en velours qui tombent au début de l'hiver, cloche sous la gorge,
+  taille comparée à une grande personne, rameaux d'hiver.
+- *Le voyage du saumon* (`voyage-saumon`) : œufs dans le gravier, alevins
+  et leur réserve, tacon tacheté, saumoneau argenté, l'odeur de la
+  rivière natale, chute vue de face, passe à poissons avec vitre, nid creusé
+  à la queue ; le saumon atlantique peut retourner à la mer.
+- *Le loup et sa meute* (`loup-meute`) : la meute est une famille, file
+  indienne dans la neige, hurlement (pas pour la Lune), louveteaux nés les
+  yeux fermés dans la tanière, grande sœur qui garde les petits, langage du
+  corps (queue haute, oreilles couchées, révérence du jeu), chasse souvent
+  ratée, sommeil en boule la queue sur le nez ; un loup timide.
+- *La petite coccinelle* (`coccinelle`) : œufs jaunes près des pucerons,
+  larve « petit crocodile », nymphe, adulte tout pâle puis rouge, élytres et
+  ailes de vol, liquide amer, nombre de points selon l'espèce (pas l'âge),
+  hivernage en groupe. La petite bête cachée y est une souris (`CACHE`).
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(chute d'eau redessinée de face, embouchure vue d'en haut, cous et queues
+des loups, pattes et élytres de la coccinelle, échelles des insectes près
+des personnages) ; petite bête présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` (petit poisson sous l'eau, souris
+posée dans le livre de la coccinelle) ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 81 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
+ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : huit petites histoires
+
+Huit livres au rayon « Petites histoires », pour les grandes étapes et les
+petits chagrins du quotidien :
+
+- *Et moi, alors ?* (`leo-petite-soeur`) : la jalousie de Léo à l'arrivée
+  de Rose ; bébé emmailloté, couffin, canapé où l'on s'assoit (dossier et
+  assise dessinés de part et d'autre des personnages).
+- *Au revoir, la couche !* (`lapinou-pot`) : Lapinou apprend le pot, avec
+  un accident dédramatisé et une couche encore la nuit ; pot vu de face qui
+  cache les jambes (assis), lavabo devant le personnage (vu « en miroir »).
+- *Bulle, bulle, savon !* (`porcelet-mains`) : microbes rigolos sous la
+  loupe, l'eau seule ne suffit pas, frotter partout le temps de deux
+  « Joyeux anniversaire », quand se laver les mains, éternuer dans son coude.
+- *Juste une petite bouchée* (`sami-legumes`) : semer, arroser, récolter,
+  cuisiner, goûter ; le radis « pas encore » (les goûts changent).
+- *Où est passé mon dinosaure ?* (`ines-range`) : chaque jouet a sa maison,
+  ranger en chanson, Dino retrouvé sous le lit.
+- *Mon amie Jade roule vite* (`jade-fauteuil`) : amitié avec une enfant en
+  fauteuil roulant (demander avant d'aider, rampe, basket en fauteuil) ;
+  fauteuil vu de face, assise plus basse que la hanche d'un enfant debout.
+- *Ce n'est pas moi !* (`lila-pas-moi`) : accuser le chat, le dragon
+  invisible, puis dire la vérité et réparer (autre angle que
+  `renard-pot`, qui parle de cacher une bêtise).
+- *Au revoir, Grisou* (`grisou-au-revoir`) : la mort d'un vieux chat, dite
+  avec des mots vrais (« il est mort », « il ne reviendra pas »), sans
+  culpabilité, un rosier planté, le droit de rire en se souvenant.
+
+Nouveau dessin partagé : `chat_profil()` dans `objets.py` (chat de maison,
+corps de profil et tête de face : assis, couché, en boule, qui marche),
+utilisé par Lila et Grisou ; il ne change aucun autre livre.
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(échelle des personnages dans les intérieurs, adultes nettement plus grands
+que les enfants, objets tenus hors des visages, personnages derrière les
+tables et lavabos) ; petite bête présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 111 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
+ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : huit contes
+
+Huit livres au rayon « Contes traditionnels », adoucis pour les petits (la
+patine des contes s'applique d'elle-même) :
+
+- *La Belle au bois dormant* (`belle-bois-dormant`) : le sort adouci en cent
+  ans de sommeil, le château endormi, les ronces fleuries ; le réveil comme
+  chez Perrault (les cent ans finissent, sans baiser), et cette fois on
+  invite la vieille fée.
+- *Blanche-Neige* (`blanche-neige`) : le miroir, le chasseur au bon cœur,
+  les sept nains (bonnets de couleur), la pomme ; le morceau de pomme
+  tombe quand le prince la soulève (comme chez Grimm) ; la reine s'enfuit.
+- *Le Stoïque Soldat de plomb* (`soldat-plomb`) : soldat et danseuse
+  dessinés dans le script (vingt-quatre frères à deux jambes, lui à une
+  seule), le rat, le poisson, la cuisine de la même maison ; ni feu ni
+  fonte : un coup de vent pose la danseuse à côté de lui.
+- *Pierre et le Loup* (`pierre-loup`) : page des instruments (flûte,
+  hautbois, clarinette, basson, cors, timbales, violons) ; le canard se
+  cache dans les roseaux au lieu d'être avalé ; le loup part au zoo.
+- *Ti-Jean et les animaux* (`ti-jean-animaux`) : le conte des animaux
+  reconnaissants à la manière des contes de Ti-Jean (tuque bleue, ceinture
+  fléchée, forêt d'érables, sirop d'érable pour la dernière épreuve).
+- *Momotaro, le garçon de la pêche* (`momotaro`) : kibi dango partagés,
+  chien blanc, singe, faisan ; les oni demandent pardon, sans combat.
+- *Anansi et la boîte à histoires* (`anansi-histoires`) : Nyamé en kente,
+  les ruses d'Anansi sans blesser personne, les histoires qui s'envolent.
+- *La légende du colibri* (`colibri-part`) : « Je fais ma part » ; dans
+  cette version les autres animaux l'imitent, la pluie arrive, la forêt
+  repousse ; dernière page : « Et toi, quelle est ta part ? ».
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(tuque qui ressemblait à un bonnet de Père Noël, corde du loup détournée
+du visage, abeille posée sur les lèvres, princesse posée sur les petits
+lits, oni sans bataille) ; petite bête présente sur toutes les pages
+pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
+sans changement des autres livres (`empreintes.txt` ne gagne que 105
+lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
+hors ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : quatre fables
+
+Quatre livres au rayon « Fables », chacun avec sa page de morale :
+
+- *Le Vent et le Soleil* (`vent-soleil`), d'après Ésope et La Fontaine
+  (« Phébus et Borée ») : le Vent en nuage aux joues gonflées, le Soleil
+  souriant, le voyageur au manteau rouge ; « Plus fait douceur que
+  violence ».
+- *Le Chat, la Belette et le Petit Lapin* (`chat-belette-lapin`) : adoucie,
+  Raminagrobis bondit mais les deux plaideurs s'échappent et deviennent
+  voisins ; la belette est dessinée avec la silhouette du renard, en brun.
+- *La Chauve-souris et les deux Belettes* (`chauve-souris-belettes`) :
+  terrier éclairé pour que la chauve-souris brune se détache ; dernière
+  page « Le savais-tu ? » : ni oiseau ni souris, un mammifère qui vole.
+- *L'Alouette et ses Petits* (`alouette-petits`) : la même alouette que la
+  comptine (dessin repris dans le script) ; « Ne t'attends qu'à toi seul ».
+
+Le rayon dit désormais « Les fables de La Fontaine (et d'Ésope) ».
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(page de dispute remplie, texte dégagé du visage, manteau posé dans
+l'herbe, contraste du terrier) ; petite bête présente sur toutes les pages
+pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
+sans changement des autres livres (`empreintes.txt` ne gagne que 41
+lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
+hors ligne reste à `v30` (même lot de publication).
