@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **236 livres, 3 727 pages et
-3 216 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **240 livres, 3 780 pages et
+3 257 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -886,5 +886,32 @@ du visage, abeille posée sur les lèvres, princesse posée sur les petits
 lits, oni sans bataille) ; petite bête présente sur toutes les pages
 pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
 sans changement des autres livres (`empreintes.txt` ne gagne que 105
+lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
+hors ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : quatre fables
+
+Quatre livres au rayon « Fables », chacun avec sa page de morale :
+
+- *Le Vent et le Soleil* (`vent-soleil`), d'après Ésope et La Fontaine
+  (« Phébus et Borée ») : le Vent en nuage aux joues gonflées, le Soleil
+  souriant, le voyageur au manteau rouge ; « Plus fait douceur que
+  violence ».
+- *Le Chat, la Belette et le Petit Lapin* (`chat-belette-lapin`) : adoucie,
+  Raminagrobis bondit mais les deux plaideurs s'échappent et deviennent
+  voisins ; la belette est dessinée avec la silhouette du renard, en brun.
+- *La Chauve-souris et les deux Belettes* (`chauve-souris-belettes`) :
+  terrier éclairé pour que la chauve-souris brune se détache ; dernière
+  page « Le savais-tu ? » : ni oiseau ni souris, un mammifère qui vole.
+- *L'Alouette et ses Petits* (`alouette-petits`) : la même alouette que la
+  comptine (dessin repris dans le script) ; « Ne t'attends qu'à toi seul ».
+
+Le rayon dit désormais « Les fables de La Fontaine (et d'Ésope) ».
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(page de dispute remplie, texte dégagé du visage, manteau posé dans
+l'herbe, contraste du terrier) ; petite bête présente sur toutes les pages
+pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
+sans changement des autres livres (`empreintes.txt` ne gagne que 41
 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
 hors ligne reste à `v30` (même lot de publication).

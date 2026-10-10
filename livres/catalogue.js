@@ -160,6 +160,10 @@ window.CATALOGUE = [
   "rat-huitre",
   "deux-pigeons",
   "deux-anes",
+  "vent-soleil",
+  "chat-belette-lapin",
+  "chauve-souris-belettes",
+  "alouette-petits",
   "ours-compagnons",
   "trois-petits-cochons",
   "boucle-or",
@@ -254,6 +258,6 @@ window.RAYONS = [
   { id: "fetes", nom: "Fêtes", icone: "🎉", description: "Noël, Hanoukka, Diwali, l'Aïd, le Nouvel An lunaire, Pâques, Halloween, la Saint-Jean, le temps des sucres… Vingt et une histoires pour célébrer les fêtes et ceux qu'on aime." },
   { id: "comptines", nom: "Comptines", icone: "🎵", description: "Pour compter, nommer et jouer avec les mots." },
   { id: "feerie", nom: "Princesses, fées et dragons", icone: "🧚", description: "Princesses, sirènes, fées, héroïnes, licornes, dragons et sorcières d'aujourd'hui." },
-  { id: "fables", nom: "Fables", icone: "🦊", description: "Les fables de La Fontaine (et une d'Ésope), racontées aux petits." },
+  { id: "fables", nom: "Fables", icone: "🦊", description: "Les fables de La Fontaine (et d'Ésope), racontées aux petits." },
   { id: "contes", nom: "Contes traditionnels", icone: "🏰", description: "Perrault, Grimm, Andersen et les contes du monde entier." },
 ];
