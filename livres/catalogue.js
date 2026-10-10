@@ -203,6 +203,13 @@ window.CATALOGUE = [
   "agricultrice-ferme",
   "maitre-ecole",
   "chantier-maison",
+  "camion-vidanges",
+  "bibliothecaire",
+  "astronaute-maya",
+  "cheffe-cuisine",
+  "autobus-nadia",
+  "infirmier-hugo",
+  "garage-sofia",
 ];
 
 /*

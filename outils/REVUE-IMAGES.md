@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **200 livres, 3 183 pages et
-2 744 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **207 livres, 3 285 pages et
+2 832 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -689,3 +689,44 @@ vérifiée par `cachettes.py --verifier` ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 75 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
 passe à `v30`.
+
+## Ajout du 10 octobre 2026 : sept métiers
+
+Le rayon Les métiers passe de dix à dix-sept livres, 88 nouvelles
+illustrations :
+
+- *Le camion de vidanges* (`camion-vidanges`) : Sami, éboueur ; camion à
+  chargement arrière dont le lève-bac renverse le bac dans la trémie,
+  compacteur en coupe, tri des bacs bleu, brun et noir, centre de tri,
+  compost, travail à l'aube sous la neige.
+- *Une journée à la bibliothèque* (`bibliothecaire`) : Monsieur Ali ; carte
+  d'abonnée, cote au dos des livres, escabeau, heure du conte, lecteur de
+  cartes, hôpital des livres, chute à livres éclairée le soir.
+- *Maya, astronaute* (`astronaute-maya`) : piscine d'entraînement,
+  décollage, station à 400 km qui fait le tour de la Terre en une heure et
+  demie, apesanteur (boule d'eau, tortillas sans miettes, sac de couchage au
+  mur, tapis à élastiques), sortie attachée, station vue de la Terre comme
+  un point qui ne clignote pas, retour sous parachutes. Les pages dans
+  l'espace et la piscine sont hors du jeu de la coccinelle.
+- *La cheffe Rosalie* (`cheffe-cuisine`) : marché à l'aube, lavage des
+  mains, brigade derrière le plan de travail, oignon qui pique les yeux,
+  tarte, « Service ! », plonge.
+- *L'autobus de Madame Nadia* (`autobus-nadia`) : vérifications au garage,
+  borne de paiement, miroirs, autobus qui s'abaisse et rampe pour un
+  passager en fauteuil roulant, place cédée, feu rouge sous la pluie,
+  doudou rendu, lavage du soir.
+- *Hugo, infirmier* (`infirmier-hugo`) : bras cassé ; bracelet,
+  thermomètre et brassard, radio de l'avant-bras (un os fendu), plâtre
+  violet, ronde de nuit, scie à plâtre qui vibre sans couper.
+- *Le garage de Sofia* (`garage-sofia`) : crevaison, dépanneuse à
+  plateau, pont élévateur, cric et clé, vidange, phares et clignotant, mur à
+  outils, chaîne de vélo remise.
+
+Contrôles : planches de toutes les pages des sept livres revues dans
+Chromium et corrigées (personnages derrière les comptoirs, objets tenus,
+bulles qui masquaient un visage) ; coccinelle présente sur toutes les pages
+pleines hors espace, vérifiée par `cachettes.py --verifier` ; régénération
+complète sans changement des autres livres (`empreintes.txt` ne gagne que
+88 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
+cache hors ligne reste à `v30` (même lot de publication que les comptines).
+
