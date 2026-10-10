@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **194 livres, 3 096 pages et
-2 669 illustrations SVG** (cache hors ligne `v29`).
+Catalogue actuel, après les ajouts d'octobre : **200 livres, 3 183 pages et
+2 744 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -655,3 +655,37 @@ vérifiée par `cachettes.py --verifier` ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 73 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
 passe à `v29`.
+
+## Ajout du 10 octobre 2026 : six comptines
+
+Le rayon Comptines passe de quatre à dix livres, 75 nouvelles illustrations :
+
+- *Alouette, gentille alouette* (`alouette`) : la chanson, version
+  chatouilles : Margot chatouille l'alouette avec un épi de blé, de la tête
+  à la queue, puis l'alouette la chatouille à son tour. Alouette dessinée
+  dans le script (huppe, sourcil clair, dos rayé) ; l'épi va de la main de
+  Margot à la partie chantée, calculée sur le dessin.
+- *Une souris verte* (`souris-verte`) : la comptine, version douce (un bain
+  moussant, « un escargot tout chaud » en serviette roulée), puis sa suite :
+  le tiroir trop noir, le chapeau trop chaud, la poche à brioche et le lit.
+- *Promenons-nous dans les bois* (`promenons-nous`) : le loup s'habille
+  pièce par pièce (culotte, chemise, chaussettes, écharpe, chapeau,
+  lunettes), puis ne veut que jouer au loup et goûter.
+- *Cinq petits singes* (`cinq-singes`) : compte à rebours de cinq à zéro,
+  le docteur en médaillon au téléphone, pansements en croix, trampoline au
+  jardin pour finir.
+- *Grand, petit !* (`contraires`) : dix couples de contraires avec Panda et
+  Noisette l'écureuil, chaque mot écrit près de qui le porte.
+- *Rond, carré, triangle* (`formes-couleurs`) : formes et couleurs avec
+  Pinceau le lapin ; mélanges de peinture exacts (jaune et bleu font du
+  vert, rouge et jaune de l'orange, rouge et bleu du violet).
+
+Plans variés (gros plans aux refrains, cadres resserrés dans les
+répétitions), bulles hors zoom, objets tenus recalés sur les mains.
+
+Contrôles : planches de toutes les pages des six livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 75 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
+passe à `v30`.
