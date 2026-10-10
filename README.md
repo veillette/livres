@@ -54,7 +54,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v28"`, donc `"v28"` → `"v29"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v29"`, donc `"v29"` → `"v30"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -194,8 +194,8 @@ AGENTS.md           consignes pour les agents de code (non publiées)
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (189 livres, 3 012 pages,
-2 596 SVG) sont
+Les illustrations de tous les livres du catalogue (194 livres, 3 096 pages,
+2 669 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 
@@ -319,6 +319,11 @@ générées par un petit outil Python, sans aucune dépendance, dans
   avec ses variables `ID` et `IMAGES`. Les personnages et schémas propres à un
   seul livre y sont aussi dessinés : circuit de Zoé, poulies de Castor,
   balançoire de Basile, thermomètres de Tilou…
+- `dragons.py` : accessoires partagés par les histoires de dragons (dragon
+  de `fantastique.py` habillé d'un chapeau, d'une couronne, de lunettes ou de
+  moustaches, dragon couché qui dort, jets de feu, de fumée, de brouillard et
+  de givre, petite flamme, tas d'or, coffre, nid de paille, grotte à porte
+  ronde, lanterne de papier…) ;
 - `fetes.py` : accessoires partagés par les livres du rayon « Fêtes »
   (lanternes, guirlandes lumineuses et fanions, cadeaux, sapin décoré, étoile
   en papier, œufs peints et cloches de Pâques, citrouilles creusées, confettis,
