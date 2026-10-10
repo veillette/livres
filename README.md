@@ -194,8 +194,8 @@ AGENTS.md           consignes pour les agents de code (non publiées)
 
 ## Dessiner les illustrations
 
-Les illustrations de tous les livres du catalogue (228 livres, 3 606 pages,
-3 111 SVG) sont
+Les illustrations de tous les livres du catalogue (236 livres, 3 727 pages,
+3 216 SVG) sont
 générées par un petit outil Python, sans aucune dépendance, dans
 `outils/illustrer/` :
 

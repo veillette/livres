@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **228 livres, 3 606 pages et
-3 111 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **236 livres, 3 727 pages et
+3 216 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -849,3 +849,42 @@ vérifiée par `cachettes.py --verifier` ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 111 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
 ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : huit contes
+
+Huit livres au rayon « Contes traditionnels », adoucis pour les petits (la
+patine des contes s'applique d'elle-même) :
+
+- *La Belle au bois dormant* (`belle-bois-dormant`) : le sort adouci en cent
+  ans de sommeil, le château endormi, les ronces fleuries ; le réveil comme
+  chez Perrault (les cent ans finissent, sans baiser), et cette fois on
+  invite la vieille fée.
+- *Blanche-Neige* (`blanche-neige`) : le miroir, le chasseur au bon cœur,
+  les sept nains (bonnets de couleur), la pomme ; le morceau de pomme
+  tombe quand le prince la soulève (comme chez Grimm) ; la reine s'enfuit.
+- *Le Stoïque Soldat de plomb* (`soldat-plomb`) : soldat et danseuse
+  dessinés dans le script (vingt-quatre frères à deux jambes, lui à une
+  seule), le rat, le poisson, la cuisine de la même maison ; ni feu ni
+  fonte : un coup de vent pose la danseuse à côté de lui.
+- *Pierre et le Loup* (`pierre-loup`) : page des instruments (flûte,
+  hautbois, clarinette, basson, cors, timbales, violons) ; le canard se
+  cache dans les roseaux au lieu d'être avalé ; le loup part au zoo.
+- *Ti-Jean et les animaux* (`ti-jean-animaux`) : le conte des animaux
+  reconnaissants à la manière des contes de Ti-Jean (tuque bleue, ceinture
+  fléchée, forêt d'érables, sirop d'érable pour la dernière épreuve).
+- *Momotaro, le garçon de la pêche* (`momotaro`) : kibi dango partagés,
+  chien blanc, singe, faisan ; les oni demandent pardon, sans combat.
+- *Anansi et la boîte à histoires* (`anansi-histoires`) : Nyamé en kente,
+  les ruses d'Anansi sans blesser personne, les histoires qui s'envolent.
+- *La légende du colibri* (`colibri-part`) : « Je fais ma part » ; dans
+  cette version les autres animaux l'imitent, la pluie arrive, la forêt
+  repousse ; dernière page : « Et toi, quelle est ta part ? ».
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(tuque qui ressemblait à un bonnet de Père Noël, corde du loup détournée
+du visage, abeille posée sur les lèvres, princesse posée sur les petits
+lits, oni sans bataille) ; petite bête présente sur toutes les pages
+pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
+sans changement des autres livres (`empreintes.txt` ne gagne que 105
+lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
+hors ligne reste à `v30` (même lot de publication).
