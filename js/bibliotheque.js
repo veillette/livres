@@ -4,6 +4,9 @@
  * Les boutons du haut affichent un seul rayon ou tous ; le choix est gardé
  * dans l'adresse (index.html#fables) pour que le bouton « retour » du
  * navigateur et les liens « Bibliothèque » y ramènent.
+ *
+ * Le premier rayon, « Nouveautés », reprend les livres ajoutés ou revus le
+ * plus récemment (`livres/nouveautes.js`, écrit par `outils/nouveautes.py`).
  */
 (async function () {
   "use strict";
@@ -11,9 +14,24 @@
   const etageres = document.getElementById("etageres");
   const filtres = document.getElementById("rayons");
 
-  function carte(livre) {
+  const moisCourts = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+
+  /* « 10 oct. 2026 » à partir de « 2026-10-10 ». */
+  function dateCourte(iso) {
+    const [annee, mois, jour] = iso.split("-").map(Number);
+    return `${jour === 1 ? "1er" : jour} ${moisCourts[mois - 1]} ${annee}`;
+  }
+
+  function carte(livre, nouveaute) {
     const article = document.createElement("article");
     article.className = "carte";
+
+    if (nouveaute) {
+      const pastille = document.createElement("p");
+      pastille.className = `carte__pastille carte__pastille--${nouveaute.etat}`;
+      pastille.textContent = `${nouveaute.etat === "nouveau" ? "Nouveau" : "Revu"} · ${dateCourte(nouveaute.date)}`;
+      article.appendChild(pastille);
+    }
 
     const lien = document.createElement("a");
     lien.className = "carte__couverture";
@@ -51,7 +69,17 @@
     const autres = { id: "autres", nom: "Autres livres", icone: "📚", livres: [] };
     const parId = new Map(rayons.map((r) => [r.id, r]));
     livres.forEach((livre) => (parId.get(livre.rayon) || autres).livres.push(livre));
-    return [...rayons, autres].filter((r) => r.livres.length > 0);
+    const parLivre = new Map(livres.map((l) => [l.id, l]));
+    const recents = (window.NOUVEAUTES || []).filter((n) => parLivre.has(n.id));
+    const nouveautes = {
+      id: "nouveautes",
+      nom: "Nouveautés",
+      icone: "✨",
+      description: "Les derniers livres ajoutés ou revus dans la bibliothèque, du plus récent au plus ancien.",
+      livres: recents.map((n) => parLivre.get(n.id)),
+      nouveautes: recents,
+    };
+    return [nouveautes, ...rayons, autres].filter((r) => r.livres.length > 0);
   }
 
   function section(rayon) {
@@ -80,7 +108,7 @@
 
     const grille = document.createElement("div");
     grille.className = "rayon__livres";
-    rayon.livres.forEach((livre) => grille.appendChild(carte(livre)));
+    rayon.livres.forEach((livre, i) => grille.appendChild(carte(livre, rayon.nouveautes && rayon.nouveautes[i])));
     el.appendChild(grille);
     return el;
   }

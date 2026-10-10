@@ -7,6 +7,8 @@ et les **imprimer sur des feuilles** pour en faire de vrais livres.
   Les métiers, Fêtes, Comptines, Princesses, fées et dragons, Fables, Contes traditionnels). Les boutons du haut
   n'affichent qu'un rayon ; `index.html#fables` ouvre directement le rayon des
   fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
+  Le premier rayon, « ✨ Nouveautés » (`index.html#nouveautes`), reprend les
+  vingt livres ajoutés ou revus le plus récemment, avec leur date.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
   précédente / suivante, Début / Fin, glisser du doigt ; double page dès
   900 px de large, si l'écran est nettement plus large que haut ; lecture à
@@ -54,7 +56,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v30"`, donc `"v30"` → `"v31"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v31"`, donc `"v31"` → `"v32"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -122,7 +124,13 @@ trouver le bon sens).
    est l'ordre d'affichage dans chaque rayon). Les rayons possibles sont listés
    dans `RAYONS`, au bas du même fichier : on peut en ajouter un (identifiant,
    nom, icône, description).
-5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne.
+5. Augmenter `VERSION` dans `sw.js` pour la lecture hors ligne, puis lancer
+   `python3 outils/nouveautes.py` : il réécrit `livres/nouveautes.js`, la
+   liste des vingt livres ajoutés ou revus le plus récemment, d'après
+   l'historique git (les fichiers pas encore validés comptent pour
+   aujourd'hui ; un commit qui touche plus de dix livres à la fois, comme une
+   retouche d'ensemble, ne compte pas comme une reprise). La publication le
+   relance de toute façon.
 6. Lancer `python3 outils/verifier-images.py` (la publication échoue si cette
    vérification trouve une erreur). Si les images viennent du générateur,
    relancer aussi `generer.py` et valider le script de dessin avec
@@ -181,6 +189,8 @@ sw.js               service worker (cache hors ligne)
 manifest.webmanifest, icones/   description de l'application et icônes
 polices/            polices Andika et Fredoka (licence OFL), hébergées avec le site
 livres/             un dossier par livre + catalogue.js (liste et rayons)
+livres/nouveautes.js   les vingt derniers livres ajoutés ou revus (écrit par outils/nouveautes.py)
+outils/nouveautes.py   écriture de livres/nouveautes.js d'après l'historique git (non publié)
 outils/illustrer/   générateur des illustrations SVG (Python, non publié)
 outils/illustrer/empreintes.txt   empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py   vérification des livres et des images (non publiée)
@@ -399,6 +409,7 @@ node --test
 Avant chaque publication, GitHub Actions dessine toutes les illustrations
 avec `generer.py` : si leurs empreintes diffèrent de
 `outils/illustrer/empreintes.txt`, la publication s'arrête. Puis elle lance
-cette vérification et ces tests. Le site est publié sans `outils/illustrer/`,
+cette vérification et ces tests, et réécrit `livres/nouveautes.js` avec
+`outils/nouveautes.py` (d'où un checkout de tout l'historique). Le site est publié sans `outils/illustrer/`,
 les scripts Python ni les tests ; la revue des images
 (`outils/revue-images.html`) reste en ligne.

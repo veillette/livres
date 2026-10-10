@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **240 livres, 3 780 pages et
-3 257 illustrations SVG** (cache hors ligne `v30`).
+3 257 illustrations SVG** (cache hors ligne `v31`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -915,3 +915,12 @@ pleines, vérifiée par `cachettes.py --verifier` ; régénération complète
 sans changement des autres livres (`empreintes.txt` ne gagne que 41
 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le cache
 hors ligne reste à `v30` (même lot de publication).
+
+## Rayon « Nouveautés » du 10 octobre 2026
+
+Aucune illustration modifiée. L'accueil gagne un premier rayon
+« ✨ Nouveautés » : les vingt livres ajoutés ou revus le plus récemment,
+avec une pastille « Nouveau » ou « Revu » et la date
+(`livres/nouveautes.js`, écrit par `outils/nouveautes.py` d'après
+l'historique git). Le cache hors ligne passe à `v31` pour enregistrer ce
+nouveau fichier.

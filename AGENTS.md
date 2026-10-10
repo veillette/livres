@@ -17,6 +17,7 @@ css/, js/                              interface (aucun framework)
 livres/<id>/livre.js                   texte et pages d'un livre
 livres/<id>/images/                    illustrations (SVG générés, non suivis par git)
 livres/catalogue.js                    ordre d'affichage + rayons (RAYONS)
+livres/nouveautes.js                   20 derniers livres ajoutés ou revus (écrit par outils/nouveautes.py)
 outils/illustrer/                      générateur des SVG (non publié)
 outils/illustrer/histoires/<id>.py     dessins d'un livre (tirets → soulignés)
 outils/illustrer/empreintes.txt        empreinte de chaque SVG généré (suivie par git)
@@ -35,6 +36,7 @@ python3 outils/illustrer/generer.py           # dessiner toutes les images (à f
 python3 -m http.server                        # voir le site : http://localhost:8000
 python3 outils/illustrer/generer.py <id>      # régénérer un seul livre
 python3 outils/verifier-images.py             # vérifier livres et images (doit dire 0 erreur)
+python3 outils/nouveautes.py                  # rayon « Nouveautés » : réécrire livres/nouveautes.js
 node --test                                   # tests de l'imposition du livret
 ```
 
@@ -66,11 +68,13 @@ lance `generer.py` : les images sont déjà là.
   change des lignes d'autres livres dans `empreintes.txt`, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (aujourd'hui `"v30"`, donc `"v30"` → `"v31"`) et
+  `VERSION` dans `sw.js` (aujourd'hui `"v31"`, donc `"v31"` → `"v32"`) et
   mettre à jour les totaux (livres, pages, SVG) du README (section
   « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
   qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche
-  les totaux exacts.
+  les totaux exacts. Relancer aussi `python3 outils/nouveautes.py` et valider
+  `livres/nouveautes.js` (la publication le réécrit de toute façon, d'après
+  l'historique git).
 - **Documentation à jour** : dans le même changement, relire les textes qui
   décrivent ce qui a bougé et les corriger. Le README porte les commandes,
   les types de pages, l'arborescence et les totaux ; ce fichier et les
