@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **189 livres, 3 012 pages et
-2 596 illustrations SVG** (cache hors ligne `v28`).
+Catalogue actuel, après les ajouts d'octobre : **194 livres, 3 096 pages et
+2 669 illustrations SVG** (cache hors ligne `v29`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -613,3 +613,45 @@ vérifiée par `cachettes.py --verifier` ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 52 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
 passe à `v28`.
+
+## Ajout du 10 octobre 2026 : cinq histoires de dragons
+
+Cinq livres de dragons, 73 nouvelles illustrations :
+
+- *Boucle d'or et les trois dragons* (`boucle-or-dragons`, Princesses, fées
+  et dragons) : le conte des trois ours dans une grotte à porte ronde ; la
+  soupe réchauffée d'un souffle de feu, un tas d'or, des coussins et un nid
+  de paille pour lits ; au réveil, Boucle d'or demande pardon et tout le
+  monde mange ensemble.
+- *Les dragons musiciens* (`dragons-musiciens`, Princesses, fées et
+  dragons) : les musiciens de Brême avec Tison et ses ronds de fumée, Brume
+  et son brouillard, Plume qui ne vole pas et Étincelle qui a le hoquet ; la
+  pyramide de dragons fait fuir les brigands et le trésor revient au roi.
+- *L'école des petits dragons* (`ecole-dragons`, Princesses, fées et
+  dragons) : histoire originale ; Flammèche, au tout petit feu, rate ses
+  leçons mais est la seule à allumer les lanternes de papier sans les
+  brûler.
+- *Le lapin et le Roi Dragon* (`lapin-roi-dragon`, Contes traditionnels) :
+  d'après le conte coréen ; palais sous la mer aux toits de tuiles
+  recourbés, médecin poulpe, portrait du lapin, ruse du foie qui sèche sur
+  un rocher ; la fin offre au roi une racine de ginseng.
+- *Le Serpent arc-en-ciel* (`serpent-arc-en-ciel`, Contes traditionnels) :
+  d'après une légende des Aborigènes d'Australie, sans imiter leurs
+  peintures ; le Serpent creuse les vallées, chatouille les grenouilles
+  pleines d'eau et réveille les animaux (kangourou, émeu, koala, lézard).
+  L'arc-en-ciel final a le rouge à l'extérieur et le Soleil hors de l'image,
+  dans le dos de qui le regarde.
+
+Nouveau module partagé `outils/illustrer/dragons.py` (dragon habillé,
+dragon couché, jets de feu, de fumée et de givre, brouillard, tas d'or,
+coffre, nid, grotte, lanterne de papier) : il n'est utilisé que par ces
+livres. Plans variés (gros plans aux moments forts, contre-plongée sur
+Tison, plongée sur la vallée), halos des torches, fenêtres et lanternes la
+nuit, souffles dirigés de côté pour ne jamais cacher un visage.
+
+Contrôles : planches de toutes les pages des cinq livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 73 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors ligne
+passe à `v29`.
