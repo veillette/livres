@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **214 livres, 3 386 pages et
-2 919 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **220 livres, 3 479 pages et
+3 000 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -770,3 +770,41 @@ complète sans changement des autres livres (`empreintes.txt` ne gagne que
 87 lignes) ; `verifier-images.py` sans erreur ; `node --test` réussi. Le
 cache hors ligne reste à `v30` (même lot de publication).
 
+## Ajout du 10 octobre 2026 : six documentaires animaliers
+
+Six livres au rayon « Les animaux », tous à quatre pattes (ou nageoires,
+ou élytres) dessinées dans leur script, sans personnage habillé :
+
+- *Le grand voyage du monarque* (`monarque`) : œuf sous la feuille
+  d'asclépiade, chenille rayée, chrysalide verte à points dorés, couleurs
+  d'avertissement, migration jusqu'aux forêts du Mexique, retour en
+  plusieurs générations.
+- *Le castor bâtisseur* (`castor-batisseur`) : dents orange (le fer),
+  arbre rongé en sablier, barrage, hutte en coupe avec l'entrée sous l'eau,
+  coup de queue d'alerte, réserve de branches et étang gelé en surface.
+- *L'orignal du marais* (`orignal`) : plantes aquatiques, jumeaux roux,
+  bois en velours qui tombent au début de l'hiver, cloche sous la gorge,
+  taille comparée à une grande personne, rameaux d'hiver.
+- *Le voyage du saumon* (`voyage-saumon`) : œufs dans le gravier, alevins
+  et leur réserve, tacon tacheté, saumoneau argenté, l'odeur de la
+  rivière natale, chute vue de face, passe à poissons avec vitre, nid creusé
+  à la queue ; le saumon atlantique peut retourner à la mer.
+- *Le loup et sa meute* (`loup-meute`) : la meute est une famille, file
+  indienne dans la neige, hurlement (pas pour la Lune), louveteaux nés les
+  yeux fermés dans la tanière, grande sœur qui garde les petits, langage du
+  corps (queue haute, oreilles couchées, révérence du jeu), chasse souvent
+  ratée, sommeil en boule la queue sur le nez ; un loup timide.
+- *La petite coccinelle* (`coccinelle`) : œufs jaunes près des pucerons,
+  larve « petit crocodile », nymphe, adulte tout pâle puis rouge, élytres et
+  ailes de vol, liquide amer, nombre de points selon l'espèce (pas l'âge),
+  hivernage en groupe. La petite bête cachée y est une souris (`CACHE`).
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(chute d'eau redessinée de face, embouchure vue d'en haut, cous et queues
+des loups, pattes et élytres de la coccinelle, échelles des insectes près
+des personnages) ; petite bête présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` (petit poisson sous l'eau, souris
+posée dans le livre de la coccinelle) ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 81 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
+ligne reste à `v30` (même lot de publication).
