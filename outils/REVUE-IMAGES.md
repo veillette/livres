@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **220 livres, 3 479 pages et
-3 000 illustrations SVG** (cache hors ligne `v30`).
+Catalogue actuel, après les ajouts d'octobre : **228 livres, 3 606 pages et
+3 111 illustrations SVG** (cache hors ligne `v30`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -806,5 +806,46 @@ des personnages) ; petite bête présente sur toutes les pages pleines,
 vérifiée par `cachettes.py --verifier` (petit poisson sous l'eau, souris
 posée dans le livre de la coccinelle) ; régénération complète sans
 changement des autres livres (`empreintes.txt` ne gagne que 81 lignes) ;
+`verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
+ligne reste à `v30` (même lot de publication).
+
+## Ajout du 10 octobre 2026 : huit petites histoires
+
+Huit livres au rayon « Petites histoires », pour les grandes étapes et les
+petits chagrins du quotidien :
+
+- *Et moi, alors ?* (`leo-petite-soeur`) : la jalousie de Léo à l'arrivée
+  de Rose ; bébé emmailloté, couffin, canapé où l'on s'assoit (dossier et
+  assise dessinés de part et d'autre des personnages).
+- *Au revoir, la couche !* (`lapinou-pot`) : Lapinou apprend le pot, avec
+  un accident dédramatisé et une couche encore la nuit ; pot vu de face qui
+  cache les jambes (assis), lavabo devant le personnage (vu « en miroir »).
+- *Bulle, bulle, savon !* (`porcelet-mains`) : microbes rigolos sous la
+  loupe, l'eau seule ne suffit pas, frotter partout le temps de deux
+  « Joyeux anniversaire », quand se laver les mains, éternuer dans son coude.
+- *Juste une petite bouchée* (`sami-legumes`) : semer, arroser, récolter,
+  cuisiner, goûter ; le radis « pas encore » (les goûts changent).
+- *Où est passé mon dinosaure ?* (`ines-range`) : chaque jouet a sa maison,
+  ranger en chanson, Dino retrouvé sous le lit.
+- *Mon amie Jade roule vite* (`jade-fauteuil`) : amitié avec une enfant en
+  fauteuil roulant (demander avant d'aider, rampe, basket en fauteuil) ;
+  fauteuil vu de face, assise plus basse que la hanche d'un enfant debout.
+- *Ce n'est pas moi !* (`lila-pas-moi`) : accuser le chat, le dragon
+  invisible, puis dire la vérité et réparer (autre angle que
+  `renard-pot`, qui parle de cacher une bêtise).
+- *Au revoir, Grisou* (`grisou-au-revoir`) : la mort d'un vieux chat, dite
+  avec des mots vrais (« il est mort », « il ne reviendra pas »), sans
+  culpabilité, un rosier planté, le droit de rire en se souvenant.
+
+Nouveau dessin partagé : `chat_profil()` dans `objets.py` (chat de maison,
+corps de profil et tête de face : assis, couché, en boule, qui marche),
+utilisé par Lila et Grisou ; il ne change aucun autre livre.
+
+Contrôles : planches de toutes les pages revues dans Chromium et corrigées
+(échelle des personnages dans les intérieurs, adultes nettement plus grands
+que les enfants, objets tenus hors des visages, personnages derrière les
+tables et lavabos) ; petite bête présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` ; régénération complète sans
+changement des autres livres (`empreintes.txt` ne gagne que 111 lignes) ;
 `verifier-images.py` sans erreur ; `node --test` réussi. Le cache hors
 ligne reste à `v30` (même lot de publication).

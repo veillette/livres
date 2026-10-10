@@ -3,7 +3,7 @@ import math
 import random
 
 from base import (ENCRE, cercle, chemin, ellipse, el, g, place, poly, rect, texte, trait,
-                  _assombrir, eclaircir, uid, n, pic)
+                  _assombrir, eclaircir, uid, n, pic, oeil, volume, occuper)
 
 
 def bol(x, y, s=1.0, couleur="#74c0fc", contenu="#fff3bf", cuillere=True):
@@ -442,3 +442,84 @@ def aigle(x, y, s=1.0, flip=False):
     m = [chemin("M -120 -10 Q -60 -60 -10 -10 Q 60 -60 120 -10 Q 60 -30 10 10 Q -60 -30 -120 -10 Z", "#8d5524"),
          cercle(18, -6, 16, "#fff"), cercle(22, -8, 3.5, ENCRE), poly([(30, -8), (46, -2), (30, 2)], "#fab005")]
     return place(m, x, y, s, flip=flip)
+
+
+def _tete_chat(c, rayures, expr, regard, rose="#ffa8a8"):
+    """Tête de chat vue de face ; (0, 0) = centre."""
+    f = _assombrir(c, 0.72)
+    m = []
+    for sgn in (-1, 1):
+        m.append(poly([(sgn * 28, -10), (sgn * 22, -46), (sgn * 4, -26)], c))
+        m.append(poly([(sgn * 22, -16), (sgn * 19, -36), (sgn * 10, -26)], rose))
+    m.append(ellipse(0, 0, 32, 28, volume(c, 0.35, 0.8)))
+    if rayures:
+        m.append(chemin("M -8 -27 L -6 -16 M 0 -28 L 0 -15 M 8 -27 L 6 -16", stroke=f, sw=3.5))
+    m.append(ellipse(0, 12, 14, 9, eclaircir(c, 0.45)))
+    yeux = {"dort": "fermes", "content": "heureux"}.get(expr, "normal")
+    for sgn in (-1, 1):
+        m.append(oeil(sgn * 12, -4, yeux, regard, taille=0.6))
+        m.append(trait(sgn * 10, 12, sgn * 34, 8 + sgn * 0, "#495057", 1.2, opacity=0.6))
+        m.append(trait(sgn * 10, 15, sgn * 34, 18, "#495057", 1.2, opacity=0.6))
+    if expr == "vexe":
+        for sgn in (-1, 1):
+            m.append(trait(sgn * 5, -10, sgn * 20, -7, f, 3))
+    m.append(poly([(-4, 6), (4, 6), (0, 11)], rose))
+    m.append(chemin("M -6 14 Q -3 18 0 14 Q 3 18 6 14", stroke="#495057", sw=1.6))
+    return g(m)
+
+
+def chat_profil(x, y, s=1.0, couleur="#adb5bd", rayures=True, flip=False, pose="assis", expr="sourire", regard=(0, 0),
+                collier=None):
+    """Chat de maison, le corps de profil (tête à droite) et la tête de face ;
+    (x, y) = au sol, sous le chat. pose : "assis", "couche" (en sphinx),
+    "dort" (en boule) ou "debout" (qui marche, la queue en l'air)."""
+    c = couleur
+    f = _assombrir(c, 0.72)
+    loin = _assombrir(c, 0.86)
+    m = []
+    if pose == "assis":
+        m.append(chemin("M -40 -18 Q -86 -10 -64 -2 Q -10 6 46 -2", stroke=c, sw=13))
+        m.append(rect(14, -64, 14, 62, loin, rx=6))
+        m.append(chemin("M -50 -4 Q -64 -62 -18 -98 Q 10 -118 30 -108 Q 48 -88 42 -50 Q 38 -14 22 -4 Z", volume(c, 0.3, 0.8)))
+        if rayures:
+            m.append(chemin("M -40 -60 Q -30 -64 -24 -56 M -30 -80 Q -18 -86 -12 -78", stroke=f, sw=4))
+        m.append(ellipse(-26, -30, 30, 28, volume(c, 0.3, 0.8)))
+        m.append(ellipse(-4, -5, 18, 6, c))
+        m.append(rect(28, -62, 14, 60, c, rx=6))
+        m += [ellipse(22, -3, 10, 5, loin), ellipse(37, -3, 10, 5, c)]
+        tete, boite = (30, -126), (-90, -175, 66, 0)
+    elif pose == "debout":
+        m.append(chemin("M -48 -62 Q -84 -96 -66 -136", stroke=c, sw=11))
+        for px in (-34, 30):
+            m.append(rect(px, -60, 12, 58, loin, rx=5))
+        m.append(ellipse(0, -60, 56, 24, volume(c, 0.3, 0.8)))
+        if rayures:
+            m.append(chemin("M -20 -82 Q -16 -70 -20 -58 M 0 -84 Q 4 -72 0 -60 M 20 -82 Q 24 -70 20 -60", stroke=f, sw=4))
+        for px in (-44, 40):
+            m.append(rect(px, -58, 12, 56, c, rx=5))
+        tete, boite = (54, -86), (-90, -140, 90, 0)
+    elif pose == "couche":
+        m.append(chemin("M -54 -12 Q -100 -8 -94 -30", stroke=c, sw=12))
+        m.append(ellipse(0, -26, 62, 26, volume(c, 0.3, 0.8)))
+        if rayures:
+            m.append(chemin("M -30 -48 Q -26 -36 -30 -26 M -10 -50 Q -6 -38 -10 -28 M 10 -50 Q 14 -38 10 -28", stroke=f, sw=4))
+        m.append(ellipse(-30, -22, 28, 20, volume(c, 0.3, 0.8)))
+        m += [ellipse(56, -6, 18, 7, c), ellipse(44, -5, 16, 6, loin)]
+        tete, boite = (52, -56), (-100, -100, 90, 0)
+    else:   # en boule
+        m.append(ellipse(0, -26, 58, 28, volume(c, 0.3, 0.8)))
+        if rayures:
+            m.append(chemin("M -30 -50 Q -26 -38 -30 -28 M -10 -53 Q -6 -40 -10 -30 M 10 -52 Q 14 -40 10 -30", stroke=f, sw=4))
+        tete, boite = (36, -26), (-62, -60, 72, 0)
+    tx, ty = tete
+    k = 0.9 if pose == "dort" else 1.0
+    m.append(place(_tete_chat(c, rayures, "dort" if pose == "dort" else expr, regard), tx, ty, k, flip=flip))
+    if collier and pose != "dort":
+        m.append(chemin(f"M {tx - 20} {ty + 22} Q {tx} {ty + 32} {tx + 20} {ty + 22}", stroke=collier, sw=5))
+    if pose == "dort":
+        m.append(chemin("M -54 -12 Q -40 8 20 2 Q 58 -4 64 -16", stroke=c, sw=12))
+        m.append(cercle(64, -16, 6, f))
+    a, b = boite[0], boite[2]
+    if flip:
+        a, b = -b, -a
+    return place(m, x, y, s, flip=flip) + occuper(x + a * s, y + boite[1] * s, x + b * s, y)
