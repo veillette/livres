@@ -261,12 +261,34 @@ a {
 }
 
 .carte {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--surface);
   border-radius: var(--rayon);
   box-shadow: var(--ombre);
   overflow: hidden;
+}
+
+/* « Nouveau · 10 oct. 2026 » sur les cartes du rayon Nouveautés. */
+.carte__pastille {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  margin: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-fonce);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.18);
+  pointer-events: none;
+}
+
+.carte__pastille--revu {
+  background: var(--bleu);
 }
 
 .carte__couverture {
