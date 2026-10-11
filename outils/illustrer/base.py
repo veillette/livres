@@ -751,10 +751,41 @@ def _moment_ciel(haut, bas):
 
 
 def ciel(S, haut="#74c0fc", bas="#e7f5ff"):
-    S._decor(_moment_ciel(haut, bas))
+    moment = _moment_ciel(haut, bas)
+    S._decor(moment)
     S.add(rect(0, 0, S.w, S.h, S.degrade([haut, melange(haut, bas, 0.6), bas])))
     # brume claire vers l'horizon : les lointains se fondent dans le ciel
     S.add(rect(0, 0, S.w, S.h, lineaire([(0.35, eclaircir(bas, 0.4), 0), (0.75, eclaircir(bas, 0.4), 0.35), (1, eclaircir(bas, 0.4), 0.1)])))
+    details_ciel(S, haut, bas, moment)
+
+
+def details_ciel(S, haut, bas, moment):
+    """Le ciel n'est plus un aplat : la nuit, une poussière d'étoiles fines
+    (sous les étoiles dessinées par le livre) ; le jour et le soir, quelques
+    nuages d'altitude effilochés, très pâles, dans le haut de la page."""
+    if _rvb(haut) is None or _rvb(bas) is None or S.w < 300:
+        return
+    e = S.w / 800
+    r = random.Random(int(S.w) * 7 + int(S.h))
+    m = []
+    if moment == "nuit":
+        for _ in range(int(90 * e)):
+            x, y = r.uniform(0, S.w), r.uniform(0, S.h * 0.58)
+            m.append(cercle(n(x), n(y), n(r.uniform(0.7, 1.7) * e), "#ffffff", opacity=round(r.uniform(0.25, 0.7), 2)))
+        for _ in range(4):
+            x, y, k = r.uniform(30, S.w - 30), r.uniform(20, S.h * 0.4), r.uniform(4, 7) * e
+            m.append(chemin(f"M {n(x - k)} {n(y)} H {n(x + k)} M {n(x)} {n(y - k)} V {n(y + k)}", stroke="#ffffff", sw=1.2 * e, opacity=0.55))
+            m.append(cercle(n(x), n(y), n(1.6 * e), "#ffffff", opacity=0.85))
+    else:
+        voile = melange(bas, "#ffffff", 0.6) if moment == "soir" else "#ffffff"
+        for k in range(3):
+            x, y = (k + r.uniform(0.15, 0.85)) * S.w / 3, r.uniform(0.05, 0.24) * S.h
+            L = r.uniform(110, 190) * e
+            for j in range(3):
+                dx, dy = r.uniform(-0.3, 0.3) * L, (j - 1) * 7 * e
+                m.append(ellipse(n(x + dx), n(y + dy), n(L * r.uniform(0.35, 0.6)), n(r.uniform(3.5, 6) * e), voile,
+                                 opacity=round(r.uniform(0.3, 0.5), 2), rot=-4))
+    S.add(sans_relief(m))
 
 
 def fond(S, couleur):
@@ -776,6 +807,9 @@ def sol(S, y, couleur="#8ce99a", bosse=18, couleur2=None, y2=None, premier=True)
         devant, haut = couleur2, y2
     _cachettes_sol(S, haut, bosse)
     if premier:
+        if couleur2:
+            details_sol(S, couleur, y + bosse * 0.5, y2 - bosse, graine=int(y) + 5)
+        details_sol(S, devant, haut + bosse * 0.5, S.h - 70 * S.w / 800, graine=int(haut) + 7)
         premier_plan_sol(S, devant, haut + bosse, graine=int(haut) + 3)
 
 
@@ -882,6 +916,80 @@ def premier_plan_sol(S, couleur, y_haut, graine=1):
     S.add(g(m))
 
 
+FLEURETTES = ("#ffffff", "#ffe066", "#d0bfff", "#ffffff", "#fcc2d7", "#a5d8ff")
+
+
+def fleurette(x, y, k, couleur, coeur="#fab005"):
+    """Fleur des champs minuscule vue de loin : cinq points autour d'un cœur."""
+    m = [cercle(n(x + math.cos(a) * 2.5 * k), n(y + math.sin(a) * 2.5 * k * 0.8), n(1.9 * k), couleur)
+         for a in (i * 2 * math.pi / 5 - math.pi / 2 for i in range(5))]
+    m.append(cercle(n(x), n(y), n(1.3 * k), coeur))
+    return "".join(m)
+
+
+def details_sol(S, couleur, y0, y1, graine=1):
+    """Détails du plan moyen du sol, plus grands vers le lecteur : sur l'herbe,
+    des plaques plus claires ou plus sombres et des fleurs des champs par
+    petits bouquets ; sur le sable ou la terre, des rides et des cailloux ; sur
+    la neige, des ombres bleues et des scintillements."""
+    nature = nature_sol(couleur)
+    if not nature or y1 - y0 < 24 or S.w < 300:
+        return
+    r = random.Random(graine)
+    e = S.w / 800
+
+    def prof(yy):
+        return e * (0.55 + 0.75 * (yy - y0) / max(y1 - y0, 1))
+
+    fond_, m = [], []
+    if nature == "herbe":
+        for i in range(int(14 * e + 0.5)):
+            yy = r.uniform(y0 + 6, y1)
+            k = prof(yy)
+            rx = r.uniform(40, 90) * k
+            teinte = eclaircir(couleur, 0.18) if i % 2 else _assombrir(couleur, 0.9)
+            fond_.append(ellipse(n(r.uniform(0, S.w)), n(yy), n(rx), n(rx * 0.16), teinte, opacity=0.55))
+        for _ in range(int(14 * e + 0.5)):
+            cx, cy = r.uniform(20, S.w - 20), r.uniform(y0 + 8, y1)
+            c = r.choice(FLEURETTES)
+            for _ in range(r.randint(2, 4)):
+                yy = cy + r.uniform(-8, 8) * prof(cy)
+                k = prof(yy) * 1.5
+                xx = cx + r.uniform(-22, 22) * k
+                m.append(trait(n(xx), n(yy), n(xx), n(yy + 6 * k), _assombrir(couleur, 0.65), n(1.2 * k), opacity=0.7))
+                m.append(fleurette(xx, yy, k, c))
+    elif nature == "sable":
+        clair, fonce = eclaircir(couleur, 0.35), _assombrir(couleur, 0.82)
+        for _ in range(int(6 * e + 0.5)):
+            yy = r.uniform(y0 + 6, y1)
+            k = prof(yy)
+            x0, L = r.uniform(-40, S.w - 60), r.uniform(80, 170) * k
+            d = f"M {n(x0)} {n(yy)} q {n(L / 4)} {n(-5 * k)} {n(L / 2)} 0 t {n(L / 2)} 0"
+            fond_.append(chemin(d, stroke=clair, sw=n(2.2 * k), opacity=0.55))
+            fond_.append(g(chemin(d, stroke=fonce, sw=n(1.6 * k), opacity=0.3), f"translate(0 {n(3 * k)})"))
+        for _ in range(int(9 * e + 0.5)):
+            yy = r.uniform(y0 + 6, y1)
+            k = prof(yy)
+            xx, rx = r.uniform(10, S.w - 10), r.uniform(2.5, 5) * k
+            caillou = melange(couleur, r.choice(("#868e96", "#a0785a", "#ced4da")), 0.55)
+            m.append(ellipse(n(xx + rx * 0.3), n(yy + rx * 0.35), n(rx * 1.1), n(rx * 0.35), "#000", opacity=0.12))
+            m.append(ellipse(n(xx), n(yy), n(rx), n(rx * 0.62), caillou))
+            m.append(ellipse(n(xx - rx * 0.3), n(yy - rx * 0.25), n(rx * 0.35), n(rx * 0.2), "#ffffff", opacity=0.45))
+    else:
+        for _ in range(int(6 * e + 0.5)):
+            yy = r.uniform(y0 + 6, y1)
+            k = prof(yy)
+            x0, L = r.uniform(-40, S.w - 40), r.uniform(70, 150) * k
+            fond_.append(chemin(f"M {n(x0)} {n(yy)} q {n(L / 2)} {n(-7 * k)} {n(L)} 0 q {n(-L / 2)} {n(3 * k)} {n(-L)} 0 Z", "#a5c8f0", opacity=0.35))
+        for _ in range(int(12 * e + 0.5)):
+            yy = r.uniform(y0 + 4, y1)
+            k = prof(yy) * r.uniform(0.7, 1.2)
+            xx = r.uniform(10, S.w - 10)
+            m.append(chemin(f"M {n(xx - 4 * k)} {n(yy)} H {n(xx + 4 * k)} M {n(xx)} {n(yy - 4 * k)} V {n(yy + 4 * k)}", stroke="#74c0fc", sw=n(1 * k), opacity=0.55))
+            m.append(cercle(n(xx), n(yy), n(1.2 * k), "#ffffff"))
+    S.add(sans_relief(fond_ + m))
+
+
 def terrain(c):
     """Sol plus clair au loin (en haut), plus sombre et plus contrasté devant."""
     if _rvb(c) is None:
@@ -965,6 +1073,20 @@ def collines(S, y, couleur="#b2f2bb", graine=1, n_=3, hauteur=110, bosquets=True
             S.add(chemin(forme, ombre_versant))
             S.add(chemin(f"M {n(cx - lw * 0.7)} {n(y - h * 0.5)} Q {n(cx - lw * 0.35)} {n(y - h * 0.95)} {n(cx)} {n(y - h)}",
                          stroke=eclaircir(couleur, 0.5), sw=4, opacity=0.5))
+        if vert:
+            # vergers et arbres isolés, minuscules, semés sur la pente
+            rv, e = random.Random(graine * 31 + i), w / 800
+            pts = []
+            for _ in range(rv.randint(6, 10)):
+                t, f = rv.uniform(0.2, 0.8), rv.uniform(0.15, 0.75)
+                px = (1 - t) ** 2 * (cx - lw) + 2 * (1 - t) * t * cx + t * t * (cx + lw)
+                py = y - 2 * (1 - t) * t * h * 2 * f
+                pts.append(cercle(n(px), n(py - 3 * e), n(rv.uniform(2.6, 4) * e), _assombrir(couleur, 0.68), opacity=0.6))
+            # lignes de champs qui suivent le relief
+            for f in (0.35, 0.62):
+                pts.append(chemin(f"M {n(cx - lw * (1 - f * 0.55))} {n(y - 2)} Q {n(cx)} {n(y - h * 2 * f)} {n(cx + lw * (1 - f * 0.55))} {n(y - 2)}",
+                                  stroke=_assombrir(couleur, 0.85), sw=n(2.5 * e), opacity=0.4))
+            S.add(sans_relief(pts))
         if vert and rb.random() < 0.75:
             # un bosquet posé sur la pente, petit et voilé : il est loin
             t = rb.uniform(0.28, 0.72)
@@ -972,6 +1094,18 @@ def collines(S, y, couleur="#b2f2bb", graine=1, n_=3, hauteur=110, bosquets=True
             by = y - 2 * (1 - t) * t * h * 2 + 6
             k = (w / 800) * min(h / 110, 1.2) * 0.95
             S.add(bosquet(bx, by, k, melange(_assombrir(couleur, 0.8), "#a5b4c8", 0.22), graine=graine + i, nb=rb.choice((2, 3, 3, 4)), lointain=True))
+    if vert:
+        # haies de la plaine : des rangées d'arbustes qui ondulent
+        rh, e, m = random.Random(graine + 303), w / 800, []
+        haie = melange(_assombrir(couleur, 0.7), "#a5b4c8", 0.15)
+        for j, dy in enumerate((16, 40)):
+            yy, x = y + dy * e, rh.uniform(-30, 10)
+            a = rh.uniform(0, 6)
+            while x < w + 20:
+                rr = rh.uniform(3, 5) * e * (1 + j * 0.4)
+                m.append(cercle(n(x), n(yy + 4 * e * math.sin(x / (90 * e) + a) - rr * 0.5), n(rr), haie, opacity=0.68))
+                x += rh.uniform(5, 9) * e * (1 + j * 0.4) if rh.random() > 0.04 else 70 * e
+        S.add(sans_relief(m))
     if hexa and luminance(couleur) > 0.35:
         # brume au pied des collines : elles reculent derrière le sol
         S.add(rect(0, y - hauteur * 0.7, w, hauteur * 0.7 + 4, lineaire([(0, "#ffffff", 0), (1, "#ffffff", 0.3)])))
@@ -1669,9 +1803,41 @@ def interieur(S, mur="#fff4e6", plancher="#e8c39e", y=560, papier=None, plinthe=
     mx, e = S.w / 2, S.w / 800
     d = " ".join(f"M {n(mx + i * 70 * e)} {y} L {n(mx + i * 70 * e * 2.4)} {S.h}" for i in range(-7, 8))
     S.add(chemin(d, stroke="#000", sw=1.5, opacity=0.05))
+    details_interieur(S, mur, plancher, y)
     S.add(rect(0, y, S.w, 18 * e + 6, lineaire([(0, "#000", 0.16), (1, "#000", 0)])))
     S.add(rect(0, y - 14, S.w, 16, plinthe))
     S.add(rect(0, y - 14, S.w, 3, eclaircir(plinthe, 0.4), opacity=0.8))
+
+
+def details_interieur(S, mur, plancher, y):
+    """Matière de la pièce : mur au badigeon un peu inégal, veinage et nœuds
+    du parquet, plus marqués vers le lecteur."""
+    if S.w < 300:
+        return
+    r = random.Random(int(y) * 3 + int(S.w))
+    e, h = S.w / 800, S.h - y
+    m = []
+    if _rvb(mur):
+        for _ in range(int(7 * e + 0.5)):
+            rx, cy = r.uniform(60, 140) * e, r.uniform(40 * e, max(y - 60 * e, 41 * e))
+            ry = min(rx * r.uniform(0.4, 0.7), cy, y - 16 - cy)
+            if ry > 4:
+                m.append(ellipse(n(r.uniform(0, S.w)), n(cy), n(rx), n(ry), radial([(0, _assombrir(mur, 0.88), 0.5), (1, _assombrir(mur, 0.88), 0)])))
+    if _rvb(plancher) and h > 40:
+        veine = _assombrir(plancher, 0.72)
+        for k in range(6):
+            ya, yb = y + h * (k / 6) ** 1.35, y + h * ((k + 1) / 6) ** 1.35
+            ep = (yb - ya)
+            for _ in range(r.randint(2, 4)):
+                yy, x0 = r.uniform(ya + ep * 0.25, yb - ep * 0.25), r.uniform(-40, S.w - 40)
+                L = r.uniform(70, 160) * e * (0.7 + k * 0.12)
+                m.append(chemin(f"M {n(x0)} {n(yy)} q {n(L / 4)} {n(-ep * 0.12)} {n(L / 2)} 0 t {n(L / 2)} 0",
+                                stroke=veine, sw=n(max(ep * 0.06, 1)), opacity=0.32))
+            if r.random() < 0.6:
+                xx, rr = r.uniform(30, S.w - 30), ep * 0.16
+                m.append(ellipse(n(xx), n((ya + yb) / 2), n(rr * 1.6), n(rr * 0.7), veine, opacity=0.3))
+                m.append(ellipse(n(xx), n((ya + yb) / 2), n(rr * 3), n(rr * 1.4), "none", stroke=veine, stroke_width=n(max(ep * 0.04, 0.7)), opacity=0.2))
+    S.add(sans_relief(m))
 
 
 def motif_mural(S, y, motif="pois", couleur="#ffc9c9", opacite=0.5):

@@ -56,7 +56,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v31"`, donc `"v31"` → `"v32"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v32"`, donc `"v32"` → `"v33"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -235,6 +235,14 @@ générées par un petit outil Python, sans aucune dépendance, dans
   bardage, linteaux, appuis, ombre sous le toit), châteaux (pierres, tuiles),
   montagnes (`pic()`, versant à l'ombre), intérieurs (parquet en perspective,
   pénombre des coins), fenêtres, portes et meubles en relief ;
+- détails des arrière-plans, posés d'office par les décors partagés :
+  nuages d'altitude effilochés le jour et le soir, poussière d'étoiles la
+  nuit (`details_ciel()`) ; vergers, lignes de champs et haies sur les
+  collines vertes (`collines()`) ; sur le sol, plaques d'herbe et bouquets
+  de fleurettes, rides et cailloux sur le sable ou la terre, ombres bleues et
+  scintillements sur la neige (`details_sol()`, absents avec
+  `sol(premier=False)`) ; mur au badigeon inégal, veinage et nœuds du parquet
+  (`details_interieur()`) ;
 - modelé automatique : à l'écriture de la page, chaque aplat des dessins
   propres aux livres reçoit un léger dégradé (lumière en haut à gauche), sauf
   les formes semi-transparentes, les masques et découpes, les formes de la

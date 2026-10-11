@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **240 livres, 3 780 pages et
-3 257 illustrations SVG** (cache hors ligne `v31`).
+3 257 illustrations SVG** (cache hors ligne `v32`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -924,3 +924,30 @@ avec une pastille « Nouveau » ou « Revu » et la date
 (`livres/nouveautes.js`, écrit par `outils/nouveautes.py` d'après
 l'historique git). Le cache hors ligne passe à `v31` pour enregistrer ce
 nouveau fichier.
+
+## Arrière-plans plus détaillés du 11 octobre 2026
+
+Changement voulu de la finition partagée : **tous les SVG** dont le décor
+passe par `ciel()`, `collines()`, `sol()`, `interieur()` ou `piece()`
+changent (aucun livre ajouté : 240 livres, 3 780 pages, 3 257 SVG).
+
+- Ciel (`details_ciel()`) : nuages d'altitude effilochés, très pâles, le
+  jour et le soir ; poussière d'étoiles fines la nuit, sous les étoiles
+  dessinées par les livres.
+- Collines vertes : vergers et arbres isolés semés sur les pentes, lignes de
+  champs qui suivent le relief, deux haies qui ondulent dans la plaine.
+- Sol (`details_sol()`, entre la crête et le premier plan, plus grands vers
+  le lecteur) : plaques d'herbe plus claires ou plus sombres et bouquets de
+  fleurettes (blanc, jaune, lilas, rose pâle, bleu : jamais de rouge, pour
+  que la coccinelle reste visible) ; rides et cailloux sur le sable et la
+  terre ; ombres bleues et scintillements sur la neige. Rien avec
+  `sol(premier=False)`.
+- Intérieurs (`details_interieur()`) : mur au badigeon un peu inégal,
+  veinage et nœuds du parquet.
+
+Contrôles : planches avant/après revues dans Chromium sur des pages de
+tous les rayons (prairie, plage, neige, nuit, chaumière, sciences) ;
+`cachettes.py --tous --verifier` identique avant et après (« Toutes les
+pages ont une bonne cachette. ») ; aucune petite bête retirée par
+`generer.py` ; `verifier-images.py` sans erreur ; `node --test` réussi.
+Le cache hors ligne passe à `v32`.
