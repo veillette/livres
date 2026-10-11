@@ -126,7 +126,11 @@ S.dessus(bulle(560, 150, 420, 100, "C'est pour mieux\nte voir !", 32,
   dans le script pour l'imposer : `rayures`, `pois`, `fleurs`, `losanges`,
   `etoiles`) ; `motif_mural()` pour un mur à part.
 - Extérieurs en trois plans : `paysage()`, ou `ciel` + `collines` + `sol` +
-  `repoussoir`.
+  `repoussoir`. Ces décors posent d'eux-mêmes leurs détails (nuages
+  d'altitude ou poussière d'étoiles, vergers et haies, fleurettes, cailloux,
+  scintillements de neige, veinage du parquet) : un décor tracé à la main
+  dans un script mérite le même soin, avec `details_sol(S, couleur, y0, y1)`
+  ou `fleurette()` ; `sol(premier=False)` garde un sol nu.
 - **Échelles** : un château domine les personnages (château `s` ≈ 0,85–1,1
   pour un personnage `s` ≈ 0,8–1) ; vérifier les tailles réelles en
   documentaire (une abeille fait 2,5 à 3 alvéoles de long).
