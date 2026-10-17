@@ -56,7 +56,7 @@ Au premier chargement, le service worker (`sw.js`) enregistre l'interface
   apparaissent dès qu'on est connecté.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v33"`, donc `"v33"` → `"v34"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v34"`, donc `"v34"` → `"v35"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -214,10 +214,19 @@ générées par un petit outil Python, sans aucune dépendance, dans
   `surpris`, `dort`…) et leurs poses (`salut`, `haut`, `porte`, `calin`,
   `danse`, `applaudit`, `victoire`, `coucou`, `chut`, `etire`, `epaules`,
   `marche`, et les poses dynamiques `court`, `saute`, `lance`, `designe`,
-  `pousse`, `equilibre`…). Les personnages (animaux de `perso()` et humains de
+  `pousse`, `equilibre`…, et les attitudes `repos`, `dos`, `ventre`,
+  `surprise`, `mains_basses`, `gratte`). Sans `bras=`, la pose suit
+  l'humeur (`POSES_HUMEUR` : mains dans le dos ou sur la hanche au repos,
+  sur le ventre quand on rit, levées de surprise, bras croisés de colère…).
+  Les personnages (animaux de `perso()` et humains de
   `personne()`) reçoivent automatiquement un liseré, un modelé (ombre et
-  reflet), des mains avec un pouce, des doigts de pied, une petite ombre au
-  sol et une tête légèrement penchée selon l'expression ; les paramètres
+  reflet), des mains avec un pouce et des doigts, des doigts de pied, une
+  petite ombre au sol, une tête légèrement penchée selon l'expression et des
+  textures : pelage (`pelage()`), rayures du chat, taches de la grenouille,
+  plis de l'éléphant ; queues et grandes oreilles qui suivent l'humeur ;
+  trame du tissu (`tissu()`), coutures (`couture()`), boutons, semelles,
+  sourcils et mèches de cheveux ; plumes (`plumage()`) des oiseaux et
+  écailles du dragon, peau grenue (`ecailles_peau()`) de la tortue ; les paramètres
   `pas=` (`"marche"`, `"pointe"`, `"saute"`), `penche=` (degrés) et `ombre=`
   permettent de les régler. Un livre qui dessine de vraies ombres portées
   coupe l'ombre douce avec `OMBRES_DOUCES = False` dans son script ;

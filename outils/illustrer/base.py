@@ -2159,6 +2159,84 @@ def ombre_avancee(x, y, w, h=16, opacite=0.18):
 
 
 # ---------------------------------------------------------------------------
+# Textures des personnages : pelage, plumes, écailles, tissu
+# ---------------------------------------------------------------------------
+# Chaque texture est faite de petits traits tracés d'un seul chemin (le SVG
+# reste léger) et découpés dans la forme qu'ils habillent. Le tirage est fixé
+# par `graine` : une même figure reçoit toujours les mêmes poils.
+
+def _point_ellipse(r, cx, cy, rx, ry, r_min=0.0):
+    """Point tiré au hasard dans l'ellipse, à une distance relative ≥ r_min du centre."""
+    a = r.uniform(0, 2 * math.pi)
+    d = math.sqrt(r.uniform(r_min * r_min, 1))
+    return cx + math.cos(a) * rx * d, cy + math.sin(a) * ry * d
+
+
+def pelage(forme, c, cx, cy, rx, ry, nb=36, graine=1, long=8, r_min=0.0, eviter=None, sw=1.7):
+    """Poils courts découpés dans `forme` (élément SVG), semés dans l'ellipse
+    (cx, cy, rx, ry) : couchés vers le bas et l'extérieur, comme le poil pousse,
+    plus foncés que la robe `c`, avec quelques reflets clairs en haut à gauche.
+    eviter : (x, y, rx, ry) d'une ellipse laissée nue (le visage)."""
+    r = random.Random(graine)
+    fonces, clairs = [], []
+    for _ in range(nb):
+        px, py = _point_ellipse(r, cx, cy, rx, ry, r_min)
+        if eviter and ((px - eviter[0]) / eviter[2]) ** 2 + ((py - eviter[1]) / eviter[3]) ** 2 < 1:
+            continue
+        # sens du poil : vers l'extérieur de la forme, et un peu vers le bas
+        ox, oy = (px - cx) / rx, (py - cy) / ry
+        dx, dy = ox * 0.8, oy * 0.8 + 0.7
+        L = math.hypot(dx, dy) or 1
+        dx, dy = dx / L, dy / L
+        lg = long * r.uniform(0.7, 1.3)
+        cour = r.uniform(-0.3, 0.3) * lg
+        d = (f"M {n(px)} {n(py)} q {n(dx * lg * 0.5 - dy * cour)} {n(dy * lg * 0.5 + dx * cour)} "
+             f"{n(dx * lg)} {n(dy * lg)}")
+        (clairs if (ox + oy < -0.6 and r.random() < 0.6) else fonces).append(d)
+    m = []
+    if fonces:
+        m.append(chemin(" ".join(fonces), stroke=_assombrir(c, 0.7), sw=sw, opacity=0.42))
+    if clairs:
+        m.append(chemin(" ".join(clairs), stroke=eclaircir(c, 0.45), sw=sw * 0.85, opacity=0.55))
+    return _decoupe(m, forme)
+
+
+def plumage(forme, c, x0, y0, x1, y1, pas_=14, opacite=0.32):
+    """Petites plumes en écailles (rangées d'arcs décalés) découpées dans `forme`."""
+    arcs = []
+    for k, yy in enumerate(range(int(y0), int(y1), int(pas_ * 0.75))):
+        dec = (k % 2) * pas_ / 2
+        xx = x0 - pas_ + dec
+        while xx < x1 + pas_:
+            arcs.append(f"M {n(xx - pas_ / 2)} {n(yy)} q {n(pas_ / 2)} {n(pas_ * 0.6)} {n(pas_)} 0")
+            xx += pas_
+    return _decoupe(chemin(" ".join(arcs), stroke=_assombrir(c, 0.72), sw=1.5, opacity=opacite), forme)
+
+
+def ecailles_peau(forme, c, cx, cy, rx, ry, nb=14, graine=1, r=3.2):
+    """Peau grenue (tortue, dragon, lézard) : petites pastilles plus foncées."""
+    t = random.Random(graine)
+    pts = [_point_ellipse(t, cx, cy, rx, ry) for _ in range(nb)]
+    return _decoupe(g([ellipse(n(px), n(py), r * t.uniform(0.7, 1.2), r * t.uniform(0.6, 1.0), _assombrir(c, 0.78), opacity=0.45)
+                       for px, py in pts]), forme)
+
+
+def tissu(forme, c, x0, y0, x1, y1, pas_=7, opacite=0.075):
+    """Trame d'une étoffe : fines hachures croisées, à peine visibles."""
+    d = []
+    h = y1 - y0
+    for xx in range(int(x0 - h), int(x1), pas_):
+        d.append(f"M {xx} {n(y1)} l {n(h)} {n(-h)}")
+        d.append(f"M {xx + h} {n(y1)} l {n(-h)} {n(-h)}")
+    return _decoupe(chemin(" ".join(d), stroke=_assombrir(c, 0.6), sw=1, opacity=opacite), forme)
+
+
+def couture(d, c, sw=1.6, opacite=0.55):
+    """Piqûre de couture : pointillés clairs le long du chemin `d`."""
+    return chemin(d, stroke=eclaircir(c, 0.55), sw=sw, opacity=opacite, stroke_dasharray="4 4")
+
+
+# ---------------------------------------------------------------------------
 # Personnages
 # ---------------------------------------------------------------------------
 # Tous les personnages « debout » sont dessinés de face, les pieds en (0, 0),
@@ -2241,6 +2319,15 @@ POSES = {
     "mains_jointes": ((-7, -94), (7, -94)),
     "ramasse": ((-30, -22), (36, -18)),
     "leve_doigt": ((-52, -40), (52, -216)),
+    # attitudes : une main sur la hanche, mains dans le dos, mains sur le
+    # ventre (on rit, on a bien mangé), mains levées de surprise, mains
+    # croisées devant soi (timide), main qui gratte la tête (embarras)
+    "repos": ((-52, -40), (40, -50)),
+    "dos": ((-24, -50), (24, -50)),
+    "ventre": ((-20, -46), (22, -58)),
+    "surprise": ((-86, -142), (86, -142)),
+    "mains_basses": ((-9, -44), (9, -46)),
+    "gratte": ((-52, -40), (46, -198)),
 }
 COUDES = {
     "haut": ((-84, -124), (84, -124)),
@@ -2268,8 +2355,48 @@ COUDES = {
     "mains_jointes": ((-50, -66), (50, -66)),
     "ramasse": ((-60, -58), (62, -56)),
     "leve_doigt": (None, (68, -150)),
+    "repos": (None, (66, -74)),
+    "dos": ((-60, -66), (60, -66)),
+    "ventre": ((-62, -56), (64, -68)),
+    "surprise": ((-78, -96), (78, -96)),
+    "mains_basses": ((-50, -62), (50, -64)),
+    "gratte": (None, (86, -136)),
 }
-DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete", "chut"}
+DEVANT_VISAGE = {"joues", "yeux", "bouche", "pense", "tete", "chut", "gratte"}
+# Poses dont les mains passent derrière le corps : bras dessinés avant lui.
+DANS_LE_DOS = {"dos"}
+# Pose choisie d'après l'humeur quand le script n'en donne pas (bras=None) :
+# un personnage au repos ne garde pas toujours les bras le long du corps.
+# Le choix entre les variantes est fixé par la place du personnage.
+POSES_HUMEUR = {
+    "sourire": ("bas", "bas", "repos", "dos"),
+    "content": ("bas", "repos", "dos"),
+    "neutre": ("bas", "dos", "repos"),
+    "rire": ("ventre", "bas", "applaudit"),
+    "joie": ("bas", "applaudit", "repos"),
+    "miam": ("ventre",),
+    "surpris": ("surprise", "bas"),
+    "bouche_bee": ("surprise",),
+    "timide": ("mains_basses", "dos"),
+    "fier": ("hanches", "repos"),
+    "fache": ("croises", "hanches"),
+    "furieux": ("poing", "hanches"),
+    "inquiet": ("mains_jointes", "mains_basses"),
+    "triste": ("bas", "mains_basses"),
+    "malin": ("pense", "dos"),
+    "oups": ("gratte", "bouche"),
+    "baille": ("etire", "bas"),
+    "chante": ("bas", "mains_jointes"),
+}
+
+
+def pose_humeur(expr, *cle):
+    """Pose des bras d'un personnage laissé sans pose, d'après son humeur."""
+    choix = POSES_HUMEUR.get(expr, ("bas",))
+    if len(choix) == 1:
+        return choix[0]
+    h = int(hashlib.md5(repr(cle).encode()).hexdigest()[:6], 16)
+    return choix[h % len(choix)]
 # Pas des pieds associé par défaut à une pose de bras.
 PAS_POSE = {"course": "court", "marche": "marche", "danse": "pointe", "victoire": "saute",
             "court": "court", "saute": "saute", "lance": "marche", "pousse": "marche", "equilibre": "pointe"}
@@ -2278,7 +2405,8 @@ PAS_POSE = {"course": "court", "marche": "marche", "danse": "pointe", "victoire"
 # courir, en arrière pour tirer, vers le bras levé pour danser.
 INCLINE = {"course": 11, "marche": 3, "danse": -5, "victoire": -3, "tire": -6, "montre": 2, "salut": -2,
            "court": 13, "lance": -7, "designe": 3, "pousse": 11, "equilibre": -6,
-           "main": 3, "epaule": 6, "tend": 7, "ramasse": 8, "leve_doigt": -2}
+           "main": 3, "epaule": 6, "tend": 7, "ramasse": 8, "leve_doigt": -2,
+           "dos": -2, "ventre": -4, "surprise": -4, "repos": -2, "gratte": 2}
 PENCHE = {"timide": -7, "triste": 6, "pleure": 6, "inquiet": -5, "malin": 6, "content": 4,
           "chante": -5, "miam": 4, "oups": -6, "degoute": -6, "fier": -3, "dort": 7}
 
@@ -2448,8 +2576,17 @@ def _main(hx, hy, r, couleur, bord=None):
     """Main (ou patte) ronde avec un petit pouce tourné vers le corps."""
     sgn = 1 if hx >= 0 else -1
     a = dict(stroke=bord, stroke_width=2) if bord else {}
-    return (ellipse(n(hx - sgn * r * 0.72), n(hy - r * 0.5), r * 0.45, r * 0.55, couleur, rot=sgn * -30, **a)
-            + cercle(hx, hy, r, couleur, **a))
+    m = (ellipse(n(hx - sgn * r * 0.72), n(hy - r * 0.5), r * 0.45, r * 0.55, couleur, rot=sgn * -30, **a)
+         + cercle(hx, hy, r, couleur, **a))
+    if bord:
+        # doigts : trois petits plis au bout de la main, côté extérieur
+        d = []
+        for ang in (-30, 8, 46):
+            a_ = math.radians(ang)
+            ux, uy = sgn * math.cos(a_), math.sin(a_)
+            d.append(f"M {n(hx + ux * r * 0.98)} {n(hy + uy * r * 0.98)} L {n(hx + ux * r * 0.55)} {n(hy + uy * r * 0.55)}")
+        m += chemin(" ".join(d), stroke=bord, sw=max(1.4, r * 0.15), opacity=0.6)
+    return m
 
 
 def filtre_contour(epaisseur=2.4, couleur=ENCRE, opacite=0.5):
@@ -2539,6 +2676,15 @@ TOUPET = {"ours", "chat", "chien", "renard", "loup", "ecureuil", "singe", "casto
 COIFFES = {"chapeau", "toque", "bonnet", "casque", "couronne"}
 # Espèces aux joues ébouriffées.
 JOUES_POILUES = {"chat", "renard", "loup", "ecureuil"}
+# Espèces à peau lisse ou à carapace : pas de pelage (voir pelage()).
+SANS_POIL = {"grenouille", "cochon", "elephant", "fourmi", "cigale", "mouton"}
+# Queue qui suit l'humeur : point d'attache, autour duquel elle tourne.
+QUEUES_HUMEUR = {"chat": (28, -40), "chien": (30, -48), "renard": (36, -34), "loup": (36, -34), "lion": (28, -40),
+                 "ane": (28, -40), "boeuf": (28, -40), "singe": (30, -30), "souris": (22, -20), "rat": (22, -20)}
+QUEUE_JOIE = {"rire", "joie", "content", "fier", "chante", "miam"}
+QUEUE_TRISTE = {"triste", "pleure", "inquiet", "timide"}
+# Oreilles longues qui suivent l'humeur (degrés, vers l'extérieur).
+OREILLES_HUMEUR = {"triste": 38, "pleure": 42, "inquiet": 24, "dort": 30, "surpris": -6, "bouche_bee": -6}
 
 
 def _pieds(pas, pieds, bord, haut=False):
@@ -2588,13 +2734,14 @@ def _etendue_pose(gauche, droite, haut, mains, bas=16):
     return (min(gauche, min(xs) - 16), min(haut, min(ys) - 16), max(droite, max(xs) + 16), bas)
 
 
-def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regard=(0, 0),
+def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras=None, regard=(0, 0),
           couleur=None, habit=None, motif=None, couleur_motif="#ffffff", acc=(), objet=None,
           derriere=None, rot=0, larmes=False, joues=True, couleur_acc=None, tache=False,
           sy=None, pieds_haut=False, visage=None, pas=None, penche=None, ombre=None):
     """Un personnage animal, dessiné de face.
 
-    espece : clé de ESPECES ; expr : clé de EXPRESSIONS ; bras : clé de POSES.
+    espece : clé de ESPECES ; expr : clé de EXPRESSIONS ; bras : clé de POSES
+    (absente : pose choisie d'après l'humeur, voir POSES_HUMEUR).
     habit : couleur d'un vêtement sur le corps (et les bras) ; motif : "rayures" | "pois".
     acc : accessoires parmi "noeud", "chapeau", "toque", "bonnet", "casque",
           "lunettes", "echarpe", "tablier", "couronne", "fleur".
@@ -2613,11 +2760,16 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         pieds = K["pieds"]
     if couleur_acc is None:
         couleur_acc = "#fa5252"
+    if bras is None:
+        bras = "bas" if (objet or pieds_haut or rot or sy) else pose_humeur(expr, espece, n(x), n(y), n(s))
     if pas is None:
         pas = PAS_POSE.get(bras)
     yeux_style, bouche_style, sourcils_style = EXPRESSIONS[expr]
     manche = habit or c
     peau_main = c if espece != "panda" else "#343a40"
+    if espece == "renard":
+        # le renard porte des « chaussettes » noires jusqu'aux poignets
+        peau_main = pieds
     if espece == "mouton":
         peau_main = "#495057"
         manche = habit or "#868e96"
@@ -2632,19 +2784,24 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     m = []
     if derriere:
         m.append(derriere)
+    debut_queue = len(m)
 
     # --- derrière : queue, grandes oreilles
     if espece == "chat":
         m.append(chemin("M 28 -40 Q 80 -40 78 -95 Q 76 -120 92 -126", stroke=c, sw=13))
         m.append(chemin("M 84 -112 Q 86 -122 92 -126", stroke=_assombrir(c, 0.8), sw=13))
+        # anneaux du chat tigré sur la queue
+        m.append(chemin("M 46 -46 l 4 -9 M 66 -56 l 8 -6 M 74 -76 l 9 -1 M 73 -96 l 9 3", stroke=_assombrir(c, 0.78), sw=4, opacity=0.7))
     elif espece == "renard":
         m.append(ellipse(62, -58, 26, 58, c, rot=40))
+        m.append(pelage(ellipse(62, -58, 26, 58, "#000", rot=40), c, 62, -58, 30, 50, 22, graine=11, long=12))
         m.append(chemin("M 46 -40 Q 64 -60 70 -90", stroke=_assombrir(c, 0.85), sw=3, opacity=0.6))
         m.append(ellipse(95, -95, 14, 20, "#fff4e6", rot=40))
     elif espece in ("souris", "rat"):
         m.append(chemin("M 22 -20 Q 80 -8 76 -64 Q 72 -96 98 -104", stroke="#ffa8a8", sw=6))
     elif espece == "loup":
         m.append(ellipse(62, -58, 26, 58, c, rot=40))
+        m.append(pelage(ellipse(62, -58, 26, 58, "#000", rot=40), c, 62, -58, 30, 50, 22, graine=12, long=12))
         m.append(chemin("M 46 -40 Q 64 -60 70 -90", stroke=_assombrir(c, 0.8), sw=3, opacity=0.6))
         m.append(ellipse(95, -95, 14, 20, "#dee2e6", rot=40))
     elif espece in ("lion", "ane", "boeuf"):
@@ -2663,18 +2820,24 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         m.append(chemin("M 34 -44 q 16 -2 14 -14 q -2 -10 -10 -6 q -6 6 4 12 q 10 4 18 -4", stroke=K["groin"], sw=5))
     elif espece == "chien":
         m.append(chemin("M 30 -48 Q 58 -60 62 -94", stroke=c, sw=12))
+        if expr in QUEUE_JOIE:
+            # la queue frétille
+            m.append(chemin("M 76 -104 q 6 8 4 18 M 84 -96 q 5 6 3 13", stroke=ENCRE, sw=2.5, opacity=0.45))
     elif espece == "fourmi":
         m.append(ellipse(42, -42, 40, 32, _assombrir(c, 0.85), rot=-25))
         for sgn in (-1, 1):
             m.append(chemin(f"M {sgn * 30} -60 Q {sgn * 62} -62 {sgn * 70} -36", stroke=pieds, sw=7))
     elif espece == "castor":
         m.append(ellipse(40, -16, 30, 50, "#5c3a1e", rot=60))
-        m.append(g([trait(22, -28, 62, -6, "#4a2e16", 2, opacity=0.5), trait(30, -40, 68, -20, "#4a2e16", 2, opacity=0.5)]))
+        # queue plate du castor : écailles en quadrillage
+        quad = " ".join([f"M {k} -60 l 50 60" for k in range(-10, 90, 9)] + [f"M {k} -60 l -50 60" for k in range(20, 130, 9)])
+        m.append(_decoupe(chemin(quad, stroke="#3d2610", sw=1.6, opacity=0.5), ellipse(40, -16, 30, 50, "#000", rot=60)))
     elif espece == "elephant":
         m.append(chemin("M 30 -30 Q 50 -30 52 -10", stroke=pieds, sw=5))
     elif espece == "ecureuil":
         queue = "M 18 -34 C 112 -22 138 -128 104 -184 C 82 -222 22 -226 26 -186 C 30 -160 76 -164 76 -130 C 76 -88 34 -80 18 -58 Z"
         m.append(chemin(queue, c))
+        m.append(pelage(chemin(queue, "#000"), c, 76, -124, 52, 96, 40, graine=13, long=14))
         m.append(chemin("M 40 -52 C 96 -52 118 -130 96 -172 C 84 -196 50 -204 44 -190", stroke=eclaircir(c, 0.35), sw=10, opacity=0.8))
     elif espece == "herisson":
         for k in range(9):
@@ -2683,10 +2846,24 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
                 continue
             cx, cy = math.cos(a) * 44, -64 + math.sin(a) * 52
             m.append(poly([(cx - 10, cy), (cx + math.cos(a) * 26, cy + math.sin(a) * 26), (cx + 10, cy)], K["piquants"]))
+            m.append(trait(n(cx), n(cy), n(cx + math.cos(a) * 20), n(cy + math.sin(a) * 20), eclaircir(K["piquants"], 0.4), 1.6, opacity=0.6))
+
+    # la queue suit l'humeur : dressée de joie, basse de tristesse
+    angle_queue = 0
+    if espece in QUEUES_HUMEUR:
+        angle_queue = -12 if expr in QUEUE_JOIE else (18 if expr in QUEUE_TRISTE else 0)
+    if angle_queue and len(m) > debut_queue:
+        px, py = QUEUES_HUMEUR[espece]
+        m[debut_queue:] = [g(m[debut_queue:], f"rotate({angle_queue} {px} {py})")]
 
     # --- pieds
     debut_pieds = len(m)
     m += _pieds(pas, pieds, _assombrir(pieds, 0.7), haut=pieds_haut)
+    if espece == "elephant" and not pieds_haut and pas in (None, "saute"):
+        # ongles de l'éléphant
+        for sgn in (-1, 1):
+            for dx in (-9, 0, 9):
+                m.append(ellipse(sgn * 21 + dx, -5 + sgn * 1.5, 3.4, 2.6, "#f1f3f5", opacity=0.9))
     fin_pieds = len(m)
 
     # --- corps
@@ -2702,15 +2879,41 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     else:
         m.append(ellipse(0, -62, 42, 52, volume(habit or c, 0.28, 0.8)))
         if habit:
+            m.append(tissu(corps, habit, -44, -116, 44, -8))
             m.append(_motif(corps, motif, couleur_motif))
             fonce_h = _assombrir(habit, 0.78)
+            # ourlet piqué au bas du vêtement
+            m.append(_decoupe(couture("M -40 -26 Q 0 -6 40 -26", habit), corps))
             # encolure et boutons
             m.append(chemin("M -24 -106 Q 0 -90 24 -106", stroke=fonce_h, sw=3))
             if not motif and "tablier" not in acc:
                 for yy in (-80, -60):
                     m.append(cercle(0, yy, 3.6, eclaircir(habit, 0.55), stroke=fonce_h, stroke_width=1.5))
-        elif K.get("ventre"):
+        if not habit and espece not in SANS_POIL:
+            m.append(pelage(corps, c, 0, -62, 44, 54, 34, graine=len(espece) * 7 + 1, long=8, r_min=0.25))
+        if not habit and espece == "chat":
+            # rayures du chat tigré sur les flancs
+            m.append(_decoupe(chemin("M -44 -86 q 12 2 16 8 M -46 -66 q 12 1 15 7 M -44 -46 q 10 0 13 6 "
+                                     "M 44 -86 q -12 2 -16 8 M 46 -66 q -12 1 -15 7 M 44 -46 q -10 0 -13 6",
+                                     stroke=_assombrir(c, 0.75), sw=5, opacity=0.65), corps))
+        if not habit and espece == "grenouille":
+            m.append(_decoupe(g([ellipse(-30, -84, 6, 5, _assombrir(c, 0.75), opacity=0.45), ellipse(32, -76, 7, 5, _assombrir(c, 0.75), opacity=0.45),
+                                 ellipse(-34, -48, 5, 4, _assombrir(c, 0.75), opacity=0.45), ellipse(36, -40, 4, 4, _assombrir(c, 0.75), opacity=0.45)]), corps))
+        if not habit and espece == "elephant":
+            # plis de la peau sur les flancs
+            m.append(_decoupe(chemin("M -44 -80 q 10 4 14 -2 M -46 -62 q 10 4 14 -2 M -44 -44 q 10 4 14 -2 "
+                                     "M 44 -80 q -10 4 -14 -2 M 46 -62 q -10 4 -14 -2 M 44 -44 q -10 4 -14 -2",
+                                     stroke=_assombrir(c, 0.78), sw=2.2, opacity=0.6), corps))
+        if not habit and espece in ("fourmi", "cigale"):
+            # carapace luisante : anneaux et reflet
+            m.append(_decoupe(chemin("M -42 -86 Q 0 -74 42 -86 M -42 -40 Q 0 -28 42 -40", stroke=_assombrir(c, 0.75), sw=2.5, opacity=0.6), corps))
+            m.append(ellipse(-16, -92, 9, 4, "#fff", rot=-25, opacity=0.35))
+        if not habit and K.get("ventre"):
             m.append(ellipse(tourne * 0.8, -54, 27 - abs(tourne) * 0.25, 35, volume(c2, 0.3, 0.88)))
+            if espece not in SANS_POIL:
+                # duvet plus fin du ventre
+                m.append(pelage(ellipse(tourne * 0.8, -54, 27 - abs(tourne) * 0.25, 35, "#000"), c2, tourne * 0.8, -54, 27, 35, 14,
+                                graine=len(espece) * 7 + 2, long=6, sw=1.4))
             if espece == "cigale":
                 for yy in (-72, -56, -40):
                     m.append(chemin(f"M -20 {yy} Q 0 {yy + 6} 20 {yy}", stroke=_assombrir(c2, 0.8), sw=3))
@@ -2739,7 +2942,7 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     coude_g, coude_d = COUDES.get(bras, (None, None))
     if bras == "croises":
         coude_g, coude_d = (-40, -60), (40, -64)
-    poignet = _assombrir(habit, 0.85) if habit else None
+    poignet = _assombrir(habit, 0.85) if habit else (pieds if espece == "renard" else None)
 
     def un_bras(x0, main, coude):
         return _bras(x0, -96, main, coude, manche, bord=bord_manche, poignet=poignet)
@@ -2747,7 +2950,12 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
     bras_svg = un_bras(-32, main_g, coude_g) + un_bras(32, main_d, coude_d)
     mains_svg = _main(*main_g, 11.5, peau_main, bord_main) + _main(*main_d, 11.5, peau_main, bord_main)
     devant = bras in DEVANT_VISAGE
-    if not devant:
+    if bras in DANS_LE_DOS:
+        # mains dans le dos : les bras passent derrière le corps
+        m.insert(fin_pieds, bras_svg + mains_svg)
+        if objet:
+            m.append(objet)
+    elif not devant:
         m.append(bras_svg)
         if objet:
             m.append(objet)
@@ -2778,6 +2986,8 @@ def perso(espece, x=0, y=0, s=1.0, flip=False, expr="sourire", bras="bas", regar
         dessin = ombre_sol(incline * 0.8, -3 if pas != "saute" else 4, 54 if pas != "saute" else 40) + dessin
     # place réservée, dans le repère du personnage (suit miroir, rotation, échelle)
     gauche, droite, haut = ETENDUE.get(espece, (-90, 95, -240))
+    if angle_queue > 0:
+        droite += 25
     dessin += occuper(*_etendue_pose(gauche, droite, haut, POSES[bras]))
     return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
 
@@ -2833,14 +3043,20 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         for sgn in (-1, 1):
             m.append(cercle(sgn * 40, -194, 20, "#343a40"))
     elif espece == "lapin" and "casque" not in acc:
+        # les grandes oreilles suivent l'humeur : tombantes de tristesse,
+        # dressées de surprise ; la timidité en replie une
         for sgn in (-1, 1):
-            m.append(ellipse(sgn * 23, -228, 15, 48, c, rot=sgn * 8))
-            m.append(ellipse(sgn * 23, -226, 7, 36, K["interieur"], rot=sgn * 8))
+            a = OREILLES_HUMEUR.get(expr, 0) or (34 if expr == "timide" and sgn > 0 else 0)
+            o = [ellipse(sgn * 23, -228, 15, 48, c, rot=sgn * 8), ellipse(sgn * 23, -226, 7, 36, K["interieur"], rot=sgn * 8),
+                 chemin(f"M {sgn * 23} -252 Q {sgn * 25} -228 {sgn * 22} -204", stroke=_assombrir(K["interieur"], 0.85), sw=2, opacity=0.6)]
+            m.append(g(o, f"rotate({sgn * a} {sgn * 20} -190)") if a else g(o))
     elif espece == "lievre":
         for sgn in (-1, 1):
-            m.append(ellipse(sgn * 26, -242, 15, 62, c, rot=sgn * 12))
-            m.append(ellipse(sgn * 26, -240, 7, 48, K["interieur"], rot=sgn * 12))
-            m.append(ellipse(sgn * 38, -294, 9, 12, "#4a2c17", rot=sgn * 12))
+            a = OREILLES_HUMEUR.get(expr, 0) or (34 if expr == "timide" and sgn > 0 else 0)
+            o = [ellipse(sgn * 26, -242, 15, 62, c, rot=sgn * 12), ellipse(sgn * 26, -240, 7, 48, K["interieur"], rot=sgn * 12),
+                 ellipse(sgn * 38, -294, 9, 12, "#4a2c17", rot=sgn * 12),
+                 chemin(f"M {sgn * 31} -272 Q {sgn * 28} -240 {sgn * 22} -208", stroke=_assombrir(K["interieur"], 0.85), sw=2, opacity=0.6)]
+            m.append(g(o, f"rotate({sgn * a} {sgn * 20} -192)") if a else g(o))
     elif espece == "rat":
         for sgn in (-1, 1):
             m.append(cercle(sgn * 46, -190, 25, c))
@@ -2850,6 +3066,11 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
             a = math.radians(k * 22.5)
             m.append(cercle(math.cos(a) * 66, hy - 8 + math.sin(a) * 50, 24, K["criniere"]))
         m.append(ellipse(0, hy - 8, 76, 64, K["criniere"]))
+        # mèches de la crinière, rayonnantes
+        meches = " ".join(f"M {n(math.cos(math.radians(k * 15)) * 54)} {n(hy - 8 + math.sin(math.radians(k * 15)) * 46)} "
+                          f"q {n(math.cos(math.radians(k * 15 + 12)) * 14)} {n(math.sin(math.radians(k * 15 + 12)) * 12)} "
+                          f"{n(math.cos(math.radians(k * 15)) * 30)} {n(math.sin(math.radians(k * 15)) * 24)}" for k in range(24))
+        m.append(chemin(meches, stroke=_assombrir(K["criniere"], 0.75), sw=2.5, opacity=0.55))
         for sgn in (-1, 1):
             m.append(cercle(sgn * 40, -196, 16, c))
             m.append(cercle(sgn * 40, -196, 8, c2))
@@ -2895,6 +3116,9 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         for sgn in (-1, 1):
             m.append(poly([(sgn * 52, -170), (sgn * 48, -228), (sgn * 12, -200)], c))
             m.append(poly([(sgn * 44, -178), (sgn * 43, -216), (sgn * 20, -198)], inter))
+            # touffe de poils clairs au creux de l'oreille
+            m.append(chemin(f"M {sgn * 30} -194 l {sgn * 3} -12 M {sgn * 36} -190 l {sgn * 4} -15 M {sgn * 41} -186 l {sgn * 2} -12",
+                            stroke="#fff", sw=2, opacity=0.75))
             if espece in ("renard", "loup"):
                 m.append(poly([(sgn * 50.5, -212), (sgn * 48, -228), (sgn * 36, -219)], "#5c3d2e" if espece == "renard" else "#495057"))
             if espece == "ecureuil":
@@ -2928,6 +3152,21 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
 
     debut_tete = len(m)
     m.append(cercle(0, hy, r, volume(tete_c, 0.25, 0.82)))
+    if espece not in SANS_POIL and espece != "herisson":
+        # poils sur le pourtour de la tête ; le milieu du visage reste net
+        m.append(pelage(cercle(0, hy, r, "#000"), tete_c, 0, hy, r, r, 30, graine=len(espece) * 7 + 3, long=7, r_min=0.62))
+    if espece == "chat":
+        # « M » du chat tigré sur le front
+        m.append(chemin(f"M -14 {hy - r + 4} l 4 16 M 0 {hy - r} l 0 18 M 14 {hy - r + 4} l -4 16 "
+                        f"M -46 {hy - 16} l 12 4 M 46 {hy - 16} l -12 4", stroke=_assombrir(c, 0.75), sw=4.5, opacity=0.65))
+    if espece == "elephant":
+        m.append(chemin(f"M -16 {hy - 34} q 16 -6 32 0 M -10 {hy - 26} q 10 -4 20 0", stroke=_assombrir(c, 0.78), sw=2, opacity=0.55))
+    if espece == "cochon":
+        # quelques soies sur le haut de la tête
+        m.append(chemin(f"M -8 {hy - r + 2} q -2 -8 -6 -10 M 0 {hy - r} q 0 -9 -2 -12 M 8 {hy - r + 2} q 2 -8 6 -10",
+                        stroke=_assombrir(c, 0.7), sw=1.8, opacity=0.7))
+    if espece == "grenouille":
+        m.append(ellipse(-30, hy - 18, 5, 4, _assombrir(c, 0.75), opacity=0.4) + ellipse(34, hy - 10, 6, 4, _assombrir(c, 0.75), opacity=0.4))
     # modelé de la tête : joue droite dans l'ombre, reflet sur le front
     m.append(ombrage(cercle(0, hy, r, "#000"), sombre=[(r * 0.75, hy + r * 0.45, r * 0.8, r * 0.75)],
                      clair=[(-r * 0.45, hy - r * 0.58, r * 0.26, r * 0.14, -30)], opacite=0.08,
@@ -3068,7 +3307,12 @@ def _tete(espece, K, c, c2, ys, bs, ss, regard, joues, expr, larmes, acc, ca, ta
         L = 2.0 if espece == "grenouille" else 1.0
         m.append(bouche(0, my, bs, L))
 
-    # moustaches
+    # moustaches, et les petits points d'où elles partent
+    if espece in ("chat", "souris", "lapin", "lievre", "rat", "lion", "chien", "renard", "loup", "ours", "castor", "ecureuil"):
+        pc = _assombrir(c2 if espece not in ("chat", "souris", "lapin", "rat") else tete_c, 0.6)
+        for sgn in (-1, 1):
+            for dx, dy in ((9, -2), (15, 0), (12, 5)):
+                m.append(cercle(sgn * dx, my - 10 + dy, 1.3, pc, opacity=0.7))
     if espece in ("chat", "souris", "lapin", "lievre", "rat", "lion"):
         for sgn in (-1, 1):
             m.append(trait(sgn * 14, -130, sgn * 46, -136, "#868e96", 2))
@@ -3157,6 +3401,8 @@ def oiseau(x, y, s=1.0, couleur="#4dabf7", ventre="#e7f5ff", expr="sourire", ail
         for sgn in (-1, 1):
             m.append(trait(sgn * 12, -30, sgn * 12, -4, "#f08c00", 4))
             m.append(chemin(f"M {sgn * 12 - 9} 0 L {sgn * 12} -6 L {sgn * 12 + 9} 0", stroke="#f08c00", sw=3.5))
+            # écailles des pattes
+            m.append(chemin(f"M {sgn * 12 - 2} -24 h 4 M {sgn * 12 - 2} -17 h 4 M {sgn * 12 - 2} -10 h 4", stroke="#c25e00", sw=1.3, opacity=0.7))
     # queue : trois plumes en éventail
     m.append(poly([(38, -70), (66, -86), (62, -60)], lineaire([(0, eclaircir(fonce, 0.2)), (1, _assombrir(fonce, 0.75))], 0, 0, 1, 1)))
     m.append(chemin("M 42 -70 L 63 -80 M 42 -68 L 62 -66", stroke=_assombrir(fonce, 0.7), sw=1.5, opacity=0.6))
@@ -3164,6 +3410,8 @@ def oiseau(x, y, s=1.0, couleur="#4dabf7", ventre="#e7f5ff", expr="sourire", ail
         m.append(_plumes(-50, -88, 14, 30, -40, aile))
         m.append(_plumes(50, -88, 14, 30, 40, aile))
     m.append(cercle(0, -68, 44, volume(couleur, 0.32, 0.78)))
+    # petites plumes du dos et de la tête
+    m.append(plumage(cercle(0, -68, 44, "#000"), couleur, -44, -104, 44, -24, 13, 0.3))
     m.append(ellipse(0, -52, 28, 26, volume(ventre, 0.4, 0.88)))
     m.append(chemin("M -14 -40 q 4 4 8 0 M 2 -38 q 4 4 8 0 M -6 -30 q 4 4 8 0", stroke=_assombrir(ventre, 0.8), sw=1.6, opacity=0.6))
     m.append(ombrage(cercle(0, -68, 44, "#000"), sombre=[(30, -40, 40, 34)], clair=[(-20, -98, 12, 7, -30)], reflets=[(44, -60, 7, 26)]))
@@ -3203,6 +3451,7 @@ def chouette(x, y, s=1.0, couleur="#a9805b", visage="#f3dcc3", expr="sourire", a
         m.append(_plumes(-56, -110, 18, 44, -35, fonce, 4))
         m.append(_plumes(56, -110, 18, 44, 35, fonce, 4))
     m.append(ellipse(0, -80, 58, 78, volume(couleur, 0.28, 0.78)))
+    m.append(plumage(ellipse(0, -80, 58, 78, "#000"), couleur, -58, -156, 58, -4, 16, 0.3))
     for sgn in (-1, 1):
         m.append(poly([(sgn * 30, -140), (sgn * 52, -178), (sgn * 52, -130)], cylindre(couleur, 0.25, 0.75)))
         m.append(chemin(f"M {sgn * 38} -142 L {sgn * 50} -168", stroke=fonce, sw=2, opacity=0.6))
@@ -3255,6 +3504,7 @@ def escargot(x, y, s=1.0, coquille="#f59f00", corps="#b2f2bb", expr="sourire", f
     if OMBRE_SOL[0]:
         m.append(ombre_sol(10, 0, 96, 8, 0.12))
     m += [chemin(pied, lineaire([(0, eclaircir(corps, 0.35)), (0.5, corps), (1, _assombrir(corps, 0.78))])),
+          ecailles_peau(chemin(pied, "#000"), corps, 20, -24, 96, 30, 26, graine=5, r=3.4),
           ombrage(chemin(pied, "#000"), sombre=[(10, 2, 100, 12), (112, -40, 14, 40)], clair=[(84, -84, 8, 5, -30)]),
           chemin("M -70 -8 Q 0 -14 60 -10", stroke=eclaircir(corps, 0.5), sw=2.5, opacity=0.6)]
     for dx, ang in ((82, -20), (104, 16)):
@@ -3320,6 +3570,7 @@ def tortue(x, y, s=1.0, carapace="#40c057", peau="#b2f2bb", expr="sourire", flip
         m.append(ombre_sol(10, 0, 110, 10, 0.13))
     m += [ellipse(-50, -10, 16, 14, volume(_assombrir(peau, 0.85), 0.3, 0.75)), ellipse(40, -10, 16, 14, volume(_assombrir(peau, 0.85), 0.3, 0.75)),
           chemin(cou, lineaire([(0, eclaircir(peau, 0.3)), (0.5, peau), (1, _assombrir(peau, 0.8))])),
+          ecailles_peau(chemin(cou, "#000"), peau, 100, -56, 40, 30, 16, graine=7, r=3),
           chemin("M 70 -50 q 10 4 18 0 M 74 -40 q 10 4 18 0", stroke=_assombrir(peau, 0.75), sw=2, opacity=0.6),
           chemin(dome, volume(carapace, 0.3, 0.7))]
     # écailles bombées : chacune son reflet
@@ -3328,6 +3579,9 @@ def tortue(x, y, s=1.0, carapace="#40c057", peau="#b2f2bb", expr="sourire", flip
         m.append(poly(hexa, fonce, opacity=0.55))
         m.append(poly([(px - 14, py), (px - 7, py - 12), (px + 7, py - 12), (px + 14, py), (px + 7, py + 12), (px - 7, py + 12)],
                       volume(eclaircir(carapace, 0.1), 0.35, 0.8)))
+        # anneaux de croissance de l'écaille
+        m.append(poly([(px - 9, py), (px - 4.5, py - 7.5), (px + 4.5, py - 7.5), (px + 9, py), (px + 4.5, py + 7.5), (px - 4.5, py + 7.5)],
+                      "none", stroke=fonce, stroke_width=1.5, opacity=0.45))
     m.append(ombrage(chemin(dome, "#000"), sombre=[(60, -30, 60, 40)], clair=[(-40, -100, 26, 9, -20)], reflets=[(86, -40, 8, 20)]))
     m += [rect(-94, -30, 188, 14, cylindre(fonce, 0.3, 0.7, vertical=True), rx=7),
           chemin(" ".join(f"M {xx} -30 v 14" for xx in range(-70, 90, 28)), stroke=_assombrir(fonce, 0.7), sw=2, opacity=0.6)]
