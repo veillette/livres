@@ -236,8 +236,8 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v32"`, donc
-  `"v32"` → `"v33"`), une seule fois par lot de livres.
+- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v33"`, donc
+  `"v33"` → `"v34"`), une seule fois par lot de livres.
 - `python3 outils/nouveautes.py` : réécrit `livres/nouveautes.js` (rayon
   « Nouveautés » de l'accueil) pour que les nouveaux livres y figurent.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux
