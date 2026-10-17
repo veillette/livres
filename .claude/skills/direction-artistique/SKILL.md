@@ -111,6 +111,18 @@ S.dessus(bulle(560, 150, 420, 100, "C'est pour mieux\nte voir !", 32,
   ensemble** : poses `main` (se donner la main, l'un des deux `flip=True`),
   `epaule`, `tend`, `mains_jointes`, `ramasse`, `leve_doigt`, en plus de
   `donne`, `calin`, `ouverts`…
+- **Attitudes** : sans `bras=`, `perso()` et `personne()` choisissent une
+  pose d'après l'humeur (`POSES_HUMEUR` de `base.py`) : mains dans le dos
+  (`dos`) ou main sur la hanche (`repos`) au repos, mains sur le ventre
+  (`ventre`) quand on rit ou qu'on a bien mangé, mains levées (`surprise`),
+  mains croisées devant soi (`mains_basses`) de timidité, main qui gratte la
+  tête (`gratte`) pour « oups ». Donner `bras="bas"` pour garder les bras le
+  long du corps. Queues (chat, chien, renard…) et oreilles du lapin et du
+  lièvre suivent aussi l'humeur.
+- **Textures** : pelage, plumes, écailles, tissu et coutures sont posés
+  d'office ; un personnage dessiné à la main dans un script peut les
+  reprendre avec `pelage()`, `plumage()`, `ecailles_peau()`, `tissu()` et
+  `couture()` (`base.py`), découpés dans sa forme.
 - Taille relative : à même échelle `s`, le corps d'un adulte
   (`STATURES` : hauteur 1,3) est environ trois dixièmes plus long que celui
   d'un enfant, avec une tête un peu plus petite ; ne pas « corriger » en

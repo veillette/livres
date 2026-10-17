@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **252 livres, 3 972 pages et
-3 425 illustrations SVG** (cache hors ligne `v33`).
+3 425 illustrations SVG** (cache hors ligne `v34`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -1006,3 +1006,44 @@ vérifiée par `cachettes.py --verifier` (« Toutes les pages ont une bonne
 cachette. ») ; régénération complète sans changement des autres livres
 (`empreintes.txt` ne gagne que 168 lignes) ; `verifier-images.py` sans
 erreur ; `node --test` réussi. Le cache hors ligne passe à `v33`.
+
+## Personnages plus détaillés du 17 octobre 2026
+
+Changement voulu de la finition partagée : **tous les SVG** où paraît un
+personnage de `perso()`, `personne()`, `oiseau()` (corbeau, coq,
+colombe…), `chouette()`, `tortue()`, `escargot()` ou `dragon()` changent
+(aucun livre ajouté : 252 livres, 3 972 pages, 3 425 SVG).
+
+- Textures (`base.py`) : pelage en petits traits couchés dans le sens du
+  poil (`pelage()`, corps, ventre, pourtour de la tête, queues du renard,
+  du loup et de l'écureuil) ; rayures et « M » du chat tigré, taches de la
+  grenouille, plis et ongles de l'éléphant, soies du cochon, mèches de la
+  crinière du lion, piquants striés du hérisson, queue quadrillée du
+  castor, carapace luisante de la fourmi ; plumes en écailles des oiseaux
+  et de la chouette (`plumage()`), pattes écaillées ; écailles et baleines
+  des ailes du dragon ; peau grenue (`ecailles_peau()`) et anneaux de
+  croissance de la tortue ; pied grenu de l'escargot.
+- Détails : doigts sur toutes les mains, points des moustaches, touffes
+  claires au creux des oreilles pointues, « chaussettes » noires du
+  renard ; humains avec sourcils au repos de la couleur des cheveux,
+  mèches des cheveux longs, torsades des tresses, boucles en
+  tire-bouchon, élastique de la queue de cheval, trame du tissu
+  (`tissu()`), ourlets piqués (`couture()`), patte boutonnée des
+  tuniques, ourlet du pantalon, semelles des chaussures.
+- Poses : six attitudes nouvelles (`repos`, `dos`, `ventre`, `surprise`,
+  `mains_basses`, `gratte`) ; un personnage sans `bras=` prend une pose
+  selon son humeur (`POSES_HUMEUR` : mains dans le dos ou sur la hanche au
+  repos, sur le ventre quand il rit, levées de surprise, croisées de
+  colère, jointes d'inquiétude…), le choix entre variantes étant fixé par
+  sa place. Les queues (chat, chien, renard, loup, lion…) se dressent de
+  joie et tombent de tristesse, la queue du chien frétille ; les oreilles
+  du lapin et du lièvre tombent de tristesse et l'une se replie de
+  timidité.
+
+Contrôles : planches avant/après revues dans Chromium (échantillon de
+toutes les espèces et de tous les âges, pages de contes, fables et
+histoires) ; une page a perdu sa cachette (*La soupe au caillou*, p. 5 :
+la villageoise lève les mains de surprise), complétée par `S.cachette()` ;
+`cachettes.py --tous --verifier` sans nouvel avertissement (un de moins
+qu'avant) ; `verifier-images.py` sans erreur ; `node --test` réussi. Les
+SVG grossissent d'environ 12 %. Le cache hors ligne passe à `v34`.

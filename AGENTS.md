@@ -68,7 +68,7 @@ lance `generer.py` : les images sont déjà là.
   change des lignes d'autres livres dans `empreintes.txt`, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (aujourd'hui `"v33"`, donc `"v33"` → `"v34"`) et
+  `VERSION` dans `sw.js` (aujourd'hui `"v34"`, donc `"v34"` → `"v35"`) et
   mettre à jour les totaux (livres, pages, SVG) du README (section
   « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
   qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche
@@ -109,7 +109,10 @@ L'essentiel :
 - **Personnages crédibles** : adultes `stature="adulte"`, grands-parents
   `"ancien"`, tout-petits `"petit"` ; varier `carrure`, `nez`, coiffures ;
   objets tenus recalés avec `ancre()` ou `mains_personne()`. Les personnages
-  se regardent (`regard=`) et interagissent (poses `main`, `epaule`, `tend`…).
+  se regardent (`regard=`) et interagissent (poses `main`, `epaule`, `tend`…) ;
+  sans `bras=`, la pose suit l'humeur (`POSES_HUMEUR`). Pelage, plumes,
+  tissu et coutures sont posés d'office (`pelage()`, `tissu()`… pour un
+  personnage dessiné à la main).
 - **Lumière** : la nuit, chaque fenêtre éclairée, lampe ou feu a son halo
   (`S.lumiere()`, automatique pour la lune, `maison(lumiere=True)`, `lampe`,
   `luciole`) ; `S.ambiance()` si le décor ne dit pas le bon moment.

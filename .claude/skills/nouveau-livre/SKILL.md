@@ -112,7 +112,10 @@ IMAGES = [
   - `base.py` : `Scene`, formes, décors (`ciel`, `nuit`, `interieur`,
     `collines`, `eau`…), `perso(espece, …)` avec `ESPECES`, `EXPRESSIONS`,
     `POSES` (dont `danse`, `applaudit`, `victoire`, `coucou`, `chut`,
-    `etire`, `epaules`, `marche`), `pas=` / `penche=` pour varier
+    `etire`, `epaules`, `marche`, et les attitudes `repos`, `dos`, `ventre`,
+    `surprise`, `mains_basses`, `gratte` ; sans `bras=`, la pose suit
+    l'humeur), textures `pelage()`, `plumage()`, `ecailles_peau()`,
+    `tissu()`, `couture()` pour un personnage fait à la main, `pas=` / `penche=` pour varier
     l'attitude, accessoires, oiseaux, chouette, escargot, poisson, tortue,
     `bulle`, `pensee` ; mettre `OMBRES_DOUCES = False` dans le script d'un
     livre qui dessine ses propres ombres portées (`sciences.py`) ;
@@ -236,8 +239,8 @@ Toute image de `images/` doit être utilisée par une page.
 
 ## 6. Mettre à jour le cache et la documentation
 
-- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v33"`, donc
-  `"v33"` → `"v34"`), une seule fois par lot de livres.
+- `sw.js` : augmenter `VERSION` d'un cran (aujourd'hui `"v34"`, donc
+  `"v34"` → `"v35"`), une seule fois par lot de livres.
 - `python3 outils/nouveautes.py` : réécrit `livres/nouveautes.js` (rayon
   « Nouveautés » de l'accueil) pour que les nouveaux livres y figurent.
 - Lancer `python3 outils/verifier-images.py` et reporter ses totaux

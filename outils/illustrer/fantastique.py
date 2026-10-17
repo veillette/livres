@@ -10,7 +10,7 @@ face, les pieds en (0, 0) et la tête vers y = -150.
                    acc=("couronne",), expr="rire", bras="haut"))
 """
 from base import *
-from base import POSES, COUDES, DEVANT_VISAGE, EXPRESSIONS, INCLINE, PAS_POSE, PENCHE, _bras, _main, _assombrir, _cachettes_sol, _etendue_pose
+from base import POSES, COUDES, DEVANT_VISAGE, DANS_LE_DOS, EXPRESSIONS, INCLINE, PAS_POSE, PENCHE, _bras, _main, _assombrir, _cachettes_sol, _decoupe, _etendue_pose
 
 PEAUX = {
     "claire": "#fbd9bd",
@@ -36,19 +36,38 @@ OR_FONCE = "#f59f00"
 # Personnages humains
 # ---------------------------------------------------------------------------
 
+def _meches_long(forme, c, y0, y1, larg=66):
+    """Mèches qui tombent le long d'une chevelure : traits ondulés plus foncés
+    et quelques reflets, découpés dans la forme des cheveux."""
+    fonce, clair = [], []
+    for k, x in enumerate(range(-larg + 8, larg - 4, 11)):
+        ond = 4 if k % 2 else -4
+        d = f"M {x} {y0} q {ond} {n((y1 - y0) / 2)} {n(x * 0.12)} {y1 - y0}"
+        (clair if k % 4 == 1 else fonce).append(d)
+    return _decoupe(g([chemin(" ".join(fonce), stroke=_assombrir(c, 0.74), sw=2.2, opacity=0.55),
+                       chemin(" ".join(clair), stroke=eclaircir(c, 0.4), sw=2.5, opacity=0.5)]), forme)
+
+
 def _cheveux_derriere(coiffure, c):
     """Cheveux placés derrière la tête (et parfois derrière le corps)."""
     if coiffure == "longs":
-        return chemin("M -58 -156 Q -70 -96 -56 -70 Q 0 -60 56 -70 Q 70 -96 58 -156 Z", c)
+        forme = "M -58 -156 Q -70 -96 -56 -70 Q 0 -60 56 -70 Q 70 -96 58 -156 Z"
+        return g([chemin(forme, c), _meches_long(chemin(forme, "#000"), c, -150, -66)])
     if coiffure == "tres_longs":
-        return chemin("M -58 -156 Q -76 -70 -62 -24 Q 0 -10 62 -24 Q 76 -70 58 -156 Z", c)
+        forme = "M -58 -156 Q -76 -70 -62 -24 Q 0 -10 62 -24 Q 76 -70 58 -156 Z"
+        return g([chemin(forme, c), _meches_long(chemin(forme, "#000"), c, -150, -18, 72)])
     if coiffure == "queue":
-        return chemin("M 40 -186 Q 96 -190 86 -120 Q 80 -90 96 -70 Q 60 -80 62 -120 Q 64 -160 40 -170 Z", c)
+        return g([chemin("M 40 -186 Q 96 -190 86 -120 Q 80 -90 96 -70 Q 60 -80 62 -120 Q 64 -160 40 -170 Z", c),
+                  chemin("M 52 -180 Q 84 -170 76 -120 Q 72 -96 84 -78 M 62 -174 Q 76 -150 70 -120", stroke=_assombrir(c, 0.74), sw=2.2, opacity=0.55),
+                  chemin("M 58 -182 Q 88 -176 82 -140", stroke=eclaircir(c, 0.4), sw=2.5, opacity=0.5),
+                  rect(46, -182, 12, 16, "#fa5252", rx=4, transform="rotate(-30 52 -174)")])
     if coiffure == "tresses":
         m = []
         for sgn in (-1, 1):
             for k in range(4):
                 m.append(ellipse(sgn * 54, -128 + k * 20, 12, 13, c))
+                # torsade de la tresse
+                m.append(chemin(f"M {sgn * 54 - 9} {-132 + k * 20} q 9 8 18 0", stroke=_assombrir(c, 0.72), sw=2, opacity=0.6))
             m.append(poly([(sgn * 48, -54), (sgn * 60, -54), (sgn * 54, -42)], c))
             m.append(rect(sgn * 54 - 9, -66, 18, 8, "#fa5252", rx=4))
         return g(m)
@@ -60,11 +79,15 @@ def _cheveux_derriere(coiffure, c):
         for sgn in (-1, 1):
             m.append(cercle(sgn * 56, -110, 18, c))
             m.append(cercle(sgn * 50, -90, 15, c))
+            # boucles : petits tire-bouchons
+            m.append(chemin(f"M {sgn * 62} -122 q {sgn * -8} 6 0 12 q {sgn * 8} 6 0 12 M {sgn * 54} -98 q {sgn * -6} 5 0 10",
+                            stroke=_assombrir(c, 0.72), sw=2.2, opacity=0.6))
         return g(m)
     if coiffure == "chignon":
         return cercle(0, -210, 26, c)
     if coiffure == "carre":
-        return chemin("M -60 -158 Q -68 -112 -60 -96 Q -40 -92 -30 -100 L 30 -100 Q 40 -92 60 -96 Q 68 -112 60 -158 Z", c)
+        forme = "M -60 -158 Q -68 -112 -60 -96 Q -40 -92 -30 -100 L 30 -100 Q 40 -92 60 -96 Q 68 -112 60 -158 Z"
+        return g([chemin(forme, c), _meches_long(chemin(forme, "#000"), c, -150, -96)])
     if coiffure == "afro":
         m = [cercle(0, -164, 72, c)]
         for k in range(14):
@@ -93,9 +116,12 @@ def _cheveux_devant(coiffure, c):
                   _meches(c)])
     if coiffure == "boucles":
         m = []
+        fonce = _assombrir(c, 0.72)
         for k in range(7):
             a = math.radians(-165 + k * 25)
-            m.append(cercle(math.cos(a) * 44, -160 + math.sin(a) * 40, 19, c))
+            bx, by = math.cos(a) * 44, -160 + math.sin(a) * 40
+            m.append(cercle(bx, by, 19, c))
+            m.append(chemin(f"M {n(bx - 8)} {n(by + 2)} a 8 8 0 1 1 8 8", stroke=fonce, sw=2, opacity=0.55))
         return g(m)
     if coiffure == "carre":
         return g([chemin("M -56 -142 Q -62 -212 0 -212 Q 62 -212 56 -142 L 52 -166 Q 26 -172 0 -170 Q -26 -172 -52 -166 Z", c),
@@ -242,7 +268,7 @@ def _nez(style, p, bord_p):
 
 
 def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs", habit="#f783ac",
-             robe=True, jambes="#495057", chaussures=None, expr="sourire", bras="bas", regard=(0, 0),
+             robe=True, jambes="#495057", chaussures=None, expr="sourire", bras=None, regard=(0, 0),
              flip=False, acc=(), couleur_acc=OR, objet=None, derriere=None, larmes=False, rot=0,
              barbe=None, cape=None, sirene=None, motif_robe=None, joues=True, sy=None, ailes=None,
              ceinture=None, tenue=None, coiffe=None, pas=None, penche=None, ombre=None,
@@ -268,6 +294,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     carrure : "fine", "normale" ou "ronde" ; nez : "petit", "rond", "pointu",
     "long" ou "retrousse" ; yeux : "ronds", "petits" ou "cils" ; taches :
     taches de rousseur ; rides : petites rides (par défaut pour "ancien").
+    bras : clé de POSES ; absente, la pose suit l'humeur (POSES_HUMEUR).
     Avec une autre stature que "enfant", placer les objets tenus d'après
     mains_personne().
     """
@@ -275,6 +302,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     ch = CHEVEUX.get(cheveux, cheveux)
     chaussures = chaussures or _assombrir(habit, 0.7)
     ys, bs, ss = EXPRESSIONS[expr]
+    if bras is None:
+        bras = "bas" if (objet or rot or sy or sirene) else pose_humeur(expr, "personne", n(x), n(y), n(s))
     if pas is None:
         pas = PAS_POSE.get(bras)
     devant = bras in DEVANT_VISAGE
@@ -315,6 +344,7 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         arriere.append(chemin("M -40 -60 Q -52 -30 -54 -6 M 40 -60 Q 52 -30 54 -6", stroke=_assombrir(cape, 0.8), sw=3))
     if arriere:
         m.append(corps(arriere))
+    dans_le_dos = len(m)    # bras passés dans le dos : sous les cheveux et le corps
     m.append(tete(_cheveux_derriere(coiffure, ch)))
 
     # --- jambes, robe ou queue de sirène
@@ -328,6 +358,9 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         m += _chaussures(pas, chaussures, 14, 8, 16 * lx, -6)
         forme = "M -26 -106 Q 0 -112 26 -106 L 32 -74 Q 60 -34 66 -12 Q 0 2 -66 -12 Q -60 -34 -32 -74 Z"
         c.append(chemin(forme, cylindre(habit, 0.24, 0.78)))
+        c.append(tissu(chemin(forme, "#000"), habit, -68, -112, 68, 2))
+        # ourlet piqué et petit volant au bas de la robe
+        c.append(couture("M -60 -18 Q 0 -4 60 -18", habit))
         if motif_robe:
             c.append(chemin("M -66 -12 Q 0 2 66 -12 L 64 -22 Q 0 -8 -64 -22 Z", motif_robe))
             for k in range(-2, 3):
@@ -338,7 +371,8 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         c.append(ombrage(chemin(forme, "#000"), sombre=[(54, -40, 34, 70), (0, -6, 70, 10)], clair=[(-24, -90, 6, 12, 20), (-48, -36, 4, 22, 30)],
                          reflets=[(64, -24, 8, 30, -30)]))
         haut = [rect(-32, -80, 64, 10, ceinture or _assombrir(habit, 0.85), rx=5),
-                chemin("M -20 -106 Q 0 -94 20 -106", stroke=fonce_h, sw=2.5)]
+                chemin("M -20 -106 Q 0 -94 20 -106", stroke=fonce_h, sw=2.5),
+                couture("M -18 -102 Q 0 -91 18 -102", habit, 1.3)]
     else:
         jambe_d = rect(6, -52, 20, 46, cylindre(jambes, 0.25, 0.7), rx=8)
         c.append(rect(-26, -52, 20, 46, cylindre(jambes, 0.25, 0.7), rx=8))
@@ -352,14 +386,21 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
         else:
             c.append(jambe_d)
             c.append(trait(16, -40, 16, -12, _assombrir(jambes, 0.8), 2, opacity=0.6))
+        c.append(trait(-24, -12, -8, -12, _assombrir(jambes, 0.7), 2.5, opacity=0.6))
         m.append(corps(c))
         c = []
         m += _chaussures(pas, chaussures, 16, 9, 17 * lx, -6)
         forme = "M -32 -106 Q 0 -112 32 -106 L 40 -46 Q 0 -36 -40 -46 Z"
         haut = [chemin(forme, cylindre(habit, 0.24, 0.78)),
+                tissu(chemin(forme, "#000"), habit, -42, -112, 42, -36),
                 ombrage(chemin(forme, "#000"), sombre=[(40, -70, 22, 46), (0, -40, 44, 8)], clair=[(-22, -92, 6, 11, 20), (-33, -70, 3, 16, 6)],
                         reflets=[(42, -66, 6, 30)]),
                 chemin("M -20 -106 Q 0 -92 20 -106", stroke=fonce_h, sw=2.5),
+                # patte boutonnée et ourlet piqué
+                trait(0, -98, 0, -64, fonce_h, 1.6, opacity=0.45),
+                cercle(-0.5, -90, 2.8, eclaircir(habit, 0.5), stroke=fonce_h, stroke_width=1.2),
+                cercle(-0.5, -76, 2.8, eclaircir(habit, 0.5), stroke=fonce_h, stroke_width=1.2),
+                couture("M -38 -48 Q 0 -40 38 -48", habit),
                 rect(-38, -62, 76, 10, ceinture or _assombrir(habit, 0.75), rx=5)]
         if ceinture:
             haut.append(rect(-8, -64, 16, 14, OR, rx=3))
@@ -392,7 +433,13 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     bord_p = _assombrir(p, 0.8)
     rm = 10.5 * (1.08 if stature in ("adulte", "ancien") else 1)
     mains_svg = _main(*main_g, rm, p, bord_p) + _main(*main_d, rm, p, bord_p)
-    if not devant:
+    if bras in DANS_LE_DOS:
+        m.insert(dans_le_dos, bras_svg + mains_svg)
+        if haut_corps is not None:
+            haut_corps += 1
+        if objet:
+            m.append(objet)
+    elif not devant:
         m.append(bras_svg)
         if objet:
             m.append(objet)
@@ -442,7 +489,12 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
             t.append(chemin(f"M {sgn * 34} -156 l {sgn * 6} -2 M {sgn * 34} -150 l {sgn * 7} 1", stroke=rc, sw=1.8, opacity=0.8))
             t.append(chemin(f"M {sgn * 14} -128 Q {sgn * 20} -122 {sgn * 18} -114", stroke=rc, sw=1.8, opacity=0.6))
         t.append(chemin("M -14 -182 Q 0 -186 14 -182", stroke=rc, sw=1.8, opacity=0.5))
-    t.append(sourcils(18, -150, ss))
+    if ss:
+        t.append(sourcils(18, -150, ss))
+    elif coiffure not in ("chauve", "aucun") or barbe:
+        # sourcils au repos, de la couleur des cheveux
+        sc = _assombrir(ch, 0.7) if luminance(ch) > 0.25 else ch
+        t.append(chemin("M -30 -168 Q -20 -174 -9 -170 M 9 -170 Q 20 -174 30 -168", stroke=sc, sw=3.2, opacity=0.85))
     if larmes:
         for sgn in (-1, 1):
             t.append(goutte(sgn * 22, -124, 0.8, "#74c0fc"))
@@ -515,6 +567,9 @@ def _chaussures(pas, couleur, rx, ry, ecart, y):
         elif pas == "saute":
             yy, rot = y + 2, sgn * 22
         m.append(ellipse(x, yy, rx, ry, couleur, rot=rot or None, stroke=bord, stroke_width=2))
+        # semelle plus foncée, reflet sur le bout
+        semelle = f"M {n(x - rx * 0.9)} {n(yy + ry * 0.35)} Q {n(x)} {n(yy + ry * 1.05)} {n(x + rx * 0.9)} {n(yy + ry * 0.35)}"
+        m.append(chemin(semelle, stroke=bord, sw=2.5, opacity=0.8, transform=f"rotate({n(rot)} {n(x)} {n(yy)})" if rot else None))
         m.append(ellipse(x - sgn * 3, yy - ry * 0.35, rx * 0.4, ry * 0.25, "#fff", rot=rot or None, opacity=0.3))
     return m
 
@@ -607,6 +662,9 @@ def dragon(x=0, y=0, s=1.0, couleur="#69db7c", ventre="#d8f5a2", expr="sourire",
             d = (f"M {sgn * 30} -110 L {sgn * 100} -170 Q {sgn * 98} -130 {sgn * 110} -110 "
                  f"Q {sgn * 84} -114 {sgn * 84} -90 Q {sgn * 64} -100 {sgn * 36} -80 Z")
         m.append(chemin(d, fonce))
+        # baleines de l'aile, de l'épaule à chaque pointe
+        pointes = ((150, -200), (156, -120), (118, -96), (76, -80)) if ailes == "ouvertes" else ((100, -170), (110, -110), (84, -90))
+        m.append(chemin(" ".join(f"M {sgn * 34} -106 L {sgn * px} {py}" for px, py in pointes), stroke=_assombrir(fonce, 0.8), sw=2.5, opacity=0.55))
     # pieds
     for sgn in (-1, 1):
         m.append(ellipse(sgn * 24, -10, 22, 13, fonce))
@@ -614,6 +672,8 @@ def dragon(x=0, y=0, s=1.0, couleur="#69db7c", ventre="#d8f5a2", expr="sourire",
             m.append(cercle(sgn * 24 + k * 11, -2, 4, "#fff"))
     # corps
     m.append(ellipse(0, -66, 48, 58, couleur))
+    # écailles du dragon
+    m.append(plumage(ellipse(0, -66, 48, 58, "#000"), couleur, -48, -124, 48, -8, 15, 0.4))
     m.append(ellipse(0, -58, 30, 42, ventre))
     for k in range(4):
         yy = -86 + k * 16

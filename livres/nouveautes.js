@@ -4,6 +4,7 @@
  * d'après l'historique git : ne pas le modifier à la main.
  */
 window.NOUVEAUTES = [
+  { id: "soupe-caillou", date: "2026-10-17", etat: "revu" },
   { id: "trop-de-bruit", date: "2026-10-17", etat: "nouveau" },
   { id: "fete-a-la-fenetre", date: "2026-10-17", etat: "nouveau" },
   { id: "deux-galettes", date: "2026-10-17", etat: "nouveau" },
@@ -23,5 +24,4 @@ window.NOUVEAUTES = [
   { id: "belle-bois-dormant", date: "2026-10-10", etat: "nouveau" },
   { id: "blanche-neige", date: "2026-10-10", etat: "nouveau" },
   { id: "soldat-plomb", date: "2026-10-10", etat: "nouveau" },
-  { id: "pierre-loup", date: "2026-10-10", etat: "nouveau" },
 ];

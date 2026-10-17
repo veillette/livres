@@ -103,6 +103,8 @@ def p05():
     S.add(voyageur(170, 790, 1.3, expr="malin", bras="pense"))
     S.add(villageois(0, 620, 790, 1.0, expr="surpris", regard=(-1, 0)))
     S.add(bulle(380, 140, 540, 110, "Une soupe au caillou ! Mais avec\nune carotte, ce serait meilleur…", 28, pointe=(200, 460)))
+    # la villageoise lève les mains de surprise : la bête vole dans le ciel
+    S.cachette(730, 250, "air")
     return S
 
 
