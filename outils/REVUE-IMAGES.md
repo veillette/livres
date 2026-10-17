@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **240 livres, 3 780 pages et
-3 257 illustrations SVG** (cache hors ligne `v32`).
+Catalogue actuel, après les ajouts d'octobre : **252 livres, 3 972 pages et
+3 425 illustrations SVG** (cache hors ligne `v33`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -951,3 +951,58 @@ tous les rayons (prairie, plage, neige, nuit, chaumière, sciences) ;
 pages ont une bonne cachette. ») ; aucune petite bête retirée par
 `generer.py` ; `verifier-images.py` sans erreur ; `node --test` réussi.
 Le cache hors ligne passe à `v32`.
+
+## Ajout du 17 octobre 2026 : douze histoires de fêtes
+
+Douze livres du rayon « Fêtes », 168 nouvelles illustrations. Chaque fête
+sert de décor à une histoire qui parle d'autre chose (le rayon passe de
+21 à 33 livres) :
+
+- *Le chaton d'Halloween* (`halloween-chaton`) : Nina, déguisée en chat
+  noir, trouve un vrai chaton perdu et frappe à toutes les portes pour
+  trouver sa maison ; Madame Rose et Mistigri, à la fenêtre.
+- *La citrouille turquoise* (`citrouille-turquoise`) : Halloween avec une
+  allergie aux arachides ; la promesse de ne rien manger avant que Papa
+  vérifie, la citrouille turquoise des surprises qui ne se mangent pas,
+  l'échange de bonbons entre amis.
+- *La tempête de Noël* (`noel-tempete`) : une panne de courant la veille de
+  Noël ; le gâteau cuit sur le poêle à bois de Monsieur Ours, tous les
+  voisins réunis aux chandelles.
+- *Le premier Noël de Samir* (`noel-samir`) : une famille qui fête l'Aïd
+  et non Noël ; Émile l'invite à décorer son sapin, Samir apporte les
+  maamouls de Teta, puis Émile est invité à l'Aïd (croissant de lune du
+  soir éclairé à droite, côté Soleil couché).
+- *Trop de bruit à minuit* (`trop-de-bruit`) : le réveillon d'un enfant
+  que les bruits forts dérangent ; cache-oreilles en peluche, feux
+  d'artifice vus de la fenêtre de l'étage, « bonne année » chuchotée.
+- *La fête à la fenêtre* (`fete-a-la-fenetre`) : malade le jour de l'An ;
+  la famille chante sous la fenêtre et laisse un panier sur le paillasson.
+- *Deux galettes pour Gaspard* (`deux-galettes`) : la fête des Rois chez
+  Papa (galette, fève, enfant sous la table) et chez Maman (gâteau des rois
+  avec la fève et le pois).
+- *Les crêpes de Papi Jo* (`crepes-papi-jo`) : la Chandeleur avec un
+  grand-père dont la mémoire flanche ; la recette dessinée sur le frigo.
+- *L'enveloppe rouge de Lin* (`enveloppe-rouge`) : le Nouvel An lunaire ;
+  l'argent de l'enveloppe rouge devient des mandarines et une lanterne pour
+  une voisine seule, qui offre un vieux cerf-volant dragon.
+- *Un cœur pour Monsieur Gustave* (`coeur-gustave`) : la Saint-Valentin à
+  la résidence pour aînés ; mésanges à tête noire (chant « fi-bi »),
+  cardinal rouge, mangeoires en cocottes de pin.
+- *Le poisson d'avril de Mathis* (`poisson-avril`) : la blague qui fait
+  pleurer un ami, le pardon, puis une blague qui fait rire tout le monde.
+- *Le nid de Pâques* (`nid-paques`) : un vrai nid de merle d'Amérique
+  pendant la chasse aux œufs ; œufs bleu ciel, environ deux semaines de
+  couvaison et deux semaines au nid, jeunes à la poitrine tachetée.
+
+Aucun module partagé n'a été modifié : chaque livre dessine ses
+accessoires dans son propre script. Plans variés (gros plans aux moments
+forts, plongée, vues à travers une fenêtre), halos des lanternes,
+citrouilles, fenêtres et poêles la nuit ; adultes et grands-parents à leur
+stature.
+
+Contrôles : planches de toutes les pages des douze livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les pages pleines,
+vérifiée par `cachettes.py --verifier` (« Toutes les pages ont une bonne
+cachette. ») ; régénération complète sans changement des autres livres
+(`empreintes.txt` ne gagne que 168 lignes) ; `verifier-images.py` sans
+erreur ; `node --test` réussi. Le cache hors ligne passe à `v33`.
