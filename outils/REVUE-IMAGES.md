@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **252 livres, 3 972 pages et
-3 425 illustrations SVG** (cache hors ligne `v34`).
+Catalogue actuel, après les ajouts d'octobre : **262 livres, 4 102 pages et
+3 535 illustrations SVG** (cache hors ligne `v35`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -1047,3 +1047,59 @@ la villageoise lève les mains de surprise), complétée par `S.cachette()` ;
 `cachettes.py --tous --verifier` sans nouvel avertissement (un de moins
 qu'avant) ; `verifier-images.py` sans erreur ; `node --test` réussi. Les
 SVG grossissent d'environ 12 %. Le cache hors ligne passe à `v34`.
+
+## Ajout du 19 octobre 2026 : dix contes d'autres peuples et contrées
+
+Dix livres du rayon « Contes traditionnels », 110 nouvelles illustrations,
+des contes et légendes classiques de peuples et de pays qui n'étaient pas
+encore au catalogue (le rayon passe de 34 à 44 livres) :
+
+- *Le pinceau magique* (`pinceau-magique`, Chine) : Ma Liang et son
+  pinceau d'or ; montagnes en pitons, maisons aux toits courbes, palais
+  laqué ; l'empereur gourmand emporté par le vent au bout de la mer, sans
+  violence.
+- *Le corbeau et la lumière* (`corbeau-lumiere`, Haïdas de la côte
+  Nord-Ouest) : boîtes de cèdre aux motifs « formline », maison longue,
+  mât totémique ; aucune étoile ni lune avant que Corbeau ne les libère,
+  suie du trou à fumée qui le noircit.
+- *Le hibou et le corbeau* (`hibou-corbeau`, Inuit) : harfang des neiges
+  tacheté point par point, lampe à huile (qulliq), iglou, aurore boréale,
+  reflet dans un trou d'eau ; la grand-mère raconte dans l'iglou.
+- *Le singe et le crocodile* (`singe-crocodile`, Inde, Jataka et
+  Panchatantra) : manguier, fleuve bordé de palmiers, crocodile dessiné
+  pour le livre ; personne n'est mangé.
+- *Le lapin dans la lune* (`lapin-lune`, Aztèques du Mexique) :
+  Quetzalcoatl en serpent à plumes et en voyageur coiffé de plumes de
+  quetzal, désert, cactus, pyramide à degrés ; l'image du lapin sur la
+  pleine lune.
+- *Maui et le soleil* (`maui-soleil`, Maoris de Nouvelle-Zélande) :
+  maison commune (wharenui) au pignon sculpté, cordes de lin (harakeke),
+  soleil pris au lasso à l'est ; Maui discute au lieu de frapper.
+- *Le bambou aux cent nœuds* (`bambou-cent-noeuds`, Viêt Nam) : rizières,
+  chapeaux coniques, formules « Khắc nhập ! » et « Khắc xuất ! » ; le riche
+  collé au bambou, puis libéré quand il tient parole.
+- *Pourquoi le Soleil et la Lune vivent dans le ciel* (`soleil-lune-eau`,
+  Efiks du Nigéria) : l'eau qui monte dans la grande maison de terre,
+  poissons et crabes ; dernière page partagée entre ciel du jour et de la
+  nuit.
+- *Mange, mon manteau !* (`mange-mon-manteau`, Nasreddine Hodja, Turquie) :
+  vieux habits rapiécés, beau manteau brodé, fez, turban, lanternes de
+  cuivre, plateau de soupe, pilaf et baklavas.
+- *Le capteur de rêves* (`capteur-reves`, Ojibwés) : wigwam d'écorce de
+  bouleau, Grand-mère Araignée (Asibikaashi), cercle de saule ; les mauvais
+  rêves pris dans la toile fondent au soleil.
+
+Aucun module partagé n'a été modifié : personnages et décors propres à
+chaque conte sont dessinés dans son script. Plans variés (gros plans aux
+moments forts, aucune suite de trois pages au même plan), halos des
+lampes, feux et lanternes la nuit, adultes et grands-parents à leur
+stature. Les pages du monde encore sans lumière (*Le corbeau et la
+lumière*, p. 1 et 2) et la page tout près de la lune (*Le lapin dans la
+lune*, p. 8) sont hors du jeu de la petite bête (`S.cachette(None)`).
+
+Contrôles : planches de toutes les pages des dix livres revues dans
+Chromium et corrigées ; coccinelle présente sur toutes les autres pages
+pleines, vérifiée par `cachettes.py --verifier` (« Toutes les pages ont
+une bonne cachette. ») ; régénération complète sans changement des autres
+livres (`empreintes.txt` ne gagne que 110 lignes) ; `verifier-images.py`
+sans erreur ; `node --test` réussi. Le cache hors ligne passe à `v35`.

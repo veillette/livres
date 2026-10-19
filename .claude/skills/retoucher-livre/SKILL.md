@@ -116,7 +116,7 @@ doivent y changer ; on committe ce fichier avec le script et le `livre.js`.
 ## 6. Documenter et committer
 
 - `sw.js` : augmenter `VERSION` d'un cran (une fois par lot ; aujourd'hui
-  `"v34"`, donc `"v34"` → `"v35"`).
+  `"v35"`, donc `"v35"` → `"v36"`).
 - `python3 outils/nouveautes.py` : les livres retouchés remontent dans le
   rayon « Nouveautés » (`livres/nouveautes.js`, avec la mention « Revu »).
 - Aligner les exemples de `VERSION` du README, d'`AGENTS.md`, de
