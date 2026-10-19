@@ -4,6 +4,16 @@
  * d'après l'historique git : ne pas le modifier à la main.
  */
 window.NOUVEAUTES = [
+  { id: "pinceau-magique", date: "2026-10-19", etat: "nouveau" },
+  { id: "corbeau-lumiere", date: "2026-10-19", etat: "nouveau" },
+  { id: "hibou-corbeau", date: "2026-10-19", etat: "nouveau" },
+  { id: "singe-crocodile", date: "2026-10-19", etat: "nouveau" },
+  { id: "lapin-lune", date: "2026-10-19", etat: "nouveau" },
+  { id: "maui-soleil", date: "2026-10-19", etat: "nouveau" },
+  { id: "bambou-cent-noeuds", date: "2026-10-19", etat: "nouveau" },
+  { id: "soleil-lune-eau", date: "2026-10-19", etat: "nouveau" },
+  { id: "mange-mon-manteau", date: "2026-10-19", etat: "nouveau" },
+  { id: "capteur-reves", date: "2026-10-19", etat: "nouveau" },
   { id: "soupe-caillou", date: "2026-10-17", etat: "revu" },
   { id: "trop-de-bruit", date: "2026-10-17", etat: "nouveau" },
   { id: "fete-a-la-fenetre", date: "2026-10-17", etat: "nouveau" },
@@ -14,14 +24,4 @@ window.NOUVEAUTES = [
   { id: "poisson-avril", date: "2026-10-17", etat: "nouveau" },
   { id: "nid-paques", date: "2026-10-17", etat: "nouveau" },
   { id: "halloween-chaton", date: "2026-10-17", etat: "nouveau" },
-  { id: "citrouille-turquoise", date: "2026-10-17", etat: "nouveau" },
-  { id: "noel-samir", date: "2026-10-17", etat: "nouveau" },
-  { id: "noel-tempete", date: "2026-10-17", etat: "nouveau" },
-  { id: "vent-soleil", date: "2026-10-10", etat: "nouveau" },
-  { id: "chat-belette-lapin", date: "2026-10-10", etat: "nouveau" },
-  { id: "chauve-souris-belettes", date: "2026-10-10", etat: "nouveau" },
-  { id: "alouette-petits", date: "2026-10-10", etat: "nouveau" },
-  { id: "belle-bois-dormant", date: "2026-10-10", etat: "nouveau" },
-  { id: "blanche-neige", date: "2026-10-10", etat: "nouveau" },
-  { id: "soldat-plomb", date: "2026-10-10", etat: "nouveau" },
 ];
