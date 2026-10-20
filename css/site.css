@@ -172,6 +172,72 @@ a {
   color: var(--doux);
 }
 
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Recherche : mots, âge de l'enfant, livres lus ou pas. */
+.recherche {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 16px;
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+
+.recherche__mots {
+  flex: 1 1 320px;
+  max-width: 460px;
+}
+
+.recherche input,
+.recherche select {
+  min-height: 48px;
+  border: 2px solid var(--bord);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--encre);
+  font: inherit;
+}
+
+.recherche input {
+  width: 100%;
+  padding: 8px 20px;
+}
+
+.recherche select {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.recherche input:focus-visible,
+.recherche select:focus-visible {
+  outline: 3px solid var(--bleu);
+  outline-offset: 2px;
+}
+
+.recherche__choix {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--doux);
+  font-weight: 700;
+}
+
+.recherche__resultat {
+  margin: -16px 0 32px;
+  text-align: center;
+  color: var(--doux);
+  font-weight: 700;
+}
+
 .filtres {
   display: flex;
   flex-wrap: wrap;
@@ -289,6 +355,56 @@ a {
 
 .carte__pastille--revu {
   background: var(--bleu);
+}
+
+/* Cœur des favoris, en haut à droite de la couverture. */
+.carte__favori {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid var(--bord);
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 1.3rem;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.carte__favori:hover {
+  transform: scale(1.1);
+}
+
+.carte__favori:focus-visible {
+  outline: 3px solid var(--bleu);
+  outline-offset: 2px;
+}
+
+.carte__favori[aria-pressed="true"] {
+  border-color: #ffc2c2;
+}
+
+.carte__lu {
+  display: none;
+  align-self: flex-start;
+  margin: 2px 0 0;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: #e3f4e1;
+  color: #2f6b2a;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.carte--lue .carte__lu {
+  display: block;
 }
 
 .carte__couverture {
@@ -614,6 +730,14 @@ a {
 
   .filtre {
     flex: none;
+  }
+
+  .recherche__mots {
+    flex-basis: 100%;
+  }
+
+  .entete__libelle {
+    display: none;
   }
 
   .navigation {

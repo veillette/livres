@@ -47,7 +47,47 @@
     return bloc;
   }
 
+  /*
+   * Favoris et livres déjà lus, gardés dans ce navigateur seulement
+   * (localStorage). Le stockage peut être refusé (navigation privée, données
+   * bloquées) : le site marche alors sans s'en souvenir.
+   */
+  function lireListe(cle) {
+    try {
+      const liste = JSON.parse(localStorage.getItem(cle) || "[]");
+      return new Set(Array.isArray(liste) ? liste : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function changerListe(cle, id, oui) {
+    const liste = lireListe(cle);
+    if (oui) liste.add(id);
+    else liste.delete(id);
+    try {
+      localStorage.setItem(cle, JSON.stringify([...liste]));
+    } catch {
+      /* stockage indisponible : tant pis */
+    }
+    return oui;
+  }
+
   const Bibliotheque = {
+    favoris: () => lireListe("livres:favoris"),
+    estFavori: (id) => lireListe("livres:favoris").has(id),
+    changerFavori: (id, oui) => changerListe("livres:favoris", id, oui),
+    lus: () => lireListe("livres:lus"),
+    estLu: (id) => lireListe("livres:lus").has(id),
+    changerLu: (id, oui) => changerListe("livres:lus", id, oui),
+
+    /* « 3 à 6 ans » → [3, 6] ; null si l'âge n'est pas donné. */
+    tranchesAge(livre) {
+      const nombres = String(livre.age || "").match(/\d+/g);
+      if (!nombres) return null;
+      return [Number(nombres[0]), Number(nombres[nombres.length - 1])];
+    },
+
     ajouter(livre) {
       if (!livre || !livre.id || !livre.titre || !Array.isArray(livre.pages) || livre.pages.length === 0) {
         console.error("Livre invalide (id, titre et au moins une page sont requis) :", livre);

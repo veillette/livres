@@ -7,6 +7,7 @@
   const precedent = document.getElementById("precedent");
   const suivant = document.getElementById("suivant");
   const boutonVoix = document.getElementById("voix");
+  const boutonFavori = document.getElementById("favori");
 
   const id = new URLSearchParams(location.search).get("livre") || (window.CATALOGUE || [])[0];
 
@@ -20,8 +21,21 @@
     p.textContent = err.message;
     scene.appendChild(p);
     precedent.disabled = suivant.disabled = true;
+    boutonFavori.hidden = true;
     return;
   }
+
+  // Cœur des favoris (gardé sur cet appareil, comme sur la page d'accueil).
+  function montrerFavori() {
+    const oui = Bibliotheque.estFavori(livre.id);
+    boutonFavori.setAttribute("aria-pressed", String(oui));
+    boutonFavori.firstChild.textContent = oui ? "❤️ " : "🤍 ";
+  }
+  boutonFavori.addEventListener("click", () => {
+    Bibliotheque.changerFavori(livre.id, !Bibliotheque.estFavori(livre.id));
+    montrerFavori();
+  });
+  montrerFavori();
 
   document.title = livre.titre;
   document.getElementById("titre").textContent = livre.titre;
@@ -85,6 +99,8 @@
     precedent.disabled = vue === 0;
     suivant.disabled = vue === vues.length - 1;
     history.replaceState(null, "", `#p${pages[0]}`);
+    // Arrivé à la dernière page : le livre est « déjà lu » dans la bibliothèque.
+    if (vue === vues.length - 1) Bibliotheque.changerLu(livre.id, true);
 
     // Précharger les images de la vue suivante.
     (vues[vue + 1] || []).forEach((i) => {
@@ -155,28 +171,99 @@
     afficher();
   });
 
-  // Lecture à voix haute (si le navigateur la propose).
+  /*
+   * Lecture à voix haute (si le navigateur la propose), avec le mot prononcé
+   * surligné dans le texte de la page pour suivre du doigt.
+   *
+   * Le texte dit est recomposé à partir des mots affichés, chacun dans un
+   * <span> dont on connaît la position dans la phrase : l'événement
+   * « boundary » de la synthèse donne la position du mot en cours. Les voix
+   * qui n'envoient pas cet événement lisent simplement sans surligner.
+   */
   const synthese = window.speechSynthesis;
+  let phraseEnCours = null;
+  let motDit = null;
+
+  function surligner(mot) {
+    if (motDit) motDit.classList.remove("mot--dit");
+    motDit = mot;
+    if (motDit) motDit.classList.add("mot--dit");
+  }
+
   function arreterVoix() {
-    if (synthese && synthese.speaking) synthese.cancel();
+    phraseEnCours = null;
+    if (synthese && (synthese.speaking || synthese.pending)) synthese.cancel();
+    surligner(null);
     boutonVoix.textContent = "🔊 Écouter";
+  }
+
+  /* Coupe le texte d'une page en mots (sans toucher aux espaces insécables
+     devant ! ? : ; », pour garder la ponctuation avec son mot). */
+  function decouperMots(bloc, lecture) {
+    for (const p of bloc.querySelectorAll("p")) {
+      const fragments = p.textContent.split(/[ \t\n]+/).filter(Boolean);
+      p.replaceChildren();
+      fragments.forEach((f, n) => {
+        if (n > 0) p.append(" ");
+        const span = document.createElement("span");
+        span.className = "mot";
+        span.textContent = f;
+        p.appendChild(span);
+        if (lecture.texte) lecture.texte += " ";
+        lecture.mots.push({ debut: lecture.texte.length, span });
+        lecture.texte += f;
+      });
+    }
+  }
+
+  /* Texte à dire pour la vue affichée, et la position de chaque mot. */
+  function preparerLecture() {
+    const lecture = { texte: "", mots: [] };
+    const elements = scene.querySelectorAll(".page");
+    vues[vue].forEach((i, n) => {
+      const bloc = elements[n] && elements[n].querySelector(".page__texte");
+      const page = livre.pages[i];
+      // Couverture et page de titre : on dit le titre, sans surligner.
+      if (!bloc || page.type === "couverture" || page.type === "titre") {
+        const texte = Bibliotheque.texteLisible(livre, page);
+        if (texte) lecture.texte += (lecture.texte ? " " : "") + texte;
+      } else {
+        decouperMots(bloc, lecture);
+      }
+    });
+    return lecture;
   }
 
   if (synthese && "SpeechSynthesisUtterance" in window) {
     boutonVoix.hidden = false;
     boutonVoix.addEventListener("click", () => {
-      if (synthese.speaking) {
+      if (phraseEnCours) {
         arreterVoix();
         return;
       }
-      const texte = vues[vue].map((i) => Bibliotheque.texteLisible(livre, livre.pages[i])).filter(Boolean).join(" ");
+      const { texte, mots } = preparerLecture();
       if (!texte) return;
       const phrase = new SpeechSynthesisUtterance(texte);
       phrase.lang = livre.langue || "fr-FR";
       phrase.rate = 0.9;
       const voix = synthese.getVoices().find((v) => v.lang && v.lang.startsWith("fr"));
       if (voix) phrase.voice = voix;
-      phrase.onend = () => (boutonVoix.textContent = "🔊 Écouter");
+      phrase.onboundary = (e) => {
+        if (phrase !== phraseEnCours || (e.name && e.name !== "word")) return;
+        // Le dernier mot qui commence avant la position annoncée.
+        let trouve = null;
+        for (const m of mots) {
+          if (m.debut > e.charIndex) break;
+          trouve = m;
+        }
+        surligner(trouve && trouve.span);
+      };
+      phrase.onend = phrase.onerror = () => {
+        if (phrase === phraseEnCours) arreterVoix();
+      };
+      // Une lecture précédente pas tout à fait terminée ne doit pas gêner.
+      if (synthese.speaking || synthese.pending) synthese.cancel();
+      phraseEnCours = phrase;
       boutonVoix.textContent = "⏹️ Arrêter";
       synthese.speak(phrase);
     });
