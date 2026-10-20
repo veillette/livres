@@ -30,9 +30,39 @@
       <p>Dans presque tous les livres, une petite coccinelle se cache à chaque page : sauras-tu la trouver ?</p>
     </section>
 
+    <form id="recherche" class="recherche" role="search" hidden>
+      <label class="recherche__mots">
+        <span class="visuellement-cache">Chercher un livre</span>
+        <input type="search" id="mots" placeholder="🔎 Chercher : loup, lune, Noël…" autocomplete="off" enterkeyhint="search">
+      </label>
+      <label class="recherche__choix">
+        <span>Âge</span>
+        <select id="age">
+          <option value="">tous les âges</option>
+          <option value="2">2 ans</option>
+          <option value="3">3 ans</option>
+          <option value="4">4 ans</option>
+          <option value="5">5 ans</option>
+          <option value="6">6 ans</option>
+          <option value="7">7 ans</option>
+          <option value="8">8 ans</option>
+        </select>
+      </label>
+      <label class="recherche__choix">
+        <span>Lecture</span>
+        <select id="lecture">
+          <option value="">tous les livres</option>
+          <option value="non">pas encore lus</option>
+          <option value="oui">déjà lus</option>
+        </select>
+      </label>
+    </form>
+
     <nav id="rayons" class="filtres" aria-label="Rayons de la bibliothèque" hidden></nav>
 
-    <div id="etageres" class="etageres" aria-live="polite">
+    <p id="resultat" class="recherche__resultat" role="status" hidden></p>
+
+    <div id="etageres" class="etageres">
       <p class="message">Chargement des livres…</p>
     </div>
   </main>

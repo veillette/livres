@@ -101,6 +101,13 @@
   margin-top: 0.55em;
 }
 
+/* Lecture à voix haute : le mot prononcé est surligné. */
+.mot--dit {
+  border-radius: 0.2em;
+  background: #ffe066;
+  box-shadow: 0 0 0 0.08em #ffe066;
+}
+
 .page__numero {
   position: absolute;
   bottom: 2.2cqh;

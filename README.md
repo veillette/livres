@@ -9,10 +9,18 @@ et les **imprimer sur des feuilles** pour en faire de vrais livres.
   fables, et le lien « Bibliothèque » du lecteur ramène au rayon du livre.
   Le premier rayon, « ✨ Nouveautés » (`index.html#nouveautes`), reprend les
   vingt livres ajoutés ou revus le plus récemment, avec leur date.
+  Au-dessus des rayons, on cherche un livre par mot (titre, sous-titre,
+  résumé, auteur, rayon ; sans tenir compte des accents), par âge de
+  l'enfant (les livres dont la tranche d'âge le contient) ou parmi les
+  livres déjà lus ou pas encore. Le cœur d'une carte met le livre dans le
+  rayon « ❤️ Mes favoris » ; un livre lu jusqu'à la dernière page est marqué
+  « ✓ Déjà lu ». Favoris, livres lus et âge choisi restent dans le
+  navigateur (`localStorage`), sur cet appareil seulement.
 - `lire.html?livre=<id>` : feuilleter un livre (flèches, Espace, Page
   précédente / suivante, Début / Fin, glisser du doigt ; double page dès
   900 px de large, si l'écran est nettement plus large que haut ; lecture à
-  voix haute « 🔊 Écouter »).
+  voix haute « 🔊 Écouter », qui surligne le mot prononcé quand la voix du
+  navigateur l'indique ; bouton « Favori »).
 - `imprimer.html?livre=<id>` : aperçu des feuilles et impression.
 
 Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
@@ -179,7 +187,7 @@ choisir la langue de la lecture à voix haute.
 index.html, lire.html, imprimer.html
 css/site.css        interface du site + règles d'impression
 css/pages.css       apparence des pages (en unités cqw/cqh : même rendu écran/papier)
-js/livres.js        chargement des livres et rendu d'une page
+js/livres.js        chargement des livres, rendu d'une page, favoris et livres lus
 js/bibliotheque.js  page d'accueil
 js/lecteur.js       lecteur
 js/imposition.js    ordre des pages pour le livret
