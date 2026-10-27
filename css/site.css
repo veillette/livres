@@ -334,6 +334,10 @@ a {
   border-radius: var(--rayon);
   box-shadow: var(--ombre);
   overflow: hidden;
+  /* Près de 300 cartes : le navigateur ne dessine que celles proches de
+     l'écran (la hauteur sert de réserve tant qu'une carte n'a pas été vue). */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
 }
 
 /* « Nouveau · 10 oct. 2026 » sur les cartes du rayon Nouveautés. */
@@ -490,7 +494,10 @@ a {
 .double-page {
   --hauteur: min(calc(100dvh - 190px), calc((100vw - 48px) * 210 / 148 / var(--nb, 1)));
   display: flex;
-  filter: drop-shadow(0 10px 24px rgb(60 40 10 / 0.22));
+  /* Une ombre de boîte, et non un filtre drop-shadow : le filtre obligeait
+     à recalculer les dessins à chaque page tournée. */
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgb(60 40 10 / 0.22);
   animation: apparition 0.3s ease-out;
 }
 

@@ -1,24 +1,31 @@
 /*
- * Service worker : rend le site utilisable hors ligne.
+ * Service worker : rend le site rapide et utilisable hors ligne.
  *
- * À l'installation, on met en cache l'interface puis TOUS les livres du
- * catalogue : on lit `livres/catalogue.js`, puis chaque `livre.js` pour y
- * trouver les images.
+ * À l'installation, on met en cache l'interface, le `livre.js` de chaque
+ * livre du catalogue et sa couverture : la bibliothèque s'affiche et se
+ * fouille hors ligne. Les autres images (près de 190 Mo en tout) ne sont pas
+ * toutes téléchargées d'un coup, ce qui ralentissait la première visite :
+ * quand on ouvre un livre, le lecteur demande (message « livre ») de mettre
+ * tout ce livre en cache, en arrière-plan. Un livre ouvert une fois se relit
+ * donc hors ligne.
  *
  * L'installation n'a lieu que quand ce fichier change : après l'ajout d'un
  * livre ou la modification d'images, augmenter VERSION pour que tout soit
- * de nouveau téléchargé et disponible hors ligne. Les fichiers inchangés
- * sont revalidés auprès du serveur (réponse 304), pas re-téléchargés.
+ * de nouveau téléchargé. Les fichiers inchangés sont revalidés auprès du
+ * serveur (réponse 304), pas re-téléchargés.
  *
  * Stratégies :
- *  - pages, scripts, styles : réseau d'abord (pour voir les nouveautés),
- *    cache si hors ligne ;
+ *  - pages, scripts et styles de l'interface : réseau d'abord (pour voir les
+ *    nouveautés), cache si hors ligne ;
+ *  - textes des livres (`livres/…/livre.js`, catalogue, nouveautés) : cache
+ *    d'abord pour aller vite, puis mise à jour du cache en arrière-plan pour
+ *    la visite suivante ;
  *  - images et polices : cache seulement, sans requête réseau quand elles y
  *    sont déjà (elles ne changent qu'avec VERSION) ;
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v35";
+const VERSION = "v36";
 const CACHE = `livres-${VERSION}`;
 
 const INTERFACE = [
@@ -53,6 +60,7 @@ const EN_LOCAL = ["localhost", "127.0.0.1", "[::1]"].includes(self.location.host
    fichier inchangé coûte une réponse 304 au lieu d'un nouveau téléchargement. */
 const revalider = (url) => new Request(url, { cache: "no-cache" });
 
+/* Le livre.js et la couverture de chaque livre du catalogue. */
 async function fichiersDesLivres() {
   const reponse = await fetch("livres/catalogue.js", { cache: "no-cache" });
   const texte = await reponse.text();
@@ -66,7 +74,9 @@ async function fichiersDesLivres() {
       fichiers.push(`${dossier}livre.js`);
       try {
         const source = await (await fetch(`${dossier}livre.js`, { cache: "no-cache" })).text();
-        for (const m of source.matchAll(/["'](images\/[^"']+)["']/g)) fichiers.push(dossier + m[1]);
+        const couverture = source.match(/type:\s*["']couverture["'][^}]*?image:\s*["'](images\/[^"']+)["']/) ||
+          source.match(/["'](images\/[^"']+)["']/);
+        if (couverture) fichiers.push(dossier + couverture[1]);
       } catch {
         /* livre introuvable : on l'ignore */
       }
@@ -123,6 +133,23 @@ async function reseauDAbord(requete) {
   }
 }
 
+/* Répond tout de suite avec le cache s'il y est, et le met à jour pendant ce
+   temps pour la prochaine fois. */
+async function cachePuisMiseAJour(event) {
+  const requete = event.request;
+  const cache = await caches.open(CACHE);
+  const enCache = await cache.match(requete);
+  const miseAJour = fetch(requete).then(async (reponse) => {
+    if (reponse.ok) await cache.put(requete, reponse.clone());
+    return reponse;
+  });
+  if (enCache) {
+    event.waitUntil(miseAJour.catch(() => null));
+    return enCache;
+  }
+  return miseAJour;
+}
+
 async function cacheDAbord(requete) {
   const cache = await caches.open(CACHE);
   const enCache = await cache.match(requete);
@@ -140,7 +167,31 @@ self.addEventListener("fetch", (event) => {
 
   if (!EN_LOCAL && /\.(svg|png|jpe?g|webp|gif|woff2)$/i.test(url.pathname)) {
     event.respondWith(cacheDAbord(requete));
+  } else if (!EN_LOCAL && /\/livres\/.+\.js$/.test(url.pathname)) {
+    // Les textes des livres, le catalogue et les nouveautés : près de 300
+    // fichiers à chaque ouverture de la bibliothèque.
+    event.respondWith(cachePuisMiseAJour(event));
   } else {
     event.respondWith(reseauDAbord(requete));
   }
+});
+
+/* Le lecteur envoie la liste des images du livre ouvert : on met en cache
+   celles qui manquent, quelques-unes à la fois pour ne pas gêner la lecture. */
+self.addEventListener("message", (event) => {
+  const donnees = event.data || {};
+  if (donnees.type !== "livre" || !Array.isArray(donnees.fichiers)) return;
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(CACHE);
+      const fichiers = donnees.fichiers.filter((f) => typeof f === "string" && /^livres\/[a-z0-9-]+\/images\/[^?#]+$/.test(f));
+      for (let i = 0; i < fichiers.length; i += 6) {
+        await Promise.all(
+          fichiers.slice(i, i + 6).map(async (url) => {
+            if (!(await cache.match(url))) await cache.add(url).catch(() => null);
+          })
+        );
+      }
+    })()
+  );
 });

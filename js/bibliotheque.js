@@ -73,7 +73,7 @@
     lien.className = "carte__couverture";
     lien.href = `lire.html?livre=${encodeURIComponent(livre.id)}`;
     lien.setAttribute("aria-label", `Lire « ${livre.titre} »`);
-    lien.appendChild(Bibliotheque.creerPage(livre, livre.pages[0], 0));
+    lien.appendChild(Bibliotheque.creerPage(livre, livre.pages[0], 0, { paresseux: true }));
     article.appendChild(lien);
 
     const corps = document.createElement("div");
