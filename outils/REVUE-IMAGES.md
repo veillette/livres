@@ -2,7 +2,7 @@
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
 Catalogue actuel, après les ajouts d'octobre : **262 livres, 4 102 pages et
-3 535 illustrations SVG** (cache hors ligne `v35`).
+3 535 illustrations SVG** (cache hors ligne `v36`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).

@@ -56,15 +56,24 @@ sur tablette, téléphone ou ordinateur : bouton « 📲 Installer l'application
 la bibliothèque (Chrome, Edge, Android), ou *Partager → Sur l'écran d'accueil*
 sur iPhone / iPad.
 
-Au premier chargement, le service worker (`sw.js`) enregistre l'interface
-**et tous les livres du catalogue** avec leurs images. Tout fonctionne ensuite
-**hors ligne**, impression comprise, ce qui est pratique en voiture ou en vacances.
+Au premier chargement, le service worker (`sw.js`) enregistre l'interface,
+le texte de tous les livres du catalogue et leurs couvertures : la
+bibliothèque s'ouvre et se fouille **hors ligne**. Les autres images (près de
+190 Mo) ne sont pas toutes téléchargées d'un coup, ce qui ralentissait la
+navigation : **chaque livre ouvert une fois** est mis en cache en entier, en
+arrière-plan, et se relit ensuite hors ligne, impression comprise (pratique en
+voiture ou en vacances : ouvrir avant de partir les livres qu'on emporte).
 
-- Les pages et les textes sont d'abord demandés au réseau : les modifications
-  apparaissent dès qu'on est connecté.
+- Les pages, les scripts et les styles de l'interface sont d'abord demandés
+  au réseau : les modifications apparaissent dès qu'on est connecté.
+- Les textes des livres, le catalogue et les nouveautés sont servis tout de
+  suite depuis le cache, puis mis à jour en arrière-plan : une correction de
+  texte apparaît à la visite suivante.
 - Les images et les polices sont servies depuis le cache, sans requête réseau.
+- Dans la bibliothèque, une couverture n'est chargée et dessinée qu'en
+  approchant de l'écran (`loading="lazy"`, `content-visibility`).
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v35"`, donc `"v35"` → `"v36"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v36"`, donc `"v36"` → `"v37"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées

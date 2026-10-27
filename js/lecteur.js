@@ -270,4 +270,14 @@
   }
 
   afficher();
+
+  // Mettre tout ce livre en cache (service worker) pour le relire hors
+  // ligne, quand le navigateur n'a rien de mieux à faire.
+  const travailleur = navigator.serviceWorker && navigator.serviceWorker.controller;
+  if (travailleur) {
+    const fichiers = [...new Set(livre.pages.map((p) => p.image).filter(Boolean))].map((src) => Bibliotheque.cheminImage(livre, src));
+    const envoyer = () => travailleur.postMessage({ type: "livre", fichiers });
+    if ("requestIdleCallback" in window) requestIdleCallback(envoyer, { timeout: 3000 });
+    else setTimeout(envoyer, 1000);
+  }
 })();

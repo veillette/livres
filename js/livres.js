@@ -130,8 +130,10 @@
      * Crée l'élément DOM d'une page. Sa taille est donnée par le parent :
      * tout le contenu est dimensionné en unités de conteneur (cqw / cqh),
      * donc la page s'adapte aussi bien à l'écran qu'à la feuille imprimée.
+     * Avec `{ paresseux: true }` (couvertures de la bibliothèque), l'image
+     * n'est chargée qu'en approchant de l'écran.
      */
-    creerPage(livre, page, index) {
+    creerPage(livre, page, index, { paresseux = false } = {}) {
       const type = page.type || "illustration";
       const el = element("div", `page page--${type}`);
       el.style.setProperty("--couleur", page.couleur || livre.couleur || "#3a7bd5");
@@ -143,6 +145,7 @@
         img.src = this.cheminImage(livre, src);
         img.alt = page.description || "";
         img.decoding = "async";
+        if (paresseux) img.loading = "lazy";
         cadre.appendChild(img);
         return cadre;
       };
