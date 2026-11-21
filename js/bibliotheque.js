@@ -122,18 +122,6 @@
     return [nouveautes, ...rayons, autres].filter((r) => r.livres.length > 0);
   }
 
-  /* Le rayon « Mes favoris », dans l'ordre du catalogue. */
-  function rayonFavoris() {
-    const favoris = Bibliotheque.favoris();
-    return {
-      id: "favoris",
-      nom: "Mes favoris",
-      icone: "❤️",
-      description: "Les livres marqués d'un cœur. Ils restent sur cet appareil.",
-      livres: livres.filter((l) => favoris.has(l.id)),
-    };
-  }
-
   function section(rayon) {
     const el = document.createElement("section");
     el.className = "rayon";
@@ -195,28 +183,35 @@
   );
 
   const rayons = ranger(livres);
-  let favoris = rayonFavoris();
-
-  /* Rayons dans l'ordre d'affichage : Nouveautés, Mes favoris, puis les autres. */
-  const tousLesRayons = () => {
-    const liste = favoris.livres.length > 0 ? [favoris] : [];
-    return rayons[0].id === "nouveautes" ? [rayons[0], ...liste, ...rayons.slice(1)] : [...liste, ...rayons];
+  const coeurs = Bibliotheque.favoris();
+  const favoris = {
+    id: "favoris",
+    nom: "Mes favoris",
+    icone: "❤️",
+    description: "Les livres marqués d'un cœur. Ils restent sur cet appareil.",
+    livres: livres.filter((l) => coeurs.has(l.id)),
   };
+  rayons.splice(rayons[0].id === "nouveautes" ? 1 : 0, 0, favoris);
 
-  function construire() {
-    etageres.replaceChildren(...tousLesRayons().map(section));
-    filtres.replaceChildren();
-    if (tousLesRayons().length > 1) {
-      filtres.appendChild(bouton("tous", "Tous les livres", livres.length));
-      tousLesRayons().forEach((r) => filtres.appendChild(bouton(r.id, `<span aria-hidden="true">${r.icone}</span> ${r.nom}`, r.livres.length)));
-      filtres.hidden = false;
+  function construireFiltres() {
+    const liste = rayons.filter((r) => r.livres.length > 0);
+    const rayonEnFocus = filtres.contains(document.activeElement) ? document.activeElement.dataset.rayon : null;
+    const boutons = liste.length > 1
+      ? [
+          bouton("tous", "Tous les livres", livres.length),
+          ...liste.map((r) => bouton(r.id, `<span aria-hidden="true">${r.icone}</span> ${r.nom}`, r.livres.length)),
+        ]
+      : [];
+    filtres.replaceChildren(...boutons);
+    filtres.hidden = boutons.length === 0;
+    if (rayonEnFocus) {
+      const cible = boutons.find((b) => b.dataset.rayon === rayonEnFocus) || boutons[0];
+      cible?.focus({ preventScroll: true });
     }
   }
 
   /* Cœurs et marques « déjà lu » d'après ce que garde le navigateur. */
-  function marquer() {
-    const coeurs = Bibliotheque.favoris();
-    const lus = Bibliotheque.lus();
+  function marquer(coeurs, lus) {
     for (const b of etageres.querySelectorAll(".carte__favori")) {
       const oui = coeurs.has(b.dataset.favori);
       b.setAttribute("aria-pressed", String(oui));
@@ -225,18 +220,22 @@
     for (const c of etageres.querySelectorAll(".carte")) c.classList.toggle("carte--lue", lus.has(c.dataset.livre));
   }
 
-  /* Après un changement de favori ou de lecture (ici, dans un autre onglet
-     ou au retour du lecteur) : refaire le rayon des favoris si besoin. */
+  /* Seul le rayon des favoris doit être redessiné lorsque sa liste change. */
+  function actualiserFavoris(coeurs) {
+    const selection = livres.filter((l) => coeurs.has(l.id));
+    if (selection.length === favoris.livres.length && selection.every((l, i) => l === favoris.livres[i])) return;
+
+    favoris.livres = selection;
+    etageres.querySelector('[data-rayon="favoris"]').replaceWith(section(favoris));
+    construireFiltres();
+  }
+
   function rafraichir() {
-    const avant = favoris.livres.map((l) => l.id).join();
-    favoris = rayonFavoris();
-    if (favoris.livres.map((l) => l.id).join() !== avant) {
-      const defilement = window.scrollY;
-      construire();
-      window.scrollTo(0, defilement);
-    }
-    marquer();
-    afficher();
+    const coeurs = Bibliotheque.favoris();
+    const lus = Bibliotheque.lus();
+    actualiserFavoris(coeurs);
+    marquer(coeurs, lus);
+    afficher(lus);
   }
 
   function convient(livre, mots, age, lecture, lus) {
@@ -249,9 +248,14 @@
     return mots.every((m) => texte.includes(m));
   }
 
-  function afficher() {
-    const voulu = decodeURIComponent(location.hash.slice(1));
-    const choisi = tousLesRayons().some((r) => r.id === voulu) ? voulu : "tous";
+  function afficher(lus = Bibliotheque.lus()) {
+    let voulu = location.hash.slice(1);
+    try {
+      voulu = decodeURIComponent(voulu);
+    } catch {
+      // Un fragment mal formé ne désigne aucun rayon.
+    }
+    const choisi = rayons.some((r) => r.id === voulu && r.livres.length > 0) ? voulu : "tous";
 
     // « loups » trouve « loup » : on enlève le s ou le x final des mots cherchés.
     const mots = normaliser(champMots.value)
@@ -260,8 +264,10 @@
       .map((m) => (m.length > 3 ? m.replace(/[sx]$/, "") : m));
     const age = Number(choixAge.value) || null;
     const lecture = choixLecture.value;
-    const lus = Bibliotheque.lus();
     const filtre = mots.length > 0 || age != null || lecture !== "";
+    const correspondances = filtre
+      ? new Set(livres.filter((livre) => convient(livre, mots, age, lecture, lus)).map((livre) => livre.id))
+      : null;
 
     const trouves = new Set();
     for (const el of etageres.children) {
@@ -271,7 +277,7 @@
       const montre = choisi === "tous" ? !(filtre && (rayon === "nouveautes" || rayon === "favoris")) : rayon === choisi;
       let n = 0;
       for (const c of el.querySelectorAll(".carte")) {
-        const oui = convient(parLivre.get(c.dataset.livre), mots, age, lecture, lus);
+        const oui = !correspondances || correspondances.has(c.dataset.livre);
         c.hidden = !oui;
         if (oui) {
           n += 1;
@@ -308,20 +314,22 @@
     }
     afficher();
   });
-  champMots.addEventListener("input", afficher);
-  choixLecture.addEventListener("change", afficher);
+  champMots.addEventListener("input", () => afficher());
+  choixLecture.addEventListener("change", () => afficher());
   recherche.addEventListener("submit", (e) => {
     e.preventDefault();
     champMots.blur(); // ferme le clavier du téléphone
   });
   recherche.hidden = false;
 
-  construire();
-  marquer();
-  window.addEventListener("hashchange", afficher);
+  etageres.replaceChildren(...rayons.map(section));
+  construireFiltres();
+  window.addEventListener("hashchange", () => afficher());
   // Favoris ou lectures changés dans un autre onglet, ou retour du lecteur
   // par le bouton « précédent » (page restaurée telle quelle).
   window.addEventListener("storage", rafraichir);
   window.addEventListener("pageshow", (e) => e.persisted && rafraichir());
-  afficher();
+  const lus = Bibliotheque.lus();
+  marquer(coeurs, lus);
+  afficher(lus);
 })();

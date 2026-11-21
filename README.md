@@ -198,7 +198,8 @@ css/site.css        interface du site + règles d'impression
 css/pages.css       apparence des pages (en unités cqw/cqh : même rendu écran/papier)
 js/livres.js        chargement des livres, rendu d'une page, favoris et livres lus
 js/bibliotheque.js  page d'accueil
-js/lecteur.js       lecteur
+js/lecteur.js       navigation et affichage du lecteur
+js/lecture-voix.js  synthèse vocale et surlignage des mots
 js/imposition.js    ordre des pages pour le livret
 js/impression.js    page d'impression
 js/pwa.js           enregistrement du service worker, bouton « Installer »
@@ -211,7 +212,7 @@ outils/nouveautes.py   écriture de livres/nouveautes.js d'après l'historique g
 outils/illustrer/   générateur des illustrations SVG (Python, non publié)
 outils/illustrer/empreintes.txt   empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py   vérification des livres et des images (non publiée)
-outils/imposition.test.js   tests de l'ordre des pages du livret (non publiés)
+outils/*.test.js    tests de l'imposition et du cache de l'interface (non publiés)
 outils/revue-images.html    revue interactive des illustrations
 outils/REVUE-IMAGES.md      compte rendu de la revue, livre par livre
 AGENTS.md           consignes pour les agents de code (non publiées)
@@ -433,17 +434,17 @@ texte, et quelques fautes de typographie (espaces répétées ou en trop, espace
 avant une virgule ou un point, `...` au lieu de `…`, guillemets droits `"` au
 lieu de « »). L'apostrophe droite `'` reste acceptée.
 
-L'ordre des pages du livret à plier (`js/imposition.js`) est testé à part,
-pour toutes les longueurs de livre de 1 à 40 pages :
+Les tests JavaScript vérifient l'ordre des pages du livret à plier pour les
+livres de 1 à 40 pages et la présence des ressources de l'interface dans la
+liste du cache hors ligne (`INTERFACE` dans `sw.js`).
 
 ```sh
 node --test
 ```
 
-Avant chaque publication, GitHub Actions dessine toutes les illustrations
-avec `generer.py` : si leurs empreintes diffèrent de
-`outils/illustrer/empreintes.txt`, la publication s'arrête. Puis elle lance
-cette vérification et ces tests, et réécrit `livres/nouveautes.js` avec
-`outils/nouveautes.py` (d'où un checkout de tout l'historique). Le site est publié sans `outils/illustrer/`,
-les scripts Python ni les tests ; la revue des images
-(`outils/revue-images.html`) reste en ligne.
+GitHub Actions dessine les illustrations et vérifie leurs empreintes, les
+livres et les tests JavaScript sur les demandes de fusion vers `main` et
+avant chaque publication. Pour publier, elle réécrit aussi
+`livres/nouveautes.js` avec `outils/nouveautes.py` à partir de l'historique
+git complet. Le site publié exclut `outils/illustrer/`, les scripts Python
+et les tests. La revue des images (`outils/revue-images.html`) reste en ligne.

@@ -38,6 +38,7 @@ const INTERFACE = [
   "css/pages.css",
   "js/livres.js",
   "js/bibliotheque.js",
+  "js/lecture-voix.js",
   "js/lecteur.js",
   "js/imposition.js",
   "js/impression.js",

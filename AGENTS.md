@@ -22,7 +22,7 @@ outils/illustrer/                      générateur des SVG (non publié)
 outils/illustrer/histoires/<id>.py     dessins d'un livre (tirets → soulignés)
 outils/illustrer/empreintes.txt        empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py              vérification des livres et images
-outils/imposition.test.js              tests de l'ordre des pages du livret
+outils/*.test.js                      tests de l'imposition et du cache de l'interface
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
 sw.js                                  service worker (VERSION du cache)
 .claude/skills/                        compétences : nouveau-livre, direction-artistique, retoucher-livre
@@ -37,13 +37,14 @@ python3 -m http.server                        # voir le site : http://localhost:
 python3 outils/illustrer/generer.py <id>      # régénérer un seul livre
 python3 outils/verifier-images.py             # vérifier livres et images (doit dire 0 erreur)
 python3 outils/nouveautes.py                  # rayon « Nouveautés » : réécrire livres/nouveautes.js
-node --test                                   # tests de l'imposition du livret
+node --test                                   # tests de l'imposition et du cache de l'interface
 ```
 
 **Les SVG ne sont pas suivis par git** (`.gitignore`) : la publication
 (`.github/workflows/pages.yml`) les dessine avec `generer.py`, vérifie que
 `outils/illustrer/empreintes.txt` n'a pas changé (`git status`), puis lance
-`verifier-images.py` et `node --test`. `generer.py` réécrit ce fichier
+`verifier-images.py` et `node --test`. Les demandes de fusion vers `main`
+exécutent les mêmes vérifications. `generer.py` réécrit ce fichier
 d'empreintes (une ligne par image) : après toute modification d'un script de
 dessin, relancer `generer.py` et valider `empreintes.txt` dans le même commit.
 `git diff -- outils/illustrer/empreintes.txt` liste les images modifiées.

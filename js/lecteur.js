@@ -69,6 +69,7 @@
   let double = modeDouble();
   let vues = calculerVues(double);
   let vue = 0;
+  const arreterVoix = LectureVoix.installer(boutonVoix, scene, livre, () => vues[vue].map((i) => livre.pages[i]));
 
   // Ouvrir à la page indiquée dans l'adresse (#p5), si présente.
   function pageDeLAdresse() {
@@ -170,104 +171,6 @@
     vue = vues.findIndex((v) => v.includes(premiere));
     afficher();
   });
-
-  /*
-   * Lecture à voix haute (si le navigateur la propose), avec le mot prononcé
-   * surligné dans le texte de la page pour suivre du doigt.
-   *
-   * Le texte dit est recomposé à partir des mots affichés, chacun dans un
-   * <span> dont on connaît la position dans la phrase : l'événement
-   * « boundary » de la synthèse donne la position du mot en cours. Les voix
-   * qui n'envoient pas cet événement lisent simplement sans surligner.
-   */
-  const synthese = window.speechSynthesis;
-  let phraseEnCours = null;
-  let motDit = null;
-
-  function surligner(mot) {
-    if (motDit) motDit.classList.remove("mot--dit");
-    motDit = mot;
-    if (motDit) motDit.classList.add("mot--dit");
-  }
-
-  function arreterVoix() {
-    phraseEnCours = null;
-    if (synthese && (synthese.speaking || synthese.pending)) synthese.cancel();
-    surligner(null);
-    boutonVoix.textContent = "🔊 Écouter";
-  }
-
-  /* Coupe le texte d'une page en mots (sans toucher aux espaces insécables
-     devant ! ? : ; », pour garder la ponctuation avec son mot). */
-  function decouperMots(bloc, lecture) {
-    for (const p of bloc.querySelectorAll("p")) {
-      const fragments = p.textContent.split(/[ \t\n]+/).filter(Boolean);
-      p.replaceChildren();
-      fragments.forEach((f, n) => {
-        if (n > 0) p.append(" ");
-        const span = document.createElement("span");
-        span.className = "mot";
-        span.textContent = f;
-        p.appendChild(span);
-        if (lecture.texte) lecture.texte += " ";
-        lecture.mots.push({ debut: lecture.texte.length, span });
-        lecture.texte += f;
-      });
-    }
-  }
-
-  /* Texte à dire pour la vue affichée, et la position de chaque mot. */
-  function preparerLecture() {
-    const lecture = { texte: "", mots: [] };
-    const elements = scene.querySelectorAll(".page");
-    vues[vue].forEach((i, n) => {
-      const bloc = elements[n] && elements[n].querySelector(".page__texte");
-      const page = livre.pages[i];
-      // Couverture et page de titre : on dit le titre, sans surligner.
-      if (!bloc || page.type === "couverture" || page.type === "titre") {
-        const texte = Bibliotheque.texteLisible(livre, page);
-        if (texte) lecture.texte += (lecture.texte ? " " : "") + texte;
-      } else {
-        decouperMots(bloc, lecture);
-      }
-    });
-    return lecture;
-  }
-
-  if (synthese && "SpeechSynthesisUtterance" in window) {
-    boutonVoix.hidden = false;
-    boutonVoix.addEventListener("click", () => {
-      if (phraseEnCours) {
-        arreterVoix();
-        return;
-      }
-      const { texte, mots } = preparerLecture();
-      if (!texte) return;
-      const phrase = new SpeechSynthesisUtterance(texte);
-      phrase.lang = livre.langue || "fr-FR";
-      phrase.rate = 0.9;
-      const voix = synthese.getVoices().find((v) => v.lang && v.lang.startsWith("fr"));
-      if (voix) phrase.voice = voix;
-      phrase.onboundary = (e) => {
-        if (phrase !== phraseEnCours || (e.name && e.name !== "word")) return;
-        // Le dernier mot qui commence avant la position annoncée.
-        let trouve = null;
-        for (const m of mots) {
-          if (m.debut > e.charIndex) break;
-          trouve = m;
-        }
-        surligner(trouve && trouve.span);
-      };
-      phrase.onend = phrase.onerror = () => {
-        if (phrase === phraseEnCours) arreterVoix();
-      };
-      // Une lecture précédente pas tout à fait terminée ne doit pas gêner.
-      if (synthese.speaking || synthese.pending) synthese.cancel();
-      phraseEnCours = phrase;
-      boutonVoix.textContent = "⏹️ Arrêter";
-      synthese.speak(phrase);
-    });
-  }
 
   afficher();
 
