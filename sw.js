@@ -25,7 +25,7 @@
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v37";
+const VERSION = "v38";
 const CACHE = `livres-${VERSION}`;
 
 const INTERFACE = [
@@ -40,6 +40,7 @@ const INTERFACE = [
   "js/bibliotheque.js",
   "js/lecture-voix.js",
   "js/lecteur.js",
+  "js/navigation-lecture.js",
   "js/imposition.js",
   "js/impression.js",
   "js/pwa.js",

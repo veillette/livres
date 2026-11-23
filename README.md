@@ -89,7 +89,7 @@ voiture ou en vacances : ouvrir avant de partir les livres qu'on emporte).
 - Dans la bibliothèque, une couverture n'est chargée et dessinée qu'en
   approchant de l'écran (`loading="lazy"`, `content-visibility`).
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v37"`, donc `"v37"` → `"v38"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v38"`, donc `"v38"` → `"v39"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées
@@ -208,14 +208,19 @@ choisir la langue de la lecture à voix haute.
 
 ## Organisation du code
 
+Les sources communes `js/imposition.js` et `js/navigation-lecture.js` sont
+maintenues dans Livres. Le script `tools/sync-site-helpers.mjs --write` du
+dépôt Origami met à jour les copies lorsque les dépôts sont côte à côte.
+
 ```
 index.html, lire.html, imprimer.html
 css/site.css        interface du site + règles d'impression
 css/pages.css       apparence des pages (en unités cqw/cqh : même rendu écran/papier)
 js/livres.js        chargement des livres, rendu d'une page, favoris et livres lus
 js/bibliotheque.js  page d'accueil
-js/lecteur.js       navigation et affichage du lecteur
+js/lecteur.js       raccorde la lecture aux pages du livre
 js/lecture-voix.js  synthèse vocale et surlignage des mots
+js/navigation-lecture.js   navigation, gestes et doubles pages des lecteurs
 js/imposition.js    ordre des pages pour le livret
 js/impression.js    page d'impression
 js/pwa.js           enregistrement du service worker, bouton « Installer »

@@ -22,8 +22,9 @@ outils/illustrer/                      générateur des SVG (non publié)
 outils/illustrer/histoires/<id>.py     dessins d'un livre (tirets → soulignés)
 outils/illustrer/empreintes.txt        empreinte de chaque SVG généré (suivie par git)
 outils/verifier-images.py              vérification des livres et images
-outils/*.test.js                      tests de l'imposition et du cache de l'interface
+outils/*.test.js                      tests du livret, de la navigation et du cache
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
+js/imposition.js, js/navigation-lecture.js   sources communes avec Chansons
 sw.js                                  service worker (VERSION du cache)
 .claude/skills/                        compétences : nouveau-livre, direction-artistique, retoucher-livre
 .claude/hooks/session-start.sh         dessine les SVG au démarrage d'une session cloud
@@ -37,7 +38,7 @@ python3 -m http.server                        # voir le site : http://localhost:
 python3 outils/illustrer/generer.py <id>      # régénérer un seul livre
 python3 outils/verifier-images.py             # vérifier livres et images (doit dire 0 erreur)
 python3 outils/nouveautes.py                  # rayon « Nouveautés » : réécrire livres/nouveautes.js
-node --test                                   # tests de l'imposition et du cache de l'interface
+node --test                                   # tests du livret, de la navigation et du cache
 ```
 
 **Les SVG ne sont pas suivis par git** (`.gitignore`) : la publication
@@ -69,7 +70,7 @@ lance `generer.py` : les images sont déjà là.
   change des lignes d'autres livres dans `empreintes.txt`, c'est une régression à corriger (sauf correction
   voulue et annoncée).
 - **Après l'ajout d'un livre ou la modification d'images** : augmenter
-  `VERSION` dans `sw.js` (aujourd'hui `"v37"`, donc `"v37"` → `"v38"`) et
+  `VERSION` dans `sw.js` (aujourd'hui `"v38"`, donc `"v38"` → `"v39"`) et
   mettre à jour les totaux (livres, pages, SVG) du README (section
   « Dessiner les illustrations ») et de `outils/REVUE-IMAGES.md`, ainsi
   qu'une entrée « Ajout du … » dans ce dernier. `verifier-images.py` affiche
