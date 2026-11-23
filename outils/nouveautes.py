@@ -15,6 +15,7 @@ lancer ce script avant le commit qui ajoute un livre.
 Sans historique complet (clone superficiel), le fichier n'est pas réécrit.
 """
 
+import argparse
 import datetime
 import re
 import subprocess
@@ -127,18 +128,22 @@ def contenu(liste):
 
 
 def main():
+    analyseur = argparse.ArgumentParser(description="Écrire les nouveautés de la bibliothèque.")
+    analyseur.add_argument("--verifier", action="store_true", help="vérifier le fichier sans le réécrire")
+    analyseur.add_argument("--sortie", type=Path, default=SORTIE, help="écrire dans le site préparé")
+    options = analyseur.parse_args()
     if git("rev-parse", "--is-shallow-repository").strip() == "true":
         print("Historique git incomplet (clone superficiel) : livres/nouveautes.js n'est pas réécrit.")
         return 0
     texte = contenu(nouveautes())
-    ancien = SORTIE.read_text(encoding="utf-8") if SORTIE.exists() else ""
-    if "--verifier" in sys.argv:
+    if options.verifier:
+        ancien = options.sortie.read_text(encoding="utf-8") if options.sortie.exists() else ""
         if texte != ancien:
             print("livres/nouveautes.js n'est pas à jour : lancer python3 outils/nouveautes.py")
             return 1
         print("livres/nouveautes.js est à jour.")
         return 0
-    SORTIE.write_text(texte, encoding="utf-8")
+    options.sortie.write_text(texte, encoding="utf-8")
     print(f"livres/nouveautes.js écrit ({texte.count('id:')} livres).")
     return 0
 

@@ -1,0 +1,14 @@
+{
+  "shell": "INTERFACE",
+  "shellRoots": [
+    "js",
+    "css"
+  ],
+  "routes": [
+    {
+      "path": "lire.html?livre=petit-nuage#p1",
+      "selector": "#titre",
+      "text": "Le voyage de Petit Nuage"
+    }
+  ]
+}

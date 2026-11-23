@@ -92,6 +92,10 @@ a {
   margin-left: auto;
 }
 
+.copy-status:empty {
+  position: absolute;
+}
+
 /* --- Boutons ----------------------------------------------------------- */
 
 .bouton {

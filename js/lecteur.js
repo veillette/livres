@@ -6,6 +6,7 @@
   const position = document.getElementById("position");
   const precedent = document.getElementById("precedent");
   const suivant = document.getElementById("suivant");
+  const boutonCopier = document.getElementById("copier-lien");
   const boutonVoix = document.getElementById("voix");
   const boutonFavori = document.getElementById("favori");
 
@@ -100,6 +101,9 @@
     precedent.disabled = vue === 0;
     suivant.disabled = vue === vues.length - 1;
     history.replaceState(null, "", `#p${pages[0]}`);
+    boutonCopier.dataset.copyLink = `lire.html?livre=${encodeURIComponent(livre.id)}#p${pages[0]}`;
+    boutonCopier.nextElementSibling.textContent = "";
+    boutonCopier.hidden = location.protocol === "file:";
     // Arrivé à la dernière page : le livre est « déjà lu » dans la bibliothèque.
     if (vue === vues.length - 1) Bibliotheque.changerLu(livre.id, true);
 

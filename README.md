@@ -26,6 +26,22 @@ et les **imprimer sur des feuilles** pour en faire de vrais livres.
 Le site est entièrement statique (HTML + CSS + JavaScript, sans dépendance ni
 étape de compilation).
 
+Dans le lecteur, **Copier le lien** partage le livre à la page affichée.
+
+## Vérifier, préparer et prévisualiser
+
+Utiliser Node.js 26, Python 3 et rsync. La vérification dessine les illustrations avant de préparer le site.
+
+```sh
+bash .github/verifier-site.sh
+bash .github/preparer-site.sh
+python3 -m http.server 8000 --directory _site
+```
+
+La publication teste les liens de lecture et le fonctionnement hors ligne dans le site préparé.
+Pour vérifier localement la liste des fichiers hors ligne, lancer
+`node .github/site-smoke.mjs _site --assets-only`.
+
 ## Voir le site
 
 Les illustrations ne sont pas dans le dépôt : elles se dessinent à partir des
@@ -73,7 +89,7 @@ voiture ou en vacances : ouvrir avant de partir les livres qu'on emporte).
 - Dans la bibliothèque, une couverture n'est chargée et dessinée qu'en
   approchant de l'écran (`loading="lazy"`, `content-visibility`).
 - **Après l'ajout d'un livre ou la modification d'images**, augmenter `VERSION`
-  en haut de `sw.js` (aujourd'hui `"v36"`, donc `"v36"` → `"v37"`) pour que le
+  en haut de `sw.js` (aujourd'hui `"v37"`, donc `"v37"` → `"v38"`) pour que le
   nouveau livre et les nouvelles images soient aussi disponibles hors ligne.
   Les fichiers inchangés sont seulement revalidés, pas re-téléchargés.
 - Sur `localhost`, tout est demandé au réseau d'abord : les images régénérées

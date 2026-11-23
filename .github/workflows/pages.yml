@@ -1,77 +1,27 @@
 name: Vérifier et publier le site
 
 on:
-  push:
-    branches: [main]
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: github-pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
-
-concurrency:
-  group: pages-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  pages: write
+  id-token: write
 
 jobs:
-  verifier:
-    name: Vérifier les livres et le site
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          # La publication lit les dates des livres dans l'historique git.
-          fetch-depth: ${{ github.event_name == 'pull_request' && 1 || 0 }}
-
-      - name: Dessiner les illustrations
-        run: python3 outils/illustrer/generer.py > /dev/null
-
-      - name: Vérifier que les illustrations ont les empreintes validées
-        run: |
-          if [ -n "$(git status --porcelain -- outils/illustrer/empreintes.txt livres)" ]; then
-            echo "Des images diffèrent de outils/illustrer/empreintes.txt : relancer generer.py et valider le résultat."
-            git status --short -- outils/illustrer/empreintes.txt livres
-            git diff -- outils/illustrer/empreintes.txt | head -50
-            exit 1
-          fi
-
-      - name: Vérifier les livres et les images
-        run: python3 outils/verifier-images.py
-
-      - name: Tester le JavaScript
-        run: node --test
-
-      - name: Mettre à jour les nouveautés
-        if: github.event_name != 'pull_request'
-        run: python3 outils/nouveautes.py
-
-      - name: Préparer le site (sans les outils de dessin)
-        if: github.event_name != 'pull_request'
-        run: |
-          rsync -a ./ _site/ \
-            --exclude .git --exclude .github --exclude .claude --exclude _site \
-            --exclude AGENTS.md \
-            --exclude __pycache__ --exclude outils/illustrer --exclude 'outils/*.py' --exclude 'outils/*.test.js'
-
-      - uses: actions/upload-pages-artifact@v5
-        if: github.event_name != 'pull_request'
-        with:
-          path: _site
-
-  publier:
-    name: Publier sur GitHub Pages
-    needs: verifier
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploiement.outputs.page_url }}
-    steps:
-      - uses: actions/configure-pages@v6
-      - id: deploiement
-        uses: actions/deploy-pages@v5
+  site:
+    uses: ./.github/workflows/site-ci.yml
+    with:
+      output: _site
+      node-version: '26'
+      fetch-depth: ${{ github.event_name == 'pull_request' && 1 || 0 }}
+      check: bash .github/verifier-site.sh
+      build: bash .github/preparer-site.sh
