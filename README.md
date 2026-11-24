@@ -30,7 +30,7 @@ Dans le lecteur, **Copier le lien** partage le livre à la page affichée.
 
 ## Vérifier, préparer et prévisualiser
 
-Utiliser Node.js 26, Python 3 et rsync. La vérification dessine les illustrations avant de préparer le site.
+Utiliser Node.js 26 (`.nvmrc`), Python 3 et rsync. La vérification dessine les illustrations avant de préparer le site.
 
 ```sh
 bash .github/verifier-site.sh

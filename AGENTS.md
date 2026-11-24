@@ -33,6 +33,8 @@ sw.js                                  service worker (VERSION du cache)
 
 ## Commandes
 
+Utiliser Node.js 26 (`.nvmrc`) et Python 3.
+
 ```sh
 python3 outils/illustrer/generer.py           # dessiner toutes les images (à faire après un clone)
 python3 -m http.server                        # voir le site : http://localhost:8000

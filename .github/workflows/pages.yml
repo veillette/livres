@@ -21,7 +21,7 @@ jobs:
     uses: ./.github/workflows/site-ci.yml
     with:
       output: _site
-      node-version: '26'
+      node-version-file: .nvmrc
       fetch-depth: ${{ github.event_name == 'pull_request' && 1 || 0 }}
       check: bash .github/verifier-site.sh
       build: bash .github/preparer-site.sh
