@@ -24,7 +24,8 @@ outils/illustrer/empreintes.txt        empreinte de chaque SVG généré (suivie
 outils/verifier-images.py              vérification des livres et images
 outils/*.test.js                      tests du livret, de la navigation et du cache
 outils/REVUE-IMAGES.md                 journal de revue des illustrations
-js/imposition.js, js/navigation-lecture.js   sources communes avec Chansons
+js/copier-lien.js, js/imposition.js, js/navigation-lecture.js
+                                       sources canoniques (sync → Chansons)
 sw.js                                  service worker (VERSION du cache)
 .claude/skills/                        compétences : nouveau-livre, direction-artistique, retoucher-livre
 .claude/hooks/session-start.sh         dessine les SVG au démarrage d'une session cloud
@@ -142,6 +143,13 @@ Suivre la compétence **`nouveau-livre`** :
 Elle décrit tout le parcours : choix du rayon et de l'identifiant, écriture du
 texte, script d'illustration (selon `direction-artistique`), `livre.js`,
 catalogue, cache, vérifications et revue visuelle des planches.
+
+## Synchronisation avec Chansons
+
+`js/copier-lien.js`, `js/imposition.js` et `js/navigation-lecture.js` sont
+édités **ici**, puis recopiés vers Chansons. Depuis le dépôt Origami (où vit
+le script), lancer `node tools/sync-site-helpers.mjs --write` et vérifier le
+diff dans Chansons. Ne pas faire évoluer ces fichiers seulement dans Chansons.
 
 ## Git
 
