@@ -25,7 +25,7 @@
  *  - sur localhost : toujours le réseau d'abord, pour voir tout de suite les
  *    images régénérées pendant qu'on dessine.
  */
-const VERSION = "v38";
+const VERSION = "v39";
 const CACHE = `livres-${VERSION}`;
 
 const INTERFACE = [

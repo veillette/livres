@@ -554,6 +554,22 @@ def personne(x=0, y=0, s=1.0, peau="rosee", cheveux="chatain", coiffure="longs",
     return place(dessin, x, y, s, flip=flip, rot=rot, sy=sy)
 
 
+def personne_assise(x, y, s=1.0, habit="#f783ac", jambes="#495057", chaussures=None,
+                    stature="enfant", carrure="normale", robe=False, **pose):
+    """Personnage assis de face ; (x, y) marque le bord du siège."""
+    lx, ly, _ = STATURES[stature]
+    lx *= CARRURES[carrure]
+    chaussures = chaussures or _assombrir(habit, 0.7)
+    haut = personne(0, (15 if robe else 46) * ly, habit=habit, jambes=jambes, chaussures=chaussures,
+                    robe=robe, stature=stature, carrure=carrure, ombre=False, **pose)
+    decoupe = uid("siege")
+    bas = [ellipse(px * lx, 7 * ly, 14 * lx, 18 * ly, volume(jambes, 0.3, 0.8))
+           for px in (-17, 17)]
+    bas += _chaussures(None, chaussures, 15 * lx, 8 * ly, 19 * lx, 23 * ly)
+    return place([el("clipPath", rect(-240, -330, 480, 338, "#000"), id=decoupe),
+                  g(haut, clip_path=f"url(#{decoupe})"), *bas], x, y, s)
+
+
 def _chaussures(pas, couleur, rx, ry, ecart, y):
     """Deux chaussures avec leur semelle ; la droite levée si l'on marche."""
     bord = _assombrir(couleur, 0.7)

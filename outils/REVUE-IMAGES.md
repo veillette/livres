@@ -1,8 +1,8 @@
 # Revue systématique des illustrations
 
 Revue du 29 septembre 2026 : **86 livres, 1 426 pages et 1 234 illustrations SVG**.
-Catalogue actuel, après les ajouts d'octobre : **262 livres, 4 102 pages et
-3 535 illustrations SVG** (cache hors ligne `v36`).
+Catalogue actuel : **272 livres, 4 222 pages et 3 635 illustrations SVG**
+(cache hors ligne `v39`).
 
 [Voir des exemples avant/après](revue-images-comparaison.png) ou ouvrir
 [la revue interactive](revue-images.html).
@@ -1103,3 +1103,21 @@ pleines, vérifiée par `cachettes.py --verifier` (« Toutes les pages ont
 une bonne cachette. ») ; régénération complète sans changement des autres
 livres (`empreintes.txt` ne gagne que 110 lignes) ; `verifier-images.py`
 sans erreur ; `node --test` réussi. Le cache hors ligne passe à `v35`.
+
+## Ajout du 26 novembre 2026 — dix histoires des saisons
+
+Dix albums du rayon « Petites histoires », chacun de douze pages et
+dix illustrations.
+
+- **Printemps** — *La botte aux capucines*, *La fanfare des gouttes* et
+  *Le ruban du cerisier*.
+- **Été** — *La voile jaune*, *Un château pour la marée* et
+  *La dernière lampe du jardin*.
+- **Automne** — *Le manteau de l'érable* et *Les pommes de travers*.
+- **Hiver** — *Le facteur de neige* et *Les petits pas de la patinoire*.
+
+Les 100 images ont été revues en planches rendues avec Inkscape. La
+coccinelle ou la souris a été vérifiée sur chaque couverture et sur les
+huit pages illustrées de chaque livre. La régénération complète ajoute
+100 empreintes, le contrôle des images affiche 0 erreur et les tests
+Node passent. Le cache hors ligne passe à `v39`.
